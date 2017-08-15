@@ -925,13 +925,13 @@ namespace ILR
                 LearningDeliveryWorkPlacementList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
-            foreach (LearningDeliveryWorkPlacement migrationItem in MigrationLearningDelivery.LearningDeliveryWorkPlacementList)
-            {
-                XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryWorkPlacement", NSMgr.LookupNamespace("ia"));
-                LearningDeliveryWorkPlacement newInstance = new LearningDeliveryWorkPlacement(migrationItem, newNode, NSMgr);
-                LearningDeliveryWorkPlacementList.Add(newInstance);
-                AppendToLastOfNodeNamed(newNode, newNode.Name);
-            }
+            //foreach (LearningDeliveryWorkPlacement migrationItem in MigrationLearningDelivery.LearningDeliveryWorkPlacementList)
+            //{
+            //    XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryWorkPlacement", NSMgr.LookupNamespace("ia"));
+            //    LearningDeliveryWorkPlacement newInstance = new LearningDeliveryWorkPlacement(migrationItem, newNode, NSMgr);
+            //    LearningDeliveryWorkPlacementList.Add(newInstance);
+            //    AppendToLastOfNodeNamed(newNode, newNode.Name);
+            //}
 
             foreach (TrailblazerApprenticeshipFinancialRecord migrationItem in MigrationLearningDelivery.TrailblazerApprenticeshipFinancialRecordList)
             {
@@ -943,7 +943,7 @@ namespace ILR
                 migrationItemAP.AFinDate = migrationItem.TBFinDate;
                 migrationItemAP.AFinAmount = migrationItem.TBFinAmount;
 
-                ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
+               // ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
                 ApprenticeshipFinancialRecordList.Add(migrationItemAP);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
