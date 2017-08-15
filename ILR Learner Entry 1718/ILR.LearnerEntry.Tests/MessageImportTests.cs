@@ -57,7 +57,7 @@ namespace ILR.LearnerEntry.Tests
         public void Test01_Import_WhenFileContainsTrailBlazerFinRecord_OutputFile_ShouldHaveFinRecords()
         {
            
-            XNamespace ns = "SFA/ILR/2016-17";
+            XNamespace ns = "SFA/ILR/2017-18";
             XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
 
             string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);

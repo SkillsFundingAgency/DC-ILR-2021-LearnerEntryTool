@@ -779,7 +779,12 @@ namespace ILR
                     else
                         Node.InsertBefore(NewNode, ProviderSpecDeliveryMonitoringList.First().Node);
                     break;
-  
+                case "AppFinRecord":
+                    if (LearningDeliveryFAMList.Count() == 0)
+                        AppendToLastOfNodeNamed(NewNode, "LearningDeliveryFAM");
+                    else
+                        Node.InsertBefore(NewNode, LearningDeliveryFAMList.First().Node);
+                    break;
                 case "ProviderSpecDeliveryMonitoring":
                     if (LearningDeliveryHE == null)
                         AppendToLastOfNodeNamed(NewNode, "LearningDeliveryHE");

@@ -57,6 +57,30 @@
       <DelLocPostCode>BD17 7SW</DelLocPostCode>
       <CompStatus>1</CompStatus>
       <SWSupAimId>9755119308d98248b64b8d8eb5d726ad</SWSupAimId>
+      <AppFinRecord>
+        <AFinType>TNP</AFinType>
+        <AFinCode>1</AFinCode>
+        <AFinDate>2017-05-02</AFinDate>
+        <AFinAmount>16500</AFinAmount>
+      </AppFinRecord>
+      <AppFinRecord>
+        <AFinType>TNP</AFinType>
+        <AFinCode>1</AFinCode>
+        <AFinDate>2017-05-02</AFinDate>
+        <AFinAmount>16500</AFinAmount>
+      </AppFinRecord>
+      <AppFinRecord>
+        <AFinType>TNP</AFinType>
+        <AFinCode>2</AFinCode>
+        <AFinDate>2017-05-02</AFinDate>
+        <AFinAmount>1500</AFinAmount>
+      </AppFinRecord>
+      <AppFinRecord>
+        <AFinType>TNP</AFinType>
+        <AFinCode>2</AFinCode>
+        <AFinDate>2017-05-02</AFinDate>
+        <AFinAmount>1500</AFinAmount>
+      </AppFinRecord>
       <LearningDeliveryFAM>
         <LearnDelFAMType>SOF</LearnDelFAMType>
         <LearnDelFAMCode>105</LearnDelFAMCode>
