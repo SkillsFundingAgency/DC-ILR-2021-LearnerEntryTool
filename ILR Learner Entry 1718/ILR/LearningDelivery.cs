@@ -947,6 +947,17 @@ namespace ILR
                 ApprenticeshipFinancialRecordList.Add(migrationItemAP);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
+            foreach(ProviderSpecDeliveryMonitoring migrationItem in MigrationLearningDelivery.ProviderSpecDeliveryMonitoringList)
+            {
+                XmlNode newNode = Node.OwnerDocument.CreateElement("ProviderSpecDeliveryMonitoring", NSMgr.LookupNamespace("ia"));
+                ProviderSpecDeliveryMonitoring migrationItemAP = CreateProviderSpecDeliveryMonitoring();
+
+                migrationItemAP.ProvSpecDelMon = migrationItem.ProvSpecDelMon;
+                migrationItemAP.ProvSpecDelMonOccur = migrationItem.ProvSpecDelMonOccur;
+                ProviderSpecDeliveryMonitoringList.Add(migrationItemAP);
+                AppendToLastOfNodeNamed(newNode, newNode.Name);
+            }
+
             if (MigrationLearningDelivery.LearningDeliveryHE != null)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryHE", NSMgr.LookupNamespace("ia"));
