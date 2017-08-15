@@ -695,6 +695,14 @@ namespace ILR
         #region ILR Child Entites
         public List<LearningDeliveryFAM> LearningDeliveryFAMList = new List<LearningDeliveryFAM>();
         private List<TrailblazerApprenticeshipFinancialRecord> TrailblazerApprenticeshipFinancialRecordList = new List<TrailblazerApprenticeshipFinancialRecord>();
+
+        public List<TrailblazerApprenticeshipFinancialRecord> GetTrailblazerApprenticeshipFinancialRecords
+        {
+            get {
+                return TrailblazerApprenticeshipFinancialRecordList;
+            }
+        }
+
         public List<ApprenticeshipFinancialRecord> ApprenticeshipFinancialRecordList = new List<ApprenticeshipFinancialRecord>();
         public List<ProviderSpecDeliveryMonitoring> ProviderSpecDeliveryMonitoringList = new List<ProviderSpecDeliveryMonitoring>();
         public LearningDeliveryHE LearningDeliveryHE;
@@ -712,7 +720,7 @@ namespace ILR
         }
         public ApprenticeshipFinancialRecord CreateApprenticeshipFinancialRecord()
         {
-            XmlNode newNode = Node.OwnerDocument.CreateElement("TrailblazerApprenticeshipFinancialRecord", NSMgr.LookupNamespace("ia"));
+            XmlNode newNode = Node.OwnerDocument.CreateElement("AppFinRecord", NSMgr.LookupNamespace("ia"));
             ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(newNode, NSMgr);
             ApprenticeshipFinancialRecordList.Add(newInstance);
             AppendToLastOfNodeNamed(newNode, newNode.Name);
@@ -828,7 +836,7 @@ namespace ILR
             foreach (XmlNode node in nodes)
                 TrailblazerApprenticeshipFinancialRecordList.Add(new TrailblazerApprenticeshipFinancialRecord(node, NSMgr));
 
-            nodes = Node.SelectNodes("./ia:ApprenticeshipFinancialRecord", NSMgr);
+            nodes = Node.SelectNodes("./ia:AppFinRecord", NSMgr);
             foreach (XmlNode node in nodes)
                 ApprenticeshipFinancialRecordList.Add(new ApprenticeshipFinancialRecord(node, NSMgr));
 
@@ -874,6 +882,8 @@ namespace ILR
             int stdCode;
             if (MigrationLearningDelivery.HasFAMType("TBS") && int.TryParse(MigrationLearningDelivery.GetLegacyFAM("TBS").LearnDelFAMCode, out stdCode))
                 this.StdCode = stdCode;
+            else
+                this.StdCode = MigrationLearningDelivery.StdCode;
 
             this.PartnerUKPRN = MigrationLearningDelivery.PartnerUKPRN;
             this.DelLocPostCode = MigrationLearningDelivery.DelLocPostCode;
