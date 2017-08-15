@@ -779,6 +779,7 @@ namespace ILR
                     else
                         Node.InsertBefore(NewNode, ProviderSpecDeliveryMonitoringList.First().Node);
                     break;
+  
                 case "ProviderSpecDeliveryMonitoring":
                     if (LearningDeliveryHE == null)
                         AppendToLastOfNodeNamed(NewNode, "LearningDeliveryHE");
@@ -929,7 +930,7 @@ namespace ILR
 
             foreach (TrailblazerApprenticeshipFinancialRecord migrationItem in MigrationLearningDelivery.TrailblazerApprenticeshipFinancialRecordList)
             {
-                XmlNode newNode = Node.OwnerDocument.CreateElement("ApprenticeshipFinancialRecord", NSMgr.LookupNamespace("ia"));
+                XmlNode newNode = Node.OwnerDocument.CreateElement("AppFinRecord", NSMgr.LookupNamespace("ia"));
                 ApprenticeshipFinancialRecord migrationItemAP = CreateApprenticeshipFinancialRecord();
 
                 migrationItemAP.AFinCode = migrationItem.TBFinCode;
