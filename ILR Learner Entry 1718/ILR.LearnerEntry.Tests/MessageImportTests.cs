@@ -8,6 +8,7 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace ILR.LearnerEntry.Tests
 {
@@ -73,5 +74,65 @@ namespace ILR.LearnerEntry.Tests
             Assert.AreEqual(val, "16500", "ApprenticeShip finance amount is wrong");
             // Assert.True(File.Exists(fileName), "Failed to create internal file");
         }
+
+        [Test]
+        public void Test01_Export_WhenFileValidatedWithSchema_ShouldHaveNoErrors()
+        {
+
+            XNamespace ns = "SFA/ILR/2017-18";
+            XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
+
+            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            Message ilrMessage = new Message(fileName);
+            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            ilrMessage.Import(importFile);
+            Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
+
+            string exportFileFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Exported");
+            if (!Directory.Exists(exportFileFolder))
+                Directory.CreateDirectory(exportFileFolder);
+            else
+            {
+                Directory.Delete(exportFileFolder, true);
+                Directory.CreateDirectory(exportFileFolder);
+            }
+            string xsdFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ILR-2017-18.xsd");
+
+
+            
+            XDocument xDoc = XDocument.Load(fileName);
+            ilrMessage.Export(exportFileFolder, "01");
+
+            string exportFile = Directory.GetFiles(exportFileFolder, "*.xml").FirstOrDefault();
+            bool validFile =IsValidXml(exportFile, xsdFilePath, ns.NamespaceName);
+
+             Assert.True(validFile, "Exported file failed to validate against the ILR schema!");
+        }
+
+
+
+
+
+
+
+        #region helper functions
+        public static bool IsValidXml(string xmlFilePath, string xsdFilePath, string namespaceName)
+        {
+            var xdoc = XDocument.Load(xmlFilePath);
+            var schemas = new XmlSchemaSet();
+            schemas.Add(namespaceName, xsdFilePath);
+
+            try
+            {
+                xdoc.Validate(schemas, null);
+            }
+            catch (XmlSchemaValidationException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        #endregion
     }
 }
