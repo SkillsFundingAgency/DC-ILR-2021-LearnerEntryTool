@@ -780,10 +780,10 @@ namespace ILR
                         Node.InsertBefore(NewNode, ProviderSpecDeliveryMonitoringList.First().Node);
                     break;
                 case "AppFinRecord":
-                    if (LearningDeliveryFAMList.Count() == 0)
-                        AppendToLastOfNodeNamed(NewNode, "LearningDeliveryFAM");
+                    if (ProviderSpecDeliveryMonitoringList.Count() == 0)
+                        AppendToLastOfNodeNamed(NewNode, "ProviderSpecDeliveryMonitoring");
                     else
-                        Node.InsertBefore(NewNode, LearningDeliveryFAMList.First().Node);
+                        Node.InsertBefore(NewNode, ProviderSpecDeliveryMonitoringList.First().Node);
                     break;
                 case "ProviderSpecDeliveryMonitoring":
                     if (LearningDeliveryHE == null)
