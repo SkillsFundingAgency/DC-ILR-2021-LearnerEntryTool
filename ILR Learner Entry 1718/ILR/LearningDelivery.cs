@@ -944,7 +944,7 @@ namespace ILR
                 migrationItemAP.AFinAmount = migrationItem.TBFinAmount;
 
                // ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
-                ApprenticeshipFinancialRecordList.Add(migrationItemAP);
+               // ApprenticeshipFinancialRecordList.Add(migrationItemAP);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
             foreach(ProviderSpecDeliveryMonitoring migrationItem in MigrationLearningDelivery.ProviderSpecDeliveryMonitoringList)
