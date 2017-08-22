@@ -420,11 +420,11 @@ namespace ILR
 
             var assembly = Assembly.GetExecutingAssembly();
             string xslResourceName = assembly.GetManifestResourceNames().Where(x => x.ToUpper().EndsWith(ILR2017_18_XSLT.ToUpper())).FirstOrDefault();
-            var resourceName = string.Format(xslResourceName);
+           
             string path = Path.Combine(Path.GetDirectoryName(assembly.Location), ILR2017_18_XSLT);
             try
             {
-                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                using (Stream stream = assembly.GetManifestResourceStream(xslResourceName))
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string result = reader.ReadToEnd();
