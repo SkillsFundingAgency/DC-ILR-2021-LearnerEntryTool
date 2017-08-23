@@ -421,7 +421,8 @@ namespace ILR
             var assembly = Assembly.GetExecutingAssembly();
             string xslResourceName = assembly.GetManifestResourceNames().Where(x => x.ToUpper().EndsWith(ILR2017_18_XSLT.ToUpper())).FirstOrDefault();
            
-            string path = Path.Combine(Path.GetDirectoryName(assembly.Location), ILR2017_18_XSLT);
+           // string path = Path.Combine(Path.GetDirectoryName(assembly.Location), ILR2017_18_XSLT);
+            string path = Path.Combine(Path.GetTempPath(), ILR2017_18_XSLT);
             try
             {
                 using (Stream stream = assembly.GetManifestResourceStream(xslResourceName))
