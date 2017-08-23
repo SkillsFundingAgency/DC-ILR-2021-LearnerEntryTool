@@ -31,17 +31,17 @@
       <LearnRefNumber>
         <xsl:value-of select="dc:LearnRefNumber"/>
       </LearnRefNumber>
-      <xsl:if test="dc:PrevLearnRefNumber != ''">
+      <xsl:if test="PrevLearnRefNumber != ''">
         <PrevLearnRefNumber>
           <xsl:value-of select="dc:PrevLearnRefNumber"/>
         </PrevLearnRefNumber>
       </xsl:if>
-      <xsl:if test="dc:PrevUKPRN != ''">
+      <xsl:if test="PrevUKPRN != ''">
       <PrevUKPRN>
         <xsl:value-of select="dc:PrevUKPRN"/>
       </PrevUKPRN>
       </xsl:if>
-      <xsl:if test="dc:PMUKPRN != ''">
+      <xsl:if test="PMUKPRN != ''">
       <PMUKPRN>
         <xsl:value-of select="dc:PMUKPRN"/>
       </PMUKPRN>
@@ -49,15 +49,15 @@
       <ULN>
         <xsl:value-of select="dc:ULN"/>
       </ULN>
-      <xsl:if test="dc:FamilyName != ''">
+      <xsl:if test="FamilyName != ''">
       <FamilyName><xsl:value-of select="dc:FamilyName"/></FamilyName>
       </xsl:if>
-      <xsl:if test="dc:GivenNames != ''">
+      <xsl:if test="GivenNames != ''">
       <GivenNames>
         <xsl:value-of select="dc:GivenNames"/>
       </GivenNames>
       </xsl:if>
-      <xsl:if test="dc:DateOfBirth != ''">
+      <xsl:if test="DateOfBirth != ''">
       <DateOfBirth>
         <xsl:value-of select="dc:DateOfBirth"/>
       </DateOfBirth>
@@ -71,42 +71,42 @@
       <LLDDHealthProb>
         <xsl:value-of select="dc:LLDDHealthProb"/>
       </LLDDHealthProb>
-      <xsl:if test="dc:NINumber != ''">
+      <xsl:if test="NINumber != ''">
         <NINumber>
           <xsl:value-of select="dc:NINumber"/>
         </NINumber>
       </xsl:if>
-      <xsl:if test="dc:PriorAttain != ''">
+      <xsl:if test="PriorAttain != ''">
         <PriorAttain>
           <xsl:value-of select="dc:PriorAttain"/>
         </PriorAttain>
       </xsl:if>
-      <xsl:if test="dc:Accom != ''">
+      <xsl:if test="Accom != ''">
         <Accom>
           <xsl:value-of select="dc:Accom"/>
         </Accom>
       </xsl:if>
-      <xsl:if test="dc:ALSCost != ''">
+      <xsl:if test="ALSCost != ''">
         <ALSCost>
           <xsl:value-of select="dc:ALSCost"/>
         </ALSCost>
       </xsl:if>
-      <xsl:if test="dc:PlanLearnHours != ''">
+      <xsl:if test="PlanLearnHours != ''">
         <PlanLearnHours>
           <xsl:value-of select="dc:PlanLearnHours"/>
         </PlanLearnHours>
       </xsl:if>
-      <xsl:if test="dc:PlanEEPHours != ''">
+      <xsl:if test="PlanEEPHours != ''">
         <PlanEEPHours>
           <xsl:value-of select="dc:PlanEEPHours"/>
         </PlanEEPHours>
       </xsl:if>
-      <xsl:if test="dc:MathGrade != ''">
+      <xsl:if test="MathGrade != ''">
         <MathGrade>
           <xsl:value-of select="dc:MathGrade"/>
         </MathGrade>
       </xsl:if>
-      <xsl:if test="dc:EngGrade != ''">
+      <xsl:if test="EngGrade != ''">
         <EngGrade>
           <xsl:value-of select="dc:EngGrade"/>
         </EngGrade>
@@ -117,32 +117,32 @@
       <Postcode>
         <xsl:value-of select="dc:Postcode"/>
       </Postcode>
-      <xsl:if test="dc:AddLine1 != ''">
+      <xsl:if test="AddLine1 != ''">
         <AddLine1>
           <xsl:value-of select="dc:AddLine1"/>
         </AddLine1>
       </xsl:if>
-      <xsl:if test="dc:AddLine2 != ''">
+      <xsl:if test="AddLine2 != ''">
         <AddLine2>
           <xsl:value-of select="dc:AddLine2"/>
         </AddLine2>
       </xsl:if>
-      <xsl:if test="dc:AddLine3 != ''">
+      <xsl:if test="AddLine3 != ''">
         <AddLine3>
           <xsl:value-of select="dc:AddLine3"/>
         </AddLine3>
       </xsl:if>
-      <xsl:if test="dc:AddLine4 != ''">
+      <xsl:if test="AddLine4 != ''">
         <AddLine4>
           <xsl:value-of select="dc:AddLine4"/>
         </AddLine4>
       </xsl:if>
-      <xsl:if test="dc:TelNo != ''">
+      <xsl:if test="TelNo != ''">
         <TelNo>
           <xsl:value-of select="dc:TelNo"/>
         </TelNo>
       </xsl:if>
-      <xsl:if test="dc:Email != ''">
+      <xsl:if test="Email != ''">
         <Email>
           <xsl:value-of select="dc:Email"/>
         </Email>
@@ -162,7 +162,7 @@
         <LLDDCat>
           <xsl:value-of select="dc:LLDDCat"/>
         </LLDDCat>
-        <xsl:if test="dc:PrimaryLLDD != ''">
+        <xsl:if test="PrimaryLLDD != ''">
         <PrimaryLLDD>
           <xsl:value-of select="dc:PrimaryLLDD"/>
         </PrimaryLLDD>
@@ -197,7 +197,7 @@
           <DateEmpStatApp>
             <xsl:value-of select="dc:DateEmpStatApp"/>
           </DateEmpStatApp>
-          <xsl:if test="dc:EmpId != ''">
+          <xsl:if test="EmpId != ''">
             <EmpId>
               <xsl:value-of select="dc:EmpId"/>
             </EmpId>
@@ -216,12 +216,12 @@
       </xsl:for-each>
       <xsl:for-each select="dc:LearnerHE">
         <LearnerHE>
-          <xsl:if test="dc:UCASPERID != ''">
+          <xsl:if test="UCASPERID != ''">
             <UCASPERID>
               <xsl:value-of select="dc:UCASPERID"/>
             </UCASPERID>
           </xsl:if>
-          <xsl:if test="dc:TTACCOM != ''">
+          <xsl:if test="TTACCOM != ''">
             <TTACCOM>
               <xsl:value-of select="dc:TTACCOM"/>
             </TTACCOM>
@@ -252,7 +252,7 @@
           <LearnStartDate>
             <xsl:value-of select="dc:LearnStartDate"/>
           </LearnStartDate>
-          <xsl:if test="dc:OrigLearnStartDate != ''">
+          <xsl:if test="OrigLearnStartDate != ''">
           <OrigLearnStartDate>
             <xsl:value-of select="dc:OrigLearnStartDate"/>
           </OrigLearnStartDate>
@@ -261,27 +261,27 @@
             <xsl:value-of select="dc:LearnPlanEndDate"/>
           </LearnPlanEndDate>
           <FundModel><xsl:value-of select="dc:FundModel"/></FundModel>
-          <xsl:if test="dc:ProgType != ''">
+          <xsl:if test="ProgType != ''">
             <ProgType>
               <xsl:value-of select="dc:ProgType"/>
             </ProgType>
           </xsl:if>
-          <xsl:if test="dc:FworkCode != ''">
+          <xsl:if test="FworkCode != ''">
             <FworkCode>
               <xsl:value-of select="dc:FworkCode"/>
             </FworkCode>
           </xsl:if>
-          <xsl:if test="dc:PwayCode != ''">
+          <xsl:if test="PwayCode != ''">
             <PwayCode>
               <xsl:value-of select="dc:PwayCode"/>
             </PwayCode>
           </xsl:if>
-          <xsl:if test="dc:StdCode != ''">
+          <xsl:if test="StdCode != ''">
             <StdCode>
               <xsl:value-of select="dc:StdCode"/>
             </StdCode>
           </xsl:if>
-          <xsl:if test="dc:PartnerUKPRN != ''">
+          <xsl:if test="PartnerUKPRN != ''">
             <PartnerUKPRN>
               <xsl:value-of select="dc:PartnerUKPRN"/>
             </PartnerUKPRN>
@@ -289,32 +289,32 @@
           <DelLocPostCode>
             <xsl:value-of select="dc:DelLocPostCode"/>
           </DelLocPostCode>
-          <xsl:if test="dc:AddHours != ''">
+          <xsl:if test="AddHours != ''">
             <AddHours>
               <xsl:value-of select="dc:AddHours"/>
             </AddHours>
           </xsl:if>
-          <xsl:if test="dc:PriorLearnFundAdj != ''">
+          <xsl:if test="PriorLearnFundAdj != ''">
             <PriorLearnFundAdj>
               <xsl:value-of select="dc:PriorLearnFundAdj"/>
             </PriorLearnFundAdj>
           </xsl:if>
-          <xsl:if test="dc:OtherFundAdj != ''">
+          <xsl:if test="OtherFundAdj != ''">
           <OtherFundAdj>
             <xsl:value-of select="dc:OtherFundAdj"/>
           </OtherFundAdj>
           </xsl:if>
-          <xsl:if test="dc:ConRefNumber != ''">
+          <xsl:if test="ConRefNumber != ''">
           <ConRefNumber>
             <xsl:value-of select="dc:ConRefNumber"/>
           </ConRefNumber>
           </xsl:if>
-          <xsl:if test="dc:EPAOrgID != ''">
+          <xsl:if test="EPAOrgID != ''">
           <EPAOrgID>
             <xsl:value-of select="dc:EPAOrgID"/>
           </EPAOrgID>
           </xsl:if>
-          <xsl:if test="dc:EmpOutcome != ''">
+          <xsl:if test="EmpOutcome != ''">
           <EmpOutcome>
             <xsl:value-of select="dc:EmpOutcome"/>
           </EmpOutcome>
@@ -322,32 +322,32 @@
           <CompStatus>
             <xsl:value-of select="dc:CompStatus"/>
           </CompStatus>
-          <xsl:if test="dc:LearnActEndDate != ''">
+          <xsl:if test="LearnActEndDate != ''">
             <LearnActEndDate>
               <xsl:value-of select="dc:LearnActEndDate"/>
             </LearnActEndDate>
           </xsl:if>
-          <xsl:if test="dc:WithdrawReason != ''">
+          <xsl:if test="WithdrawReason != ''">
           <WithdrawReason>
             <xsl:value-of select="dc:WithdrawReason"/>
           </WithdrawReason>
           </xsl:if>
-          <xsl:if test="dc:Outcome != ''">
+          <xsl:if test="Outcome != ''">
           <Outcome>
             <xsl:value-of select="dc:Outcome"/>
           </Outcome>
           </xsl:if>
-          <xsl:if test="dc:AchDate != ''">
+          <xsl:if test="AchDate != ''">
           <AchDate>
             <xsl:value-of select="dc:AchDate"/>
           </AchDate>
           </xsl:if>
-          <xsl:if test="dc:OutGrade != ''">
+          <xsl:if test="OutGrade != ''">
           <OutGrade>
             <xsl:value-of select="dc:OutGrade"/>
           </OutGrade>
           </xsl:if>
-          <xsl:if test="dc:SWSupAimId != ''">
+          <xsl:if test="SWSupAimId != ''">
           <SWSupAimId>
             <xsl:value-of select="dc:SWSupAimId"/>
           </SWSupAimId>
@@ -360,24 +360,24 @@
             <LearnDelFAMCode>
               <xsl:value-of select="dc:LearnDelFAMCode"/>
             </LearnDelFAMCode>
-              <xsl:if test="dc:LearnDelFAMDateFrom != ''">
+              <xsl:if test="LearnDelFAMDateFrom != ''">
                 <LearnDelFAMDateFrom>
                   <xsl:value-of select="dc:LearnDelFAMDateFrom"/>
                 </LearnDelFAMDateFrom>
               </xsl:if>
-              <xsl:if test="dc:LearnDelFAMDateTo != ''">
+              <xsl:if test="LearnDelFAMDateTo != ''">
                 <LearnDelFAMDateTo>
                   <xsl:value-of select="dc:LearnDelFAMDateTo"/>
                 </LearnDelFAMDateTo>
               </xsl:if>
           </LearningDeliveryFAM>
             </xsl:for-each>
-            <xsl:for-each select="dc:LearningDeliveryWorkPlacement">
+            <xsl:for-each select="LearningDeliveryWorkPlacement">
             <LearningDeliveryWorkPlacement>
               <WorkPlaceStartDate>
                 <xsl:value-of select="dc:WorkPlaceStartDate"/>
               </WorkPlaceStartDate>
-              <xsl:if test="dc:WorkPlaceEndDate != ''">
+              <xsl:if test="WorkPlaceEndDate != ''">
                 <WorkPlaceEndDate>
                   <xsl:value-of select="dc:WorkPlaceEndDate"/>
                 </WorkPlaceEndDate>
@@ -388,14 +388,14 @@
               <WorkPlaceMode>
                 <xsl:value-of select="dc:WorkPlaceMode"/>
               </WorkPlaceMode>
-              <xsl:if test="dc:WorkPlaceEmpId != ''">
+              <xsl:if test="WorkPlaceEmpId != ''">
                 <WorkPlaceEmpId>
                   <xsl:value-of select="dc:WorkPlaceEmpId"/>
                 </WorkPlaceEmpId>
               </xsl:if>
             </LearningDeliveryWorkPlacement>
-            </xsl:for-each>
-            <xsl:for-each select="dc:AppFinRecord">
+          </xsl:for-each>
+            <xsl:for-each select="AppFinRecord">
             <AppFinRecord>
               <AFinType>
                 <xsl:value-of select="dc:AFinType"/>
@@ -423,32 +423,32 @@
           </xsl:for-each>
           <xsl:for-each select="dc:LearningDeliveryHE">
             <LearningDeliveryHE>
-              <xsl:if test="dc:NUMHUS != ''">
+              <xsl:if test="NUMHUS != ''">
                 <NUMHUS>
                   <xsl:value-of select="dc:NUMHUS"/>
                 </NUMHUS>
               </xsl:if>
-              <xsl:if test="dc:SSN != ''">
+              <xsl:if test="SSN != ''">
                 <SSN>
                   <xsl:value-of select="dc:SSN"/>
                 </SSN>
               </xsl:if>
-              <xsl:if test="dc:QUALENT3 != ''">
+              <xsl:if test="QUALENT3 != ''">
                 <QUALENT3>
                   <xsl:value-of select="dc:QUALENT3"/>
                 </QUALENT3>
               </xsl:if>
-              <xsl:if test="dc:SOC2000 != ''">
+              <xsl:if test="SOC2000 != ''">
                 <SOC2000>
                   <xsl:value-of select="dc:SOC2000"/>
                 </SOC2000>
               </xsl:if>
-              <xsl:if test="dc:SEC != ''">
+              <xsl:if test="SEC != ''">
                 <SEC>
                   <xsl:value-of select="dc:SEC"/>
                 </SEC>
               </xsl:if>
-              <xsl:if test="dc:UCASAPPID  != ''">
+              <xsl:if test="UCASAPPID  != ''">
                 <UCASAPPID >
                   <xsl:value-of select="dc:UCASAPPID "/>
                 </UCASAPPID >
@@ -465,7 +465,7 @@
               <FUNDCOMP>
                 <xsl:value-of select="dc:FUNDCOMP"/>
               </FUNDCOMP>
-              <xsl:if test="dc:STULOAD  != ''">
+              <xsl:if test="STULOAD  != ''">
                 <STULOAD >
                   <xsl:value-of select="dc:STULOAD "/>
                 </STULOAD >
@@ -476,22 +476,22 @@
               <MSTUFEE>
                 <xsl:value-of select="dc:MSTUFEE"/>
               </MSTUFEE>
-              <xsl:if test="dc:PCOLAB != ''">
+              <xsl:if test="PCOLAB != ''">
                 <PCOLAB>
                   <xsl:value-of select="dc:PCOLAB"/>
                 </PCOLAB>
               </xsl:if>
-              <xsl:if test="dc:PCFLDCS != ''">
+              <xsl:if test="PCFLDCS != ''">
                 <PCFLDCS>
                   <xsl:value-of select="dc:PCFLDCS"/>
                 </PCFLDCS>
               </xsl:if>
-              <xsl:if test="dc:PCSLDCS != ''">
+              <xsl:if test="PCSLDCS != ''">
                 <PCSLDCS>
                   <xsl:value-of select="dc:PCSLDCS"/>
                 </PCSLDCS>
               </xsl:if>
-              <xsl:if test="dc:PCTLDCS  != ''">
+              <xsl:if test="PCTLDCS  != ''">
                 <PCTLDCS >
                   <xsl:value-of select="dc:PCTLDCS "/>
                 </PCTLDCS >
@@ -499,27 +499,27 @@
               <SPECFEE>
                 <xsl:value-of select="dc:SPECFEE"/>
               </SPECFEE>
-              <xsl:if test="dc:NETFEE != ''">
+              <xsl:if test="NETFEE != ''">
                 <NETFEE>
                   <xsl:value-of select="dc:NETFEE"/>
                 </NETFEE>
               </xsl:if>
-              <xsl:if test="dc:GROSSFEE != ''">
+              <xsl:if test="GROSSFEE != ''">
                 <GROSSFEE>
                   <xsl:value-of select="dc:GROSSFEE"/>
                 </GROSSFEE>
               </xsl:if>
-              <xsl:if test="dc:DOMICILE != ''">
+              <xsl:if test="DOMICILE != ''">
                 <DOMICILE>
                   <xsl:value-of select="dc:DOMICILE"/>
                 </DOMICILE>
               </xsl:if>
-              <xsl:if test="dc:ELQ != ''">
+              <xsl:if test="ELQ != ''">
                 <ELQ>
                   <xsl:value-of select="dc:ELQ"/>
                 </ELQ>
               </xsl:if>
-              <xsl:if test="dc:HEPostCode  != ''">
+              <xsl:if test="HEPostCode  != ''">
                 <HEPostCode >
                   <xsl:value-of select="dc:HEPostCode "/>
                 </HEPostCode >
@@ -549,7 +549,7 @@
           <OutStartDate>
             <xsl:value-of select="dc:OutStartDate"/>
           </OutStartDate>
-          <xsl:if test="dc:OutEndDate  != ''">
+          <xsl:if test="OutEndDate  != ''">
             <OutEndDate >
               <xsl:value-of select="dc:OutEndDate "/>
             </OutEndDate >
