@@ -13,6 +13,7 @@ namespace ILR
         private const String CLASSNAME = "LearningDelivery";
         private const String TABS = "\t\t";
         DateTime FIRST_AUG_2013 = new DateTime(2013, 8, 1);
+        DateTime FIRST_AUG_2015 = new DateTime(2015, 8, 1);
 
         #region LD updateLearnerEvent
         public event PropertyChangedEventHandler LearningDeliveryPropertyChanged;
@@ -65,11 +66,17 @@ namespace ILR
                 {
                     case 1:
                     case 4:
+                        return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 && this.LearnActEndDate == null) ||(this.FundModel == 70));
                     case 5:
-                        if (this.LearnPlanEndDate >= FIRST_AUG_2013)
-                            return this.LearnActEndDate == null || (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6);
+                        if (this.FundModel == 70)
+                            return true;
                         else
-                            return false;
+                        {
+                            if ((this.LearnPlanEndDate >= FIRST_AUG_2015) && ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
+                                return this.LearnActEndDate == null || (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6);
+                            else
+                                return false;
+                        }
                     case 3:
                         return this.LearnPlanEndDate >= FIRST_AUG_2013 && this.LearnActEndDate == null;
                 }
