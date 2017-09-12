@@ -64,7 +64,7 @@
                           />
                 <TextBlock Grid.Row="2" Grid.Column="2" Text="Financial amount (£) :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
                 <TextBox Grid.Row="2" Grid.Column="3"                          
-                     <!--TabIndex="4"-->
+                     TabIndex="4"
                      Name="TrailblazerCode" 
                      Text="{Binding Path=CurrentItem.AFinAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true,TargetNullValue=''}"  
                      Style="{DynamicResource TextBoxWithError}"
