@@ -143,6 +143,27 @@
 				<LearnDelFAMCode>105</LearnDelFAMCode>
 			</LearningDeliveryFAM>
 		</LearningDelivery>
+    <LearningDelivery>
+			<LearnAimRef>ZESF0001</LearnAimRef>
+      <AimType>4</AimType>
+      <AimSeqNumber>1</AimSeqNumber>
+      <LearnStartDate>2017-02-27</LearnStartDate>
+      <LearnPlanEndDate>2017-02-27</LearnPlanEndDate>
+      <FundModel>70</FundModel>
+      <DelLocPostCode>BD17 7SW</DelLocPostCode>
+      <ConRefNumber>ESF-2068</ConRefNumber>
+      <CompStatus>2</CompStatus>
+      <LearnActEndDate>2017-02-27</LearnActEndDate>
+      <Outcome>8</Outcome>
+      <LearningDeliveryFAM>
+        <LearnDelFAMType>HHS</LearnDelFAMType>
+        <LearnDelFAMCode>2</LearnDelFAMCode>
+      </LearningDeliveryFAM>
+      <LearningDeliveryFAM>
+        <LearnDelFAMType>SOF</LearnDelFAMType>
+        <LearnDelFAMCode>105</LearnDelFAMCode>
+      </LearningDeliveryFAM>
+		</LearningDelivery>
 	</Learner>
 	<LearnerDestinationandProgression>
 		<LearnRefNumber>PGBYL44XPG43</LearnRefNumber>
