@@ -903,7 +903,7 @@ namespace ILR
 
             this.PartnerUKPRN = MigrationLearningDelivery.PartnerUKPRN;
             this.DelLocPostCode = MigrationLearningDelivery.DelLocPostCode;
-           
+            this.ConRefNumber = MigrationLearningDelivery.ConRefNumber;
             this.PriorLearnFundAdj = MigrationLearningDelivery.PriorLearnFundAdj;
             this.OtherFundAdj = MigrationLearningDelivery.OtherFundAdj;
             this.EmpOutcome = MigrationLearningDelivery.EmpOutcome;
