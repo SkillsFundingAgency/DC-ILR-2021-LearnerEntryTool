@@ -97,6 +97,9 @@ namespace ILR
                                 learningDeliveriesToMigrate.Add(learningDelivery);
                             break;
                         case 4:
+                            if (learningDelivery.ShouldProbablyMigrate)
+                                learningDeliveriesToMigrate.Add(learningDelivery);
+                            break;
                         case 5:
                             if (learningDelivery.ShouldProbablyMigrate)
                                 learningDeliveriesToMigrate.Add(learningDelivery);

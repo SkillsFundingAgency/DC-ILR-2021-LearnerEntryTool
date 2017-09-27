@@ -518,7 +518,8 @@ namespace ILR
                 this.LearningProvider.UKPRN = importMessage.LearningProvider.UKPRN;
 
 
-                var x = importMessage.LearnerList.Where(l => l.HasContinuingAims);
+               // var x = importMessage.LearnerList.Where(l => l.HasContinuingAims);
+                var x = importMessage.LearnerList.ToList();
                 var y = importMessage.LearnerDestinationandProgressionList.Where(ldp => ldp.HasCurrentDPOutcomes);
 
                 importMessage = null;
