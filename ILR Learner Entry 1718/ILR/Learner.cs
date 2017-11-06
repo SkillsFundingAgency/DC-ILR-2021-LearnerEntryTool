@@ -50,6 +50,7 @@ namespace ILR
 				message += this["PostCode"];
 				message += this["LLDDHealthProb"];
 
+
                 //if (this.LLDDandHealthProblemList == null)
                 //    message += "LLDDandHealthProblemList Nothing Selected\r\n";
                 if (this.LearningDeliveryList.Count == 0)
@@ -75,6 +76,9 @@ namespace ILR
                     //	message += "\tThere are NO primary LLDDandHealthProblem\r\n";
                     //}
                 }
+
+                if (string.IsNullOrEmpty(this.PostcodePrior))
+                    message += "Postcode Prior to Enrolment required\r\n";
                 return message;
             }
         }
@@ -1750,9 +1754,11 @@ namespace ILR
 						//else if (PostCode != null)
 						//	return CheckPropertyLength(PostCode, CLASSNAME, columnName, TABS);
 						break;
-
-						
-					default:
+                    case "PostcodePrior":
+                        if (string.IsNullOrEmpty(PostcodePrior))
+                            return "Postcode Prior to Enrolment required\r\n";
+                        break;
+                    default:
                         break;
                 }
                 return result;
