@@ -1227,7 +1227,7 @@ namespace ILR
             }
             foreach (LearnerFAM migrationItem in MigrationLearner.LearnerFAMList)
             {
-                if (migrationItem.LearnFAMType != "HNS" && migrationItem.LearnFAMType != "LSR" && migrationItem.LearnFAMType != "SEN" && migrationItem.LearnFAMType != "EDF" && migrationItem.LearnFAMType != "MCF" && migrationItem.LearnFAMType != "ECF" && migrationItem.LearnFAMType != "FME" && migrationItem.LearnFAMType != "PPE")
+                if (migrationItem.LearnFAMType != "LDA")
                 {
                     XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerFAM", NSMgr.LookupNamespace("ia"));
                     LearnerFAM newInstance = new LearnerFAM(migrationItem, newNode, NSMgr);

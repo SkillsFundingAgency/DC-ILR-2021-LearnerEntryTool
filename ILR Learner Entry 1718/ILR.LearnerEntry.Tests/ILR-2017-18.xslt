@@ -179,10 +179,19 @@
               </ContPrefCode>
             </ContactPreference>
           </xsl:for-each>
-          <xsl:for-each select="dc:LLDDandHealthProblem">           
+          <xsl:for-each select="dc:LLDDandHealthProblem">   
+              <LLDDandHealthProblem>
+              <LLDDCat>
+                <xsl:value-of select="dc:LLDDCat"/>
+              </LLDDCat>
+              <xsl:if test="dc:PrimaryLLDD != ''">
+                <PrimaryLLDD>
+                  <xsl:value-of select="dc:PrimaryLLDD"/>
+                </PrimaryLLDD>
+              </xsl:if>
+            </LLDDandHealthProblem>          
           </xsl:for-each>
-          <xsl:for-each select="dc:LearnerFAM">
-            <xsl:if test="dc:LearnFAMType!='LDA'">
+          <xsl:for-each select="dc:LearnerFAM">            
               <LearnerFAM>
                 <LearnFAMType>
                   <xsl:value-of select="dc:LearnFAMType"/>
@@ -190,8 +199,7 @@
                 <LearnFAMCode>
                   <xsl:value-of select="dc:LearnFAMCode"/>
                 </LearnFAMCode>
-              </LearnerFAM>
-            </xsl:if>
+              </LearnerFAM>            
           </xsl:for-each>
           <xsl:for-each select="dc:ProviderSpecLearnerMonitoring">
             <ProviderSpecLearnerMonitoring>

@@ -401,15 +401,29 @@ namespace ILR
         public void TransformAndExport(string fullExportFileName, string exportFileName)
         {
             Message exportMessage = new Message(this.Filename, _logFileName);
-           
-            for (int i = exportMessage.LearnerList.Count -1; i >= 0; i--)
+
+            for (int i = exportMessage.LearnerList.Count - 1; i >= 0; i--)
             {
                 var learner = exportMessage.LearnerList[i];
                 if (!learner.IsComplete || learner.ExcludeFromExport)
                 {
-                    exportMessage.Delete(learner);
-                }
+                    var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList.Where(c => c.ULN == learner.ULN).FirstOrDefault();
+                    exportMessage.Delete(learner);                   
+                    if(learnerDestinationandProgression != null)
+                    {
+                        exportMessage.Delete(learnerDestinationandProgression);
+                    }
+                }                
             }
+
+            for (int i = exportMessage.LearnerDestinationandProgressionList.Count - 1; i >= 0; i--)
+            {
+                var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList[i];
+                if (!learnerDestinationandProgression.IsComplete || learnerDestinationandProgression.ExcludeFromExport)
+                {
+                    exportMessage.Delete(learnerDestinationandProgression);
+                }
+            }           
 
             string tempInternalPath = Path.Combine(Path.GetTempPath(), exportFileName);
             exportMessage.Save(tempInternalPath);
