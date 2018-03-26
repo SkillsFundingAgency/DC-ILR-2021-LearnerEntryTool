@@ -179,8 +179,8 @@
               </ContPrefCode>
             </ContactPreference>
           </xsl:for-each>
-          <xsl:for-each select="dc:LLDDandHealthProblem">   
-              <LLDDandHealthProblem>
+          <xsl:for-each select="dc:LLDDandHealthProblem">
+            <LLDDandHealthProblem>
               <LLDDCat>
                 <xsl:value-of select="dc:LLDDCat"/>
               </LLDDCat>
@@ -189,17 +189,17 @@
                   <xsl:value-of select="dc:PrimaryLLDD"/>
                 </PrimaryLLDD>
               </xsl:if>
-            </LLDDandHealthProblem>          
+            </LLDDandHealthProblem>
           </xsl:for-each>
-          <xsl:for-each select="dc:LearnerFAM">            
-              <LearnerFAM>
-                <LearnFAMType>
-                  <xsl:value-of select="dc:LearnFAMType"/>
-                </LearnFAMType>
-                <LearnFAMCode>
-                  <xsl:value-of select="dc:LearnFAMCode"/>
-                </LearnFAMCode>
-              </LearnerFAM>            
+          <xsl:for-each select="dc:LearnerFAM">
+            <LearnerFAM>
+              <LearnFAMType>
+                <xsl:value-of select="dc:LearnFAMType"/>
+              </LearnFAMType>
+              <LearnFAMCode>
+                <xsl:value-of select="dc:LearnFAMCode"/>
+              </LearnFAMCode>
+            </LearnerFAM>
           </xsl:for-each>
           <xsl:for-each select="dc:ProviderSpecLearnerMonitoring">
             <ProviderSpecLearnerMonitoring>
@@ -216,9 +216,11 @@
               <EmpStat>
                 <xsl:value-of select="dc:EmpStat"/>
               </EmpStat>
-              <DateEmpStatApp>
-                <xsl:value-of select="dc:DateEmpStatApp"/>
-              </DateEmpStatApp>
+              <xsl:if test="dc:DateEmpStatApp != ''">
+                <DateEmpStatApp>
+                  <xsl:value-of select="dc:DateEmpStatApp"/>
+                </DateEmpStatApp>
+              </xsl:if>
               <xsl:if test="dc:EmpId != ''">
                 <EmpId>
                   <xsl:value-of select="dc:EmpId"/>
@@ -427,12 +429,16 @@
                   <AFinCode>
                     <xsl:value-of select="dc:AFinCode"/>
                   </AFinCode>
-                  <AFinDate>
-                    <xsl:value-of select="dc:AFinDate"/>
-                  </AFinDate>
-                  <AFinAmount>
-                    <xsl:value-of select="dc:AFinAmount"/>
-                  </AFinAmount>
+                  <xsl:if test="dc:AFinDate != ''">
+                    <AFinDate>
+                      <xsl:value-of select="dc:AFinDate"/>
+                    </AFinDate>
+                  </xsl:if>
+                  <xsl:if test="dc:AFinAmount != ''">
+                    <AFinAmount>
+                      <xsl:value-of select="dc:AFinAmount"/>
+                    </AFinAmount>
+                  </xsl:if>
                 </AppFinRecord>
               </xsl:for-each>
               <xsl:for-each select="dc:ProviderSpecDeliveryMonitoring">
@@ -570,17 +576,21 @@
               <OutCode>
                 <xsl:value-of select="dc:OutCode"/>
               </OutCode>
-              <OutStartDate>
-                <xsl:value-of select="dc:OutStartDate"/>
-              </OutStartDate>
+              <xsl:if test="dc:OutStartDate  != ''">
+                <OutStartDate>
+                  <xsl:value-of select="dc:OutStartDate"/>
+                </OutStartDate>
+              </xsl:if>
               <xsl:if test="dc:OutEndDate  != ''">
                 <OutEndDate >
                   <xsl:value-of select="dc:OutEndDate "/>
                 </OutEndDate >
               </xsl:if>
-              <OutCollDate>
-                <xsl:value-of select="dc:OutCollDate"/>
-              </OutCollDate>
+              <xsl:if test="dc:OutCollDate  != ''">
+                <OutCollDate>
+                  <xsl:value-of select="dc:OutCollDate"/>
+                </OutCollDate>
+              </xsl:if>
             </DPOutcome>
           </xsl:for-each>
         </LearnerDestinationandProgression>
