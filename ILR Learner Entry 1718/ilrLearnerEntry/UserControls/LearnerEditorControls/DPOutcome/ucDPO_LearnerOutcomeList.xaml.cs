@@ -105,7 +105,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                 {
                     _learnerDP.ULN = number;
                 }
-                else if (string.IsNullOrEmpty(value))
+                else if (string.IsNullOrEmpty(value) && _learnerDP != null)
                 {
                     _learnerDP.ULN = null;
                 }
