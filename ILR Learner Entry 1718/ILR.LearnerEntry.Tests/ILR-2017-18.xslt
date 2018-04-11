@@ -423,12 +423,16 @@
               </xsl:for-each>
               <xsl:for-each select="dc:AppFinRecord">
                 <AppFinRecord>
-                  <AFinType>
-                    <xsl:value-of select="dc:AFinType"/>
-                  </AFinType>
-                  <AFinCode>
-                    <xsl:value-of select="dc:AFinCode"/>
-                  </AFinCode>
+                  <xsl:if test="dc:AFinType != ''">
+                    <AFinType>
+                      <xsl:value-of select="dc:AFinType"/>
+                    </AFinType>
+                  </xsl:if>
+                  <xsl:if test="dc:AFinCode != ''">
+                    <AFinCode>
+                      <xsl:value-of select="dc:AFinCode"/>
+                    </AFinCode>
+                  </xsl:if>
                   <xsl:if test="dc:AFinDate != ''">
                     <AFinDate>
                       <xsl:value-of select="dc:AFinDate"/>
@@ -570,9 +574,11 @@
           </ULN>
           <xsl:for-each select="dc:DPOutcome">
             <DPOutcome>
-              <OutType>
-                <xsl:value-of select="dc:OutType"/>
-              </OutType>
+              <xsl:if test="dc:OutType  != ''">
+                <OutType>
+                  <xsl:value-of select="dc:OutType"/>
+                </OutType>
+              </xsl:if>
               <OutCode>
                 <xsl:value-of select="dc:OutCode"/>
               </OutCode>
