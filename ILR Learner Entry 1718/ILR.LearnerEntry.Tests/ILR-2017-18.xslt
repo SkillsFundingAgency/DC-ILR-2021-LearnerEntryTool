@@ -569,9 +569,11 @@
           <LearnRefNumber>
             <xsl:value-of select="dc:LearnRefNumber"/>
           </LearnRefNumber>
-          <ULN>
-            <xsl:value-of select="dc:ULN"/>
-          </ULN>
+          <xsl:if test="dc:ULN  != ''">
+            <ULN>
+              <xsl:value-of select="dc:ULN"/>
+            </ULN>
+          </xsl:if>
           <xsl:for-each select="dc:DPOutcome">
             <DPOutcome>
               <xsl:if test="dc:OutType  != ''">
