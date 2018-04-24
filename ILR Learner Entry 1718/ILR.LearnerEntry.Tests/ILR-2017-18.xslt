@@ -569,7 +569,7 @@
           <LearnRefNumber>
             <xsl:value-of select="dc:LearnRefNumber"/>
           </LearnRefNumber>
-          <xsl:if test="dc:ULN  != ''">
+          <xsl:if test="dc:ULN != ''">
             <ULN>
               <xsl:value-of select="dc:ULN"/>
             </ULN>
@@ -581,9 +581,11 @@
                   <xsl:value-of select="dc:OutType"/>
                 </OutType>
               </xsl:if>
-              <OutCode>
-                <xsl:value-of select="dc:OutCode"/>
-              </OutCode>
+              <xsl:if test="dc:OutCode != ''">
+                <OutCode>
+                  <xsl:value-of select="dc:OutCode"/>
+                </OutCode>
+              </xsl:if>
               <xsl:if test="dc:OutStartDate  != ''">
                 <OutStartDate>
                   <xsl:value-of select="dc:OutStartDate"/>
