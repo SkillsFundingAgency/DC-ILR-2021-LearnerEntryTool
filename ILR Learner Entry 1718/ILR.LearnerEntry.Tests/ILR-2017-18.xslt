@@ -48,9 +48,11 @@
       </LearningProvider>
       <xsl:for-each select="dc:Learner">
         <Learner>
-          <LearnRefNumber>
-            <xsl:value-of select="dc:LearnRefNumber"/>
-          </LearnRefNumber>
+          <xsl:if test="dc:LearnRefNumber != ''">
+            <LearnRefNumber>
+              <xsl:value-of select="dc:LearnRefNumber"/>
+            </LearnRefNumber>
+          </xsl:if>
           <xsl:if test="dc:PrevLearnRefNumber != ''">
             <PrevLearnRefNumber>
               <xsl:value-of select="dc:PrevLearnRefNumber"/>
@@ -566,9 +568,11 @@
       </xsl:for-each>
       <xsl:for-each select="dc:LearnerDestinationandProgression">
         <LearnerDestinationandProgression>
-          <LearnRefNumber>
-            <xsl:value-of select="dc:LearnRefNumber"/>
-          </LearnRefNumber>
+          <xsl:if test="dc:LearnRefNumber != ''">
+            <LearnRefNumber>
+              <xsl:value-of select="dc:LearnRefNumber"/>
+            </LearnRefNumber>
+          </xsl:if>
           <xsl:if test="dc:ULN != ''">
             <ULN>
               <xsl:value-of select="dc:ULN"/>
