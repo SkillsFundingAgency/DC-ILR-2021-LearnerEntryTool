@@ -181,7 +181,7 @@ namespace ilrLearnerEntry.UserControls
         public void RefreshData()
         {
             // Not sure DoEvents is needed anymore?
-            App.DoEvents();
+            //App.DoEvents();
             SetupBackgroundWorkerStats();
         }
         #endregion
