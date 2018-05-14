@@ -13,7 +13,9 @@ namespace ILR
         private const String CLASSNAME = "Learner";
         private const String TABS = "";
         private bool _isImportRunning = false;
-        private const string CAMPID_PATTERN = "[A-Za-z0-9]{1,8}";
+        private const string CAMPID_PATTERN = "^[A-Za-z0-9]{1,8}$";
+        private const string OTJHOURS_PATTERN = "^[0-9]{1,4}$";
+
 
         #region Accessors
         public Boolean IsFileImportLoadingRunning
@@ -29,11 +31,11 @@ namespace ILR
         public override bool IsComplete
         {
             get
-            {			
-                if (IncompleteMessage==string.Empty)
+            {
+                if (IncompleteMessage == string.Empty)
                     return true;
                 else
-                    return false;                
+                    return false;
             }
         }
         public override string IncompleteMessage
@@ -41,7 +43,7 @@ namespace ILR
             get
             {
                 string message = string.Empty;
-                
+
                 message += this["GivenNames"];
                 message += this["FamilyName"];
                 message += this["Sex"];
@@ -49,8 +51,8 @@ namespace ILR
                 message += this["ULN"];
                 message += this["Ethnicity"];
                 message += this["TelNumber"];
-				message += this["PostCode"];
-				message += this["LLDDHealthProb"];
+                message += this["PostCode"];
+                message += this["LLDDHealthProb"];
 
 
                 //if (this.LLDDandHealthProblemList == null)
@@ -58,7 +60,7 @@ namespace ILR
                 if (this.LearningDeliveryList.Count == 0)
                     message += "No LearningDelivery records\r\n";
 
-                if (this.LearningDeliveryList.FindAll(x => x.IsComplete == false).Count > 0 )
+                if (this.LearningDeliveryList.FindAll(x => x.IsComplete == false).Count > 0)
                     message += "LearningDelivery Issues\r\n";
 
                 foreach (ILR.LearningDelivery ld in LearningDeliveryList.FindAll(x => x.IsComplete == false))
@@ -99,7 +101,7 @@ namespace ILR
                         case 1:
                             if (learningDelivery.ShouldProbablyMigrate)
                                 learningDeliveriesToMigrate.Add(learningDelivery);
-                            else if(this.LearningDeliveryList.Exists(ld=>ld.AimType==3 && ld.ShouldProbablyMigrate && ld.FworkCode==learningDelivery.FworkCode && ld.ProgType==learningDelivery.ProgType && ld.PwayCode==learningDelivery.PwayCode))
+                            else if (this.LearningDeliveryList.Exists(ld => ld.AimType == 3 && ld.ShouldProbablyMigrate && ld.FworkCode == learningDelivery.FworkCode && ld.ProgType == learningDelivery.ProgType && ld.PwayCode == learningDelivery.PwayCode))
                                 learningDeliveriesToMigrate.Add(learningDelivery);
                             break;
                         case 4:
@@ -111,13 +113,13 @@ namespace ILR
                                 learningDeliveriesToMigrate.Add(learningDelivery);
                             break;
                         case 3:
-                            if(learningDelivery.ShouldProbablyMigrate)
+                            if (learningDelivery.ShouldProbablyMigrate)
                                 learningDeliveriesToMigrate.Add(learningDelivery);
-                            else if(learningDelivery.ProgType!=25 && this.LearningDeliveryList.Exists(ld=>ld.AimType==1 && ld.ShouldProbablyMigrate && ld.FworkCode==learningDelivery.FworkCode && ld.ProgType==learningDelivery.ProgType && ld.PwayCode==learningDelivery.PwayCode))
+                            else if (learningDelivery.ProgType != 25 && this.LearningDeliveryList.Exists(ld => ld.AimType == 1 && ld.ShouldProbablyMigrate && ld.FworkCode == learningDelivery.FworkCode && ld.ProgType == learningDelivery.ProgType && ld.PwayCode == learningDelivery.PwayCode))
                                 learningDeliveriesToMigrate.Add(learningDelivery);
-                            else if (learningDelivery.ProgType == 25 && learningDelivery.StdCode!=null && this.LearningDeliveryList.Exists(ld => ld.AimType == 1 && ld.ShouldProbablyMigrate && ld.ProgType == learningDelivery.ProgType))
+                            else if (learningDelivery.ProgType == 25 && learningDelivery.StdCode != null && this.LearningDeliveryList.Exists(ld => ld.AimType == 1 && ld.ShouldProbablyMigrate && ld.ProgType == learningDelivery.ProgType))
                                 learningDeliveriesToMigrate.Add(learningDelivery);
-                                break;
+                            break;
                     }
                 }
                 return learningDeliveriesToMigrate;
@@ -136,9 +138,11 @@ namespace ILR
         public DateTime? DateOfBirth { get { string DateOfBirth = XMLHelper.GetChildValue("DateOfBirth", Node, NSMgr); return (DateOfBirth != null ? DateTime.Parse(DateOfBirth) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateOfBirth", value, Node, NSMgr); OnPropertyChanged("DateOfBirth"); GiveFrountEndkickToRefresh(); } }
         public int? Ethnicity { get { string Ethnicity = XMLHelper.GetChildValue("Ethnicity", Node, NSMgr); return (Ethnicity != null ? int.Parse(Ethnicity) : (int?)null); } set { XMLHelper.SetChildValue("Ethnicity", value, Node, NSMgr); OnPropertyChanged("Ethnicity"); GiveFrountEndkickToRefresh(); } }
         public string Sex { get { return XMLHelper.GetChildValue("Sex", Node, NSMgr); } set { XMLHelper.SetChildValue("Sex", value, Node, NSMgr); OnPropertyChanged("Sex"); GiveFrountEndkickToRefresh(); } }
-        public int? LLDDHealthProb { get { string LLDDHealthProb = XMLHelper.GetChildValue("LLDDHealthProb", Node, NSMgr); return (LLDDHealthProb != null ? int.Parse(LLDDHealthProb) : (int?)null); } 
-                                     set { XMLHelper.SetChildValue("LLDDHealthProb", value, Node, NSMgr); OnPropertyChanged("LLDDHealthProb"); GiveFrountEndkickToRefresh(); } 
-                                   }
+        public int? LLDDHealthProb
+        {
+            get { string LLDDHealthProb = XMLHelper.GetChildValue("LLDDHealthProb", Node, NSMgr); return (LLDDHealthProb != null ? int.Parse(LLDDHealthProb) : (int?)null); }
+            set { XMLHelper.SetChildValue("LLDDHealthProb", value, Node, NSMgr); OnPropertyChanged("LLDDHealthProb"); GiveFrountEndkickToRefresh(); }
+        }
         public string NINumber { get { return XMLHelper.GetChildValue("NINumber", Node, NSMgr); } set { XMLHelper.SetChildValue("NINumber", value, Node, NSMgr); OnPropertyChanged("NINumber"); GiveFrountEndkickToRefresh(); } }
         public int? PriorAttain { get { string PriorAttain = XMLHelper.GetChildValue("PriorAttain", Node, NSMgr); return (PriorAttain != null ? int.Parse(PriorAttain) : (int?)null); } set { XMLHelper.SetChildValue("PriorAttain", value, Node, NSMgr); OnPropertyChanged("PriorAttain"); GiveFrountEndkickToRefresh(); } }
         public bool Accom { get { string Accom = XMLHelper.GetChildValue("Accom", Node, NSMgr); return (Accom != null ? true : false); } set { XMLHelper.SetChildValue("Accom", value ? (int?)5 : (int?)null, Node, NSMgr); OnPropertyChanged("Accom"); GiveFrountEndkickToRefresh(); } }
@@ -155,7 +159,7 @@ namespace ILR
         public string AddLine4 { get { return XMLHelper.GetChildValue("AddLine4", Node, NSMgr); } set { XMLHelper.SetChildValue("AddLine4", value, Node, NSMgr); OnPropertyChanged("AddLine4"); GiveFrountEndkickToRefresh(); } }
         public string TelNo { get { return XMLHelper.GetChildValue("TelNo", Node, NSMgr); } set { XMLHelper.SetChildValue("TelNo", value, Node, NSMgr); OnPropertyChanged("TelNo"); GiveFrountEndkickToRefresh(); } }
         public string Email { get { return XMLHelper.GetChildValue("Email", Node, NSMgr); } set { XMLHelper.SetChildValue("Email", value, Node, NSMgr); OnPropertyChanged("Email"); GiveFrountEndkickToRefresh(); } }
-        
+        public string OTJHours { get { return XMLHelper.GetChildValue("OTJHours", Node, NSMgr); } set { XMLHelper.SetChildValue("OTJHours", value, Node, NSMgr); OnPropertyChanged("OTJHours"); GiveFrountEndkickToRefresh(); } }
 
 
         #endregion
@@ -178,8 +182,8 @@ namespace ILR
         }
         #endregion
         #region Renormalised Child Entities
-   
-       
+
+
         #region LearnerFAM
         //public bool LDA
         //{
@@ -498,7 +502,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 1).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 4).Count() > 0;
             }
             set
             {
@@ -506,11 +510,11 @@ namespace ILR
                 {
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "PMC";
-                    newInstance.ContPrefCode = 1;
+                    newInstance.ContPrefCode = 4;
                 }
                 else if (!value && PMC1)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 1).First();
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 4).First();
                     this.Delete(deleteInstance);
                 }
                 OnPropertyChanged("PMC1");
@@ -520,7 +524,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 2).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 5).Count() > 0;
             }
             set
             {
@@ -528,11 +532,11 @@ namespace ILR
                 {
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "PMC";
-                    newInstance.ContPrefCode = 2;
+                    newInstance.ContPrefCode = 5;
                 }
                 else if (!value && PMC2)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 2).First();
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 5).First();
                     this.Delete(deleteInstance);
                 }
                 OnPropertyChanged("PMC2");
@@ -542,7 +546,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 3).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 6).Count() > 0;
             }
             set
             {
@@ -550,11 +554,11 @@ namespace ILR
                 {
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "PMC";
-                    newInstance.ContPrefCode = 3;
+                    newInstance.ContPrefCode = 6;
                 }
                 else if (!value && PMC3)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 3).First();
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 6).First();
                     this.Delete(deleteInstance);
                 }
                 OnPropertyChanged("PMC3");
@@ -564,7 +568,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).Count() > 0;
             }
             set
             {
@@ -574,11 +578,11 @@ namespace ILR
                     RUI5 = false;
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 1;
+                    newInstance.ContPrefCode = 6;
                 }
                 else if (!value && RUI1)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).First();
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).First();
                     this.Delete(deleteInstance);
                 }
                 OnPropertyChanged("RUI1");
@@ -588,7 +592,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).Count() > 0;
             }
             set
             {
@@ -598,7 +602,7 @@ namespace ILR
                     RUI5 = false;
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 2;
+                    newInstance.ContPrefCode = 7;
                 }
                 else if (!value && RUI2)
                 {
@@ -793,7 +797,7 @@ namespace ILR
         #endregion
         #endregion
         #region ILR Child Entites
-        
+
         public List<ContactPreference> ContactPreferenceList = new List<ContactPreference>();
         public List<LLDDandHealthProblem> LLDDandHealthProblemList = new List<LLDDandHealthProblem>();
         public List<LearnerFAM> LearnerFAMList = new List<LearnerFAM>();
@@ -929,7 +933,7 @@ namespace ILR
             this.Node = LearnerNode;
             this.NSMgr = NSMgr;
 
-            
+
             XmlNodeList contactPreferenceNodes = LearnerNode.SelectNodes("./ia:ContactPreference", NSMgr);
             foreach (XmlNode node in contactPreferenceNodes)
                 ContactPreferenceList.Add(new ContactPreference(node, NSMgr));
@@ -1184,7 +1188,7 @@ namespace ILR
             }
             GiveFrountEndkickToRefresh();
         }
-        
+
         #region FAM management
         public LearnerFAM GetFAM(LearnerFAM.SingleOccurrenceFAMs FAMType)
         {
@@ -1282,7 +1286,7 @@ namespace ILR
             }
             else
                 if (provSpecMon != null)
-                    Delete(provSpecMon);
+                Delete(provSpecMon);
         }
         #endregion
         #region HE Fin management
@@ -1352,7 +1356,7 @@ namespace ILR
         public bool HasLearningDeliveriesInFundingModel(int FundModel)
         {
             return LearningDeliveryList.Exists(ld => ld.FundModel == FundModel);
-                
+
             //foreach (LearningDelivery ld in LearningDeliveryList)
             //{
             //    if (ld.FundModel == FundModel)
@@ -1372,7 +1376,7 @@ namespace ILR
         private void GiveFrountEndkickToRefresh()
         {
             if (!IsFileImportLoadingRunning)
-            OnPropertyChanged("GivenNames");
+                OnPropertyChanged("GivenNames");
             OnPropertyChanged("FamilyName");
 
             OnPropertyChanged("DateOfBirth");
@@ -1438,7 +1442,7 @@ namespace ILR
                     case "TelNumber":
                         if (this.TelNo != null)
                         {
-                            String sReturn = string.Empty; 
+                            String sReturn = string.Empty;
                             if (this.TelNo.Contains(" "))
                                 sReturn += "TelNumber should not have spaces\r\n";
                             Int64 x;
@@ -1458,12 +1462,12 @@ namespace ILR
                         break;
                     case "ULN":
                         if (ULN == null || ULN.ToString().Length == 0)
-                            return "ULN - required\r\n";                        
+                            return "ULN - required\r\n";
                         if (ULN != null)
                             return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
                         break;
                     case "Ethnicity":
-                        if ( (Ethnicity == null) || ((Ethnicity != null && Ethnicity.ToString().Length == 0)) )
+                        if ((Ethnicity == null) || ((Ethnicity != null && Ethnicity.ToString().Length == 0)))
                         {
                             return "Ethnicity - required\r\n";
                         }
@@ -1480,8 +1484,8 @@ namespace ILR
                         }
                         break;
                     case "LLDDandHealthProblemList":
-                        if ((this.LLDDHealthProb != null) && (this.LLDDHealthProb == 1) 
-                            &&  (( LLDDandHealthProblemList== null) || (LLDDandHealthProblemList != null && LLDDandHealthProblemList.Count < 1))
+                        if ((this.LLDDHealthProb != null) && (this.LLDDHealthProb == 1)
+                            && ((LLDDandHealthProblemList == null) || (LLDDandHealthProblemList != null && LLDDandHealthProblemList.Count < 1))
                             )
                         {
                             return "LLDDandHealthProblem Not Selected- required\r\n";
@@ -1511,12 +1515,12 @@ namespace ILR
                         if (EngGrade != null)
                             return CheckPropertyLength(EngGrade, CLASSNAME, columnName, TABS);
                         break;
-					case "PostCode":
-						if (PostCode == null)
-							return "Postcode required\r\n";
-						//else if (PostCode != null)
-						//	return CheckPropertyLength(PostCode, CLASSNAME, columnName, TABS);
-						break;
+                    case "PostCode":
+                        if (PostCode == null)
+                            return "Postcode required\r\n";
+                        //else if (PostCode != null)
+                        //	return CheckPropertyLength(PostCode, CLASSNAME, columnName, TABS);
+                        break;
                     case "PostcodePrior":
                         if (string.IsNullOrEmpty(PostcodePrior))
                             return "Postcode Prior to Enrolment required\r\n";
@@ -1524,6 +1528,10 @@ namespace ILR
                     case "CampId":
                         if (!isCampIdValild())
                             return $"Campus Identifier: {CampId} is not valid";
+                        break;
+                    case "OTJHours":
+                        if (!isOTJHoursValild())
+                            return $"Off-the-job training hours : {OTJHours} is not valid";
                         break;
                     default:
                         break;
@@ -1534,10 +1542,29 @@ namespace ILR
 
         private bool isCampIdValild()
         {
-            
+
             var regEx = new Regex(CAMPID_PATTERN);
-            return string.IsNullOrEmpty(CampId)?true:regEx.Match(this.CampId).Success;
+            return string.IsNullOrEmpty(CampId) ? true : regEx.Match(this.CampId).Success;
         }
+
+        private bool isOTJHoursValild()
+        {
+            if (string.IsNullOrEmpty(OTJHours)) return true; //optional field hence a blank is alright.
+            var regEx = new Regex(OTJHOURS_PATTERN);
+            var regExMatch = regEx.Match(this.OTJHours).Success;
+            if (regExMatch) //they are numbers
+            {
+                int numbers = 0;
+                if (Int32.TryParse(OTJHours, out numbers)) //numbers
+                {
+                    return ((numbers <= 9999) && (numbers >= 0));
+                }
+
+            }
+            return false;
+        }
+
+
 
         #endregion
     }

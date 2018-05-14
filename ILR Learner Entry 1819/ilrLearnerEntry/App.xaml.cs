@@ -14,10 +14,10 @@ namespace ilrLearnerEntry
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, IDisposable
     {       
         private static readonly string appGuid = "SFA-ilrLearnerEntry-A07151B7-8F1A-4423-ABFB-B85387423E98-1819";
-        private static readonly Mutex mutex = new Mutex(false, appGuid);
+        private Mutex mutex = new Mutex(false, appGuid);
 
         private static readonly string appYear = "1819";
         private static readonly string appYearPrevious = "1718";
@@ -189,6 +189,7 @@ namespace ilrLearnerEntry
 
 		private void Application_Exit(object sender, ExitEventArgs e)
         {
+            App.Current.Shutdown();
             Log("App", "EXIT", "");
         }
 
@@ -206,6 +207,28 @@ namespace ilrLearnerEntry
             ((DispatcherFrame)f).Continue = false;
 
             return null;
+        }
+
+        private void Dispose(Boolean disposing)
+        {
+            if (disposing && (mutex != null))
+            {
+                mutex.ReleaseMutex();
+                mutex.Close();
+                mutex = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Dispose();
+            base.OnExit(e);
         }
     }
 }

@@ -209,7 +209,7 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" TextWrapping="Wrap" Style="{DynamicResource StandardTextBlockStyle}" >
-                         <Run Text="Learner does not want to be contacted (tick all that apply) :" />
+                         <Run Text="Learner agrees to be contacted (tick all that apply) :" />
                         </TextBlock>
                         <CheckBox Grid.Row="2" Grid.Column="1" Content=": About course or learning opportunities"  IsChecked="{Binding Path=CurrentItem.RUI1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="13" />
                         <CheckBox Grid.Row="3" Grid.Column="1" Content=": For surveys and research" IsChecked="{Binding Path=CurrentItem.RUI2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="14" />

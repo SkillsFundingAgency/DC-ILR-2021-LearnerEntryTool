@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Message xmlns="SFA/ILR/2018-19">
+  <Header>
+    <CollectionDetails>
+      <Collection>ILR</Collection>
+      <Year>1819</Year>
+    </CollectionDetails>
+    <Source>
+      <ProtectiveMarking>OFFICIAL-SENSITIVE-Personal</ProtectiveMarking>
+      <SoftwareSupplier>Education &amp; Skills Funding Agency</SoftwareSupplier>
+      <SoftwarePackage>ILR Learner Entry</SoftwarePackage>
+      <Release>0.2.0.0</Release>
+    </Source>
+  </Header>
+</Message>

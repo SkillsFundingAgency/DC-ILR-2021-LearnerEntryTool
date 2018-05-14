@@ -338,14 +338,14 @@
     <Color x:Key="TabItemHeaderBbColorDisabled">Yellow</Color>
 
     <!-- same a tab control -->
-    <!--<Style TargetType="{x:Type TabItem}">
+    <Style TargetType="{x:Type TabItem}">
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColorSelected}" />
             </Trigger>
             <Trigger Property="IsSelected" Value="False">
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColor}" />
-            </Trigger>			
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColorDisabled}" />
             </Trigger>
@@ -417,7 +417,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>-->
+    </Style>
 
     <SolidColorBrush x:Key="MyListBoxBackgroundColor" Color="#FF8BF560" />
     <SolidColorBrush x:Key="MyListBoxForegroundColor" Color="#FF3939E9" />

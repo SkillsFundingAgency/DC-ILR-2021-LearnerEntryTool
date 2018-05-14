@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace ILR
 {
@@ -53,20 +54,20 @@ namespace ILR
                 message += this["LearnPlanEndDate"];
                 message += this["FundModel"];
                 message += this["CompStatus"];
-				message += this["DelLocPostCode"];			
+                message += this["DelLocPostCode"];
 
-				return message;
+                return message;
             }
         }
         public bool ShouldProbablyMigrate
         {
             get
-            {                
+            {
                 switch (this.AimType)
                 {
                     case 1:
                     case 4:
-                        return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 && this.LearnActEndDate == null) ||(this.FundModel == 70));
+                        return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 && this.LearnActEndDate == null) || (this.FundModel == 70));
                     case 5:
                         if (this.FundModel == 70)
                             return true;
@@ -84,7 +85,7 @@ namespace ILR
             }
         }
         #endregion
-        Nullable<int> _defaultStdCode ;
+        Nullable<int> _defaultStdCode;
 
         #region ILR Properties
         public string LearnAimRef { get { return XMLHelper.GetChildValue("LearnAimRef", Node, NSMgr); } set { XMLHelper.SetChildValue("LearnAimRef", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("LearnAimRef"); } }
@@ -112,10 +113,23 @@ namespace ILR
         public int? Outcome { get { string Outcome = XMLHelper.GetChildValue("Outcome", Node, NSMgr); return (Outcome != null ? int.Parse(Outcome) : (int?)null); } set { XMLHelper.SetChildValue("Outcome", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("Outcome"); } }
         public DateTime? AchDate { get { string AchDate = XMLHelper.GetChildValue("AchDate", Node, NSMgr); return (AchDate != null ? DateTime.Parse(AchDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("AchDate", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("AchDate"); } }
         public string OutGrade { get { return XMLHelper.GetChildValue("OutGrade", Node, NSMgr); } set { XMLHelper.SetChildValue("OutGrade", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("OutGrade"); } }
-        public string SWSupAimId { get { return XMLHelper.GetChildValue("SWSupAimId", Node, NSMgr); } set { XMLHelper.SetChildValue("SWSupAimId", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("SWSupAimId"); } }
+        public string SWSupAimId { get { return getSwSuppAimId(); } set { XMLHelper.SetChildValue("SWSupAimId", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("SWSupAimId"); } }
 
 
-      
+        private string getSwSuppAimId()
+        {
+
+            var suppId = XMLHelper.GetChildValue("SWSupAimId", Node, NSMgr);
+            if (string.IsNullOrEmpty(suppId))
+            {
+                var swSuppAimId = Guid.NewGuid();
+                SWSupAimId = swSuppAimId.ToString();
+                suppId = swSuppAimId.ToString();
+            }
+            return suppId;
+        }
+
+
         #endregion
 
         #region Lookup Properties
@@ -708,7 +722,8 @@ namespace ILR
 
         public List<TrailblazerApprenticeshipFinancialRecord> GetTrailblazerApprenticeshipFinancialRecords
         {
-            get {
+            get
+            {
                 return TrailblazerApprenticeshipFinancialRecordList;
             }
         }
@@ -910,7 +925,7 @@ namespace ILR
             this.CompStatus = MigrationLearningDelivery.CompStatus;
             this.LearnActEndDate = MigrationLearningDelivery.LearnActEndDate;
             this.WithdrawReason = MigrationLearningDelivery.WithdrawReason;
-            if (Convert.ToInt32(MigrationLearningDelivery.Outcome)==6 || Convert.ToInt32(MigrationLearningDelivery.Outcome) == 7)
+            if (Convert.ToInt32(MigrationLearningDelivery.Outcome) == 6 || Convert.ToInt32(MigrationLearningDelivery.Outcome) == 7)
                 this.Outcome = null;
             else
                 this.Outcome = MigrationLearningDelivery.Outcome;
@@ -919,7 +934,7 @@ namespace ILR
             this.OutGrade = MigrationLearningDelivery.OutGrade;
             this.SWSupAimId = MigrationLearningDelivery.SWSupAimId;
 
-            foreach (LearningDeliveryFAM migrationItem in MigrationLearningDelivery.LearningDeliveryFAMList.Where(f=>f.LearnDelFAMType!="TBS"))
+            foreach (LearningDeliveryFAM migrationItem in MigrationLearningDelivery.LearningDeliveryFAMList.Where(f => f.LearnDelFAMType != "TBS"))
             {
                 if (migrationItem.LearnDelFAMType != "SPP" && migrationItem.LearnDelFAMType != "WPL" && !(migrationItem.LearnDelFAMType == "LDM" && migrationItem.LearnDelFAMType == "125") || (this.FundModel == 35 && this.LearnStartDate < FIRST_AUG_2013 && (this.ProgType == 2 || this.ProgType == 3 || this.ProgType == 10 || this.ProgType == 20 || this.ProgType == 21 || this.ProgType == 22 || this.ProgType == 23)))
                 {
@@ -954,11 +969,11 @@ namespace ILR
                 migrationItemAP.AFinDate = migrationItem.TBFinDate;
                 migrationItemAP.AFinAmount = migrationItem.TBFinAmount;
 
-               // ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
-               // ApprenticeshipFinancialRecordList.Add(migrationItemAP);
+                // ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
+                // ApprenticeshipFinancialRecordList.Add(migrationItemAP);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
-            foreach(ProviderSpecDeliveryMonitoring migrationItem in MigrationLearningDelivery.ProviderSpecDeliveryMonitoringList)
+            foreach (ProviderSpecDeliveryMonitoring migrationItem in MigrationLearningDelivery.ProviderSpecDeliveryMonitoringList)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("ProviderSpecDeliveryMonitoring", NSMgr.LookupNamespace("ia"));
                 ProviderSpecDeliveryMonitoring migrationItemAP = CreateProviderSpecDeliveryMonitoring();
@@ -1008,7 +1023,7 @@ namespace ILR
         private LearningDeliveryFAM GetLegacyFAM(string FAMType)
         {
             return this.LearningDeliveryFAMList.Where(x => x.LearnDelFAMType == FAMType).FirstOrDefault();
-        } 
+        }
         public LearningDeliveryFAM GetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs FAMType)
         {
             return this.LearningDeliveryFAMList.Where(x => x.LearnDelFAMType == FAMType.ToString()).FirstOrDefault();
@@ -1319,22 +1334,33 @@ namespace ILR
                         if (ConRefNumber != null)
                             return CheckPropertyLength(ConRefNumber, CLASSNAME, columnName, TABS);
                         break;
-					case "DelLocPostCode":
-						if ((DelLocPostCode == null)
-					   || ((DelLocPostCode != null && DelLocPostCode.ToString().Length == 0))
-					   )
-							return "\t\tDel Loc Post Code - required\r\n";
-						break;
+                    case "DelLocPostCode":
+                        if ((DelLocPostCode == null)
+                       || ((DelLocPostCode != null && DelLocPostCode.ToString().Length == 0))
+                       )
+                            return "\t\tDel Loc Post Code - required\r\n";
+                        break;
                     case "EPAOrgID":
                         if (EPAOrgID != null)
                             return CheckPropertyLength(EPAOrgID, CLASSNAME, columnName, TABS);
-                        break;                        
+                        break;
                     default:
                         break;
                 }
                 return result;
             }
         }
+
+
+        private const string SWSUPPAIMID_PATTERN = "^[{(]?[0-9A-F]{8}[-]?([0-9A-F]{4}[-]?){3}[0-9A-F]{12}[)}]?$";
+
+        private bool isValidSWSupAimId()
+        {
+            var regEx = new Regex(SWSUPPAIMID_PATTERN);
+            return string.IsNullOrEmpty(SWSupAimId) ? true : regEx.Match(this.SWSupAimId).Success;
+
+        }
+
         #endregion
 
     }
