@@ -20,14 +20,14 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" SharedSizeGroup="BorderColumns" />
+            <ColumnDefinition Width="30" SharedSizeGroup="BorderColumns" />
             <ColumnDefinition />
-            <ColumnDefinition Width="20" SharedSizeGroup="BorderColumns" />
+            <ColumnDefinition Width="30" SharedSizeGroup="BorderColumns" />
         </Grid.ColumnDefinitions>
 
-            <Grid Background="White" Grid.Row="0" Grid.Column="1" 
+            <Grid Background="Black" Grid.Row="0" Grid.Column="1" 
                                     Height="100"
-                                    Grid.ColumnSpan="3">
+                                    >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="BorderColumns" />
                     <ColumnDefinition Width="Auto" />
@@ -36,7 +36,7 @@
                     <ColumnDefinition SharedSizeGroup="BorderColumns" />
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0"  Width="150" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Source="..\Images\ESFA_2955_BLK.png" />
+            <Image Grid.Column="0"  Width="150" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Source="..\Images\ESFA-logo-white.png" />
                 
                 <!--<Rectangle Grid.Column="0"
                                                Width="96"
@@ -56,7 +56,7 @@
                                                VerticalAlignment="Bottom"
                                                Margin="20, 0, 0, 10" 
                                                TextAlignment="Right"
-                                               Foreground="Black"
+                                               Foreground="White"
                                                FontSize="24"
                                                FontWeight="Bold"/>
                     <TextBlock Margin="20, 0, 0, 10" 
@@ -64,13 +64,14 @@
                                                Style="{DynamicResource GlobalMarginStyle}"
                                                VerticalAlignment="Bottom"
                                                TextAlignment="Right"
-                                               Foreground="Black"
+                                               Foreground="LightYellow"
                                                FontSize="12" />
                 </StackPanel>
                 
             </Grid>
 
         <Border Grid.Row="1"
+                Margin="5"
                                     Grid.Column="1" 
             Style="{DynamicResource GDSContentBorderStyle}" />
       

@@ -7,31 +7,31 @@ using System.Xml;
 
 namespace ILR
 {
-    public class TrailblazerApprenticeshipFinancialRecord : ChildEntity, IDataErrorInfo
+    public class AppFinRecord : ChildEntity, IDataErrorInfo
     {
 
         #region ILR Properties
-        public string TBFinType { get { return XMLHelper.GetChildValue("TBFinType", Node, NSMgr); } set { XMLHelper.SetChildValue("TBFinType", value, Node, NSMgr); OnPropertyChanged("TBFinType"); } }
-        public int? TBFinCode { get { string TBFinCode = XMLHelper.GetChildValue("TBFinCode", Node, NSMgr); return (TBFinCode != null ? int.Parse(TBFinCode) : (int?)null); } set { XMLHelper.SetChildValue("TBFinCode", value, Node, NSMgr); OnPropertyChanged("TBFinCode"); } }
-        public DateTime? TBFinDate { get { string TBFinDate = XMLHelper.GetChildValue("TBFinDate", Node, NSMgr); return (TBFinDate != null ? DateTime.Parse(TBFinDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("TBFinDate", value, Node, NSMgr); OnPropertyChanged("TBFinDate"); } }
-        public int? TBFinAmount { get { string TBFinAmount = XMLHelper.GetChildValue("TBFinAmount", Node, NSMgr); return (TBFinAmount != null ? int.Parse(TBFinAmount) : (int?)null); } set { XMLHelper.SetChildValue("TBFinAmount", value, Node, NSMgr); OnPropertyChanged("TBFinAmount"); } }
+        public string AFinType { get { return XMLHelper.GetChildValue("AFinType", Node, NSMgr); } set { XMLHelper.SetChildValue("AFinType", value, Node, NSMgr); OnPropertyChanged("AFinType"); } }
+        public int? AFinCode { get { string AFinCode = XMLHelper.GetChildValue("AFinCode", Node, NSMgr); return (AFinCode != null ? int.Parse(AFinCode) : (int?)null); } set { XMLHelper.SetChildValue("AFinCode", value, Node, NSMgr); OnPropertyChanged("AFinCode"); } }
+        public DateTime? AFinDate { get { string AFinDate = XMLHelper.GetChildValue("AFinDate", Node, NSMgr); return (AFinDate != null ? DateTime.Parse(AFinDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("AFinDate", value, Node, NSMgr); OnPropertyChanged("AFinDate"); } }
+        public int? AFinAmount { get { string AFinAmount = XMLHelper.GetChildValue("AFinAmount", Node, NSMgr); return (AFinAmount != null ? int.Parse(AFinAmount) : (int?)null); } set { XMLHelper.SetChildValue("AFinAmount", value, Node, NSMgr); OnPropertyChanged("AFinAmount"); } }
         #endregion
 
         #region Constructors
-        internal TrailblazerApprenticeshipFinancialRecord(XmlNode ApprenticeshipTrailblazerFinancialDetailsNode, XmlNamespaceManager NSMgr)
+        internal AppFinRecord(XmlNode ApprenticeshipTrailblazerFinancialDetailsNode, XmlNamespaceManager NSMgr)
         {
             this.Node = ApprenticeshipTrailblazerFinancialDetailsNode;
             this.NSMgr = NSMgr;
         }
-        internal TrailblazerApprenticeshipFinancialRecord(TrailblazerApprenticeshipFinancialRecord MigrationLearnerEmploymentStatus, XmlNode Node, XmlNamespaceManager NSMgr)
+        internal AppFinRecord(AppFinRecord MigrationLearnerEmploymentStatus, XmlNode Node, XmlNamespaceManager NSMgr)
         {
             this.Node = Node;
             this.NSMgr = NSMgr;
 
-            this.TBFinType = MigrationLearnerEmploymentStatus.TBFinType;
-            this.TBFinCode = MigrationLearnerEmploymentStatus.TBFinCode;
-            this.TBFinDate = MigrationLearnerEmploymentStatus.TBFinDate;
-            this.TBFinAmount = MigrationLearnerEmploymentStatus.TBFinAmount;
+            this.AFinType = MigrationLearnerEmploymentStatus.AFinType;
+            this.AFinCode = MigrationLearnerEmploymentStatus.AFinCode;
+            this.AFinDate = MigrationLearnerEmploymentStatus.AFinDate;
+            this.AFinAmount = MigrationLearnerEmploymentStatus.AFinAmount;
 
         }
         #endregion
@@ -47,20 +47,20 @@ namespace ILR
             get
             {
                 string result = null;
-                if (columnName == "TBFinCode")
+                if (columnName == "AFinCode")
                 {
-                    if (TBFinCode != null && TBFinCode.ToString().Length > 8)
+                    if (AFinCode != null && AFinCode.ToString().Length > 8)
                     {
-                        result = "TBFinCode exceeds maximum length (8).";
-                        TBFinCode = (int?)int.Parse(TBFinCode.ToString().Substring(0, 8));
+                        result = "AFinCode exceeds maximum length (8).";
+                        AFinCode = (int?)int.Parse(AFinCode.ToString().Substring(0, 8));
                     }
                 }
-                if (columnName == "TBFinAmount")
+                if (columnName == "AFinAmount")
                 {
-                    if (TBFinAmount != null && TBFinAmount.ToString().Length > 8)
+                    if (AFinAmount != null && AFinAmount.ToString().Length > 8)
                     {
-                        result = "TBFinAmount exceeds maximum length (8).";
-                        TBFinAmount = (int?)int.Parse(TBFinAmount.ToString().Substring(0, 8));
+                        result = "AFinAmount exceeds maximum length (8).";
+                        AFinAmount = (int?)int.Parse(AFinAmount.ToString().Substring(0, 8));
                     }
                 }
                 return result;

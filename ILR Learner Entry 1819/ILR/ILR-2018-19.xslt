@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dc="SFA/ILR/2017-18"
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dc="ESFA/ILR/2018-19"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-result-prefixes="dc">
   <xsl:output method="xml" encoding="UTF-8" indent="yes" />
   <xsl:strip-space elements="*"/>
   <xsl:template match="/dc:Message">
-    <Message xmlns="SFA/ILR/2017-18">
+    <Message xmlns="ESFA/ILR/2018-19">
       <Header >
         <CollectionDetails>
           <Collection>
@@ -62,6 +62,11 @@
             <PrevUKPRN>
               <xsl:value-of select="dc:PrevUKPRN"/>
             </PrevUKPRN>
+          </xsl:if>
+          <xsl:if test="dc:CampId != ''">
+            <CampId>
+              <xsl:value-of select="dc:CampId"/>
+            </CampId>
           </xsl:if>
           <xsl:if test="dc:PMUKPRN != ''">
             <PMUKPRN>

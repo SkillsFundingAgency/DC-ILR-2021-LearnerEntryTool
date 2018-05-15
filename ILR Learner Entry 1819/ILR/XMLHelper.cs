@@ -32,7 +32,6 @@ namespace ILR
             {"ProviderSpecLearnerMonitoring",new List<string>() {"ProvSpecLearnMonOccur","ProvSpecLearnMon"}},
             {"Source",new List<string>() {"ProtectiveMarking","UKPRN","SoftwareSupplier","SoftwarePackage","Release","SerialNo","DateTime","ReferenceData","ComponentSetVersion"}},
             {"SourceFile",new List<string>() {"SourceFileName","FilePreparationDate","SoftwareSupplier","SoftwarePackage","Release","SerialNo","DateTime"}},
-            {"TrailblazerApprenticeshipFinancialRecord",new List<string>() {"TBFinType","TBFinCode","TBFinDate","TBFinAmount"}},
             {"AppFinRecord",new List<string>() {"AFinType","AFinCode","AFinDate","AFinAmount"}},
             { "ApprenticeshipFinancialRecord",new List<string>() {"AFinType","AFinCode","AFinDate","AFinAmount"}}
 

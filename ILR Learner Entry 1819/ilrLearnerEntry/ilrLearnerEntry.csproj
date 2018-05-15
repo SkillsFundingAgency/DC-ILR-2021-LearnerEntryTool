@@ -179,9 +179,6 @@
     <Compile Include="..\ILR\Source.cs">
       <Link>BusinessEntities\ILR\Source.cs</Link>
     </Compile>
-    <Compile Include="..\ILR\TrailblazerApprenticeshipFinancialRecord.cs">
-      <Link>BusinessEntities\ILR\TrailblazerApprenticeshipFinancialRecord.cs</Link>
-    </Compile>
     <Compile Include="..\ILR\XMLHelper.cs">
       <Link>Processing\XMLHelper.cs</Link>
     </Compile>
@@ -500,9 +497,12 @@
     <Resource Include="Images\ESFA_2955_BLK.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ILR-2018-19.xslt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <EmbeddedResource Include="..\ILR\ILR-2018-19.xslt">
+      <Link>ILR-2018-19.xslt</Link>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ESFA-logo-white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

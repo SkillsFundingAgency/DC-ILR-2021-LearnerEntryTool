@@ -39,10 +39,21 @@ namespace ilrLearnerEntry.UserControls
         public ucHomeScreen()
         {
             InitializeComponent();
+            txtUKPRM.TextChanged += TxtUKPRM_TextChanged;
             IsProcessing = false;
             this.DataContext = this;
             OnPropertyChanged("Statistics");
             OnPropertyChanged("UKPRN");
+        }
+
+        private void TxtUKPRM_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var newValue = txtUKPRM.Text;
+            TextBox txt = e.Source as TextBox;
+            int number;
+            bool result = Int32.TryParse(System.Convert.ToString(newValue), out number);
+            if (result) { UKPRN = number; }
+            else { UKPRN = null; }
         }
         #endregion
 
@@ -509,5 +520,7 @@ namespace ilrLearnerEntry.UserControls
         protected bool ThrowOnInvalidPropertyName { get; set; }
 
         #endregion
+
+       
     }
 }

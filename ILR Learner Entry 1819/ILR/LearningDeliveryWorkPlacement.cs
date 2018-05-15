@@ -30,6 +30,7 @@ namespace ILR
 
             this.WorkPlaceStartDate = MigrationLearnerEmploymentStatus.WorkPlaceStartDate;
             this.WorkPlaceEndDate = MigrationLearnerEmploymentStatus.WorkPlaceEndDate;
+            this.WorkPlaceHours = MigrationLearnerEmploymentStatus.WorkPlaceHours;
             this.WorkPlaceMode = MigrationLearnerEmploymentStatus.WorkPlaceMode;
             this.WorkPlaceEmpId = MigrationLearnerEmploymentStatus.WorkPlaceEmpId;
 

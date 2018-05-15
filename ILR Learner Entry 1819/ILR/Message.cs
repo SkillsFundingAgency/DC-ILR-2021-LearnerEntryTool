@@ -18,7 +18,7 @@ namespace ILR
     {
         #region Year-specific constants
         public static int CurrentYear = 1819;
-        public static string CurrentNameSpace = @"SFA/ILR/2018-19";
+        public static string CurrentNameSpace = @"ESFA/ILR/2018-19";
         public static string PreviousNameSpace = @"SFA/ILR/2017-18";
         public static string FileNameTemplate = "ILR-$$UKPRN$$-$$YEAR$$-$$NOW$$-01.xml";
         public static DateTime CurrentYearStart = new DateTime(2016, 8, 1);

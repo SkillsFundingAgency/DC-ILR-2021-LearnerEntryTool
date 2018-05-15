@@ -36,6 +36,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
         public ucLLDDList()
         {
             InitializeComponent();
+
+            
         }
         #endregion
 
@@ -72,8 +74,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
                     RefreshMe();
                     CurrentItem.RefreshData();
                     OnPropertyChanged("CurrentItem");
-                    this.lv_LLDDCats.SelectionChanged += lv_LLDDCats_SelectionChanged;
                     this.cbLLDDCatPrimary.SelectionChanged += ComboBox_SelectionChanged;
+                    this.lv_LLDDCats.SelectionChanged += lv_LLDDCats_SelectionChanged;
+                    
                 }
                 else
                 {
@@ -177,32 +180,30 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
         }
         private void lv_LLDDCats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (Bob x in e.AddedItems)
-            {
-                LLDDandHealthProblem tmp = _learner.LLDDandHealthProblemList.Where(f => f.LLDDCat == int.Parse(x.Code.ToString())).FirstOrDefault();
-                if (tmp == null)
-                {
-                    if (_learner.LLDDandHealthProblemList.Count < MaxItems)
-                    {
-                        _catList.Where(f => f.Code == x.Code.ToString()).FirstOrDefault().IsSelected = true;
-                        _catList.Where(f => f.Code == x.Code.ToString()).FirstOrDefault().IsPrimary = false;
+            //listview only seems to have single selection and hence it will only have one item in the addeditems collection.
 
-                        LLDDandHealthProblem newLLDD = _learner.CreateLLDDandHealthProblem();
-                        newLLDD.LLDDCat = int.Parse(x.Code.ToString());
-                        newLLDD.PrimaryLLDD = Convert.ToBoolean(false);
-                        _learner.RefreshData();
-                    }
-                    else
+
+            if (e.AddedItems.Count > 0)
+            {
+               
+
+                    foreach (Bob x in e.AddedItems)
                     {
-                        MessageBox.Show(String.Format("   You may only select {0} items.", MaxItems.ToString())
-                                                               , "Max number of selectable items reached."
-                                                               , MessageBoxButton.OK
-                                                               , MessageBoxImage.Information
-                                                               , MessageBoxResult.OK);
-                        _catList.Where(f => f.Code == x.Code.ToString()).FirstOrDefault().IsSelected = false;
-                        _catList.Where(f => f.Code == x.Code.ToString()).FirstOrDefault().IsPrimary = false;
+                        LLDDandHealthProblem tmp = _learner.LLDDandHealthProblemList.Where(f => f.LLDDCat == int.Parse(x.Code.ToString())).FirstOrDefault();
+                        if (tmp == null)
+                        {
+                            if (_learner.LLDDandHealthProblemList.Count <= MaxItems)
+                            {
+                                _catList.Where(f => f.Code == x.Code.ToString()).FirstOrDefault().IsSelected = true;
+                                _catList.Where(f => f.Code == x.Code.ToString()).FirstOrDefault().IsPrimary = false;
+
+                                LLDDandHealthProblem newLLDD = _learner.CreateLLDDandHealthProblem();
+                                newLLDD.LLDDCat = int.Parse(x.Code.ToString());
+                                newLLDD.PrimaryLLDD = Convert.ToBoolean(false);
+                                _learner.RefreshData();
+                            }
+                        }
                     }
-                }
             }
 
             foreach (Bob x in e.RemovedItems)
@@ -217,6 +218,26 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
                     }
                 }
             }
+
+            if (_learner.LLDDandHealthProblemList.Count > MaxItems)
+            {
+
+                Dispatcher.BeginInvoke(new Action(() => {
+                    MessageBox.Show(String.Format("   You may only select {0} items.", MaxItems.ToString())
+                                                              , "Max number of selectable items reached."
+                                                              , MessageBoxButton.OK
+                                                              , MessageBoxImage.Information
+                                                              , MessageBoxResult.OK);
+                }));
+
+
+
+                var bob = e.AddedItems[0] as Bob;
+                bob.IsSelected = false;
+
+                lv_LLDDCats.SelectedItems.Remove(bob);
+            }
+
             RefreshMe();
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

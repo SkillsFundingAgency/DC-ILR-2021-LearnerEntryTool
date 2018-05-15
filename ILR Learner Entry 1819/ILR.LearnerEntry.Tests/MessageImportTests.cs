@@ -18,6 +18,7 @@ namespace ILR.LearnerEntry.Tests
 
         private const string ILRFileName = "internalIlr1819.ilr";
         private const string ILRFileToImport = "ILR-1234567-1718-01.xml";
+        XNamespace ns = "ESFA/ILR/2018-19";
         [OneTimeSetUp]
         public void Setup()
         {
@@ -39,27 +40,12 @@ namespace ILR.LearnerEntry.Tests
 
 
         }
-        [Test]
-        public void Test02_Import_WhenFileContainsTrailBlazerFinRecord_Learner_ShouldHaveFinRecords()
-        {
-            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            Message ilrMessage = new Message(fileName);
-            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            ilrMessage.Import(importFile);
-            Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
-            var learner = ilrMessage.LearnerList[0];
-            Assert.NotNull(learner.LearningDeliveryList[0].ApprenticeshipFinancialRecordList, "Apprenticeship Financial record is failed to import, import failed");
-            var finRecord = learner.LearningDeliveryList[0].ApprenticeshipFinancialRecordList[0];
-            Assert.NotNull(finRecord.AFinAmount, "Apprenticeship finance amount is missing");
-            Assert.AreEqual(finRecord.AFinAmount, 16500, "Apprenticeship finance amount is wrong");
-            // Assert.True(File.Exists(fileName), "Failed to create internal file");
-        }
+       
         [Test]
         public void Test03_Import_WhenFileContainsTrailBlazerFinRecord_OutputFile_ShouldHaveFinRecords()
         {
            
-            XNamespace ns = "SFA/ILR/2017-18";
-            XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
+            
 
             string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
             Message ilrMessage = new Message(fileName);
@@ -71,16 +57,14 @@ namespace ILR.LearnerEntry.Tests
                         select t.Value;
             var val = query.First();
             Assert.NotNull(val, "AppFinRecords are not created");
-            Assert.AreEqual(val, "16500", "ApprenticeShip finance amount is wrong");
+            Assert.AreEqual(val, "5000", "ApprenticeShip finance amount is wrong");
             // Assert.True(File.Exists(fileName), "Failed to create internal file");
         }
 
         [Test]
         public void Test04_Export_WhenFileValidatedWithSchema_ShouldHaveNoErrors()
         {
-
-            XNamespace ns = "SFA/ILR/2017-18";
-            XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
+            XNamespace targateNs = "ESFA/ILR/2018-19";
 
             string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
             Message ilrMessage = new Message(fileName);
@@ -96,7 +80,7 @@ namespace ILR.LearnerEntry.Tests
                 Directory.Delete(exportFileFolder, true);
                 Directory.CreateDirectory(exportFileFolder);
             }
-            string xsdFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ILR-2017-18.xsd");
+            string xsdFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ILR-2018-19-v1.xsd");
 
 
             
@@ -104,7 +88,7 @@ namespace ILR.LearnerEntry.Tests
             ilrMessage.Export(exportFileFolder, "01");
 
             string exportFile = Directory.GetFiles(exportFileFolder, "*.xml").FirstOrDefault();
-            bool validFile =IsValidXml(exportFile, xsdFilePath, ns.NamespaceName);
+            bool validFile =IsValidXml(exportFile, xsdFilePath, targateNs.NamespaceName);
 
              Assert.True(validFile, "Exported file failed to validate against the ILR schema!");
         }
@@ -114,7 +98,7 @@ namespace ILR.LearnerEntry.Tests
         public void Test05_Import_WhenFileContainsESFConRefNum_OutputFile_ShouldHaveConRefNum()
         {
 
-            XNamespace ns = "SFA/ILR/2017-18";
+            
             XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
 
             string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
@@ -127,8 +111,39 @@ namespace ILR.LearnerEntry.Tests
                         select t.Value;
             var val = query.First();
             Assert.NotNull(val, "ConRefNumber are not created");
-            Assert.AreEqual(val, "ESF-2068", "ConRefNumber value is wrong");
+            Assert.AreEqual(val, "ESF-123456789", "ConRefNumber value is wrong");
             // Assert.True(File.Exists(fileName), "Failed to create internal file");
+        }
+
+
+        [Test]
+        public void Test06_Import_WhenFileDoesNotContainsSwAimId_OutputFile_ShouldHaveSwAimId()
+        {
+            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            Message ilrMessage = new Message(fileName);
+            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            ilrMessage.Import(importFile);
+            Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
+
+            XDocument xDoc = XDocument.Load(importFile);
+            
+
+            var swquery = from t in xDoc.Descendants(ns + "SWSupAimId")
+                          select t.Value;
+
+            var swIdFound = swquery.Any();
+
+            Assert.IsFalse(swIdFound, "swSuppAimId already exists in the test file, aborting");
+
+            XDocument importedDoc = XDocument.Load(fileName);
+
+            swquery = from t in importedDoc.Descendants(ns + "SWSupAimId")
+                          select t.Value;
+
+            swIdFound = swquery.Any();
+            Assert.IsTrue(swIdFound, "swSuppAimId is missing from the internal ilr file after import, aborting");
+
+
         }
 
 

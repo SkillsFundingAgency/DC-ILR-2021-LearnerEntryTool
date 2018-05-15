@@ -51,13 +51,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\ILR\ILR-2018-19.xslt">
+      <Link>ILR-2018-19.xslt</Link>
+    </Content>
     <Content Include="ILR-2017-18.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="ILR-2018-19.xslt">
+    <Content Include="ILR-2018-19-v1.xsd">
+      <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

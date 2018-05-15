@@ -718,15 +718,6 @@ namespace ILR
 
         #region ILR Child Entites
         public List<LearningDeliveryFAM> LearningDeliveryFAMList = new List<LearningDeliveryFAM>();
-        private List<TrailblazerApprenticeshipFinancialRecord> TrailblazerApprenticeshipFinancialRecordList = new List<TrailblazerApprenticeshipFinancialRecord>();
-
-        public List<TrailblazerApprenticeshipFinancialRecord> GetTrailblazerApprenticeshipFinancialRecords
-        {
-            get
-            {
-                return TrailblazerApprenticeshipFinancialRecordList;
-            }
-        }
 
         public List<ApprenticeshipFinancialRecord> ApprenticeshipFinancialRecordList = new List<ApprenticeshipFinancialRecord>();
         public List<ProviderSpecDeliveryMonitoring> ProviderSpecDeliveryMonitoringList = new List<ProviderSpecDeliveryMonitoring>();
@@ -751,14 +742,7 @@ namespace ILR
             AppendToLastOfNodeNamed(newNode, newNode.Name);
             return newInstance;
         }
-        public TrailblazerApprenticeshipFinancialRecord CreateTrailblazerApprenticeshipFinancialRecord()
-        {
-            XmlNode newNode = Node.OwnerDocument.CreateElement("TrailblazerApprenticeshipFinancialRecord", NSMgr.LookupNamespace("ia"));
-            TrailblazerApprenticeshipFinancialRecord newInstance = new TrailblazerApprenticeshipFinancialRecord(newNode, NSMgr);
-            TrailblazerApprenticeshipFinancialRecordList.Add(newInstance);
-            AppendToLastOfNodeNamed(newNode, newNode.Name);
-            return newInstance;
-        }
+      
         public ProviderSpecDeliveryMonitoring CreateProviderSpecDeliveryMonitoring()
         {
             XmlNode newNode = Node.OwnerDocument.CreateElement("ProviderSpecDeliveryMonitoring", NSMgr.LookupNamespace("ia"));
@@ -793,16 +777,10 @@ namespace ILR
                         Node.InsertBefore(NewNode, LearningDeliveryWorkPlacementList.First().Node);
                     break;
                 case "LearningDeliveryWorkPlacement":
-                    if (TrailblazerApprenticeshipFinancialRecordList.Count() == 0)
-                        AppendToLastOfNodeNamed(NewNode, "TrailblazerApprenticeshipFinancialRecord");
+                    if (ApprenticeshipFinancialRecordList.Count() == 0)
+                        AppendToLastOfNodeNamed(NewNode, "AppFinRecord");
                     else
-                        Node.InsertBefore(NewNode, TrailblazerApprenticeshipFinancialRecordList.First().Node);
-                    break;
-                case "TrailblazerApprenticeshipFinancialRecord":
-                    if (ProviderSpecDeliveryMonitoringList.Count() == 0)
-                        AppendToLastOfNodeNamed(NewNode, "ProviderSpecDeliveryMonitoring");
-                    else
-                        Node.InsertBefore(NewNode, ProviderSpecDeliveryMonitoringList.First().Node);
+                        Node.InsertBefore(NewNode, ApprenticeshipFinancialRecordList.First().Node);
                     break;
                 case "AppFinRecord":
                     if (ProviderSpecDeliveryMonitoringList.Count() == 0)
@@ -819,35 +797,6 @@ namespace ILR
                 case "LearningDeliveryHE":
                     Node.AppendChild(NewNode);
                     break;
-
-                    //case "LearningDeliveryFAM":
-                    //    if (TrailblazerApprenticeshipFinancialRecordList.Count() == 0)
-                    //        AppendToLastOfNodeNamed(NewNode, "TrailblazerApprenticeshipFinancialRecord");
-                    //    else
-                    //        Node.InsertBefore(NewNode, TrailblazerApprenticeshipFinancialRecordList.First().Node);
-                    //    break;
-                    //case "TrailblazerApprenticeshipFinancialRecord":
-                    //    if (ProviderSpecDeliveryMonitoringList.Count() == 0)
-                    //        AppendToLastOfNodeNamed(NewNode, "ProviderSpecDeliveryMonitoring");
-                    //    else
-                    //        Node.InsertBefore(NewNode, ProviderSpecDeliveryMonitoringList.First().Node);
-                    //    break;
-                    //case "ProviderSpecDeliveryMonitoring":
-                    //    if (LearningDeliveryHE == null)
-                    //        AppendToLastOfNodeNamed(NewNode, "LearningDeliveryHE");
-                    //    else
-                    //        Node.InsertBefore(NewNode, LearningDeliveryHE.Node);
-                    //    break;
-                    //case "LearningDeliveryHE":
-                    //    if (LearningDeliveryWorkPlacementList.Count() == 0)
-                    //        AppendToLastOfNodeNamed(NewNode, "LearningDeliveryWorkPlacement");
-                    //    else
-                    //        Node.InsertBefore(NewNode, LearningDeliveryWorkPlacementList.First().Node);
-                    //    break;
-                    //case "LearningDeliveryWorkPlacement":
-                    //    Node.AppendChild(NewNode);
-                    //    break;
-
             }
         }
         #endregion
@@ -862,10 +811,6 @@ namespace ILR
             XmlNodeList nodes = Node.SelectNodes("./ia:LearningDeliveryFAM", NSMgr);
             foreach (XmlNode node in nodes)
                 LearningDeliveryFAMList.Add(new LearningDeliveryFAM(node, NSMgr));
-
-            nodes = Node.SelectNodes("./ia:TrailblazerApprenticeshipFinancialRecord", NSMgr);
-            foreach (XmlNode node in nodes)
-                TrailblazerApprenticeshipFinancialRecordList.Add(new TrailblazerApprenticeshipFinancialRecord(node, NSMgr));
 
             nodes = Node.SelectNodes("./ia:AppFinRecord", NSMgr);
             foreach (XmlNode node in nodes)
@@ -959,15 +904,15 @@ namespace ILR
             //    AppendToLastOfNodeNamed(newNode, newNode.Name);
             //}
 
-            foreach (TrailblazerApprenticeshipFinancialRecord migrationItem in MigrationLearningDelivery.TrailblazerApprenticeshipFinancialRecordList)
+            foreach (ApprenticeshipFinancialRecord migrationItem in MigrationLearningDelivery.ApprenticeshipFinancialRecordList)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("AppFinRecord", NSMgr.LookupNamespace("ia"));
                 ApprenticeshipFinancialRecord migrationItemAP = CreateApprenticeshipFinancialRecord();
 
-                migrationItemAP.AFinCode = migrationItem.TBFinCode;
-                migrationItemAP.AFinType = migrationItem.TBFinType;
-                migrationItemAP.AFinDate = migrationItem.TBFinDate;
-                migrationItemAP.AFinAmount = migrationItem.TBFinAmount;
+                migrationItemAP.AFinCode = migrationItem.AFinCode;
+                migrationItemAP.AFinType = migrationItem.AFinType;
+                migrationItemAP.AFinDate = migrationItem.AFinDate;
+                migrationItemAP.AFinAmount = migrationItem.AFinAmount;
 
                 // ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
                 // ApprenticeshipFinancialRecordList.Add(migrationItemAP);
