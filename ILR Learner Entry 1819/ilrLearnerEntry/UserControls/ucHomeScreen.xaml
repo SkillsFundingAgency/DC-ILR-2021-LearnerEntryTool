@@ -44,7 +44,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Name="lblUKPRM" Text="UKPRN :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Name="lblUKPRM" Text="UKPRN :"  TextWrapping="NoWrap" 
+                   Foreground="#FF1D6679" 
+                   FontSize="16" 
+                   HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}" />
             <TextBox Grid.Row="1" Grid.Column="1" 
                  Name="txtUKPRM" 
                  Text="{Binding Path=UKPRN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
@@ -83,7 +86,7 @@
                        TextWrapping="NoWrap" 
                        Margin="20, 0, 0, 0"
                        Foreground="#FF1D6679" 
-                       FontSize="20" 
+                       FontSize="18" 
                        FontWeight="Bold" />
 
             <Button  Grid.Column="1" Grid.Row="0"  
@@ -94,7 +97,7 @@
                 VerticalAlignment="Center"
                 FontSize="14"
                 TabIndex="2" 
-                MinWidth="110"                
+                MinWidth="145"                
                 Margin="20,2,5,2"
                 MinHeight="25"
                 Style="{DynamicResource RoundedButton}"
@@ -120,7 +123,7 @@
                        Margin="20, 0, 0, 0"
                    TextWrapping="NoWrap" 
                    Foreground="#FF1D6679" 
-                   FontSize="20" 
+                   FontSize="18" 
                    FontWeight="Bold" />
 
             <Button  Grid.Column="1" Grid.Row="1"  
@@ -132,7 +135,7 @@
                     Margin="20,2,5,2"
                     FontSize="14"
                     TabIndex="4" 
-                    MinWidth="150"
+                    MinWidth="145"
                     MinHeight="25"
                     Style="{DynamicResource RoundedButton}"
                     Click="btnImport_Click"

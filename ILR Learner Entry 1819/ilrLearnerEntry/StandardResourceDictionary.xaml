@@ -205,14 +205,14 @@
 
 	<!-- http://geekswithblogs.net/cskardon/archive/2008/06/20/roundedbutton-button-style-wpf.aspx -->
     <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
         <Setter Property="Background" Value="Black"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="Foreground" Value="White"/>-->
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="0,0,1,1"/>
-        <Setter Property="Template">
+        <!--<Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <ControlTemplate.Resources>
@@ -284,11 +284,11 @@
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
     </Style>
 
     <!-- need to findout where i saw this code ? I must have tried 4 or 5 diffrent versions. This was the only one that worked.-->
-    <Style  TargetType="{x:Type TabControl}">
+    <!--<Style  TargetType="{x:Type TabControl}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
@@ -327,7 +327,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <SolidColorBrush x:Key="TabItemHeaderTextColor" Color="#FFFCFCFC" />
     <SolidColorBrush x:Key="TabItemHeaderTextColorSelected" Color="#FF2B1919" />
@@ -338,7 +338,7 @@
     <Color x:Key="TabItemHeaderBbColorDisabled">Yellow</Color>
 
     <!-- same a tab control -->
-    <Style TargetType="{x:Type TabItem}">
+    <!--<Style TargetType="{x:Type TabItem}">
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColorSelected}" />
@@ -417,7 +417,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <SolidColorBrush x:Key="MyListBoxBackgroundColor" Color="#FF8BF560" />
     <SolidColorBrush x:Key="MyListBoxForegroundColor" Color="#FF3939E9" />
