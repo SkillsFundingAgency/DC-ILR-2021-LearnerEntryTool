@@ -57,33 +57,11 @@ namespace ilrLearnerEntry.UserControls
         }
         #endregion
 
-        #region routed events NewFileImported
-
-        //public static readonly RoutedEvent OnNewFileImportedClickEvent = EventManager.RegisterRoutedEvent("OnNewFileImportedClickEventXXVVVVV", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(string));
-
-        //// Expose this event for this control's container
-        //public event RoutedEventHandler OnNewFileImported
-        //{
-        //    add { AddHandler(OnNewFileImportedClickEvent, value); }
-        //    remove { RemoveHandler(OnNewFileImportedClickEvent, value); }
-        //}
-
-        //private void CloseButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    RaiseEvent(new RoutedEventArgs(OnNewFileImportedClickEvent, String.Empty));
-        //}
-        #endregion
+        
 
         #region routed events - UKPRN
 
-        //public static readonly RoutedEvent OnUkprnUpdateEvent = EventManager.RegisterRoutedEvent("OnUkprnUpdatedEventNam", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(string));
-
-        //// Expose this event for this control's container
-        //public event RoutedEventHandler OnUkprnUpdated
-        //{
-        //    add { AddHandler(OnUkprnUpdateEvent, value); }
-        //    remove { RemoveHandler(OnUkprnUpdateEvent, value); }
-        //}
+        
         private void UKPRNWasUpdated(object sender, RoutedEventArgs e)
         {
             OnPropertyChanged("UKPRN");
