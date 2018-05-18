@@ -23,9 +23,13 @@ namespace ilrLearnerEntry.UserControls
     /// </summary>
     public partial class ucLearnerEditControl : UserControl, INotifyPropertyChanged
     {
+
+
         #region Private Variables
         private String _learnerfilterString = string.Empty;
+        private const string FILTER_TEXT_PROMPT = "Enter value to search for";
         private String _filterText = String.Empty;
+        
         #endregion
         #region Constructor
         public ucLearnerEditControl()
@@ -88,6 +92,19 @@ namespace ilrLearnerEntry.UserControls
             {
                 LearnerItemsCV.MoveCurrentToFirst();
                 OnPropertyChanged("LearnerItemsCV");
+            }
+        }
+
+        public string FilterValue
+        {
+            get { return _filterText; }
+            set {
+
+                if(_filterText != value)
+                {
+                    _filterText = value;
+                    OnPropertyChanged("FilterValue");
+                }
             }
         }
         #endregion
@@ -344,6 +361,14 @@ namespace ilrLearnerEntry.UserControls
             App.ILRMessage.Save();
         }
 
+        private void txtFilter_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtFilter.Text == FILTER_TEXT_PROMPT)
+            {
+                FilterValue = string.Empty;
+            }
+        }
 
+        
     }
 }
