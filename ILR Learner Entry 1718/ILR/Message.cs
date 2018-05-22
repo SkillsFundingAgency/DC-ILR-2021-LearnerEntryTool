@@ -132,6 +132,7 @@ namespace ILR
             row["Count"] = learners.ToString();
             _statistics.Rows.Add(row);
 
+            
             if (learners > 0)
             {
                 row = _statistics.NewRow();

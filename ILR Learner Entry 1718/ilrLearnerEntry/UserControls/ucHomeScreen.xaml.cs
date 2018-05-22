@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml;
 
 
@@ -218,7 +219,15 @@ namespace ilrLearnerEntry.UserControls
             try
             {
                 App.Log("Home Screen", "WorkerStats", "ReFreshStats.");
-                App.ILRMessage.ReFreshStats();
+
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => {
+                    App.ILRMessage.ReFreshStats();
+                    OnPropertyChanged("Statistics");
+                }));
+
+               
             }
             catch (Exception ex)
             {
