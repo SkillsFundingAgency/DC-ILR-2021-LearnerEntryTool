@@ -132,7 +132,7 @@ namespace ILR
             row["Count"] = learners.ToString();
             _statistics.Rows.Add(row);
 
-            
+
             if (learners > 0)
             {
                 row = _statistics.NewRow();
@@ -406,25 +406,26 @@ namespace ILR
             for (int i = exportMessage.LearnerList.Count - 1; i >= 0; i--)
             {
                 var learner = exportMessage.LearnerList[i];
+                //if (!learner.IsComplete || learner.ExcludeFromExport)
                 if (!learner.IsComplete || learner.ExcludeFromExport)
                 {
-                    var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList.Where(c => c.ULN == learner.ULN).FirstOrDefault();
-                    exportMessage.Delete(learner);                   
-                    if(learnerDestinationandProgression != null)
-                    {
-                        exportMessage.Delete(learnerDestinationandProgression);
-                    }
-                }                
+                    //var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList.Where(c => c.ULN == learner.ULN).FirstOrDefault();
+                    exportMessage.Delete(learner);
+                    //if (learnerDestinationandProgression != null)
+                    //{
+                    //    exportMessage.Delete(learnerDestinationandProgression);
+                    //}
+                }
             }
 
-            for (int i = exportMessage.LearnerDestinationandProgressionList.Count - 1; i >= 0; i--)
-            {
-                var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList[i];
-                if (!learnerDestinationandProgression.IsComplete || learnerDestinationandProgression.ExcludeFromExport)
-                {
-                    exportMessage.Delete(learnerDestinationandProgression);
-                }
-            }           
+            //for (int i = exportMessage.LearnerDestinationandProgressionList.Count - 1; i >= 0; i--)
+            //{
+            //    var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList[i];
+            //    if (!learnerDestinationandProgression.IsComplete || learnerDestinationandProgression.ExcludeFromExport)
+            //    {
+            //        exportMessage.Delete(learnerDestinationandProgression);
+            //    }
+            //}
 
             string tempInternalPath = Path.Combine(Path.GetTempPath(), exportFileName);
             exportMessage.Save(tempInternalPath);
