@@ -418,14 +418,14 @@ namespace ILR
                 }
             }
 
-            //for (int i = exportMessage.LearnerDestinationandProgressionList.Count - 1; i >= 0; i--)
-            //{
-            //    var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList[i];
-            //    if (!learnerDestinationandProgression.IsComplete || learnerDestinationandProgression.ExcludeFromExport)
-            //    {
-            //        exportMessage.Delete(learnerDestinationandProgression);
-            //    }
-            //}
+            for (int i = exportMessage.LearnerDestinationandProgressionList.Count - 1; i >= 0; i--)
+            {
+                var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList[i];
+                if (!learnerDestinationandProgression.IsComplete || learnerDestinationandProgression.ExcludeFromExport)
+                {
+                    exportMessage.Delete(learnerDestinationandProgression);
+                }
+            }
 
             string tempInternalPath = Path.Combine(Path.GetTempPath(), exportFileName);
             exportMessage.Save(tempInternalPath);
