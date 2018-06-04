@@ -38,6 +38,11 @@ namespace ILR
                     return false;
             }
         }
+
+        //public void SetErrorMessage(string msg)
+        //{
+
+        //}
         public override string IncompleteMessage
         {
             get
@@ -1461,10 +1466,11 @@ namespace ILR
                             return CheckPropertyLength(PrevUKPRN, CLASSNAME, columnName, TABS);
                         break;
                     case "ULN":
-                        if (ULN == null || ULN.ToString().Length == 0)
-                            return "ULN - required\r\n";
-                        if (ULN != null)
-                            return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
+                        return IsUlnValid(columnName);
+                        //if (ULN == null || ULN.ToString().Length == 0)
+                        //    return "ULN - required\r\n";
+                        //if (ULN != null)
+                        //    return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
                         break;
                     case "Ethnicity":
                         if ((Ethnicity == null) || ((Ethnicity != null && Ethnicity.ToString().Length == 0)))
@@ -1562,6 +1568,29 @@ namespace ILR
 
             }
             return false;
+        }
+
+        private string IsUlnValid(string columnName)
+        {
+            string sReturn = string.Empty;
+            bool isValid = false;
+            string strULN = ULN.ToString();
+            if (strULN == null || strULN.Length == 0)
+               sReturn += "ULN - required\r\n";
+            if (strULN != null && strULN.Length > 0)
+            {
+                long number;
+                bool result = Int64.TryParse(strULN, out number);
+                if (!result)
+                {
+                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+                }
+                else
+                    sReturn += CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
+            }
+
+            return sReturn;
+
         }
 
 
