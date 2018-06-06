@@ -19,19 +19,32 @@ namespace ILR.LearnerEntry.Tests
         private const string ILRFileName = "internalIlr1819.ilr";
         private const string ILRFileToImport = "ILR-1234567-1718-01.xml";
         XNamespace ns = "ESFA/ILR/2018-19";
-        [OneTimeSetUp]
+        private const string LARGER_INVALID_CAMPID = "ABCD1234IJKL";
+        private const string NONALPHANUMERIC_INVALID_CAMPID = "!--ABCD123-";
+        private const string LARGER_INVALID_OFFTHEJOBHOURS = "123456";
+        private const string NONNUMERIC_INVALID_OFFTHEJOBHOURS = "abcd";
+        Message ilrMessage = null;
+        string fileName = null;
+        string importFile = null;
+
+        [SetUp]
         public void Setup()
         {
-
+             fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+             ilrMessage = new Message(fileName);
+             importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            ilrMessage.Import(importFile);
         }
+
+
 
         [Test]
         public void Test01_Import_WhenFileContainsStdCode_OutputFile_ShouldHaveCode()
         {
-            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            Message ilrMessage = new Message(fileName);
-            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            ilrMessage.Import(importFile);
+            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            //Message ilrMessage = new Message(fileName);
+            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
             var learner = ilrMessage.LearnerList[0];
             Assert.NotNull(learner.LearningDeliveryList[0].StdCode, "Apprenticeship standard code is failed to import, import failed");
@@ -47,10 +60,10 @@ namespace ILR.LearnerEntry.Tests
            
             
 
-            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            Message ilrMessage = new Message(fileName);
-            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            ilrMessage.Import(importFile);
+            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            //Message ilrMessage = new Message(fileName);
+            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
             XDocument xDoc = XDocument.Load(fileName);
             var query = from t in xDoc.Descendants(ns + "AFinAmount")
@@ -66,10 +79,10 @@ namespace ILR.LearnerEntry.Tests
         {
             XNamespace targateNs = "ESFA/ILR/2018-19";
 
-            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            Message ilrMessage = new Message(fileName);
-            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            ilrMessage.Import(importFile);
+            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            //Message ilrMessage = new Message(fileName);
+            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
 
             string exportFileFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Exported");
@@ -101,10 +114,10 @@ namespace ILR.LearnerEntry.Tests
             
             XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
 
-            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            Message ilrMessage = new Message(fileName);
-            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            ilrMessage.Import(importFile);
+            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            //Message ilrMessage = new Message(fileName);
+            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
             XDocument xDoc = XDocument.Load(fileName);
             var query = from t in xDoc.Descendants(ns + "ConRefNumber")
@@ -119,10 +132,10 @@ namespace ILR.LearnerEntry.Tests
         [Test]
         public void Test06_Import_WhenFileDoesNotContainsSwAimId_OutputFile_ShouldHaveSwAimId()
         {
-            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            Message ilrMessage = new Message(fileName);
-            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            ilrMessage.Import(importFile);
+            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            //Message ilrMessage = new Message(fileName);
+            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
 
             XDocument xDoc = XDocument.Load(importFile);
@@ -145,6 +158,43 @@ namespace ILR.LearnerEntry.Tests
 
 
         }
+
+        [Test]
+        public void Test07_LearnerCampId_WhenGreaterThan8_ShouldGiveError()
+        {
+            var learner = ilrMessage.LearnerList[0];
+            learner.CampId = LARGER_INVALID_CAMPID;
+            Assert.AreEqual(learner["CampId"], $"Campus Identifier: {LARGER_INVALID_CAMPID} is not valid", "Learner with invalid cmapid was not validated");
+            
+        }
+
+        [Test]
+        public void Test08_LearnerCampId_WhenHasNonAlphaNumeric_ShouldGiveError()
+        {
+            var learner = ilrMessage.LearnerList[0];
+            learner.CampId = NONALPHANUMERIC_INVALID_CAMPID;
+            Assert.AreEqual(learner["CampId"], $"Campus Identifier: {NONALPHANUMERIC_INVALID_CAMPID} is not valid", "Learner with invalid cmapid was not validated");
+
+        }
+
+        [Test]
+        public void Test09_LearnerOffTheJobHours_WhenGreaterThan4_ShouldGiveError()
+        {
+            var learner = ilrMessage.LearnerList[0];
+            learner.OTJHours = LARGER_INVALID_OFFTHEJOBHOURS;
+            Assert.AreEqual(learner["OTJHours"], $"Off-the-job training hours : {LARGER_INVALID_OFFTHEJOBHOURS} is not valid", "Learner with invalid OTJHours was not validated");
+
+        }
+
+        [Test]
+        public void Test10_LearnerOffTheJobHours_WhenHasNonNumeric_ShouldGiveError()
+        {
+            var learner = ilrMessage.LearnerList[0];
+            learner.OTJHours = NONNUMERIC_INVALID_OFFTHEJOBHOURS;
+            Assert.AreEqual(learner["OTJHours"], $"Off-the-job training hours : {NONNUMERIC_INVALID_OFFTHEJOBHOURS} is not valid", "Learner with invalid OTJHours was not validated");
+
+        }
+
 
 
 
