@@ -48,7 +48,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #region Constructor
         public ucLearningDeliveryList()
         {
+            
+
             InitializeComponent();
+
             lv.Visibility = System.Windows.Visibility.Visible;
             LearningDeliveryItemControl.Visibility = System.Windows.Visibility.Collapsed;
         }
