@@ -353,6 +353,13 @@ namespace ILR
         }
         public void Save()
         {
+            //validate the learners before saving them to update the dont export flag
+
+            LearnerList.ForEach(ln => {
+                
+                ln.ExcludeFromExport = !ln.IsComplete;
+            });
+
             Log("Message", "Save", "");
             this.Save(this.Filename);
         }
