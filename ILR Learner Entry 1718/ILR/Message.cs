@@ -356,10 +356,10 @@ namespace ILR
         {
             //validate the learners before saving them to update the dont export flag
 
-            LearnerList.ForEach(ln => {
+            //LearnerList.ForEach(ln => {
                 
-                ln.ExcludeFromExport = !ln.IsComplete;
-            });
+            //    ln.ExcludeFromExport = !ln.IsComplete;
+            //});
 
             Log("Message", "Save", "");
             this.Save(this.Filename);
