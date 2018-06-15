@@ -100,7 +100,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 			LearningDeliveryWorkPlacement tmp = _learnerDelivery.CreateLearningDeliveryWorkPlacement();
 			WorkPlacementItemsCV.MoveCurrentTo(tmp);
 			WorkPlacementItemsCV.Refresh();
-			OnPropertyChanged("WorkPlacementItemsCV");
+            _learnerDelivery.RefreshData();
+            OnPropertyChanged("WorkPlacementItemsCV");
 			ShouldShowListView();
 		}
 		private void Remove_Click(object sender, RoutedEventArgs e)
