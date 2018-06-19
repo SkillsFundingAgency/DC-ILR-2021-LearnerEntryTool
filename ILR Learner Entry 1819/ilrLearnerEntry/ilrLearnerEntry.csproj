@@ -279,6 +279,7 @@
     <Compile Include="Utils\FileStuff.cs" />
     <Compile Include="MaskBehavior\TextBoxMaskBehavior.cs" />
     <Compile Include="Utils\LLDDListDisplayItem.cs" />
+    <Compile Include="Utils\StringToNumberValidationRule.cs" />
     <Compile Include="WpfConverter\FamTypeVisabilityConverter.cs" />
     <Compile Include="WpfConverter\StringToNullableDatetimeConverter.cs" />
     <Compile Include="WpfConverter\StringToNullableDecimalConverter.cs" />

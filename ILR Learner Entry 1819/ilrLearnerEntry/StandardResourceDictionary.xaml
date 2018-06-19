@@ -122,7 +122,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+		<Style.Triggers>
+			<Trigger AutomationProperties.HelpText="" Property="Validation.HasError" Value="true">
+				<Setter Property="AutomationProperties.HelpText"
+          Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+          Path=(Validation.Errors)[0].ErrorContent}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
 
     <!-- Copied from above -->        
     <Style x:Key="ListBoxWithError" TargetType="{x:Type ListBox}">
