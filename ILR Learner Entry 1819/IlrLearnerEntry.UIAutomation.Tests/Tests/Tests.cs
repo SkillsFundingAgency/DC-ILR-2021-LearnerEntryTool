@@ -1,7 +1,10 @@
 ﻿using IlrLearnerEntry.UIAutomation.Tests.WindowObjects;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,18 +27,22 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
 
         public  Tests()
         {
+            Reportpath = ConfigurationManager.AppSettings["ReportPath"].ToString();
+
            // KillRunningApplication();
            // Application application = Application.Launch(ApplicationPath);
            // IlrLearnerEntry.UIAutomation.Tests.WindowObjects.Windows.Init(application);
         }
 
-        private void KillRunningApplication()
+        public string Reportpath { get; private set; }
+
+        public void TakeScreenShot()
         {
-            Process[] processes = Process.GetProcessesByName(ApplicationProcessName1);
-            foreach (Process process in processes)
-            {
-                process.Kill();
-            }
+            string methodName;
+            StackTrace stackTrace = new StackTrace();
+            methodName = stackTrace.GetFrame(1).GetMethod().Name;
+            Desktop.TakeScreenshot(Path.Combine(Reportpath, methodName + ".jpeg"), ImageFormat.Jpeg);
         }
+
     }
 }
