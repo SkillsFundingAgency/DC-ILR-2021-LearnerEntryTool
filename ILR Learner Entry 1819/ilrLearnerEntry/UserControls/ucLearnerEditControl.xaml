@@ -46,7 +46,7 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Ref : " HorizontalAlignment="Right" MaxWidth="40" />
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding LearnRefNumber, Mode=OneWay}" HorizontalAlignment="Left" MaxWidth="75"  />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding LearnRefNumber, Mode=OneWay}" HorizontalAlignment="Left" MaxWidth="125"  />
                     <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Grid.ColumnSpan="4" MaxWidth="125" >
                                     <Run Text="ULN : " />
                                     <Run Text="{Binding ULN}" />
