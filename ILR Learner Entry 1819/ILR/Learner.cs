@@ -66,11 +66,13 @@ namespace ILR
                     message += "No LearningDelivery records\r\n";
 
                 if (this.LearningDeliveryList.FindAll(x => x.IsComplete == false).Count > 0)
+                {
                     message += "LearningDelivery Issues\r\n";
 
-                foreach (ILR.LearningDelivery ld in LearningDeliveryList.FindAll(x => x.IsComplete == false))
-                {
-                    message += "\tAim Sequence Numbers (" + ld.AimSeqNumber.ToString() + ") missing :" + "\r\n" + ld.IncompleteMessage;
+                    foreach (ILR.LearningDelivery ld in LearningDeliveryList.FindAll(x => x.IsComplete == false))
+                    {
+                        message += "\tAim Sequence Numbers (" + ld.AimSeqNumber.ToString() + ") missing :" + "\r\n" + ld.IncompleteMessage;
+                    }
                 }
                 if ((this.LLDDHealthProb != null) && (this.LLDDHealthProb == 1))
                 {
