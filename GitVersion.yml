@@ -1,5 +1,7 @@
 next-version: 3.0.1
 mode: ContinuousDeployment
+assembly-versioning-scheme: MajorMinorPatch
+assembly-informational-format: ({MajorMinorPatch}+{BranchName})
 branches: {}
 ignore:
   sha: []
