@@ -107,8 +107,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-    </UserControl.Resources>
+	
+	</UserControl.Resources>
 
     <Grid x:Name="MasterGrid" >
         <Grid.ColumnDefinitions>
@@ -264,10 +264,10 @@
 
                     </TabControl>
                 </TabItem>
-                <TabItem Header="Learning Delivery"  IsSelected="False" MinWidth="175">
+                <TabItem Header="Learning Delivery"  IsSelected="False" MinWidth="100">
                     <LearnerDelControls:ucLearningDeliveryList x:Name="LearningDeliveryListControl" />
                 </TabItem>
-                <TabItem Header="Employment Status"  IsSelected="False" MinWidth="175" >
+                <TabItem Header="Employment Status"  IsSelected="False" MinWidth="275" >
                     <EmpStatControls:ucEmploymentStatusList  x:Name="EmploymentStatusListControl" />
                 </TabItem>
             </TabControl>

@@ -340,16 +340,17 @@
     <SolidColorBrush x:Key="TabItemHeaderTextColorSelected" Color="#FF2B1919" />
     <SolidColorBrush x:Key="TabItemHeaderTextColorDisabled" Color="#FF2B1919" />
 
-    <Color x:Key="TabItemHeaderBbColor">Black</Color>
+    <!--<Color x:Key="TabItemHeaderBbColor">Black</Color>
     <Color x:Key="TabItemHeaderBbColorSelected">White</Color>
-    <Color x:Key="TabItemHeaderBbColorDisabled">Yellow</Color>
+    <Color x:Key="TabItemHeaderBbColorDisabled">Yellow</Color>-->
 
-    <!-- same a tab control -->
-    <!--<Style TargetType="{x:Type TabItem}">
+
+	<!-- same a tab control -->
+    <Style TargetType="{x:Type TabItem}">
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColorSelected}" />
-            </Trigger>
+			</Trigger>
             <Trigger Property="IsSelected" Value="False">
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColor}" />
             </Trigger>
@@ -357,7 +358,29 @@
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColorDisabled}" />
             </Trigger>
         </Style.Triggers>
-        <Setter Property="Template">
+	<Setter Property="Background" Value="Black" />
+		
+		<Setter Property="HeaderTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<Border x:Name="grid" Background="Black" >
+						<ContentPresenter>
+							<ContentPresenter.Content>
+								<StackPanel Margin="2,2,2,2" >
+								<TextBlock FontSize="14"  Text="{TemplateBinding Content}" TextAlignment="Center" HorizontalAlignment="Stretch"/>
+								</StackPanel>
+							</ContentPresenter.Content>
+						</ContentPresenter>
+					</Border>
+					<DataTemplate.Triggers>
+						<DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}},Path=IsSelected}" Value="True">
+							<Setter TargetName="grid" Property="Background" Value="White"/>
+						</DataTrigger>
+					</DataTemplate.Triggers>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+		<!--<Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid x:Name="Root">
@@ -423,8 +446,8 @@
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>
-    </Style>-->
+        </Setter>-->
+    </Style>
 
     <SolidColorBrush x:Key="MyListBoxBackgroundColor" Color="#FF8BF560" />
     <SolidColorBrush x:Key="MyListBoxForegroundColor" Color="#FF3939E9" />
@@ -473,11 +496,11 @@
     <!--thise styles needs to be moved in the common resource dictionary-->
     <ImageBrush x:Key="WhiteCrownIconBrush"
                 ImageSource="pack://application:,,,/ILRLearnerEntry1819;component/Images/ESFA_2955_AW.png" />
-    <Style x:Key="GlobalMarginStyle"
+    <!--<Style x:Key="GlobalMarginStyle"
            TargetType="FrameworkElement">
         <Setter Property="Margin"
                 Value="5,2" />
-    </Style>
+    </Style>-->
     <Style x:Key="GDSContentBorderStyle"
            TargetType="Border">
         <Setter Property="Height"
@@ -485,5 +508,6 @@
         <Setter Property="Background"
                 Value="#005EA5" />
     </Style>
+
 </ResourceDictionary>
     

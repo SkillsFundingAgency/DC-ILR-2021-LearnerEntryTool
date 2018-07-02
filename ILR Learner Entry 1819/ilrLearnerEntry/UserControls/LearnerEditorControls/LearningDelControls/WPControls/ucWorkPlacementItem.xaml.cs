@@ -81,7 +81,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         public string WorkPlaceHours
         {
-            get { return CurrentItem.WorkPlaceHours; }
+            get { return (CurrentItem!=null)?CurrentItem.WorkPlaceHours:string.Empty; }
             set
             {
                 CurrentItem.WorkPlaceHours = value;

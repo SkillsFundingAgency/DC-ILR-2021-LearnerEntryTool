@@ -23,7 +23,9 @@
             <Grid Grid.Row="0" Margin="3"  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition  />
+					<RowDefinition />
+					<RowDefinition  />
+					<RowDefinition  />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -73,20 +75,19 @@
                          TabIndex="3"
                          MaxLength="4"
                      />
-
-            </Grid>
-            <Grid Grid.Row="2" HorizontalAlignment="Stretch" Margin="3" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Free meals eligibility :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="30,3,3,3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <ComboBox Grid.Row="1" Grid.Column="1" 
+				<TextBlock Grid.Row="2" Grid.Column="2"  Name="lblOTJHours" Text="Off-the-job training hours :" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+				<TextBox Grid.Row="2" Grid.Column="3" 
+                     Name="txtOTJHours" 
+                     Panel.ZIndex="12" 
+                     Text="{Binding Path=CurrentItem.OTJHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     Width="95"  
+                     TabIndex="2"
+                     Margin="3" 
+                     MaxLength="12" />
+				<TextBlock Grid.Row="3" Grid.Column="0" Text="Free meals eligibility :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+				<ComboBox Grid.Row="3" Grid.Column="1" 
                           Margin="4"
                           Width="370"
                           TabIndex="6"
@@ -97,9 +98,8 @@
                           SelectedValuePath="Code" 
                           SelectedValue="{Binding Path=CurrentItem.FME, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
                    />
-
-            </Grid>
-            <Border Grid.Row="3" Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left" >
+			</Grid>
+			<Border Grid.Row="3" Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left" >
                 <Grid x:Name="GridPPE"  >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>

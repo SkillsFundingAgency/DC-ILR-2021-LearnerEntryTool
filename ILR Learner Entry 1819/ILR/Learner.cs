@@ -58,7 +58,7 @@ namespace ILR
                 message += this["TelNumber"];
                 message += this["PostCode"];
                 message += this["LLDDHealthProb"];
-
+                message += this["OTJHours"];
 
                 //if (this.LLDDandHealthProblemList == null)
                 //    message += "LLDDandHealthProblemList Nothing Selected\r\n";
@@ -1394,6 +1394,8 @@ namespace ILR
             OnPropertyChanged("ULN");
             OnPropertyChanged("LLDDHealthProb");
             OnPropertyChanged("ExcludeFromExport");
+            OnPropertyChanged("OTJHours");
+
             foreach (ILR.LearningDelivery ld in LearningDeliveryList.FindAll(x => x.IsComplete == false))
             {
                 ld.RefreshData();
