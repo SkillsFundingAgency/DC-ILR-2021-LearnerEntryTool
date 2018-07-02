@@ -81,6 +81,8 @@ namespace ilrLearnerEntry.UserControls
         }
         #endregion
 
+
+
         #region Public Properties
         public string WindowTitle
         {

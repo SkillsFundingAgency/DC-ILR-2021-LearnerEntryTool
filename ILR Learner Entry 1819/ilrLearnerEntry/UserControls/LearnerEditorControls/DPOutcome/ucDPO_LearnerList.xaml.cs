@@ -189,8 +189,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 															, MessageBoxResult.No);
 					if (result == MessageBoxResult.Yes)
 					{
-						App.ILRMessage.Delete(ldp2Remove); 
-						if (!LearnerDPList.IsEmpty)
+						App.ILRMessage.Delete(ldp2Remove);
+                        LearnerDPList.Refresh();
+                        OnPropertyChanged("LearnerDPList");
+                        if (!LearnerDPList.IsEmpty)
 						{
 							if (!LearnerDPList.MoveCurrentToPrevious())
 							{
@@ -214,8 +216,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 							}
 
 						}
-						LearnerDPList.Refresh();
-						OnPropertyChanged("LearnerDPList");
+                        else
+                        {
+                            SetupListData();
+                            //SetSubControl(null);
+                        }
+						//LearnerDPList.Refresh();
+						//OnPropertyChanged("LearnerDPList");
 					}
 				}
 			}

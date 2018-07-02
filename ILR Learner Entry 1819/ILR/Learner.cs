@@ -38,6 +38,11 @@ namespace ILR
                     return false;
             }
         }
+
+        //public void SetErrorMessage(string msg)
+        //{
+
+        //}
         public override string IncompleteMessage
         {
             get
@@ -53,7 +58,7 @@ namespace ILR
                 message += this["TelNumber"];
                 message += this["PostCode"];
                 message += this["LLDDHealthProb"];
-
+                message += this["OTJHours"];
 
                 //if (this.LLDDandHealthProblemList == null)
                 //    message += "LLDDandHealthProblemList Nothing Selected\r\n";
@@ -61,11 +66,13 @@ namespace ILR
                     message += "No LearningDelivery records\r\n";
 
                 if (this.LearningDeliveryList.FindAll(x => x.IsComplete == false).Count > 0)
+                {
                     message += "LearningDelivery Issues\r\n";
 
-                foreach (ILR.LearningDelivery ld in LearningDeliveryList.FindAll(x => x.IsComplete == false))
-                {
-                    message += "\tAim Sequence Numbers (" + ld.AimSeqNumber.ToString() + ") missing :" + "\r\n" + ld.IncompleteMessage;
+                    foreach (ILR.LearningDelivery ld in LearningDeliveryList.FindAll(x => x.IsComplete == false))
+                    {
+                        message += "\tAim Sequence Numbers (" + ld.AimSeqNumber.ToString() + ") missing :" + "\r\n" + ld.IncompleteMessage;
+                    }
                 }
                 if ((this.LLDDHealthProb != null) && (this.LLDDHealthProb == 1))
                 {
@@ -1387,6 +1394,8 @@ namespace ILR
             OnPropertyChanged("ULN");
             OnPropertyChanged("LLDDHealthProb");
             OnPropertyChanged("ExcludeFromExport");
+            OnPropertyChanged("OTJHours");
+
             foreach (ILR.LearningDelivery ld in LearningDeliveryList.FindAll(x => x.IsComplete == false))
             {
                 ld.RefreshData();
@@ -1461,10 +1470,11 @@ namespace ILR
                             return CheckPropertyLength(PrevUKPRN, CLASSNAME, columnName, TABS);
                         break;
                     case "ULN":
-                        if (ULN == null || ULN.ToString().Length == 0)
-                            return "ULN - required\r\n";
-                        if (ULN != null)
-                            return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
+                        return IsUlnValid(columnName);
+                        //if (ULN == null || ULN.ToString().Length == 0)
+                        //    return "ULN - required\r\n";
+                        //if (ULN != null)
+                        //    return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
                         break;
                     case "Ethnicity":
                         if ((Ethnicity == null) || ((Ethnicity != null && Ethnicity.ToString().Length == 0)))
@@ -1562,6 +1572,29 @@ namespace ILR
 
             }
             return false;
+        }
+
+        private string IsUlnValid(string columnName)
+        {
+            string sReturn = string.Empty;
+            bool isValid = false;
+            string strULN = ULN.ToString();
+            if (strULN == null || strULN.Length == 0)
+               sReturn += "ULN - required\r\n";
+            if (strULN != null && strULN.Length > 0)
+            {
+                long number;
+                bool result = Int64.TryParse(strULN, out number);
+                if (!result)
+                {
+                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+                }
+                else
+                    sReturn += CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
+            }
+
+            return sReturn;
+
         }
 
 

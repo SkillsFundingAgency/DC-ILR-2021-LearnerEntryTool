@@ -52,7 +52,7 @@
                 <TextBox
                    Text="{Binding CurrentItem.IncompleteMessage, Mode=OneWay, FallbackValue=Incomplete Error Message Here}" 
                    Visibility="{Binding CurrentItem.IsComplete, Converter={StaticResource IsCompleteVisibilityConverter}, Mode=OneWay}"                     
-                   Panel.ZIndex="999" 
+                   Panel.ZIndex="999" AutomationProperties.AutomationId="LearnerHeaderErrorText"
                    Margin="10,0,4,4"
                    Style="{DynamicResource TextBoxIncompleteMessage}" />
             </ScrollViewer>
@@ -141,20 +141,8 @@
                      Margin="3" 
                      MaxLength="12" />
 
-                <TextBlock Grid.Row="2" Grid.Column="3"  Name="lblOTJHours" Text="Off-the-job training hours :" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="2" Grid.Column="4" 
-                     Name="txtOTJHopurs" 
-                     Panel.ZIndex="12" 
-                     Text="{Binding Path=CurrentItem.OTJHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
-                     Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
-                     Width="95"  
-                     TabIndex="2"
-                     Margin="3" 
-                     MaxLength="12" />
 
-
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Given names :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+				<TextBlock Grid.Row="3" Grid.Column="0" Text="Given names :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="3" Grid.Column="1" Name="txtGivenName" 
                      Text="{Binding Path=CurrentItem.GivenNames, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
                      Style="{DynamicResource TextBoxWithError}"
@@ -180,7 +168,7 @@
 />
 
                 <TextBlock Grid.Row="4" Grid.Column="3" Text="Sex :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <ComboBox Grid.Row="4" Grid.Column="4" Width="95" HorizontalAlignment="Left" 
+                <ComboBox Grid.Row="4" Grid.Column="4" Width="95" HorizontalAlignment="Left" x:Name="cmbSex"
                      TabIndex="7" Margin="3"
                      Style="{DynamicResource ComboBoxWithError}"
                      ItemsSource="{Binding Path=GenderList, UpdateSourceTrigger=PropertyChanged}"                           

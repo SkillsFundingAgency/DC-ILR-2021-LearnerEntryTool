@@ -31,7 +31,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         private LearningDeliveryWorkPlacement _learningDeliveryWorkPlacement;
         private string _workplaceempid = string.Empty;
-        private string _workPlaceHours = string.Empty;
 
         #region Constructor
         public ucWorkPlacementItem()
@@ -51,12 +50,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 {
                     _learningDeliveryWorkPlacement = value;
                     WorkPlaceEmpId = _learningDeliveryWorkPlacement.WorkPlaceEmpId.ToString();
-                    WorkPlaceHours = _learningDeliveryWorkPlacement.WorkPlaceHours.ToString();
+                    WorkPlaceHours = _learningDeliveryWorkPlacement.WorkPlaceHours;
                     this.DataContext = this;
                     OnPropertyChanged("CurrentItem");
                     OnPropertyChanged("WorkPlaceEmpId");
                     OnPropertyChanged("WorkPlaceHours");
                     OnPropertyChanged("WorkplacementCodeList");
+                    _learningDeliveryWorkPlacement.Refresh();
                 }
                 else
                 {
@@ -76,20 +76,16 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 {
                     CurrentItem.WorkPlaceEmpId = number;
                 }
+                _learningDeliveryWorkPlacement.Refresh();
             }
         }
         public string WorkPlaceHours
         {
-            get { return _workPlaceHours; }
+            get { return (CurrentItem!=null)?CurrentItem.WorkPlaceHours:string.Empty; }
             set
             {
-                _workPlaceHours = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-                if (result)
-                {
-                    CurrentItem.WorkPlaceHours = number;
-                }
+                CurrentItem.WorkPlaceHours = value;
+                _learningDeliveryWorkPlacement.Refresh();
             }
         }
         public DataTable WorkplacementCodeList { set; get; }
@@ -184,6 +180,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                                     sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
                                 }
                             }
+                            else if (WorkPlaceHours == null || WorkPlaceHours.ToString().Length == 0)
+                                return "Work Place Hours is required\r\n";
                             break;
                         default:
                             break;

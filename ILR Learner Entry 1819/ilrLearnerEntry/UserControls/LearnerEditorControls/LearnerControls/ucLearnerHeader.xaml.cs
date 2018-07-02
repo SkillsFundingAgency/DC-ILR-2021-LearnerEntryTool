@@ -117,6 +117,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                     {
                         CurrentItem.ULN = number;
                     }
+                    else
+                        CurrentItem.ULN = null;
                 }
             }
         }
@@ -205,6 +207,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                                 sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
                             }
                         }
+                        
                         break;
                     case "PrevUKPRN":
                         if (PrevUKPRN != null && PrevUKPRN.Length > 0)
