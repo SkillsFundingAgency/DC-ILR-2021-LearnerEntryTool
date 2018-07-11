@@ -74,6 +74,14 @@ namespace ILR
                         message += "\tAim Sequence Numbers (" + ld.AimSeqNumber.ToString() + ") missing :" + "\r\n" + ld.IncompleteMessage;
                     }
                 }
+                if (this.LearnerEmploymentStatusList.Count > 0)
+                {
+                    foreach (var lEmpStatus in this.LearnerEmploymentStatusList.FindAll(x => x.IsComplete == false))
+                    {
+                        message += "\tLearner Employment status is not valid: "+lEmpStatus.IncompleteMessage;
+                    }
+
+                }
                 if ((this.LLDDHealthProb != null) && (this.LLDDHealthProb == 1))
                 {
                     //if ((this.LLDDandHealthProblemList == null) || (this.LLDDandHealthProblemList.Count < 1))
@@ -957,7 +965,11 @@ namespace ILR
                 ProviderSpecLearnerMonitoringList.Add(new ProviderSpecLearnerMonitoring(node, NSMgr));
             XmlNodeList learnerEmploymentStatusNodes = LearnerNode.SelectNodes("./ia:LearnerEmploymentStatus", NSMgr);
             foreach (XmlNode node in learnerEmploymentStatusNodes)
-                LearnerEmploymentStatusList.Add(new LearnerEmploymentStatus(node, NSMgr));
+            {
+                LearnerEmploymentStatus newInstance = new LearnerEmploymentStatus(node, NSMgr);
+                newInstance.EmploymentStatusChanged += NewInstance_EmploymentStatusChanged;
+                LearnerEmploymentStatusList.Add(newInstance);
+            }
             XmlNode learnerHENode = LearnerNode.SelectSingleNode("./ia:LearnerHE", NSMgr);
             if (learnerHENode != null)
                 LearnerHE = new LearnerHE(learnerHENode, NSMgr);
@@ -1053,6 +1065,7 @@ namespace ILR
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerEmploymentStatus", NSMgr.LookupNamespace("ia"));
                 LearnerEmploymentStatus newInstance = new LearnerEmploymentStatus(migrationItem, newNode, NSMgr);
+                newInstance.EmploymentStatusChanged += NewInstance_EmploymentStatusChanged;
                 LearnerEmploymentStatusList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
@@ -1071,6 +1084,13 @@ namespace ILR
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
         }
+
+        private void NewInstance_EmploymentStatusChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (!IsFileImportLoadingRunning)
+                GiveFrountEndkickToRefresh();
+        }
+
         //internal void AddNewLearningDeliveryForTraineeshipIfNeeded(Learner MigrationLearner, XmlNode LearnerNode, XmlNamespaceManager NSMgr)
         //{
         //    // Migrate Traineeships -- Add new Learning Delivery Record and its FAMs as needed
@@ -1180,7 +1200,9 @@ namespace ILR
                     this.ProviderSpecLearnerMonitoringList.Remove((ProviderSpecLearnerMonitoring)Child);
                     break;
                 case "ILR.LearnerEmploymentStatus":
-                    this.LearnerEmploymentStatusList.Remove((LearnerEmploymentStatus)Child);
+                    LearnerEmploymentStatus employementStatus = (LearnerEmploymentStatus)Child;
+                    employementStatus.EmploymentStatusChanged -= NewInstance_EmploymentStatusChanged;
+                    this.LearnerEmploymentStatusList.Remove(employementStatus);
                     break;
                 case "ILR.LearnerHE":
                     this.LearnerHE = null;
@@ -1195,6 +1217,8 @@ namespace ILR
             }
             GiveFrountEndkickToRefresh();
         }
+
+       
 
         #region FAM management
         public LearnerFAM GetFAM(LearnerFAM.SingleOccurrenceFAMs FAMType)

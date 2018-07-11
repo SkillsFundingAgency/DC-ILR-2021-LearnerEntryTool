@@ -51,10 +51,12 @@ namespace ilrLearnerEntry.UserControls
         {
             var newValue = txtUKPRM.Text;
             TextBox txt = e.Source as TextBox;
-            int number;
-            bool result = Int32.TryParse(System.Convert.ToString(newValue), out number);
-            if (result) { UKPRN = number; }
+            UInt32 number;
+            
+            bool result = UInt32.TryParse(System.Convert.ToString(newValue), out number);
+            if (result) { UKPRN = (int)number; }
             else { UKPRN = null; }
+            UKPRNWasUpdated(null, null);
         }
         #endregion
 
@@ -375,6 +377,10 @@ namespace ilrLearnerEntry.UserControls
                     UKPRNWasUpdated(null, null);
                 }
             }
+
+
+
+
         }
         private void BackupMessagebeforeWeStart()
         {
