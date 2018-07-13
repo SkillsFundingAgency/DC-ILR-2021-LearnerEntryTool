@@ -74,7 +74,7 @@ namespace ILR
                         else
                         {
                             if ((this.LearnPlanEndDate >= FIRST_AUG_2015) && ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
-                                return this.LearnActEndDate == null || (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6);
+                                return this.LearnActEndDate == null || (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6 || this.Outcome == 8);
                             else
                                 return false;
                         }
