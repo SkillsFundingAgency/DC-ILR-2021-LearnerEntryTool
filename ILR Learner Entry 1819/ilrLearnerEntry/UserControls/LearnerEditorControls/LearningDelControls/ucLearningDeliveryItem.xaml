@@ -15,25 +15,25 @@
              >
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <TabControl >
-                <TabItem Header="Learning Information" IsSelected="True" MinWidth="125" TabIndex="1">
+                <TabItem Header=" Learning Information " IsSelected="True" TabIndex="1">
                     <LearnerDelControls:ucLearningStartInformation x:Name="LearningStartInformationControl" />
                 </TabItem>
-                <TabItem Header="Funding and Monitoring" IsSelected="False" MinWidth="125"  TabIndex="2">
+                <TabItem Header=" Funding and Monitoring " IsSelected="False" TabIndex="2">
                     <LearnerDelControls:ucLearnerFundingAndMonitoring x:Name="LearnerFundingAndMonitoringControl" />
                 </TabItem>
-                <TabItem Header="Provider Specified Info" IsSelected="False" MinWidth="125"  TabIndex="3">
+                <TabItem Header=" Provider Specified Info " IsSelected="False" TabIndex="3">
                     <LearnerDelControls:ucProviderSpecifiedDeliveryMonitorInformation  x:Name="ProviderSpecifiedDeliveryMonitorInformationControl"/>
                 </TabItem>
-                <TabItem Header="Learning Delivery HE" IsSelected="False" MinWidth="85"  TabIndex="3">
+                <TabItem Header=" Learning Delivery HE " IsSelected="False" TabIndex="3">
                     <LearnerDelControls:ucLearningEDInformation  x:Name="HEControl"/>
                 </TabItem>
-                <TabItem Header="Financial Details" IsSelected="False" MinWidth="125"  TabIndex="4">
+                <TabItem Header=" Financial Details " IsSelected="False" TabIndex="4">
                     <AFRControls:ucFinancialDetailList x:Name="FinancialDetailsListControl"/>
                 </TabItem>
-                <TabItem Header="Work Placement" IsSelected="False" MinWidth="125"  TabIndex="4">
+                <TabItem Header=" Work Placement " IsSelected="False"  TabIndex="4">
                     <WpControls:ucWorkPlacementList x:Name="WorkplaceListControls" />
                 </TabItem>
-            <TabItem Header="End Details" IsSelected="False" MinWidth="125"  TabIndex="4">
+            <TabItem Header=" End Details " IsSelected="False"  TabIndex="4">
                 <LearnerDelControls:ucLearningEndInformation x:Name="LearningEndInformationControl" />
             </TabItem>
         </TabControl>

@@ -44,7 +44,13 @@ namespace ilrLearnerEntry
             {
                 HomeScreenControl.RefreshData();
             }
+            tabControlMain.SelectionChanged += TabControlMain_SelectionChanged;
             App.Log("MainWindow", " Constructor", "End");
+        }
+
+        private void TabControlMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
         #endregion
 

@@ -12,13 +12,8 @@
     <UserControl.Resources>
         <CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
         <DataTemplate x:Key="LearnerDPDataTemplate" DataType="{x:Type IlrTypes:LearnerDestinationandProgression}">
-            <Border CornerRadius="6" Margin="5">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#BF8D97A1" Offset="0"/>
-                        <GradientStop Color="#BDCFD9E0" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+			<Border CornerRadius="6" Margin="5" Background="{Binding IsComplete, Converter={StaticResource IsCompleteColourConverter},ConverterParameter=learner, Mode=OneWay}" >
+                
                 <Grid x:Name="ItemGrid" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="45"/>
