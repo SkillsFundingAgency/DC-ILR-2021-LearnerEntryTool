@@ -140,6 +140,37 @@ namespace ILR
                 return learningDeliveriesToMigrate;
             }
         }
+
+        public List<LearnerEmploymentStatus> LearnerEmploymentStatusToMigrate
+        {
+            get
+            {
+                var statusList = new List<LearnerEmploymentStatus>();
+                if (this.LearningDeliveriesToMigrate.Count > 0)
+                {
+                    //get the earliest learning delivery
+                    this.LearningDeliveriesToMigrate.Sort((ld1, ld2) => ld1.LearnStartDate.Value.CompareTo(ld2.LearnStartDate.Value));
+
+                    var earliestLearningDate = this.LearningDeliveriesToMigrate[0].LearnStartDate.Value;
+
+                    this.LearnerEmploymentStatusList.Sort((les1, les2) => les1.DateEmpStatApp.Value.CompareTo(les2.DateEmpStatApp.Value));
+                    int lastIndex = 0;
+                    for (int i = 0; i < LearnerEmploymentStatusList.Count; i++)
+                    {
+                        if (LearnerEmploymentStatusList[i].DateEmpStatApp.Value >= earliestLearningDate)
+                            break;
+                        lastIndex = i;
+                    }
+
+                    for (int t = lastIndex; t < LearnerEmploymentStatusList.Count; t++)
+                    {
+                        statusList.Add(LearnerEmploymentStatusList[t]);
+                    }
+
+                }
+                return statusList;
+            }
+        }
         #endregion
         #region ILR Properties
         public string LearnRefNumber { get { return XMLHelper.GetChildValue("LearnRefNumber", Node, NSMgr); } set { XMLHelper.SetChildValue("LearnRefNumber", value, Node, NSMgr); OnPropertyChanged("LearnRefNumber"); GiveFrountEndkickToRefresh(); } }
@@ -1061,7 +1092,7 @@ namespace ILR
                 ProviderSpecLearnerMonitoringList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
-            foreach (LearnerEmploymentStatus migrationItem in MigrationLearner.LearnerEmploymentStatusList)
+            foreach (LearnerEmploymentStatus migrationItem in MigrationLearner.LearnerEmploymentStatusToMigrate)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerEmploymentStatus", NSMgr.LookupNamespace("ia"));
                 LearnerEmploymentStatus newInstance = new LearnerEmploymentStatus(migrationItem, newNode, NSMgr);
