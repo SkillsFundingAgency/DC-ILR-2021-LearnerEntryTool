@@ -407,12 +407,12 @@ namespace ILR
                 var learner = exportMessage.LearnerList[i];
                 if (!learner.IsComplete || learner.ExcludeFromExport)
                 {
-                    var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList.Where(c => c.ULN == learner.ULN).FirstOrDefault();
+                   // var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList.Where(c => c.ULN == learner.ULN).FirstOrDefault();
                     exportMessage.Delete(learner);                   
-                    if(learnerDestinationandProgression != null)
-                    {
-                        exportMessage.Delete(learnerDestinationandProgression);
-                    }
+                    //if(learnerDestinationandProgression != null)
+                    //{
+                    //    exportMessage.Delete(learnerDestinationandProgression);
+                    //}
                 }                
             }
 

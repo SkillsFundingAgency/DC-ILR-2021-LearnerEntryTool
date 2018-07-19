@@ -61,9 +61,14 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="{Binding UserControlTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="3" FontSize="18" />
-                <Button Grid.Row="0" 
-                    Grid.Column="0" 
+				<Grid Grid.Row="0" Grid.Column="0" >
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Row="0" Grid.Column="0"  Text="{Binding UserControlTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="3" FontSize="14" />
+					<Button Grid.Row="0" 
+                    Grid.Column="1" 
                     x:Name="btnNew" 
                     Content="Add" 
                     Panel.ZIndex="200" 
@@ -71,14 +76,16 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     FontSize="10"
-                    Margin="0,4,4,0" 
+                    Margin="10,4,4,0" 
                     TabIndex="2" 
                     MinWidth="50"
                     MinHeight="15"
                     Style="{DynamicResource RoundedButton}"
                     Grid.RowSpan="3" 
                     Click="Add_Click" />
-                <ListView 
+				</Grid>
+               
+				<ListView 
                     Grid.Row="1"
                     Grid.Column="0"
                     Grid.RowSpan="2"

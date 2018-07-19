@@ -176,6 +176,11 @@
               <xsl:value-of select="dc:Email"/>
             </Email>
           </xsl:if>
+           <xsl:if test="dc:OTJHours != ''">
+            <OTJHours>
+              <xsl:value-of select="dc:OTJHours"/>
+            </OTJHours>
+          </xsl:if>
           <xsl:for-each select="dc:ContactPreference">
             <ContactPreference>
               <ContPrefType>
@@ -232,6 +237,11 @@
                 <EmpId>
                   <xsl:value-of select="dc:EmpId"/>
                 </EmpId>
+              </xsl:if>
+              <xsl:if test="dc:AgreeId != ''">
+                <AgreeId>
+                  <xsl:value-of select="dc:AgreeId"/>
+                </AgreeId>
               </xsl:if>
               <xsl:for-each select="dc:EmploymentStatusMonitoring">
                 <EmploymentStatusMonitoring>

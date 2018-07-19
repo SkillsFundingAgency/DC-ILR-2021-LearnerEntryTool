@@ -30,8 +30,13 @@ namespace ILR.LearnerEntry.Tests
         [SetUp]
         public void Setup()
         {
-             fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-             ilrMessage = new Message(fileName);
+            UriBuilder uri = new UriBuilder(Assembly.GetExecutingAssembly().CodeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+
+
+            fileName = Path.Combine(Path.GetDirectoryName(path), ILRFileName);
+
+            ilrMessage = new Message(fileName);
              importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
             ilrMessage.Import(importFile);
         }

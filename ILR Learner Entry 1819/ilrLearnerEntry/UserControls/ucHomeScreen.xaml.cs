@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml;
 
 
@@ -48,12 +49,14 @@ namespace ilrLearnerEntry.UserControls
 
         private void TxtUKPRM_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var newValue = txtUKPRM.Text;
-            TextBox txt = e.Source as TextBox;
-            int number;
-            bool result = Int32.TryParse(System.Convert.ToString(newValue), out number);
-            if (result) { UKPRN = number; }
-            else { UKPRN = null; }
+            //var newValue = txtUKPRM.Text;
+            //TextBox txt = e.Source as TextBox;
+            //UInt32 number;
+            
+            //bool result = UInt32.TryParse(System.Convert.ToString(newValue), out number);
+            //if (result) { UKPRN = (int)number; }
+            //else { UKPRN = null; }
+            //UKPRNWasUpdated(null, null);
         }
         #endregion
 
@@ -164,11 +167,16 @@ namespace ilrLearnerEntry.UserControls
             }
             set
             {
-				int number;
-				bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-				if (result) { App.ILRMessage.LearningProvider.UKPRN = value; }
+				//int number;
+                UInt32 number;
+
+                bool result = UInt32.TryParse(System.Convert.ToString(value), out number);
+                //if (result) { UKPRN = (int)number; }
+                //bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+				if (result) { App.ILRMessage.LearningProvider.UKPRN = (int)value; }
 				else { App.ILRMessage.LearningProvider.UKPRN = null; }
-			}
+                UKPRNWasUpdated(null, null);
+            }
         }
         public System.Data.DataTable Statistics
         {
@@ -217,7 +225,13 @@ namespace ilrLearnerEntry.UserControls
             try
             {
                 App.Log("Home Screen", "WorkerStats", "ReFreshStats.");
-                App.ILRMessage.ReFreshStats();
+                Application.Current.Dispatcher.BeginInvoke(
+              DispatcherPriority.Background,
+              new Action(() => {
+                  App.ILRMessage.ReFreshStats();
+                  OnPropertyChanged("Statistics");
+              }));
+
             }
             catch (Exception ex)
             {
@@ -368,6 +382,10 @@ namespace ilrLearnerEntry.UserControls
                     UKPRNWasUpdated(null, null);
                 }
             }
+
+
+
+
         }
         private void BackupMessagebeforeWeStart()
         {
@@ -375,6 +393,10 @@ namespace ilrLearnerEntry.UserControls
         private void ResotreMessage()
         {
 
+        }
+        private bool HasInvalidLdp()
+        {
+            return App.ILRMessage.LearnerDestinationandProgressionList.Any(ldp => ((!ldp.ULN.HasValue || string.IsNullOrEmpty(ldp.LearnRefNumber)) && !ldp.ExcludeFromExport));
         }
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
@@ -397,6 +419,15 @@ namespace ilrLearnerEntry.UserControls
                                                            , MessageBoxImage.Error
                                                            , MessageBoxResult.OK);
 
+                LoadMessage = String.Empty;
+            }
+            else if (HasInvalidLdp())
+            {
+                MessageBox.Show(String.Format("There are invalid Learner Destination Progression records, please correct them", Environment.NewLine)
+                                                          , "Unable to Export"
+                                                          , MessageBoxButton.OK
+                                                          , MessageBoxImage.Error
+                                                          , MessageBoxResult.OK);
                 LoadMessage = String.Empty;
             }
             else

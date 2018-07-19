@@ -150,6 +150,7 @@ namespace ilrLearnerEntry.UserControls
 
                 LearnerHeaderControl.CurrentItem = learner;
                 LearnerDetailControl.CurrentItem = learner;
+                LearnerContacePreferencesControl.CurrentItem = learner;
                 LLDDAndLearningSupportControl.CurrentItem = learner;
                 ProviderSpecifiedLearningMonitorInformationControl.CurrentItem = learner;
                 EmploymentStatusListControl.CurrentItem = learner;
@@ -160,6 +161,7 @@ namespace ilrLearnerEntry.UserControls
             else
             {
                 LearnerHeaderControl.CurrentItem = null;
+                LearnerDetailControl.CurrentItem = null;
                 LearnerDetailControl.CurrentItem = null;
                 LLDDAndLearningSupportControl.CurrentItem = null;
                 ProviderSpecifiedLearningMonitorInformationControl.CurrentItem = null;
