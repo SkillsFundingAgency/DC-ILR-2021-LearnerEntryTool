@@ -20,7 +20,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
     public class Tests
     {
 
-        const string ApplicationPath = @"E:\Downloads\ILRLearnerTool_1718.2.3\ILRLearnerEntry1819.exe";
+       // const string ApplicationPath = @"E:\Downloads\ILRLearnerTool_1718.2.3\ILRLearnerEntry1819.exe";
         const string ApplicationProcessName = "ILR Learner Entry - 1819";
         const string ApplicationProcessName1 = "ILRLearnerEntry1819";
 

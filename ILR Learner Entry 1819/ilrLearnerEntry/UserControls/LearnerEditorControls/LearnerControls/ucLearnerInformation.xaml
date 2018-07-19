@@ -187,38 +187,7 @@
                              TabIndex="11"
                              MaxLength="100"
                      />
-                    <Grid  Grid.Row="1" Grid.Column="3" Grid.RowSpan="6"  Margin="4"  >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="15" />
-                            <ColumnDefinition Width="Auto" MinWidth="310" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" TextWrapping="Wrap" Style="{DynamicResource StandardTextBlockStyle}" >
-                         <Run Text="Learner agrees to be contacted (tick all that apply) :" />
-                        </TextBlock>
-                        <CheckBox Grid.Row="2" Grid.Column="1" Content=": About course or learning opportunities"  IsChecked="{Binding Path=CurrentItem.RUI1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="13" />
-                        <CheckBox Grid.Row="3" Grid.Column="1" Content=": For surveys and research" IsChecked="{Binding Path=CurrentItem.RUI2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="14" />
-                        <CheckBox Grid.Row="4" Grid.Column="1" Content=": Suffered severe illness or other circumstance" IsChecked="{Binding Path=CurrentItem.RUI4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="14" />
-                        <CheckBox Grid.Row="5" Grid.Column="1" Content=": Learner has died" IsChecked="{Binding Path=CurrentItem.RUI5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="14" />
-                        <CheckBox Grid.Row="6" Grid.Column="1" Content=": By Post" IsChecked="{Binding Path=CurrentItem.PMC1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="15" />
-                        <CheckBox Grid.Row="7" Grid.Column="1" Content=": By Phone" IsChecked="{Binding Path=CurrentItem.PMC2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="16" />
-                        <CheckBox Grid.Row="8" Grid.Column="1" Content=": By e-mail" IsChecked="{Binding Path=CurrentItem.PMC3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-                    </Grid>
+                   
                 </Grid>
             </Grid>
             <CheckBox Grid.Row="5" Grid.Column="0" Content=": Check box if the learner is living away from home in accommodation owned or managed by the provider." IsChecked="{Binding Path=CurrentItem.Accom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />

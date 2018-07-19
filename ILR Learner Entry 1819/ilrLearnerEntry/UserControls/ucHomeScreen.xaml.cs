@@ -49,12 +49,14 @@ namespace ilrLearnerEntry.UserControls
 
         private void TxtUKPRM_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var newValue = txtUKPRM.Text;
-            TextBox txt = e.Source as TextBox;
-            int number;
-            bool result = Int32.TryParse(System.Convert.ToString(newValue), out number);
-            if (result) { UKPRN = number; }
-            else { UKPRN = null; }
+            //var newValue = txtUKPRM.Text;
+            //TextBox txt = e.Source as TextBox;
+            //UInt32 number;
+            
+            //bool result = UInt32.TryParse(System.Convert.ToString(newValue), out number);
+            //if (result) { UKPRN = (int)number; }
+            //else { UKPRN = null; }
+            //UKPRNWasUpdated(null, null);
         }
         #endregion
 
@@ -165,11 +167,16 @@ namespace ilrLearnerEntry.UserControls
             }
             set
             {
-				int number;
-				bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-				if (result) { App.ILRMessage.LearningProvider.UKPRN = value; }
+				//int number;
+                UInt32 number;
+
+                bool result = UInt32.TryParse(System.Convert.ToString(value), out number);
+                //if (result) { UKPRN = (int)number; }
+                //bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+				if (result) { App.ILRMessage.LearningProvider.UKPRN = (int)value; }
 				else { App.ILRMessage.LearningProvider.UKPRN = null; }
-			}
+                UKPRNWasUpdated(null, null);
+            }
         }
         public System.Data.DataTable Statistics
         {
@@ -375,6 +382,10 @@ namespace ilrLearnerEntry.UserControls
                     UKPRNWasUpdated(null, null);
                 }
             }
+
+
+
+
         }
         private void BackupMessagebeforeWeStart()
         {

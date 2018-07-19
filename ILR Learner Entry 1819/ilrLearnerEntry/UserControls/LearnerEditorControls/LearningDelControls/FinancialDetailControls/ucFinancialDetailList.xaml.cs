@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -89,7 +90,31 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 			else if (_learningDelivery.ApprenticeshipFinancialRecordList.Count>0)
 			{
                 LDFinancialDetailControl.Visibility = System.Windows.Visibility.Visible;
-			}
+
+               // lv.SelectedItem = lv.Items.GetItemAt(rows.Count - 1);
+                //lv.ScrollIntoView(lv.SelectedItem);
+                ListViewItem item = lv.ItemContainerGenerator.ContainerFromItem(lv.SelectedItem) as ListViewItem;
+                if(item !=null)
+                    item.Focus();
+
+                //if (lv.SelectedItem != null)
+                //{
+                //    int itemIndex = lv.SelectedIndex;
+                //    VirtualizingStackPanel vsp =
+                //    (VirtualizingStackPanel)typeof(ItemsControl).InvokeMember("_itemsHost",
+                //    BindingFlags.Instance | BindingFlags.GetField | BindingFlags.NonPublic, null,
+                //    lv, null);
+                //    if (vsp != null)
+                //    {
+                //        double scrollHeight = vsp.ScrollOwner.ScrollableHeight;
+
+                //        // itemIndex_ is index of the item which we want to show in the middle of the view
+                //        double offset = scrollHeight * itemIndex / lv.Items.Count;
+
+                //        vsp.SetVerticalOffset(offset);
+                //    }
+                //}
+            }
 			else
 			{
                 LDFinancialDetailControl.Visibility = System.Windows.Visibility.Visible;
@@ -102,8 +127,14 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 			if (e.AddedItems.Count > 0)
 			{
                 LDFinancialDetailControl.CurrentItem = e.AddedItems[0] as ApprenticeshipFinancialRecord;
-			}
-		}
+
+               
+            }
+
+
+
+
+        }
 
 		private void Add_Click(object sender, RoutedEventArgs e)
 		{			   

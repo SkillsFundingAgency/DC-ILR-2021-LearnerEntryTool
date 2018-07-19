@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace ILR
@@ -11,12 +12,28 @@ namespace ILR
     {
         private const String CLASSNAME = "LearnerEmploymentStatus";
         private const String TABS = "\t";
+        private const string AGREEID_PATTERN = "^[A-Za-z0-9]{1,6}$";
 
         #region ILR Properties
-        public int? EmpStat { get { string EmpStat = XMLHelper.GetChildValue("EmpStat", Node, NSMgr); return (EmpStat != null ? int.Parse(EmpStat) : (int?)null); } set { XMLHelper.SetChildValue("EmpStat", value, Node, NSMgr); OnPropertyChanged("EmpStat"); } }
-        public DateTime? DateEmpStatApp { get { string DateEmpStatApp = XMLHelper.GetChildValue("DateEmpStatApp", Node, NSMgr); return (!string.IsNullOrEmpty(DateEmpStatApp) ? DateTime.Parse(DateEmpStatApp) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateEmpStatApp", value, Node, NSMgr); OnPropertyChanged("DateEmpStatApp"); } }
-        public int? EmpId { get { string EmpId = XMLHelper.GetChildValue("EmpId", Node, NSMgr); return (!string.IsNullOrEmpty(EmpId) ? int.Parse(EmpId) : (int?)null); } set { XMLHelper.SetChildValue("EmpId", value, Node, NSMgr); OnPropertyChanged("EmpId"); } }
+        public int? EmpStat { get { string EmpStat = XMLHelper.GetChildValue("EmpStat", Node, NSMgr); return (EmpStat != null ? int.Parse(EmpStat) : (int?)null); } set { XMLHelper.SetChildValue("EmpStat", value, Node, NSMgr); OnPropertyChanged("EmpStat"); OnEmploymentStatusChangedChanged(); } }
+        public DateTime? DateEmpStatApp { get { string DateEmpStatApp = XMLHelper.GetChildValue("DateEmpStatApp", Node, NSMgr); return (!string.IsNullOrEmpty(DateEmpStatApp) ? DateTime.Parse(DateEmpStatApp) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateEmpStatApp", value, Node, NSMgr); OnPropertyChanged("DateEmpStatApp"); OnEmploymentStatusChangedChanged(); } }
+        public int? EmpId { get { string EmpId = XMLHelper.GetChildValue("EmpId", Node, NSMgr); return (!string.IsNullOrEmpty(EmpId) ? int.Parse(EmpId) : (int?)null); } set { XMLHelper.SetChildValue("EmpId", value, Node, NSMgr); OnPropertyChanged("EmpId"); OnEmploymentStatusChangedChanged(); } }
+        public string AgreeId { get { return XMLHelper.GetChildValue("AgreeId", Node, NSMgr); } set { XMLHelper.SetChildValue("AgreeId", value, Node, NSMgr); OnPropertyChanged("AgreeId"); OnEmploymentStatusChangedChanged(); } }
         #endregion
+
+        #region events
+
+        public event PropertyChangedEventHandler EmploymentStatusChanged;
+        /// <summary>
+        /// Fires the event for the property when it changes.
+        /// </summary>
+        public void OnEmploymentStatusChangedChanged()
+        {
+            if (EmploymentStatusChanged != null)
+                EmploymentStatusChanged(this, new PropertyChangedEventArgs("From Employment status record"));
+        }
+        #endregion
+
 
         #region Lookup Properties
         public string EmpStatDescription
@@ -242,10 +259,50 @@ namespace ILR
                         if (EmpId != null)
                             result += CheckPropertyLength(EmpId, CLASSNAME, columnName, TABS);
                         break;
+                    case "AgreeId":
+                        if (AgreeId != null)
+                        {
+                            if (!IsAgreeIdValid())
+                                return $"Agreement Identifier: {AgreeId} is not valid";
+                        }
+                            
+                        break;
                     default:
                         break;
                 }
                 return result;
+            }
+        }
+
+        private bool IsAgreeIdValid()
+        {
+
+            var regEx = new Regex(AGREEID_PATTERN);
+            return string.IsNullOrEmpty(AgreeId) ? true : regEx.Match(this.AgreeId).Success;
+        }
+
+        #endregion
+
+        #region overrided properties
+        public override bool IsComplete
+        {
+            get
+            {
+                if (IncompleteMessage == null || IncompleteMessage == string.Empty)
+                    return true;
+                else
+                    return false;
+            }
+        }
+        public override string IncompleteMessage
+        {
+            get
+            {
+                string message = "";
+                message += this["EmpStat"];
+                message += this["EmpId"];
+                message += this["AgreeId"];
+                return message;
             }
         }
         #endregion

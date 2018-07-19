@@ -244,30 +244,32 @@
 
             <LearnerControls:ucLearnerHeader x:Name="LearnerHeaderControl" Grid.Row="0"  TabIndex="1" />
             <TabControl Grid.Row="1" >
-                <TabItem Header="Learner"  IsSelected="True" MinWidth="175">
+                <TabItem Header=" Learner "  IsSelected="True" >
                     <TabControl Grid.Row="3">
-                        <TabItem Header="Learner Information"  IsSelected="True" MinWidth="125">
+                        <TabItem Header="  Learner Information  "  IsSelected="True" >
                             <LearnerControls:ucLearnerInformation x:Name="LearnerDetailControl" Margin="0,-3,0.2,3.4" />
                         </TabItem>
-                        <TabItem Header="LLDD and Learning Support" IsSelected="False" MinWidth="125" >
+                        <TabItem Header=" LLDD and Learning Support " IsSelected="False" >
                             <LearnerControls:ucLLDDAndLearningSupport x:Name="LLDDAndLearningSupportControl" />
                         </TabItem>
-                        <TabItem Header="Funding and Monitoring" IsSelected="False" MinWidth="125">
+                        <TabItem Header=" Funding and Monitoring "   IsSelected="False" >
                             <LearnerControls:ucLearnerFAMs x:Name="LearnerFAMsControl"/>
                         </TabItem>
-                        <TabItem Header="Learner Provider Specified Monitoring" IsSelected="False" MinWidth="125">
+                        <TabItem Header=" Learner Provider Specified Monitoring " IsSelected="False">
                             <LearnerControls:ucProviderSpecifiedLearningMonitorInformation x:Name="ProviderSpecifiedLearningMonitorInformationControl" />
                         </TabItem>
-                        <TabItem Header="Learner HE Information" IsSelected="False" MinWidth="125">
+                        <TabItem Header=" Learner HE Information " IsSelected="False" >
                             <LearnerControls:ucLearnerHEInformation x:Name="LearnerHEInformationControl" />
                         </TabItem>
-
-                    </TabControl>
+						<TabItem Header=" Contact Preferences " IsSelected="False" >
+							<LearnerControls:ucLearnerContacePreferences x:Name="LearnerContacePreferencesControl" />
+						</TabItem>
+					</TabControl>
                 </TabItem>
-                <TabItem Header="Learning Delivery"  IsSelected="False" MinWidth="100">
+                <TabItem Header=" Learning Delivery "  IsSelected="False">
                     <LearnerDelControls:ucLearningDeliveryList x:Name="LearningDeliveryListControl" />
                 </TabItem>
-                <TabItem Header="Employment Status"  IsSelected="False" MinWidth="275" >
+                <TabItem Header=" Employment Status "  IsSelected="False"  >
                     <EmpStatControls:ucEmploymentStatusList  x:Name="EmploymentStatusListControl" />
                 </TabItem>
             </TabControl>

@@ -238,6 +238,11 @@
                   <xsl:value-of select="dc:EmpId"/>
                 </EmpId>
               </xsl:if>
+              <xsl:if test="dc:AgreeId != ''">
+                <AgreeId>
+                  <xsl:value-of select="dc:AgreeId"/>
+                </AgreeId>
+              </xsl:if>
               <xsl:for-each select="dc:EmploymentStatusMonitoring">
                 <EmploymentStatusMonitoring>
                   <ESMType>

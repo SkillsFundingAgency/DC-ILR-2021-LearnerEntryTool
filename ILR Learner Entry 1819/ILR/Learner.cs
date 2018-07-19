@@ -74,6 +74,14 @@ namespace ILR
                         message += "\tAim Sequence Numbers (" + ld.AimSeqNumber.ToString() + ") missing :" + "\r\n" + ld.IncompleteMessage;
                     }
                 }
+                if (this.LearnerEmploymentStatusList.Count > 0)
+                {
+                    foreach (var lEmpStatus in this.LearnerEmploymentStatusList.FindAll(x => x.IsComplete == false))
+                    {
+                        message += "\tLearner Employment status is not valid: "+lEmpStatus.IncompleteMessage;
+                    }
+
+                }
                 if ((this.LLDDHealthProb != null) && (this.LLDDHealthProb == 1))
                 {
                     //if ((this.LLDDandHealthProblemList == null) || (this.LLDDandHealthProblemList.Count < 1))
@@ -110,6 +118,8 @@ namespace ILR
                                 learningDeliveriesToMigrate.Add(learningDelivery);
                             else if (this.LearningDeliveryList.Exists(ld => ld.AimType == 3 && ld.ShouldProbablyMigrate && ld.FworkCode == learningDelivery.FworkCode && ld.ProgType == learningDelivery.ProgType && ld.PwayCode == learningDelivery.PwayCode))
                                 learningDeliveriesToMigrate.Add(learningDelivery);
+                            //else if (this.LearningDeliveryList.Exists(ld => ld.AimType == 3 && ld.ShouldProbablyMigrate && learningDelivery.ProgType == 24))
+                                learningDeliveriesToMigrate.Add(learningDelivery);
                             break;
                         case 4:
                             if (learningDelivery.ShouldProbablyMigrate)
@@ -130,6 +140,37 @@ namespace ILR
                     }
                 }
                 return learningDeliveriesToMigrate;
+            }
+        }
+
+        public List<LearnerEmploymentStatus> LearnerEmploymentStatusToMigrate
+        {
+            get
+            {
+                var statusList = new List<LearnerEmploymentStatus>();
+                if (this.LearningDeliveriesToMigrate.Count > 0)
+                {
+                    //get the earliest learning delivery
+                    this.LearningDeliveriesToMigrate.Sort((ld1, ld2) => ld1.LearnStartDate.Value.CompareTo(ld2.LearnStartDate.Value));
+
+                    var earliestLearningDate = this.LearningDeliveriesToMigrate[0].LearnStartDate.Value;
+
+                    this.LearnerEmploymentStatusList.Sort((les1, les2) => les1.DateEmpStatApp.Value.CompareTo(les2.DateEmpStatApp.Value));
+                    int lastIndex = 0;
+                    for (int i = 0; i < LearnerEmploymentStatusList.Count; i++)
+                    {
+                        if (LearnerEmploymentStatusList[i].DateEmpStatApp.Value >= earliestLearningDate)
+                            break;
+                        lastIndex = i;
+                    }
+
+                    for (int t = lastIndex; t < LearnerEmploymentStatusList.Count; t++)
+                    {
+                        statusList.Add(LearnerEmploymentStatusList[t]);
+                    }
+
+                }
+                return statusList;
             }
         }
         #endregion
@@ -509,7 +550,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 4).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 1).Count() > 0;
             }
             set
             {
@@ -517,12 +558,12 @@ namespace ILR
                 {
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "PMC";
-                    newInstance.ContPrefCode = 4;
+                    newInstance.ContPrefCode = 1;
                 }
                 else if (!value && PMC1)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 4).First();
-                    this.Delete(deleteInstance);
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 1).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("PMC1");
             }
@@ -531,7 +572,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 5).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 2).Count() > 0;
             }
             set
             {
@@ -539,12 +580,12 @@ namespace ILR
                 {
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "PMC";
-                    newInstance.ContPrefCode = 5;
+                    newInstance.ContPrefCode = 2;
                 }
                 else if (!value && PMC2)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 5).First();
-                    this.Delete(deleteInstance);
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 2).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("PMC2");
             }
@@ -553,7 +594,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 6).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 3).Count() > 0;
             }
             set
             {
@@ -561,21 +602,22 @@ namespace ILR
                 {
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "PMC";
-                    newInstance.ContPrefCode = 6;
+                    newInstance.ContPrefCode = 3;
                 }
                 else if (!value && PMC3)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 6).First();
-                    this.Delete(deleteInstance);
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 3).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("PMC3");
             }
         }
+
         public bool RUI1
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).Count() > 0;
             }
             set
             {
@@ -585,12 +627,12 @@ namespace ILR
                     RUI5 = false;
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 6;
+                    newInstance.ContPrefCode = 1;
                 }
                 else if (!value && RUI1)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).First();
-                    this.Delete(deleteInstance);
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("RUI1");
             }
@@ -599,7 +641,7 @@ namespace ILR
         {
             get
             {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).Count() > 0;
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).Count() > 0;
             }
             set
             {
@@ -609,14 +651,62 @@ namespace ILR
                     RUI5 = false;
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 7;
+                    newInstance.ContPrefCode = 2;
                 }
                 else if (!value && RUI2)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).First();
-                    this.Delete(deleteInstance);
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("RUI2");
+            }
+        }
+        public bool RUI6
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI6)
+                {
+                    RUI4 = false;
+                    RUI5 = false;
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 6;
+                }
+                else if (!value && RUI6)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI6");
+            }
+        }
+        public bool RUI7
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI7)
+                {
+                    RUI4 = false;
+                    RUI5 = false;
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 7;
+                }
+                else if (!value && RUI7)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI7");
             }
         }
         public bool RUI4
@@ -632,9 +722,13 @@ namespace ILR
                     RUI1 = false;
                     RUI2 = false;
                     RUI5 = false;
+                    RUI6 = false;
+                    RUI7 = false;
                     OnPropertyChanged("RUI1");
                     OnPropertyChanged("RUI2");
                     OnPropertyChanged("RUI5");
+                    OnPropertyChanged("RUI6");
+                    OnPropertyChanged("RUI7");
 
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "RUI";
@@ -642,8 +736,8 @@ namespace ILR
                 }
                 else if (!value && RUI4)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 4).First();
-                    this.Delete(deleteInstance);
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 4).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("RUI4");
             }
@@ -661,22 +755,101 @@ namespace ILR
                     RUI1 = false;
                     RUI2 = false;
                     RUI4 = false;
+                    RUI6 = false;
+                    RUI7 = false;
                     OnPropertyChanged("RUI1");
                     OnPropertyChanged("RUI2");
                     OnPropertyChanged("RUI4");
-
+                    OnPropertyChanged("RUI6");
+                    OnPropertyChanged("RUI7");
                     ContactPreference newInstance = CreateContactPreference();
                     newInstance.ContPrefType = "RUI";
                     newInstance.ContPrefCode = 5;
                 }
                 else if (!value && RUI5)
                 {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 5).First();
-                    this.Delete(deleteInstance);
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 5).FirstOrDefault();
+                   
+                        this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("RUI5");
             }
         }
+
+        public bool PMC4
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 4).Count() > 0;
+            }
+            set
+            {
+                if (value && !PMC4)
+                {
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "PMC";
+                    newInstance.ContPrefCode = 4;
+                }
+                else if (!value && PMC4)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 4).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("PMC4");
+            }
+        }
+        public bool PMC5
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 5).Count() > 0;
+            }
+            set
+            {
+                if (value && !PMC5)
+                {
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "PMC";
+                    newInstance.ContPrefCode = 5;
+                }
+                else if (!value && PMC5)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 5).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("PMC5");
+            }
+        }
+
+        public bool PMC6
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 6).Count() > 0;
+            }
+            set
+            {
+                if (value && !PMC6)
+                {
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "PMC";
+                    newInstance.ContPrefCode = 6;
+                }
+                else if (!value && PMC6)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "PMC" && x.ContPrefCode == 6).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("PMC6");
+            }
+        }
+        private void DeleteContactInstance(ContactPreference contactPreference)
+        {
+            if (contactPreference != null)
+                this.Delete(contactPreference);
+        }
+
+
         #endregion
         #region LearnerHE
         public string UCASPERID
@@ -957,7 +1130,11 @@ namespace ILR
                 ProviderSpecLearnerMonitoringList.Add(new ProviderSpecLearnerMonitoring(node, NSMgr));
             XmlNodeList learnerEmploymentStatusNodes = LearnerNode.SelectNodes("./ia:LearnerEmploymentStatus", NSMgr);
             foreach (XmlNode node in learnerEmploymentStatusNodes)
-                LearnerEmploymentStatusList.Add(new LearnerEmploymentStatus(node, NSMgr));
+            {
+                LearnerEmploymentStatus newInstance = new LearnerEmploymentStatus(node, NSMgr);
+                newInstance.EmploymentStatusChanged += NewInstance_EmploymentStatusChanged;
+                LearnerEmploymentStatusList.Add(newInstance);
+            }
             XmlNode learnerHENode = LearnerNode.SelectSingleNode("./ia:LearnerHE", NSMgr);
             if (learnerHENode != null)
                 LearnerHE = new LearnerHE(learnerHENode, NSMgr);
@@ -1049,10 +1226,11 @@ namespace ILR
                 ProviderSpecLearnerMonitoringList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
-            foreach (LearnerEmploymentStatus migrationItem in MigrationLearner.LearnerEmploymentStatusList)
+            foreach (LearnerEmploymentStatus migrationItem in MigrationLearner.LearnerEmploymentStatusToMigrate)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerEmploymentStatus", NSMgr.LookupNamespace("ia"));
                 LearnerEmploymentStatus newInstance = new LearnerEmploymentStatus(migrationItem, newNode, NSMgr);
+                newInstance.EmploymentStatusChanged += NewInstance_EmploymentStatusChanged;
                 LearnerEmploymentStatusList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
@@ -1071,6 +1249,13 @@ namespace ILR
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
         }
+
+        private void NewInstance_EmploymentStatusChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (!IsFileImportLoadingRunning)
+                GiveFrountEndkickToRefresh();
+        }
+
         //internal void AddNewLearningDeliveryForTraineeshipIfNeeded(Learner MigrationLearner, XmlNode LearnerNode, XmlNamespaceManager NSMgr)
         //{
         //    // Migrate Traineeships -- Add new Learning Delivery Record and its FAMs as needed
@@ -1180,7 +1365,9 @@ namespace ILR
                     this.ProviderSpecLearnerMonitoringList.Remove((ProviderSpecLearnerMonitoring)Child);
                     break;
                 case "ILR.LearnerEmploymentStatus":
-                    this.LearnerEmploymentStatusList.Remove((LearnerEmploymentStatus)Child);
+                    LearnerEmploymentStatus employementStatus = (LearnerEmploymentStatus)Child;
+                    employementStatus.EmploymentStatusChanged -= NewInstance_EmploymentStatusChanged;
+                    this.LearnerEmploymentStatusList.Remove(employementStatus);
                     break;
                 case "ILR.LearnerHE":
                     this.LearnerHE = null;
@@ -1195,6 +1382,8 @@ namespace ILR
             }
             GiveFrountEndkickToRefresh();
         }
+
+       
 
         #region FAM management
         public LearnerFAM GetFAM(LearnerFAM.SingleOccurrenceFAMs FAMType)

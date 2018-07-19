@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TestStack.White;
@@ -20,6 +21,11 @@ namespace IlrLearnerEntry.UIAutomation.Tests.TestHelper
         public ApplicationFixture()
         {
              this.ApplicationPath = ConfigurationManager.AppSettings["Applicationpath"].ToString();
+
+            string currentPath = (new System.Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
+            string rootpath = Uri.UnescapeDataString(Path.GetDirectoryName(currentPath));
+
+            this.ApplicationPath = Path.Combine(rootpath, ApplicationPath);
 
             Application application = Application.Launch(ApplicationPath);
             this.Application = application;

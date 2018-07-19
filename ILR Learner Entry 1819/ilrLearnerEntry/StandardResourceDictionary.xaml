@@ -339,6 +339,7 @@
     <SolidColorBrush x:Key="TabItemHeaderTextColor" Color="#FFFCFCFC" />
     <SolidColorBrush x:Key="TabItemHeaderTextColorSelected" Color="#FF2B1919" />
     <SolidColorBrush x:Key="TabItemHeaderTextColorDisabled" Color="#FF2B1919" />
+	<SolidColorBrush x:Key="TabItemHeaderBackground" Color="Black" />
 
     <!--<Color x:Key="TabItemHeaderBbColor">Black</Color>
     <Color x:Key="TabItemHeaderBbColorSelected">White</Color>
@@ -357,13 +358,13 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{StaticResource TabItemHeaderTextColorDisabled}" />
             </Trigger>
-        </Style.Triggers>
+		</Style.Triggers>
 	<Setter Property="Background" Value="Black" />
 		
 		<Setter Property="HeaderTemplate">
 			<Setter.Value>
 				<DataTemplate>
-					<Border x:Name="grid" Background="Black" >
+					<Border x:Name="grid" Background="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 						<ContentPresenter>
 							<ContentPresenter.Content>
 								<StackPanel Margin="2,2,2,2" >
@@ -376,6 +377,7 @@
 						<DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}},Path=IsSelected}" Value="True">
 							<Setter TargetName="grid" Property="Background" Value="White"/>
 						</DataTrigger>
+					
 					</DataTemplate.Triggers>
 				</DataTemplate>
 			</Setter.Value>
