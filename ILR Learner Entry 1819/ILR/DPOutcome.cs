@@ -12,11 +12,11 @@ namespace ILR
     {
 
         #region ILR Properties
-        public string OutType { get { return XMLHelper.GetChildValue("OutType", Node, NSMgr); } set { XMLHelper.SetChildValue("OutType", value, Node, NSMgr); OnPropertyChanged("OutType"); } }
-        public int? OutCode { get { string OutCode = XMLHelper.GetChildValue("OutCode", Node, NSMgr); return (!string.IsNullOrEmpty(OutCode) ? int.Parse(OutCode) : (int?)null); } set { XMLHelper.SetChildValue("OutCode", value, Node, NSMgr); OnPropertyChanged("OutCode"); } }
-        public DateTime? OutStartDate { get { string OutStartDate = XMLHelper.GetChildValue("OutStartDate", Node, NSMgr); return (!string.IsNullOrEmpty(OutStartDate) ? DateTime.Parse(OutStartDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("OutStartDate", value, Node, NSMgr); OnPropertyChanged("OutStartDate"); } }
-        public DateTime? OutEndDate { get { string OutEndDate = XMLHelper.GetChildValue("OutEndDate", Node, NSMgr); return (!string.IsNullOrEmpty(OutEndDate) ? DateTime.Parse(OutEndDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("OutEndDate", value, Node, NSMgr); OnPropertyChanged("OutEndDate"); } }
-        public DateTime? OutCollDate { get { string OutCollDate = XMLHelper.GetChildValue("OutCollDate", Node, NSMgr); return (!string.IsNullOrEmpty(OutCollDate) ? DateTime.Parse(OutCollDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("OutCollDate", value, Node, NSMgr); OnPropertyChanged("OutCollDate"); } }
+        public string OutType { get { return XMLHelper.GetChildValue("OutType", Node, NSMgr); } set { XMLHelper.SetChildValue("OutType", value, Node, NSMgr); PropertyChanged("OutType"); } }
+        public int? OutCode { get { string OutCode = XMLHelper.GetChildValue("OutCode", Node, NSMgr); return (!string.IsNullOrEmpty(OutCode) ? int.Parse(OutCode) : (int?)null); } set { XMLHelper.SetChildValue("OutCode", value, Node, NSMgr); PropertyChanged("OutCode"); } }
+        public DateTime? OutStartDate { get { string OutStartDate = XMLHelper.GetChildValue("OutStartDate", Node, NSMgr); return (!string.IsNullOrEmpty(OutStartDate) ? DateTime.Parse(OutStartDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("OutStartDate", value, Node, NSMgr); PropertyChanged("OutStartDate"); } }
+        public DateTime? OutEndDate { get { string OutEndDate = XMLHelper.GetChildValue("OutEndDate", Node, NSMgr); return (!string.IsNullOrEmpty(OutEndDate) ? DateTime.Parse(OutEndDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("OutEndDate", value, Node, NSMgr); PropertyChanged("OutEndDate"); } }
+        public DateTime? OutCollDate { get { string OutCollDate = XMLHelper.GetChildValue("OutCollDate", Node, NSMgr); return (!string.IsNullOrEmpty(OutCollDate) ? DateTime.Parse(OutCollDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("OutCollDate", value, Node, NSMgr); PropertyChanged("OutCollDate"); } }
         #endregion
 
         #region Constructors
@@ -36,6 +36,38 @@ namespace ILR
             this.OutEndDate = MigrationDPOutcome.OutEndDate;
             this.OutCollDate = MigrationDPOutcome.OutCollDate;
 
+        }
+        #endregion
+
+        public event PropertyChangedEventHandler OutcomeChanged;
+
+        public void OnOutcomeChanged()
+        {
+            if (OutcomeChanged!=null)
+                OutcomeChanged(this, new PropertyChangedEventArgs("From LD record"));
+        }
+        #region overrided methods
+        public override bool IsComplete
+        {
+            get
+            {
+                if (IncompleteMessage == string.Empty)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public override string IncompleteMessage
+        {
+            get
+            {
+                string message = string.Empty;
+
+                message += this["OutType"];
+                message += this["OutCode"];
+                return message;
+            }
         }
         #endregion
 
@@ -71,6 +103,11 @@ namespace ILR
         }
 
         #endregion
-
+        public void PropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(propertyName);
+            OnPropertyChanged("IsComplete");
+            OnOutcomeChanged();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -17,13 +18,13 @@ namespace ILR
         {
             get
             {
-                return this.DPOutcomeList.Exists(d => d.OutCollDate >= Message.CurrentYearStart);
+                return this.DPOutcomeList.Any(d => d.OutCollDate >= Message.CurrentYearStart);
             }
         }
         #endregion
         #region ILR Properties
-        public string LearnRefNumber { get { return XMLHelper.GetChildValue("LearnRefNumber", Node, NSMgr); } set { XMLHelper.SetChildValue("LearnRefNumber", value, Node, NSMgr); OnPropertyChanged("LearnRefNumber"); } }
-        public long? ULN { get { string ULN = XMLHelper.GetChildValue("ULN", Node, NSMgr); return (ULN != null ? long.Parse(ULN) : (long?)null); } set { XMLHelper.SetChildValue("ULN", value, Node, NSMgr); OnPropertyChanged("ULN"); } }
+        public string LearnRefNumber { get { return XMLHelper.GetChildValue("LearnRefNumber", Node, NSMgr); } set { XMLHelper.SetChildValue("LearnRefNumber", value, Node, NSMgr); PropertyChanged("LearnRefNumber"); } }
+        public long? ULN { get { string ULN = XMLHelper.GetChildValue("ULN", Node, NSMgr); return (ULN != null ? long.Parse(ULN) : (long?)null); } set { XMLHelper.SetChildValue("ULN", value, Node, NSMgr); PropertyChanged("ULN"); } }
 
         public int OutcomeCount
         {
@@ -35,8 +36,40 @@ namespace ILR
 
         #endregion
 
-        #region ILR Child Entites
-        public List<DPOutcome> DPOutcomeList = new List<DPOutcome>();
+        #region Overrided methods
+
+        public override bool IsComplete
+        {
+            get
+            {
+                if (IncompleteMessage == string.Empty)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public override string IncompleteMessage
+        {
+            get
+            {
+                string message = string.Empty;
+
+                message += this["LearnRefNumber"];
+                message += this["ULN"];
+
+                foreach (var dp in this.DPOutcomeList.Where(dp => !dp.IsComplete))
+                {
+                    message += dp.IncompleteMessage;
+                }
+
+                return message;
+            }
+        }
+        #endregion
+
+                #region ILR Child Entites
+        public ObservableCollection<DPOutcome> DPOutcomeList = new ObservableCollection<DPOutcome>();
         #endregion
 
         #region Child Entity Creation
@@ -44,11 +77,17 @@ namespace ILR
         {
             XmlNode newNode = Node.OwnerDocument.CreateElement("DPOutcome", NSMgr.LookupNamespace("ia"));
             DPOutcome newInstance = new DPOutcome(newNode, NSMgr);
+            newInstance.OutcomeChanged += NewInstance_OutcomeChanged;
             //XmlNode prevNode = DPOutcomeList.Last().Node;
             DPOutcomeList.Add(newInstance);
             //Node.InsertAfter(newNode, prevNode);
             Node.AppendChild(newNode);
             return newInstance;
+        }
+
+        private void NewInstance_OutcomeChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged("IsComplete");
         }
         #endregion
 
@@ -60,7 +99,11 @@ namespace ILR
 
             XmlNodeList dpOutcomeNodes = LearnerDestinationandProgressionNode.SelectNodes("./ia:DPOutcome", NSMgr);
             foreach (XmlNode node in dpOutcomeNodes)
-                DPOutcomeList.Add(new DPOutcome(node, NSMgr));
+            {
+                var dbOutcome = new DPOutcome(node, NSMgr);
+                dbOutcome.OutcomeChanged += NewInstance_OutcomeChanged;
+                DPOutcomeList.Add(dbOutcome);
+            }
         }
         internal LearnerDestinationandProgression(LearnerDestinationandProgression MigrationLearnerDestinationandProgression, XmlNode Node, XmlNamespaceManager NSMgr)
         {
@@ -84,6 +127,7 @@ namespace ILR
         public void Delete(DPOutcome DPOutcome)
         {
             Node.RemoveChild(DPOutcome.Node);
+            DPOutcome.OutcomeChanged -= NewInstance_OutcomeChanged;
             this.DPOutcomeList.Remove(DPOutcome);
         }
         #endregion
@@ -139,6 +183,12 @@ namespace ILR
             }
         }
         #endregion
+
+        public void PropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(propertyName);
+            OnPropertyChanged("IsComplete");
+        }
 
     }
 }

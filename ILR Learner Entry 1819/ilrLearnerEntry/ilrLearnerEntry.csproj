@@ -198,6 +198,9 @@
     <Compile Include="UserControls\LearnerEditorControls\EmploymentStatusControls\ucEmploymentStatusList.xaml.cs">
       <DependentUpon>ucEmploymentStatusList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\LearnerEditorControls\LearnerControls\ucLearnerContacePreferences.xaml.cs">
+      <DependentUpon>ucLearnerContacePreferences.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\LearnerEditorControls\LearnerControls\ucLearnerFAMs.xaml.cs">
       <DependentUpon>ucLearnerFAMs.xaml</DependentUpon>
     </Compile>
@@ -323,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\LearnerEditorControls\EmploymentStatusControls\ucEmploymentStatusList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LearnerEditorControls\LearnerControls\ucLearnerContacePreferences.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

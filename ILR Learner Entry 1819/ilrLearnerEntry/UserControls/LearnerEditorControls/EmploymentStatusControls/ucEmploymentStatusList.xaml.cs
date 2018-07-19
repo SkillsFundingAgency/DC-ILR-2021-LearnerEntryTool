@@ -102,27 +102,38 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
             EmploymentStatusItemsCV.Refresh();
             OnPropertyChanged("EmploymentStatusItemsCV");
             EmploymentStatusItemsCV.MoveCurrentTo(tmp);
+            tmp.IsSelected = true;
+            lv.SelectedItem = tmp;
             ShouldShowListView();
         }
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
+
+            object buttonDataContext = (sender as Button).DataContext;
+            ListBoxItem lbi = (ListBoxItem) lv.ItemContainerGenerator.ContainerFromItem(buttonDataContext);
+            lbi.IsSelected = true;
+
             if (EmploymentStatusItemsCV.CurrentItem != null)
             {
                 ILR.LearnerEmploymentStatus les2Remove = EmploymentStatusItemsCV.CurrentItem as ILR.LearnerEmploymentStatus;
                 if (les2Remove != null)
                 {
                     _learner.Delete(les2Remove);
+                    EmploymentStatusItemsCV.Refresh();
                     EmploymentStatusItemsCV.MoveCurrentToPrevious();
                     LearnerEmploymentStatus ldTmp = EmploymentStatusItemsCV.CurrentItem as LearnerEmploymentStatus;
                     if (ldTmp != null)
                     {
                         ldTmp.IsSelected = true;
+                        lv.SelectedItem = ldTmp;
                     }
                 }
             }
-            EmploymentStatusItemsCV.Refresh();
+            //EmploymentStatusItemsCV.Refresh();
+            OnPropertyChanged("CurrentItem");
             OnPropertyChanged("EmploymentStatusItemsCV");
             ShouldShowListView();
+            lv.Focus();
 
         }
 
@@ -170,8 +181,9 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
 
         protected bool ThrowOnInvalidPropertyName { get; set; }
 
+
         #endregion
 
-      
+        
     }
 }
