@@ -261,8 +261,10 @@
                         <TabItem Header=" Learner HE Information " IsSelected="False" >
                             <LearnerControls:ucLearnerHEInformation x:Name="LearnerHEInformationControl" />
                         </TabItem>
-
-                    </TabControl>
+						<TabItem Header=" Contact Preferences " IsSelected="False" >
+							<LearnerControls:ucLearnerContacePreferences x:Name="LearnerContacePreferencesControl" />
+						</TabItem>
+					</TabControl>
                 </TabItem>
                 <TabItem Header=" Learning Delivery "  IsSelected="False">
                     <LearnerDelControls:ucLearningDeliveryList x:Name="LearningDeliveryListControl" />
