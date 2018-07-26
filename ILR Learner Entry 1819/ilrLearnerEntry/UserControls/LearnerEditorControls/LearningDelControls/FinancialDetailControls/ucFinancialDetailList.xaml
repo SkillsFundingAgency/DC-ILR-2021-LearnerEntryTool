@@ -38,6 +38,7 @@
                         Content="Remove" 
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
+						CommandParameter="{Binding}"
                         FontSize="8"
                         TabIndex="2" 
                         MinWidth="45"
@@ -51,8 +52,7 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Margin="5,5,5,5" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition  />
             </Grid.RowDefinitions>
@@ -60,7 +60,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0" 
-                Grid.Column="0" 
+                Grid.Column="2" 
                 x:Name="btnNew" 
                 Content="Add" 
                 Panel.ZIndex="200" 
@@ -84,11 +84,11 @@
                 ItemTemplate="{StaticResource DataTemplate}" 
                 ItemContainerStyle="{DynamicResource MyListBoxItemStyle}"
                 SelectionMode="Single" 
-                IsSynchronizedWithCurrentItem="True"
+                IsSynchronizedWithCurrentItem="False"
                 HorizontalContentAlignment="Stretch"
                 x:Name="lv" 
                 SelectionChanged="lv_SelectionChanged" 
-                MaxHeight="75"
+                MaxHeight="90"
                 MinHeight="25" 
                 Margin="3,1,65,0"
             />
