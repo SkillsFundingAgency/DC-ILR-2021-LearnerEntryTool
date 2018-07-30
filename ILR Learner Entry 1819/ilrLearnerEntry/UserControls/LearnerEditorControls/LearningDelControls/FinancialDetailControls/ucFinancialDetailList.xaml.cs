@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Threading;
 using ILR;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.FinancialDetailControls
@@ -52,17 +52,17 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				{
 					_apprenticeshipFinancialRecordList = GetTrailblazerList(_learningDelivery.ApprenticeshipFinancialRecordList);
 					ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_apprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
-					//ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
+					ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
 
 					if (_apprenticeshipFinancialRecordList.Count > 0)
 					{
 						(ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord).IsSelected = true;
 					}
-					ApprenticeshipFinancialItemsCV.Refresh();
+					//ApprenticeshipFinancialItemsCV.Refresh();
 				}
 				OnPropertyChanged("CurrentItem");
 				OnPropertyChanged("ApprenticeshipFinancialItemsCV");
-				ShouldShowListView();
+				//ShouldShowListView();
 			}
 		}
 		public ICollectionView ApprenticeshipFinancialItemsCV
@@ -93,9 +93,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
                // lv.SelectedItem = lv.Items.GetItemAt(rows.Count - 1);
                 //lv.ScrollIntoView(lv.SelectedItem);
-                ListViewItem item = lv.ItemContainerGenerator.ContainerFromItem(lv.SelectedItem) as ListViewItem;
-                if(item !=null)
-                    item.Focus();
+               // ListViewItem item = lv.ItemContainerGenerator.ContainerFromItem(lv.SelectedItem) as ListViewItem;
+             //   if(item !=null)
+                 //   item.Focus();
 
                 //if (lv.SelectedItem != null)
                 //{
@@ -128,7 +128,21 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 			{
                 LDFinancialDetailControl.CurrentItem = e.AddedItems[0] as ApprenticeshipFinancialRecord;
 
-               
+                
+
+                    Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(delegate
+
+                    {
+
+                        ListView view = sender as ListView;
+
+                        view.ScrollIntoView(view.SelectedItem);
+
+
+
+                    }));
+
+                
             }
 
 
@@ -140,51 +154,65 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 		{			   
 			ApprenticeshipFinancialRecord tmp = _learningDelivery.CreateApprenticeshipFinancialRecord();
 			_apprenticeshipFinancialRecordList = _learningDelivery.ApprenticeshipFinancialRecordList;
-			ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_learningDelivery.ApprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
-			ApprenticeshipFinancialItemsCV.MoveCurrentTo(tmp);
+             ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_learningDelivery.ApprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
+            tmp.IsSelected = true;
+            ApprenticeshipFinancialItemsCV.MoveCurrentTo(tmp);
 			ApprenticeshipFinancialItemsCV.Refresh();
 			OnPropertyChanged("ApprenticeshipFinancialItemsCV");
 			ShouldShowListView();
 		}
 		private void Remove_Click(object sender, RoutedEventArgs e)
 		{
-			if (ApprenticeshipFinancialItemsCV.CurrentItem != null)
-			{
-				ILR.ApprenticeshipFinancialRecord les2Remove = ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord;
+            var removeButton = sender as Button;
 
-				if (les2Remove != null)
-				{
-					_learningDelivery.Delete(les2Remove);
-					_apprenticeshipFinancialRecordList.Remove(les2Remove);
+            if (removeButton != null)
+            {
+                var parameter = removeButton.CommandParameter;
 
-					if (!ApprenticeshipFinancialItemsCV.MoveCurrentToPrevious())
-					{
-						ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
-						ApprenticeshipFinancialItemsCV.Refresh();
-						OnPropertyChanged("ApprenticeshipFinancialItemsCV");
-					}
-					if ((ApprenticeshipFinancialItemsCV.CurrentItem != null) && (ApprenticeshipFinancialItemsCV.CurrentItem != les2Remove))
-					{
-						ILR.ApprenticeshipFinancialRecord f = ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord;
-						f.IsSelected = true;
+                if (parameter != null)
+                {
+                    
+                    ILR.ApprenticeshipFinancialRecord les2Remove = parameter as ILR.ApprenticeshipFinancialRecord;
+                    les2Remove.IsSelected = true;
+                    
+                    if (les2Remove != null)
+                    {
+                        ApprenticeshipFinancialItemsCV.MoveCurrentTo(les2Remove);
+                        _learningDelivery.Delete(les2Remove);
+                        _apprenticeshipFinancialRecordList.Remove(les2Remove);
 
-					}
-					else
-					{
-						ApprenticeshipFinancialItemsCV.MoveCurrentToNext();
-						if (ApprenticeshipFinancialItemsCV.CurrentItem != null)
-						{
-							ILR.ApprenticeshipFinancialRecord f = ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord;
-							f.IsSelected = true;
+                        if (!ApprenticeshipFinancialItemsCV.MoveCurrentToPrevious())
+                        {
+                            ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
+                            ApprenticeshipFinancialItemsCV.Refresh();
+                            OnPropertyChanged("ApprenticeshipFinancialItemsCV");
+                        } 
+                        
+                        if ((ApprenticeshipFinancialItemsCV.CurrentItem != null) && (ApprenticeshipFinancialItemsCV.CurrentItem != les2Remove))
+                        {
+                            ILR.ApprenticeshipFinancialRecord f = ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord;
+                            f.IsSelected = true;
 
-						}
-					}
-				}
-				ApprenticeshipFinancialItemsCV.Refresh();
-			}
-			OnPropertyChanged("ApprenticeshipFinancialItemsCV");
-			ShouldShowListView();
+                        }
+                        else
+                        {
 
+
+                            ApprenticeshipFinancialItemsCV.MoveCurrentToNext();
+                            if (ApprenticeshipFinancialItemsCV.CurrentItem != null)
+                            {
+                                ILR.ApprenticeshipFinancialRecord f = ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord;
+                                f.IsSelected = true;
+
+                            }
+                        }
+                        
+                    }
+                    ApprenticeshipFinancialItemsCV.Refresh();
+                }
+                OnPropertyChanged("ApprenticeshipFinancialItemsCV");
+                ShouldShowListView();
+            }
 		}
 
 		#endregion
