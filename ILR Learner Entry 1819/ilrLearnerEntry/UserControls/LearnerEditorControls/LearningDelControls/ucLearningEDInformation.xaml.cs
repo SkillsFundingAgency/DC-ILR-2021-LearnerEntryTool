@@ -527,7 +527,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                             bool result = Int32.TryParse(SOC2000, out number);
                             if (!result)
                             {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", "Occupation code");
                             }
                         }
                         break;

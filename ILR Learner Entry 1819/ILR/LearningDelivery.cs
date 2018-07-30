@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Data;
 using System.Text.RegularExpressions;
+using ilrLearnerEntry.Utils;
 
 namespace ILR
 {
@@ -55,6 +56,11 @@ namespace ILR
                 message += this["FundModel"];
                 message += this["CompStatus"];
                 message += this["DelLocPostCode"];
+
+                message += this["StdCode"];
+                message += this["FworkCode"];
+                
+
                 LearningDeliveryWorkPlacementList.ForEach(wp => message += wp.IncompleteMessage);
                 return message;
             }
@@ -96,9 +102,9 @@ namespace ILR
         public DateTime? LearnPlanEndDate { get { string LearnPlanEndDate = XMLHelper.GetChildValue("LearnPlanEndDate", Node, NSMgr); return (LearnPlanEndDate != null ? DateTime.Parse(LearnPlanEndDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("LearnPlanEndDate", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("LearnPlanEndDate"); } }
         public int? FundModel { get { string FundModel = XMLHelper.GetChildValue("FundModel", Node, NSMgr); return (FundModel != null ? int.Parse(FundModel) : (int?)null); } set { XMLHelper.SetChildValue("FundModel", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("FundModel"); } }
         public int? ProgType { get { string ProgType = XMLHelper.GetChildValue("ProgType", Node, NSMgr); return (ProgType != null ? int.Parse(ProgType) : (int?)null); } set { XMLHelper.SetChildValue("ProgType", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("ProgType"); } }
-        public int? FworkCode { get { string FworkCode = XMLHelper.GetChildValue("FworkCode", Node, NSMgr); return (FworkCode != null ? int.Parse(FworkCode) : (int?)null); } set { XMLHelper.SetChildValue("FworkCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("FworkCode"); } }
+        public string FworkCode { get { return XMLHelper.GetChildValue("FworkCode", Node, NSMgr);  } set { XMLHelper.SetChildValue("FworkCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("FworkCode"); } }
         public int? PwayCode { get { string PwayCode = XMLHelper.GetChildValue("PwayCode", Node, NSMgr); return (PwayCode != null ? int.Parse(PwayCode) : (int?)null); } set { XMLHelper.SetChildValue("PwayCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("PwayCode"); } }
-        public int? StdCode { get { string StdCode = XMLHelper.GetChildValue("StdCode", Node, NSMgr); return (StdCode != null ? int.Parse(StdCode) : _defaultStdCode); } set { XMLHelper.SetChildValue("StdCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("StdCode"); } }
+        public string StdCode { get { return XMLHelper.GetChildValue("StdCode", Node, NSMgr); } set { XMLHelper.SetChildValue("StdCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("StdCode"); } }
         public int? PartnerUKPRN { get { string PartnerUKPRN = XMLHelper.GetChildValue("PartnerUKPRN", Node, NSMgr); return (PartnerUKPRN != null ? int.Parse(PartnerUKPRN) : (int?)null); } set { XMLHelper.SetChildValue("PartnerUKPRN", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("PartnerUKPRN"); } }
         public string DelLocPostCode { get { return XMLHelper.GetChildValue("DelLocPostCode", Node, NSMgr); } set { XMLHelper.SetChildValue("DelLocPostCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("DelLocPostCode"); } }
         public int? AddHours { get { string AddHours = XMLHelper.GetChildValue("AddHours", Node, NSMgr); return (AddHours != null ? int.Parse(AddHours) : (int?)null); } set { XMLHelper.SetChildValue("AddHours", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("AddHours"); } }
@@ -870,7 +876,7 @@ namespace ILR
 
             int stdCode;
             if (MigrationLearningDelivery.HasFAMType("TBS") && int.TryParse(MigrationLearningDelivery.GetLegacyFAM("TBS").LearnDelFAMCode, out stdCode))
-                this.StdCode = stdCode;
+                this.StdCode = stdCode.ToString();
             else
                 this.StdCode = MigrationLearningDelivery.StdCode;
 
@@ -1172,6 +1178,9 @@ namespace ILR
             OnPropertyChanged("LearnPlanEndDate");
             OnPropertyChanged("FundModel");
             OnPropertyChanged("CompStatus");
+            OnPropertyChanged("StdCode");
+            OnPropertyChanged("FworkCode");
+            
             OnPropertyChanged("IsComplete");
             OnPropertyChanged("IncompleteMessage");
         }
@@ -1252,7 +1261,12 @@ namespace ILR
                         break;
                     case "FworkCode":
                         if (FworkCode != null)
-                            return CheckPropertyLength(FworkCode, CLASSNAME, columnName, TABS);
+                        {
+                            if (!CommonValidations.IsValidNumber(FworkCode))
+                                return $"Framework code should be numeric";
+                            else
+                                return CheckPropertyLength(FworkCode, CLASSNAME, columnName, TABS);
+                        }
                         break;
                     case "PwayCode":
                         if (PwayCode != null)
@@ -1260,7 +1274,12 @@ namespace ILR
                         break;
                     case "StdCode":
                         if (StdCode != null)
+                        {
+                            if (!CommonValidations.IsValidNumber(StdCode))
+                                return $"Apprenticeship standard code should be numeric";
+                            else
                             return CheckPropertyLength(StdCode, CLASSNAME, columnName, TABS);
+                        }
                         break;
                     case "PartnerUKPRN":
                         if (PartnerUKPRN != null)
@@ -1328,6 +1347,8 @@ namespace ILR
             return string.IsNullOrEmpty(SWSupAimId) ? true : regEx.Match(this.SWSupAimId).Success;
 
         }
+
+       
 
         #endregion
 
