@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Threading;
 using ILR;
 
 namespace ilrLearnerEntry.UserControls.EmploymentStatus
@@ -52,10 +52,10 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
                     this.DataContext = null;
                 }
                 EmploymentStatusItemsCV = CollectionViewSource.GetDefaultView(_learner.LearnerEmploymentStatusList as List<LearnerEmploymentStatus>);
-				if (_learner.LearnerEmploymentStatusList.Count > 0)
-				{
-					(EmploymentStatusItemsCV.CurrentItem as ILR.LearnerEmploymentStatus).IsSelected = true;
-				}
+                if (_learner.LearnerEmploymentStatusList.Count > 0)
+                {
+                    (EmploymentStatusItemsCV.CurrentItem as ILR.LearnerEmploymentStatus).IsSelected = true;
+                }
                 EmploymentStatusItemsCV.MoveCurrentToFirst();
                 EmploymentStatusItemsCV.Refresh();
                 OnPropertyChanged("CurrentItem");
@@ -93,48 +93,104 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
             if (e.AddedItems.Count > 0)
             {
                 EmpStausItemControl.CurrentItem = e.AddedItems[0] as LearnerEmploymentStatus;
+
+                Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(delegate
+                {
+                    ListView view = sender as ListView;
+                    view.ScrollIntoView(view.SelectedItem);
+                }));
             }
         }
 
-        private void  Add_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
             LearnerEmploymentStatus tmp = _learner.CreateLearnerEmploymentStatus();
+            tmp.IsSelected = true;
+            EmploymentStatusItemsCV.MoveCurrentTo(tmp);
             EmploymentStatusItemsCV.Refresh();
             OnPropertyChanged("EmploymentStatusItemsCV");
-            EmploymentStatusItemsCV.MoveCurrentTo(tmp);
-            tmp.IsSelected = true;
             lv.SelectedItem = tmp;
             ShouldShowListView();
         }
+
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
+            //var removeButtonDataContext = ((Button) sender).DataContext;
 
-            object buttonDataContext = (sender as Button).DataContext;
-            ListBoxItem lbi = (ListBoxItem) lv.ItemContainerGenerator.ContainerFromItem(buttonDataContext);
-            lbi.IsSelected = true;
+            //ListBoxItem lbi = (ListBoxItem) lv.ItemContainerGenerator.ContainerFromItem(removeButtonDataContext);
+            //lbi.IsSelected = true;
 
-            if (EmploymentStatusItemsCV.CurrentItem != null)
+            //if (EmploymentStatusItemsCV.CurrentItem != null)
+            //{
+            //    ILR.LearnerEmploymentStatus les2Remove = EmploymentStatusItemsCV.CurrentItem as ILR.LearnerEmploymentStatus;
+            //    if (les2Remove != null)
+            //    {
+            //        _learner.Delete(les2Remove);
+            //        EmploymentStatusItemsCV.Refresh();
+            //        EmploymentStatusItemsCV.MoveCurrentToPrevious();
+            //        LearnerEmploymentStatus ldTmp = EmploymentStatusItemsCV.CurrentItem as LearnerEmploymentStatus;
+            //        if (ldTmp != null)
+            //        {
+            //            ldTmp.IsSelected = true;
+            //            lv.SelectedItem = ldTmp;
+            //        }
+            //    }
+            //}
+            ////EmploymentStatusItemsCV.Refresh();
+            //OnPropertyChanged("CurrentItem");
+            //OnPropertyChanged("EmploymentStatusItemsCV");
+            //ShouldShowListView();
+            //lv.Focus();
+
+
+            var removeButton = sender as Button;
+
+            if (removeButton != null)
             {
-                ILR.LearnerEmploymentStatus les2Remove = EmploymentStatusItemsCV.CurrentItem as ILR.LearnerEmploymentStatus;
-                if (les2Remove != null)
+                var parameter = removeButton.CommandParameter;
+
+                if (parameter != null)
                 {
-                    _learner.Delete(les2Remove);
-                    EmploymentStatusItemsCV.Refresh();
-                    EmploymentStatusItemsCV.MoveCurrentToPrevious();
-                    LearnerEmploymentStatus ldTmp = EmploymentStatusItemsCV.CurrentItem as LearnerEmploymentStatus;
-                    if (ldTmp != null)
+                    LearnerEmploymentStatus les2Remove = parameter as LearnerEmploymentStatus;
+                    les2Remove.IsSelected = true;
+
+                    if (les2Remove != null)
                     {
-                        ldTmp.IsSelected = true;
-                        lv.SelectedItem = ldTmp;
+                        EmploymentStatusItemsCV.MoveCurrentTo(les2Remove);
+                        _learner.Delete(les2Remove);
+
+                        if (!EmploymentStatusItemsCV.MoveCurrentToPrevious())
+                        {
+                            EmploymentStatusItemsCV.MoveCurrentToFirst();
+                            EmploymentStatusItemsCV.Refresh();
+                            OnPropertyChanged("EmploymentStatusItemsCV");
+                        }
+
+                        if (EmploymentStatusItemsCV.CurrentItem != null &&
+                            EmploymentStatusItemsCV.CurrentItem != les2Remove)
+                        {
+                            LearnerEmploymentStatus ldTmp =
+                                EmploymentStatusItemsCV.CurrentItem as LearnerEmploymentStatus;
+                            ldTmp.IsSelected = true;
+                        }
+                        else
+                        {
+                            EmploymentStatusItemsCV.MoveCurrentToNext();
+                            if (EmploymentStatusItemsCV.CurrentItem != null)
+                            {
+                                LearnerEmploymentStatus ldTmp =
+                                    EmploymentStatusItemsCV.CurrentItem as LearnerEmploymentStatus;
+                                ldTmp.IsSelected = true;
+                            }
+                        }
+
                     }
+
+                    EmploymentStatusItemsCV.Refresh();
+                    OnPropertyChanged("EmploymentStatusItemsCV");
+                    ShouldShowListView();
                 }
             }
-            //EmploymentStatusItemsCV.Refresh();
-            OnPropertyChanged("CurrentItem");
-            OnPropertyChanged("EmploymentStatusItemsCV");
-            ShouldShowListView();
-            lv.Focus();
-
         }
 
         #endregion
@@ -184,6 +240,6 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
 
         #endregion
 
-        
+
     }
 }

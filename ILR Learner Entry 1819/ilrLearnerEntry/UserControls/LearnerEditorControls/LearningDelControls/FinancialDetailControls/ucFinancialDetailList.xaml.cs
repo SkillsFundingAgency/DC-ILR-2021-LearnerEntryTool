@@ -20,56 +20,56 @@ using ILR;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.FinancialDetailControls
 {
-	/// <summary>
-	/// Interaction logic for ucTrailblazerList.xaml
-	/// </summary>
-	public partial class ucFinancialDetailList : UserControl, INotifyPropertyChanged
-	{
-		#region Private Variables
-		private ILR.LearningDelivery _learningDelivery;
-		private List<ILR.ApprenticeshipFinancialRecord> _apprenticeshipFinancialRecordList = new List<ILR.ApprenticeshipFinancialRecord>(0);
-		#endregion
+    /// <summary>
+    /// Interaction logic for ucTrailblazerList.xaml
+    /// </summary>
+    public partial class ucFinancialDetailList : UserControl, INotifyPropertyChanged
+    {
+        #region Private Variables
+        private ILR.LearningDelivery _learningDelivery;
+        private List<ILR.ApprenticeshipFinancialRecord> _apprenticeshipFinancialRecordList = new List<ILR.ApprenticeshipFinancialRecord>(0);
+        #endregion
 
-		public ucFinancialDetailList()
-		{
-			InitializeComponent();
-			this.DataContext = this;
-		}
-
-		#region Public Properties
-
-		public LearningDelivery CurrentItem
-		{
-			get { return _learningDelivery; }
-			set
-			{
-				_learningDelivery = value;
-				if ((_learningDelivery == null) || (_learningDelivery.ApprenticeshipFinancialRecordList==null))
-				{
-					_apprenticeshipFinancialRecordList = null;
-				}
-				else
-				{
-					_apprenticeshipFinancialRecordList = GetTrailblazerList(_learningDelivery.ApprenticeshipFinancialRecordList);
-					ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_apprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
-					ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
-
-					if (_apprenticeshipFinancialRecordList.Count > 0)
-					{
-						(ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord).IsSelected = true;
-					}
-					//ApprenticeshipFinancialItemsCV.Refresh();
-				}
-				OnPropertyChanged("CurrentItem");
-				OnPropertyChanged("ApprenticeshipFinancialItemsCV");
-				//ShouldShowListView();
-			}
-		}
-		public ICollectionView ApprenticeshipFinancialItemsCV
+        public ucFinancialDetailList()
         {
-			get;
-			private set;
-		}
+            InitializeComponent();
+            this.DataContext = this;
+        }
+
+        #region Public Properties
+
+        public LearningDelivery CurrentItem
+        {
+            get { return _learningDelivery; }
+            set
+            {
+                _learningDelivery = value;
+                if ((_learningDelivery == null) || (_learningDelivery.ApprenticeshipFinancialRecordList == null))
+                {
+                    _apprenticeshipFinancialRecordList = null;
+                }
+                else
+                {
+                    _apprenticeshipFinancialRecordList = GetTrailblazerList(_learningDelivery.ApprenticeshipFinancialRecordList);
+                    ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_apprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
+                    ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
+
+                    if (_apprenticeshipFinancialRecordList.Count > 0)
+                    {
+                        (ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord).IsSelected = true;
+                    }
+                    //ApprenticeshipFinancialItemsCV.Refresh();
+                }
+                OnPropertyChanged("CurrentItem");
+                OnPropertyChanged("ApprenticeshipFinancialItemsCV");
+                //ShouldShowListView();
+            }
+        }
+        public ICollectionView ApprenticeshipFinancialItemsCV
+        {
+            get;
+            private set;
+        }
 
         public DataTable FinTypeList { set; get; }
         public DataTable FinCodetList_TNP { set; get; }
@@ -78,24 +78,24 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         #region PRIVATE Methods
         private List<ILR.ApprenticeshipFinancialRecord> GetTrailblazerList(List<ILR.ApprenticeshipFinancialRecord> inputlist)
-		{
-			return inputlist.ToList();
-		}
-		private void ShouldShowListView()
-		{
-			if ((_learningDelivery == null) || (_learningDelivery.ApprenticeshipFinancialRecordList.Count == 0))
-			{
+        {
+            return inputlist.ToList();
+        }
+        private void ShouldShowListView()
+        {
+            if ((_learningDelivery == null) || (_learningDelivery.ApprenticeshipFinancialRecordList.Count == 0))
+            {
                 LDFinancialDetailControl.Visibility = System.Windows.Visibility.Collapsed;
-			}
-			else if (_learningDelivery.ApprenticeshipFinancialRecordList.Count>0)
-			{
+            }
+            else if (_learningDelivery.ApprenticeshipFinancialRecordList.Count > 0)
+            {
                 LDFinancialDetailControl.Visibility = System.Windows.Visibility.Visible;
 
-               // lv.SelectedItem = lv.Items.GetItemAt(rows.Count - 1);
+                // lv.SelectedItem = lv.Items.GetItemAt(rows.Count - 1);
                 //lv.ScrollIntoView(lv.SelectedItem);
-               // ListViewItem item = lv.ItemContainerGenerator.ContainerFromItem(lv.SelectedItem) as ListViewItem;
-             //   if(item !=null)
-                 //   item.Focus();
+                // ListViewItem item = lv.ItemContainerGenerator.ContainerFromItem(lv.SelectedItem) as ListViewItem;
+                //   if(item !=null)
+                //   item.Focus();
 
                 //if (lv.SelectedItem != null)
                 //{
@@ -115,54 +115,40 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 //    }
                 //}
             }
-			else
-			{
+            else
+            {
                 LDFinancialDetailControl.Visibility = System.Windows.Visibility.Visible;
-			}
-			lv.Visibility = System.Windows.Visibility.Visible;
-		}
-
-		private void lv_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (e.AddedItems.Count > 0)
-			{
-                LDFinancialDetailControl.CurrentItem = e.AddedItems[0] as ApprenticeshipFinancialRecord;
-
-                
-
-                    Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(delegate
-
-                    {
-
-                        ListView view = sender as ListView;
-
-                        view.ScrollIntoView(view.SelectedItem);
-
-
-
-                    }));
-
-                
             }
-
-
-
-
+            lv.Visibility = System.Windows.Visibility.Visible;
         }
 
-		private void Add_Click(object sender, RoutedEventArgs e)
-		{			   
-			ApprenticeshipFinancialRecord tmp = _learningDelivery.CreateApprenticeshipFinancialRecord();
-			_apprenticeshipFinancialRecordList = _learningDelivery.ApprenticeshipFinancialRecordList;
-             ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_learningDelivery.ApprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
+        private void lv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                LDFinancialDetailControl.CurrentItem = e.AddedItems[0] as ApprenticeshipFinancialRecord;
+
+                Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(delegate
+                {
+                    ListView view = sender as ListView;
+                    view.ScrollIntoView(view.SelectedItem);
+                }));
+            }
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            ApprenticeshipFinancialRecord tmp = _learningDelivery.CreateApprenticeshipFinancialRecord();
+            _apprenticeshipFinancialRecordList = _learningDelivery.ApprenticeshipFinancialRecordList;
+            ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_learningDelivery.ApprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
             tmp.IsSelected = true;
             ApprenticeshipFinancialItemsCV.MoveCurrentTo(tmp);
-			ApprenticeshipFinancialItemsCV.Refresh();
-			OnPropertyChanged("ApprenticeshipFinancialItemsCV");
-			ShouldShowListView();
-		}
-		private void Remove_Click(object sender, RoutedEventArgs e)
-		{
+            ApprenticeshipFinancialItemsCV.Refresh();
+            OnPropertyChanged("ApprenticeshipFinancialItemsCV");
+            ShouldShowListView();
+        }
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
             var removeButton = sender as Button;
 
             if (removeButton != null)
@@ -171,10 +157,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
                 if (parameter != null)
                 {
-                    
+
                     ILR.ApprenticeshipFinancialRecord les2Remove = parameter as ILR.ApprenticeshipFinancialRecord;
                     les2Remove.IsSelected = true;
-                    
+
                     if (les2Remove != null)
                     {
                         ApprenticeshipFinancialItemsCV.MoveCurrentTo(les2Remove);
@@ -186,9 +172,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                             ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
                             ApprenticeshipFinancialItemsCV.Refresh();
                             OnPropertyChanged("ApprenticeshipFinancialItemsCV");
-                        } 
-                        
-                        if ((ApprenticeshipFinancialItemsCV.CurrentItem != null) && (ApprenticeshipFinancialItemsCV.CurrentItem != les2Remove))
+                        }
+
+                        if (ApprenticeshipFinancialItemsCV.CurrentItem != null && ApprenticeshipFinancialItemsCV.CurrentItem != les2Remove)
                         {
                             ILR.ApprenticeshipFinancialRecord f = ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord;
                             f.IsSelected = true;
@@ -196,69 +182,66 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                         }
                         else
                         {
-
-
                             ApprenticeshipFinancialItemsCV.MoveCurrentToNext();
                             if (ApprenticeshipFinancialItemsCV.CurrentItem != null)
                             {
                                 ILR.ApprenticeshipFinancialRecord f = ApprenticeshipFinancialItemsCV.CurrentItem as ILR.ApprenticeshipFinancialRecord;
                                 f.IsSelected = true;
-
                             }
                         }
-                        
                     }
                     ApprenticeshipFinancialItemsCV.Refresh();
-                }
+                
                 OnPropertyChanged("ApprenticeshipFinancialItemsCV");
                 ShouldShowListView();
+                }
             }
-		}
+        }
 
-		#endregion
+        #endregion
 
-		#region INotifyPropertyChanged Members
-		/// <summary>
-		/// INotifyPropertyChanged requires a property called PropertyChanged.
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
+        #region INotifyPropertyChanged Members
+        /// <summary>
+        /// INotifyPropertyChanged requires a property called PropertyChanged.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
-		/// <summary>
-		/// Fires the event for the property when it changes.
-		/// </summary>
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
+        /// <summary>
+        /// Fires the event for the property when it changes.
+        /// </summary>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
 #if DEBUG
-			VerifyPropertyName(propertyName);
+            VerifyPropertyName(propertyName);
 #endif
-			if (PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 
-		}
+        }
 
-		[Conditional("DEBUG")]
-		[DebuggerStepThrough]
-		public void VerifyPropertyName(string propertyName)
-		{
-			// Verify that the property name matches a real,  
-			// public, instance property on this object.
-			if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-			{
-				var msg = "Invalid property name: " + propertyName;
+        [Conditional("DEBUG")]
+        [DebuggerStepThrough]
+        public void VerifyPropertyName(string propertyName)
+        {
+            // Verify that the property name matches a real,  
+            // public, instance property on this object.
+            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+            {
+                var msg = "Invalid property name: " + propertyName;
 
-				if (this.ThrowOnInvalidPropertyName)
-				{
-					throw new Exception(msg);
-				}
-				else
-				{
-					Debug.Fail(msg);
-				}
-			}
-		}
+                if (this.ThrowOnInvalidPropertyName)
+                {
+                    throw new Exception(msg);
+                }
+                else
+                {
+                    Debug.Fail(msg);
+                }
+            }
+        }
 
-		protected bool ThrowOnInvalidPropertyName { get; set; }
+        protected bool ThrowOnInvalidPropertyName { get; set; }
 
-		#endregion
-	}
+        #endregion
+    }
 }
