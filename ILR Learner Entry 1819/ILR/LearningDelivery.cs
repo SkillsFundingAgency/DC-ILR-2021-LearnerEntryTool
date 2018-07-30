@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Data;
 using System.Text.RegularExpressions;
-using ilrLearnerEntry.Utils;
+using Utils;
 
 namespace ILR
 {

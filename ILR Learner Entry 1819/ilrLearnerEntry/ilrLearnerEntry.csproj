@@ -179,6 +179,9 @@
     <Compile Include="..\ILR\Source.cs">
       <Link>BusinessEntities\ILR\Source.cs</Link>
     </Compile>
+    <Compile Include="..\ILR\Utils\CommonValidations.cs">
+      <Link>BusinessEntities\ILR\CommonValidations.cs</Link>
+    </Compile>
     <Compile Include="..\ILR\XMLHelper.cs">
       <Link>Processing\XMLHelper.cs</Link>
     </Compile>
@@ -279,7 +282,6 @@
     <Compile Include="UserControls\winAppAlreadyRunning.xaml.cs">
       <DependentUpon>winAppAlreadyRunning.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\CommonValidations.cs" />
     <Compile Include="Utils\FileStuff.cs" />
     <Compile Include="MaskBehavior\TextBoxMaskBehavior.cs" />
     <Compile Include="Utils\LLDDListDisplayItem.cs" />
