@@ -52,7 +52,6 @@
                      HorizontalContentAlignment="Left" 
                      MaxLength="20" TabIndex="2" Width="150" 
                      Margin="2,4,47,2" />
-
             </Grid>
         </Grid>
     </ScrollViewer>
