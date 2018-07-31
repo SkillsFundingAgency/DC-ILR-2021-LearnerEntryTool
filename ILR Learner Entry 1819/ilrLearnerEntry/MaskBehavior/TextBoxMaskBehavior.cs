@@ -79,6 +79,35 @@ namespace ilrLearnerEntry.MaskBehavior
         }
         #endregion
 
+        #region MaximumLength Property
+
+        public static double GetMaximumLength(DependencyObject obj)
+        {
+            return (double)obj.GetValue(MaximumLengthProperty);
+        }
+
+        public static void SetMaximumLength(DependencyObject obj, double value)
+        {
+            obj.SetValue(MaximumLengthProperty, value);
+        }
+
+        public static readonly DependencyProperty MaximumLengthProperty =
+            DependencyProperty.RegisterAttached(
+                "MaximumLength",
+                typeof(double),
+                typeof(TextBoxMaskBehavior),
+                new FrameworkPropertyMetadata(double.NaN, MaximumLengthChangedCallback)
+                );
+
+        private static void MaximumLengthChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TextBox _this = (d as TextBox);
+            ValidateTextBox(_this);
+        }
+        #endregion
+
+
+
         #region Mask Property
 
         public static MaskType GetMask(DependencyObject obj)
@@ -149,6 +178,18 @@ namespace ilrLearnerEntry.MaskBehavior
         {
             TextBox _this = (sender as TextBox);
             bool isValid = IsSymbolValid(GetMask(_this), e.Text);
+
+            var maxLen = GetMaximumLength(_this);
+            if(maxLen>0)
+            {
+                if (_this.Text.Length == maxLen && string.IsNullOrEmpty(_this.SelectedText))
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+            }
+
             e.Handled = !isValid;
             if (isValid)
             {
