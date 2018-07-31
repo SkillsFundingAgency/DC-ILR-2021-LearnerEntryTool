@@ -1,5 +1,5 @@
 next-version: 3.0.1
-mode: ContinuousDeployment
+mode: ContinuousDelivery
 assembly-versioning-scheme: MajorMinorPatch
 assembly-informational-format: '{NuGetVersion}'
 branches: {}
