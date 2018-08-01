@@ -28,25 +28,25 @@ namespace ILR
 		public string NUMHUS { get { return XMLHelper.GetChildValue("NUMHUS", Node, NSMgr); } set { XMLHelper.SetChildValue("NUMHUS", value, Node, NSMgr); OnPropertyChanged("NUMHUS"); } }
 		public string SSN { get { return XMLHelper.GetChildValue("SSN", Node, NSMgr); } set { XMLHelper.SetChildValue("SSN", value, Node, NSMgr); OnPropertyChanged("SSN"); } }
 		public string QUALENT3 { get { return XMLHelper.GetChildValue("QUALENT3", Node, NSMgr); } set { XMLHelper.SetChildValue("QUALENT3", value, Node, NSMgr); OnPropertyChanged("QUALENT3"); } }
-		public int? SOC2000 { get { string SOC2000 = XMLHelper.GetChildValue("SOC2000", Node, NSMgr); return (SOC2000 != null ? int.Parse(SOC2000) : (int?)null); } set { XMLHelper.SetChildValue("SOC2000", value, Node, NSMgr); OnPropertyChanged("SOC2000"); } }
-		public int? SEC { get { string SEC = XMLHelper.GetChildValue("SEC", Node, NSMgr); return (SEC != null ? int.Parse(SEC) : (int?)null); } set { XMLHelper.SetChildValue("SEC", value, Node, NSMgr); OnPropertyChanged("SEC"); } }
+		public string SOC2000 { get { return XMLHelper.GetChildValue("SOC2000", Node, NSMgr); } set { XMLHelper.SetChildValue("SOC2000", value, Node, NSMgr); OnPropertyChanged("SOC2000"); } }
+		public string SEC { get { return XMLHelper.GetChildValue("SEC", Node, NSMgr); } set { XMLHelper.SetChildValue("SEC", value, Node, NSMgr); OnPropertyChanged("SEC"); } }
 		public string UCASAPPID { get { return XMLHelper.GetChildValue("UCASAPPID", Node, NSMgr); } set { XMLHelper.SetChildValue("UCASAPPID", value, Node, NSMgr); OnPropertyChanged("UCASAPPID"); } }
-		public int? TYPEYR { get { string TYPEYR = XMLHelper.GetChildValue("TYPEYR", Node, NSMgr); return (TYPEYR != null ? int.Parse(TYPEYR) : (int?)null); } set { XMLHelper.SetChildValue("TYPEYR", value, Node, NSMgr); OnPropertyChanged("TYPEYR"); } }
-		public int? MODESTUD { get { string MODESTUD = XMLHelper.GetChildValue("MODESTUD", Node, NSMgr); return (MODESTUD != null ? int.Parse(MODESTUD) : (int?)null); } set { XMLHelper.SetChildValue("MODESTUD", value, Node, NSMgr); OnPropertyChanged("MODESTUD"); } }
-		public int? FUNDLEV { get { string FUNDLEV = XMLHelper.GetChildValue("FUNDLEV", Node, NSMgr); return (FUNDLEV != null ? int.Parse(FUNDLEV) : (int?)null); } set { XMLHelper.SetChildValue("FUNDLEV", value, Node, NSMgr); OnPropertyChanged("FUNDLEV"); } }
-		public int? FUNDCOMP { get { string FUNDCOMP = XMLHelper.GetChildValue("FUNDCOMP", Node, NSMgr); return (FUNDCOMP != null ? int.Parse(FUNDCOMP) : (int?)null); } set { XMLHelper.SetChildValue("FUNDCOMP", value, Node, NSMgr); OnPropertyChanged("FUNDCOMP"); } }
-		public decimal? STULOAD { get { string STULOAD = XMLHelper.GetChildValue("STULOAD", Node, NSMgr); return (STULOAD != null ? decimal.Parse(STULOAD) : (decimal?)null); } set { XMLHelper.SetChildValue("STULOAD", value, Node, NSMgr); OnPropertyChanged("STULOAD"); } }
-		public int? YEARSTU { get { string YEARSTU = XMLHelper.GetChildValue("YEARSTU", Node, NSMgr); return (YEARSTU != null ? int.Parse(YEARSTU) : (int?)null); } set { XMLHelper.SetChildValue("YEARSTU", value, Node, NSMgr); OnPropertyChanged("YEARSTU"); } }
-		public int? MSTUFEE { get { string MSTUFEE = XMLHelper.GetChildValue("MSTUFEE", Node, NSMgr); return (MSTUFEE != null ? int.Parse(MSTUFEE) : (int?)null); } set { XMLHelper.SetChildValue("MSTUFEE", value, Node, NSMgr); OnPropertyChanged("MSTUFEE"); } }
-		public decimal? PCOLAB { get { string PCOLAB = XMLHelper.GetChildValue("PCOLAB", Node, NSMgr); return (PCOLAB != null ? decimal.Parse(PCOLAB) : (decimal?)null); } set { XMLHelper.SetChildValue("PCOLAB", value, Node, NSMgr); OnPropertyChanged("PCOLAB"); } }
-		public decimal? PCFLDCS { get { string PCFLDCS = XMLHelper.GetChildValue("PCFLDCS", Node, NSMgr); return (PCFLDCS != null ? decimal.Parse(PCFLDCS) : (decimal?)null); } set { XMLHelper.SetChildValue("PCFLDCS", value, Node, NSMgr); OnPropertyChanged("PCFLDCS"); } }
-		public decimal? PCSLDCS { get { string PCSLDCS = XMLHelper.GetChildValue("PCSLDCS", Node, NSMgr); return (PCSLDCS != null ? decimal.Parse(PCSLDCS) : (decimal?)null); } set { XMLHelper.SetChildValue("PCSLDCS", value, Node, NSMgr); OnPropertyChanged("PCSLDCS"); } }
-		public decimal? PCTLDCS { get { string PCTLDCS = XMLHelper.GetChildValue("PCTLDCS", Node, NSMgr); return (PCTLDCS != null ? decimal.Parse(PCTLDCS) : (decimal?)null); } set { XMLHelper.SetChildValue("PCTLDCS", value, Node, NSMgr); OnPropertyChanged("PCTLDCS"); } }
-		public int? SPECFEE { get { string SPECFEE = XMLHelper.GetChildValue("SPECFEE", Node, NSMgr); return (SPECFEE != null ? int.Parse(SPECFEE) : (int?)null); } set { XMLHelper.SetChildValue("SPECFEE", value, Node, NSMgr); OnPropertyChanged("SPECFEE"); } }
-        public int? NETFEE { get { string NETFEE = XMLHelper.GetChildValue("NETFEE", Node, NSMgr); return (NETFEE != null ? int.Parse(NETFEE) : (int?)null); } set { XMLHelper.SetChildValue("NETFEE", value, Node, NSMgr); OnPropertyChanged("NETFEE"); } }
-        public int? GROSSFEE { get { string GROSSFEE = XMLHelper.GetChildValue("GROSSFEE", Node, NSMgr); return (GROSSFEE != null ? int.Parse(GROSSFEE) : (int?)null); } set { XMLHelper.SetChildValue("GROSSFEE", value, Node, NSMgr); OnPropertyChanged("GROSSFEE"); } }
+		public string TYPEYR { get { return XMLHelper.GetChildValue("TYPEYR", Node, NSMgr);  } set { XMLHelper.SetChildValue("TYPEYR", value, Node, NSMgr); OnPropertyChanged("TYPEYR"); } }
+		public string MODESTUD { get { return  XMLHelper.GetChildValue("MODESTUD", Node, NSMgr); } set { XMLHelper.SetChildValue("MODESTUD", value, Node, NSMgr); OnPropertyChanged("MODESTUD"); } }
+		public string FUNDLEV { get { return  XMLHelper.GetChildValue("FUNDLEV", Node, NSMgr); } set { XMLHelper.SetChildValue("FUNDLEV", value, Node, NSMgr); OnPropertyChanged("FUNDLEV"); } }
+		public string FUNDCOMP { get { return XMLHelper.GetChildValue("FUNDCOMP", Node, NSMgr); } set { XMLHelper.SetChildValue("FUNDCOMP", value, Node, NSMgr); OnPropertyChanged("FUNDCOMP"); } }
+		public string STULOAD { get { return XMLHelper.GetChildValue("STULOAD", Node, NSMgr);  } set { XMLHelper.SetChildValue("STULOAD", value, Node, NSMgr); OnPropertyChanged("STULOAD"); } }
+		public string YEARSTU { get { return XMLHelper.GetChildValue("YEARSTU", Node, NSMgr);  } set { XMLHelper.SetChildValue("YEARSTU", value, Node, NSMgr); OnPropertyChanged("YEARSTU"); } }
+		public string MSTUFEE { get {return XMLHelper.GetChildValue("MSTUFEE", Node, NSMgr);  } set { XMLHelper.SetChildValue("MSTUFEE", value, Node, NSMgr); OnPropertyChanged("MSTUFEE"); } }
+		public string PCOLAB { get { return XMLHelper.GetChildValue("PCOLAB", Node, NSMgr);  } set { XMLHelper.SetChildValue("PCOLAB", value, Node, NSMgr); OnPropertyChanged("PCOLAB"); } }
+		public string PCFLDCS { get { return XMLHelper.GetChildValue("PCFLDCS", Node, NSMgr);  } set { XMLHelper.SetChildValue("PCFLDCS", value, Node, NSMgr); OnPropertyChanged("PCFLDCS"); } }
+		public string PCSLDCS { get { return XMLHelper.GetChildValue("PCSLDCS", Node, NSMgr);  } set { XMLHelper.SetChildValue("PCSLDCS", value, Node, NSMgr); OnPropertyChanged("PCSLDCS"); } }
+		public string PCTLDCS { get { return XMLHelper.GetChildValue("PCTLDCS", Node, NSMgr);  } set { XMLHelper.SetChildValue("PCTLDCS", value, Node, NSMgr); OnPropertyChanged("PCTLDCS"); } }
+		public string SPECFEE { get { return XMLHelper.GetChildValue("SPECFEE", Node, NSMgr); } set { XMLHelper.SetChildValue("SPECFEE", value, Node, NSMgr); OnPropertyChanged("SPECFEE"); } }
+        public string NETFEE { get { return XMLHelper.GetChildValue("NETFEE", Node, NSMgr);  } set { XMLHelper.SetChildValue("NETFEE", value, Node, NSMgr); OnPropertyChanged("NETFEE"); } }
+        public string GROSSFEE { get { return XMLHelper.GetChildValue("GROSSFEE", Node, NSMgr);  } set { XMLHelper.SetChildValue("GROSSFEE", value, Node, NSMgr); OnPropertyChanged("GROSSFEE"); } }
         public string DOMICILE { get { return XMLHelper.GetChildValue("DOMICILE", Node, NSMgr); } set { XMLHelper.SetChildValue("DOMICILE", value, Node, NSMgr); OnPropertyChanged("DOMICILE"); } }
-		public int? ELQ { get { string ELQ = XMLHelper.GetChildValue("ELQ", Node, NSMgr); return (ELQ != null ? int.Parse(ELQ) : (int?)null); } set { XMLHelper.SetChildValue("ELQ", value, Node, NSMgr); OnPropertyChanged("ELQ"); } }
+		public string ELQ { get { return XMLHelper.GetChildValue("ELQ", Node, NSMgr);  } set { XMLHelper.SetChildValue("ELQ", value, Node, NSMgr); OnPropertyChanged("ELQ"); } }
         public string HEPostCode { get { return XMLHelper.GetChildValue("HEPostCode", Node, NSMgr); } set { XMLHelper.SetChildValue("HEPostCode", value, Node, NSMgr); OnPropertyChanged("HEPostCode"); } }
         #endregion
 
@@ -75,8 +75,8 @@ namespace ILR
 			this.FUNDCOMP = MigrationLearningDeliveryHE.FUNDCOMP;
 			this.STULOAD = MigrationLearningDeliveryHE.STULOAD;
 			this.YEARSTU = MigrationLearningDeliveryHE.YEARSTU;
-			if (MigrationLearningDeliveryHE.MSTUFEE == 16 || MigrationLearningDeliveryHE.MSTUFEE == 21)
-				this.MSTUFEE = 97;
+			if (MigrationLearningDeliveryHE.MSTUFEE == "16" || MigrationLearningDeliveryHE.MSTUFEE == "21")
+				this.MSTUFEE = "97";
 			else
 				this.MSTUFEE = MigrationLearningDeliveryHE.MSTUFEE;
 			this.PCOLAB = MigrationLearningDeliveryHE.PCOLAB;
