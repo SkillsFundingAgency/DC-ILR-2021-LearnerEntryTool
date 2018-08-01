@@ -141,7 +141,7 @@
                 <TextBlock Grid.Row="4" Grid.Column="3" Text="Apprenticeship Standard Code : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="4" Grid.Column="4" 
                       TabIndex="7"
-                     Text="{Binding Path=CurrentItem.StdCode, Mode=TwoWay, UpdateSourceTrigger=Default, ValidatesOnDataErrors=true, NotifyOnValidationError=true, TargetNullValue=''}"  
+                     Text="{Binding Path=CurrentItem.StdCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
@@ -170,7 +170,7 @@
                 <TextBox Grid.Row="5" Grid.Column="4" 
                      Name="txtFrameworkCode" 
                       TabIndex="8"
-                     Text="{Binding Path=FworkCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=CurrentItem.FworkCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
@@ -178,7 +178,7 @@
                      Margin="3.2,0,0,3.4"  
                      Width="45"
                      MaxLength="3"
-                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True"/>
+                     IsUndoEnabled="True"/>
 
 
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="Is the aim a restart ? " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />

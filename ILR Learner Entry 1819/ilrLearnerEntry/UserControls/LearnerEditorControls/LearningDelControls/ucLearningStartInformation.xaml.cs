@@ -34,7 +34,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         private string _priorlearnfundadj = string.Empty;
         private string _progtype = string.Empty;
-        private string _fworkcode = string.Empty;
+        //private string _fworkcode = string.Empty;
         private string _pwaycode = string.Empty;
         private string _otherfundadj = string.Empty;
         private string _addhours = string.Empty;
@@ -61,7 +61,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 _learningDelivery = null;
                 _priorlearnfundadj = string.Empty;
                 _progtype = string.Empty;
-                _fworkcode = string.Empty;
+                //_fworkcode = string.Empty;
                 _pwaycode = string.Empty;
                 _otherfundadj = string.Empty;
                 _addhours = string.Empty;
@@ -73,7 +73,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     this.DataContext = this;
                     _priorlearnfundadj = _learningDelivery.PriorLearnFundAdj.ToString();
                     _progtype = _learningDelivery.ProgType.ToString();
-                    _fworkcode = _learningDelivery.FworkCode.ToString();
+                    //_fworkcode = _learningDelivery.FworkCode;
                     _pwaycode = _learningDelivery.PwayCode.ToString();
                     _otherfundadj = _learningDelivery.OtherFundAdj.ToString();
                     _addhours = _learningDelivery.AddHours.ToString();
@@ -88,7 +88,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 OnPropertyChanged("FundModelList");
                 OnPropertyChanged("PriorLearnFundAdj");
                 OnPropertyChanged("ProgType");
-                OnPropertyChanged("FworkCode");
+                //OnPropertyChanged("FworkCode");
                 OnPropertyChanged("PwayCode");
                 OnPropertyChanged("OtherFundAdj");
                 OnPropertyChanged("AddHours");
@@ -124,18 +124,18 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 else { CurrentItem.ProgType = null; }
             }
         }
-        public string FworkCode
-        {
-            get { return _fworkcode; }
-            set
-            {
-                _fworkcode = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-                if (result) { CurrentItem.FworkCode = number; }
-                else { CurrentItem.FworkCode = null; }
-            } 
-        }
+        //public string FworkCode
+        //{
+        //    get { return _fworkcode; }
+        //    set
+        //    {
+        //        _fworkcode = value;
+        //        int number;
+        //        bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+        //        if (result) { CurrentItem.FworkCode = number.ToString(); }
+        //        else { CurrentItem.FworkCode = null; }
+        //    } 
+        //}
         public string PwayCode
         {
             get { return _pwaycode; }
@@ -374,18 +374,18 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                             }
                         }
                         break;
-                    case "FworkCode":
-                        if (FworkCode != null && FworkCode.Length > 0)
-                        {
-                            sReturn += CheckPropertyLength(FworkCode, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(FworkCode, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
-                        }
-                        break;
+                    //case "FworkCode":
+                    //    if (FworkCode != null && FworkCode.Length > 0)
+                    //    {
+                    //        sReturn += CheckPropertyLength(FworkCode, CLASSNAME, columnName);
+                    //        int number;
+                    //        bool result = Int32.TryParse(FworkCode, out number);
+                    //        if (!result)
+                    //        {
+                    //            sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+                    //        }
+                    //    }
+                    //    break;
                     case "PwayCode":
                         if (PwayCode != null && PwayCode.Length > 0)
                         {
