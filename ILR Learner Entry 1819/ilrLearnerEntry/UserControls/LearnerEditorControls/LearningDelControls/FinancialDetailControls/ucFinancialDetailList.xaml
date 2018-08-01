@@ -8,10 +8,11 @@
              xmlns:IlrTypes="clr-namespace:ILR"
              xmlns:LearningDelControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls"             
              mc:Ignorable="d" 
-             d:DesignHeight="175" 
+             d:DesignHeight="300" 
              d:DesignWidth="800">
     <UserControl.Resources>
-
+        <IlrTypes:ApprenticeshipFinancialRecord x:Key="DesignTimeViewModel" />
+        
         <DataTemplate x:Key="DataTemplate" DataType="{x:Type IlrTypes:ApprenticeshipFinancialRecord}">
             <Border BorderThickness="1" CornerRadius="4" Margin="1" >
                 <Grid>
@@ -38,6 +39,7 @@
                         Content="Remove" 
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
+						CommandParameter="{Binding}"
                         FontSize="8"
                         TabIndex="2" 
                         MinWidth="45"
@@ -51,8 +53,7 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Margin="5,5,5,5" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition  />
             </Grid.RowDefinitions>
@@ -60,7 +61,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0" 
-                Grid.Column="0" 
+                Grid.Column="2" 
                 x:Name="btnNew" 
                 Content="Add" 
                 Panel.ZIndex="200" 
@@ -88,7 +89,7 @@
                 HorizontalContentAlignment="Stretch"
                 x:Name="lv" 
                 SelectionChanged="lv_SelectionChanged" 
-                MaxHeight="75"
+                MaxHeight="70"
                 MinHeight="25" 
                 Margin="3,1,65,0"
             />

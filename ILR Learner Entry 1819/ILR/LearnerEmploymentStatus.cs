@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
+using Utils;
 
 namespace ILR
 {
@@ -17,7 +18,7 @@ namespace ILR
         #region ILR Properties
         public int? EmpStat { get { string EmpStat = XMLHelper.GetChildValue("EmpStat", Node, NSMgr); return (EmpStat != null ? int.Parse(EmpStat) : (int?)null); } set { XMLHelper.SetChildValue("EmpStat", value, Node, NSMgr); OnPropertyChanged("EmpStat"); OnEmploymentStatusChangedChanged(); } }
         public DateTime? DateEmpStatApp { get { string DateEmpStatApp = XMLHelper.GetChildValue("DateEmpStatApp", Node, NSMgr); return (!string.IsNullOrEmpty(DateEmpStatApp) ? DateTime.Parse(DateEmpStatApp) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateEmpStatApp", value, Node, NSMgr); OnPropertyChanged("DateEmpStatApp"); OnEmploymentStatusChangedChanged(); } }
-        public int? EmpId { get { string EmpId = XMLHelper.GetChildValue("EmpId", Node, NSMgr); return (!string.IsNullOrEmpty(EmpId) ? int.Parse(EmpId) : (int?)null); } set { XMLHelper.SetChildValue("EmpId", value, Node, NSMgr); OnPropertyChanged("EmpId"); OnEmploymentStatusChangedChanged(); } }
+        public string EmpId { get { return XMLHelper.GetChildValue("EmpId", Node, NSMgr); } set { XMLHelper.SetChildValue("EmpId", value, Node, NSMgr); OnPropertyChanged("EmpId"); OnEmploymentStatusChangedChanged(); } }
         public string AgreeId { get { return XMLHelper.GetChildValue("AgreeId", Node, NSMgr); } set { XMLHelper.SetChildValue("AgreeId", value, Node, NSMgr); OnPropertyChanged("AgreeId"); OnEmploymentStatusChangedChanged(); } }
         #endregion
 
@@ -257,7 +258,12 @@ namespace ILR
                         break;
                     case "EmpId":
                         if (EmpId != null)
-                            result += CheckPropertyLength(EmpId, CLASSNAME, columnName, TABS);
+                        {
+                            if (!CommonValidations.IsValidNumber(EmpId))
+                                return $"Employment identifier should be numeric value";
+                            else
+                                result += CheckPropertyLength(EmpId, CLASSNAME, columnName, TABS);
+                        }
                         break;
                     case "AgreeId":
                         if (AgreeId != null)

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+			 xmlns:TextBoxMask="clr-namespace:ilrLearnerEntry.MaskBehavior"
              mc:Ignorable="d"
              d:DesignHeight="550" 
              d:DesignWidth="825"
@@ -88,12 +89,13 @@
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Occupation code :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
 
                 <TextBox Grid.Row="1" Grid.Column="3" 
-                     Text="{Binding Path=SOC2000, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.SOC2000, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
                      Margin="2.8,3.6,3,0"
+				     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
                      MaxLength="4" 
                      TabIndex="3"
                      Width="35" />
@@ -108,6 +110,7 @@
                       DisplayMemberPath="Description" 
                       SelectedValuePath="Code" 
                       SelectedValue="{Binding Path=HeItem.SEC, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+					  TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
                       Height="20"
                    />
 
@@ -243,10 +246,12 @@
 
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Year of student on this instance :" HorizontalAlignment="Right" Margin="0,1.8,2.2,3.8" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <TextBox Grid.Row="4" Grid.Column="2" 
-                     Text="{Binding Path=YEARSTU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.YEARSTU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="2"
                      VerticalAlignment="Top" 
                      Margin="2.8,2.8,0,0"
                      MaxLength="2" 
@@ -270,12 +275,14 @@
 
                 <TextBlock Grid.Row="6" Grid.Column="1" Text="Student instance FTE :" HorizontalAlignment="Right" Margin="0,3.2,2.2,2.4" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="6" Grid.Column="2" 
-                     Text="{Binding Path=STULOAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.STULOAD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Stretch" 
                      Margin="3,3,0,1"
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
                      MaxLength="6" 
                      TabIndex="3"
                      Width="50" >
@@ -284,11 +291,14 @@
 
                 <TextBlock Grid.Row="1" Grid.Column="3" Text="Percent not taught by this institution :" HorizontalAlignment="Right" Margin="0,6.4,2.2,6.4" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <TextBox Grid.Row="1" Grid.Column="5" 
-                     Text="{Binding Path=PCOLAB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.PCOLAB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
+					TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
                      Margin="2.8,3.4,0,0"
                      MaxLength="4" 
                      TabIndex="3"
@@ -297,11 +307,14 @@
 
                 <TextBlock Grid.Row="2" Grid.Column="3" Text="Percent taught by first LDCS subject :" HorizontalAlignment="Right" Margin="0,6.6,2.2,6.2" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <TextBox Grid.Row="2" Grid.Column="5" 
-                     Text="{Binding Path=PCFLDCS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.PCFLDCS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
                      Margin="2.8,3.6,0,0"
                      MaxLength="4" 
                      TabIndex="3"
@@ -310,11 +323,14 @@
 
                 <TextBlock Grid.Row="3" Grid.Column="3" Text="Percent taught by second LDCS subject :" HorizontalAlignment="Right" Margin="0,5.8,2.2,6.2" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <TextBox Grid.Row="3" Grid.Column="5" 
-                     Text="{Binding Path=PCSLDCS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.PCSLDCS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
                      Margin="3,4,0,0"
                      MaxLength="4" 
                      TabIndex="3"
@@ -324,12 +340,15 @@
 
                 <TextBlock Grid.Row="4" Grid.Column="3" Text="Percent taught by third LDCS subject :" HorizontalAlignment="Right" Margin="0,2.8,2.2,2.8" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <TextBox Grid.Row="4" Grid.Column="5" 
-                     Text="{Binding Path=PCTLDCS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.PCTLDCS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Bottom" 
                      Margin="3,0,0,0"
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
                      MaxLength="4" 
                      TabIndex="3"
                      Width="50" />
@@ -398,10 +417,12 @@
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Net tuiton fee :" HorizontalAlignment="Right"  Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="2" Grid.Column="1" 
-                     Text="{Binding Path=NETFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.NETFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
                      VerticalAlignment="Top" 
                      Margin="2.8,3.6,3,0"
                      MaxLength="6" 
@@ -410,12 +431,14 @@
 
                 <TextBlock Grid.Row="2" Grid.Column="2" Text="Gross tution fee :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="2" Grid.Column="3" 
-                     Text="{Binding Path=GROSSFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.GROSSFEE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
                      Margin="2.8,3.6,3,0"
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
                      MaxLength="6" 
                      TabIndex="3"
                      Width="45" />
@@ -438,9 +461,9 @@
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Text="HEM Indicators :" HorizontalAlignment="Left"  Margin="3" FontSize="15" FontWeight="Bold" />
 
-                <CheckBox Grid.Row="1" Grid.Column="1" Content="1 - Student is funded by HEFCE using the old funding regime (only for learning aims starting on or after 1 September 2012)" IsChecked="{Binding Path=HEM1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-                <CheckBox Grid.Row="2" Grid.Column="1" Content="3 - Student has received an award under the National Scholarship programme for this learning aim" IsChecked="{Binding Path=HEM2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-                <CheckBox Grid.Row="3" Grid.Column="1" Content="5 - Student's qualifications and grades prior to enrolment are included in the student number control exemption list according to HEFCE" IsChecked="{Binding Path=HEM3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+				<CheckBox Grid.Row="1" Grid.Column="1" Content="1 - Student is funded by HEFCE using the old funding regime (only for learning aims starting on or after 1 September 2012)" IsChecked="{Binding Path=HEM1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+				<CheckBox Grid.Row="2" Grid.Column="1" Content="3 - Student has received an award under the National Scholarship programme for this learning aim" IsChecked="{Binding Path=HEM2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+				<CheckBox Grid.Row="3" Grid.Column="1" Content="5 - Student's qualifications and grades prior to enrolment are included in the student number control exemption list according to HEFCE" IsChecked="{Binding Path=HEM3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
 
             </Grid>
 
