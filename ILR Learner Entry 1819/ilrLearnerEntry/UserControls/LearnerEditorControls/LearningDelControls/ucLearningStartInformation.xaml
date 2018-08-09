@@ -148,7 +148,8 @@
                      VerticalAlignment="Center" 
                      Margin="3" 
                      Width="95"
-                     MaxLength="5" />
+                     MaxLength="5" 
+                     PreviewTextInput="ValidateToNumeric"/>
 
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Delivery location postcode :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
@@ -178,7 +179,8 @@
                      Margin="3.2,0,0,3.4"  
                      Width="45"
                      MaxLength="3"
-                     IsUndoEnabled="True"/>
+                     IsUndoEnabled="True"
+                     PreviewTextInput ="ValidateToNumeric" />
 
 
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="Is the aim a restart ? " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -196,9 +198,10 @@
                      VerticalAlignment="Top" 
                      Margin="3.2,3.6,0,0"  
                      Width="40" 
-                      TabIndex="10"
+                     TabIndex="10"
                      MaxLength="3"
-                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True"/>
+                     IsUndoEnabled="True"
+                     PreviewTextInput ="ValidateToNumeric"    />
 
                 <TextBlock Grid.Row="6" Grid.Column="0" Text="Funding adjustment for prior learning :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
