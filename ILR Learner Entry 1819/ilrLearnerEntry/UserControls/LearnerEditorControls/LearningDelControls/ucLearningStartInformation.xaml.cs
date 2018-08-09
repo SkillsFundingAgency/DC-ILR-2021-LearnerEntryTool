@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -222,7 +223,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #region Public Methods
         #endregion
 
-        #region PRIVATE Methods
+        #region Private Methods
         private void lv_HHS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (DataRowView x in e.AddedItems)
@@ -291,8 +292,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             IsClearHSSSelection = false;
 
         }
-        #endregion
 
+        private void ValidateToNumeric(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        #endregion
 
         #region INotifyPropertyChanged Members
         /// <summary>
@@ -456,6 +462,5 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             return null;
         }
         #endregion
-
     }
 }
