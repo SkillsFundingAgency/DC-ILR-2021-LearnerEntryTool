@@ -613,169 +613,6 @@ namespace ILR
             }
         }
 
-        public bool RUI1
-        {
-            get
-            {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).Count() > 0;
-            }
-            set
-            {
-                if (value && !RUI1)
-                {
-                    RUI4 = false;
-                    RUI5 = false;
-                    ContactPreference newInstance = CreateContactPreference();
-                    newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 1;
-                }
-                else if (!value && RUI1)
-                {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).FirstOrDefault();
-                    this.DeleteContactInstance(deleteInstance);
-                }
-                OnPropertyChanged("RUI1");
-            }
-        }
-        public bool RUI2
-        {
-            get
-            {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).Count() > 0;
-            }
-            set
-            {
-                if (value && !RUI2)
-                {
-                    RUI4 = false;
-                    RUI5 = false;
-                    ContactPreference newInstance = CreateContactPreference();
-                    newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 2;
-                }
-                else if (!value && RUI2)
-                {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).FirstOrDefault();
-                    this.DeleteContactInstance(deleteInstance);
-                }
-                OnPropertyChanged("RUI2");
-            }
-        }
-        public bool RUI6
-        {
-            get
-            {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).Count() > 0;
-            }
-            set
-            {
-                if (value && !RUI6)
-                {
-                    RUI4 = false;
-                    RUI5 = false;
-                    ContactPreference newInstance = CreateContactPreference();
-                    newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 6;
-                }
-                else if (!value && RUI6)
-                {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).FirstOrDefault();
-                    this.DeleteContactInstance(deleteInstance);
-                }
-                OnPropertyChanged("RUI6");
-            }
-        }
-        public bool RUI7
-        {
-            get
-            {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).Count() > 0;
-            }
-            set
-            {
-                if (value && !RUI7)
-                {
-                    RUI4 = false;
-                    RUI5 = false;
-                    ContactPreference newInstance = CreateContactPreference();
-                    newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 7;
-                }
-                else if (!value && RUI7)
-                {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).FirstOrDefault();
-                    this.DeleteContactInstance(deleteInstance);
-                }
-                OnPropertyChanged("RUI7");
-            }
-        }
-        public bool RUI4
-        {
-            get
-            {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 4).Count() > 0;
-            }
-            set
-            {
-                if (value && !RUI4)
-                {
-                    RUI1 = false;
-                    RUI2 = false;
-                    RUI5 = false;
-                    RUI6 = false;
-                    RUI7 = false;
-                    OnPropertyChanged("RUI1");
-                    OnPropertyChanged("RUI2");
-                    OnPropertyChanged("RUI5");
-                    OnPropertyChanged("RUI6");
-                    OnPropertyChanged("RUI7");
-
-                    ContactPreference newInstance = CreateContactPreference();
-                    newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 4;
-                }
-                else if (!value && RUI4)
-                {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 4).FirstOrDefault();
-                    this.DeleteContactInstance(deleteInstance);
-                }
-                OnPropertyChanged("RUI4");
-            }
-        }
-        public bool RUI5
-        {
-            get
-            {
-                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 5).Count() > 0;
-            }
-            set
-            {
-                if (value && !RUI5)
-                {
-                    RUI1 = false;
-                    RUI2 = false;
-                    RUI4 = false;
-                    RUI6 = false;
-                    RUI7 = false;
-                    OnPropertyChanged("RUI1");
-                    OnPropertyChanged("RUI2");
-                    OnPropertyChanged("RUI4");
-                    OnPropertyChanged("RUI6");
-                    OnPropertyChanged("RUI7");
-                    ContactPreference newInstance = CreateContactPreference();
-                    newInstance.ContPrefType = "RUI";
-                    newInstance.ContPrefCode = 5;
-                }
-                else if (!value && RUI5)
-                {
-                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 5).FirstOrDefault();
-                   
-                        this.DeleteContactInstance(deleteInstance);
-                }
-                OnPropertyChanged("RUI5");
-            }
-        }
-
         public bool PMC4
         {
             get
@@ -843,6 +680,171 @@ namespace ILR
                 OnPropertyChanged("PMC6");
             }
         }
+
+        public bool RUI1
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI1)
+                {
+                    //RUI4 = false;
+                    //RUI5 = false;
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 1;
+                }
+                else if (!value && RUI1)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 1).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI1");
+            }
+        }
+        public bool RUI2
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI2)
+                {
+                    //RUI4 = false;
+                    //RUI5 = false;
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 2;
+                }
+                else if (!value && RUI2)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 2).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI2");
+            }
+        }
+       
+        public bool RUI4
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 4).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI4)
+                {
+                    //RUI1 = false;
+                    //RUI2 = false;
+                    //RUI5 = false;
+                    //RUI6 = false;
+                    //RUI7 = false;
+                    //OnPropertyChanged("RUI1");
+                    //OnPropertyChanged("RUI2");
+                    //OnPropertyChanged("RUI5");
+                    //OnPropertyChanged("RUI6");
+                    //OnPropertyChanged("RUI7");
+
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 4;
+                }
+                else if (!value && RUI4)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 4).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI4");
+            }
+        }
+        public bool RUI5
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 5).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI5)
+                {
+                    //RUI1 = false;
+                    //RUI2 = false;
+                    //RUI4 = false;
+                    //RUI6 = false;
+                    //RUI7 = false;
+                    //OnPropertyChanged("RUI1");
+                    //OnPropertyChanged("RUI2");
+                    //OnPropertyChanged("RUI4");
+                    //OnPropertyChanged("RUI6");
+                    //OnPropertyChanged("RUI7");
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 5;
+                }
+                else if (!value && RUI5)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 5).FirstOrDefault();
+                   
+                        this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI5");
+            }
+        }
+        public bool RUI6
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI6)
+                {
+                    //RUI4 = false;
+                    //RUI5 = false;
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 6;
+                }
+                else if (!value && RUI6)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 6).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI6");
+            }
+        }
+        public bool RUI7
+        {
+            get
+            {
+                return this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).Count() > 0;
+            }
+            set
+            {
+                if (value && !RUI7)
+                {
+                    //RUI4 = false;
+                    //RUI5 = false;
+                    ContactPreference newInstance = CreateContactPreference();
+                    newInstance.ContPrefType = "RUI";
+                    newInstance.ContPrefCode = 7;
+                }
+                else if (!value && RUI7)
+                {
+                    ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 7).FirstOrDefault();
+                    this.DeleteContactInstance(deleteInstance);
+                }
+                OnPropertyChanged("RUI7");
+            }
+        }
+
         private void DeleteContactInstance(ContactPreference contactPreference)
         {
             if (contactPreference != null)

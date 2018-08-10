@@ -31,6 +31,7 @@ namespace ilrLearnerEntry.UserControls
         private String _filterText = String.Empty;
         
         #endregion
+
         #region Constructor
         public ucLearnerEditControl()
         {
@@ -40,6 +41,7 @@ namespace ilrLearnerEntry.UserControls
             SetupLookups();
         }
         #endregion
+
         #region Public Properties
         public ICollectionView LearnerItemsCV
         {
@@ -88,11 +90,14 @@ namespace ilrLearnerEntry.UserControls
         public void UpdateChildControlAsNewDataLoaded()
         {
             SetupListData();
+
             if (App.ILRMessage.LearnerList.Count > 0)
             {
                 LearnerItemsCV.MoveCurrentToFirst();
                 OnPropertyChanged("LearnerItemsCV");
             }
+
+            SelectFirstLearnerWhenNewDocumentUploaded();
         }
 
         public string FilterValue
@@ -313,7 +318,26 @@ namespace ilrLearnerEntry.UserControls
             EmploymentStatusListControl.EmpStausItemControl.LengthOfEmploymentList = lp.GetLookup("EmploymentStatusMonitoring", "LOE");
             LearnerHEInformationControl.TermTimeAccList = lp.GetLookup("TTAccom");
         }
+        private void SaveLearner_Click(object sender, RoutedEventArgs e)
+        {
+            App.ILRMessage.Save();
+        }
+        private void txtFilter_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtFilter.Text == FILTER_TEXT_PROMPT)
+            {
+                FilterValue = string.Empty;
+            }
+        }
+
+        private void SelectFirstLearnerWhenNewDocumentUploaded()
+        {
+            if (App.ILRMessage.LearnerList.Count > 0)            
+                DataItemListBox.SelectedIndex = 0;            
+        }
+
         #endregion
+
         #region INotifyPropertyChanged Members
         /// <summary>
         /// INotifyPropertyChanged requires a property called PropertyChanged.
@@ -356,21 +380,6 @@ namespace ilrLearnerEntry.UserControls
 
         protected bool ThrowOnInvalidPropertyName { get; set; }
 
-        #endregion
-
-        private void SaveLearner_Click(object sender, RoutedEventArgs e)
-        {
-            App.ILRMessage.Save();
-        }
-
-        private void txtFilter_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtFilter.Text == FILTER_TEXT_PROMPT)
-            {
-                FilterValue = string.Empty;
-            }
-        }
-
-        
+        #endregion        
     }
 }
