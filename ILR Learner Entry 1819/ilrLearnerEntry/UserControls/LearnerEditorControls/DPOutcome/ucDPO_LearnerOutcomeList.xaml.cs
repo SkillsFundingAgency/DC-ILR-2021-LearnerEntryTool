@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -323,9 +324,14 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
             }
             return null;
         }
+
+
         #endregion
 
-
-
+        private void ValidateToNumeric(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
 }
