@@ -187,10 +187,10 @@
                              TabIndex="11"
                              MaxLength="100"
                      />
-                   
+
                 </Grid>
             </Grid>
-            <CheckBox Grid.Row="5" Grid.Column="0" Content=": Check box if the learner is living away from home in accommodation owned or managed by the provider." IsChecked="{Binding Path=CurrentItem.Accom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+            <CheckBox Grid.Row="5" Grid.Column="0" Content=": Check box if the learner is living away from home in accommodation owned or managed by the provider." IsChecked="{Binding Path=CurrentItem.Accom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="8,3,0,3" TabIndex="17" />
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="8" Grid.Row="6" Grid.Column="0" >
                 <Grid Margin="3" >
                     <Grid.RowDefinitions>
@@ -228,7 +228,7 @@
 
                     <CheckBox Grid.Row="0" Grid.Column="3" Content=": Learner has not achieved an English GCSE (at grade A*-C/9-4) by the end of year 11" 
                               IsChecked="{Binding Path=CurrentItem.EDF2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
-                              HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+                              HorizontalAlignment="Left" Margin="3,6,0,7.5" TabIndex="17" Width="480" />
 
                 </Grid>
             </Border>
@@ -255,9 +255,10 @@
                              TabIndex="9"
                              MaxLength="4"
                      />
-                    <CheckBox Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="10" 
-                              Content=": Learner has not achieved a maths GCSE (at grade A*-C/9-4) by the end of year 11 " 
-                              IsChecked="{Binding Path=CurrentItem.EDF1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+                    <CheckBox Grid.Row="0" Grid.Column="3" Content=": Learner has not achieved a Maths GCSE (at grade A*-C/9-4) by the end of year 11" 
+                              IsChecked="{Binding Path=CurrentItem.EDF1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
+                              HorizontalAlignment="Left" Margin="3,6,0,5.5" TabIndex="17" Width="457" />
+                    
                     <TextBlock Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Text="GCSE Maths Condition of Funding :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                     <ComboBox Grid.Row="1" Grid.Column="2" MinWidth="250"  Grid.ColumnSpan="15"  
                               ItemsSource="{Binding Path=MCFList, UpdateSourceTrigger=PropertyChanged}" 
