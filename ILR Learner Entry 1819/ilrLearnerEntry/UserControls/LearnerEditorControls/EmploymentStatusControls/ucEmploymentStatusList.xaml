@@ -86,7 +86,9 @@
                 Name="lv" 
                 SelectionChanged="lv_SelectionChanged" 
                 MaxHeight="100"
-                MinHeight="25" 
+                MinHeight="50"
+                d:DesignWidth="990"  
+                MinWidth="990"
                 Margin="3,1,65,0"
             />
 

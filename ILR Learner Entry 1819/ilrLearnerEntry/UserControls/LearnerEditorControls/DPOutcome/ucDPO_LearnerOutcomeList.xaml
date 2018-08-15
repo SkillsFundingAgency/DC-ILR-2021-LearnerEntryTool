@@ -141,9 +141,9 @@
                 SelectionMode="Single" 
                 IsSynchronizedWithCurrentItem="True"
                 Name="lv" 
-                Margin="2,1,66,3"
-                MinWidth="500"
-                MaxWidth="500"
+                Margin="2,1,66,3"               
+                d:DesignWidth="600"  
+                MinWidth="600"
                 MaxHeight="190"
         />
             </Grid>

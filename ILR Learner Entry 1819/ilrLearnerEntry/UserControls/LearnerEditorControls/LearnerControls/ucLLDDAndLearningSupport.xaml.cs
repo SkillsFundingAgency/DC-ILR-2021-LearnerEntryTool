@@ -52,7 +52,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                    // LLDDItemListControl.CurrentItem = null;
 
                     _learner = value;
-                    _alscost = value.ALSCost.ToString();
+                    _alscost = value.ALSCost;
 
                     lv_LSR.SelectionChanged -= lv_LSR_SelectionChanged;
                     this.DataContext = this;
@@ -90,15 +90,16 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             set
             {
                 _alscost = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-                if (result)
-                {
-                    CurrentItem.ALSCost = number;
-                }
+                CurrentItem.ALSCost = value;
+                //int number;
+                //bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                //if (result)
+                //{
+
+                //}
             }
         }
-		public int? LLDDHealthProbTest
+        public int? LLDDHealthProbTest
 		{
 			get { return CurrentItem.LLDDHealthProb; }
 			set

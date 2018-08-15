@@ -81,9 +81,12 @@
                 IsSynchronizedWithCurrentItem="True"
                 HorizontalContentAlignment="Stretch"
                 Name="lv" 
-                SelectionChanged="lv_SelectionChanged" 
-                MaxHeight="75"
-                MinHeight="25" 
+                SelectionChanged="lv_SelectionChanged"               
+                MaxHeight="70"
+                MinHeight="50"
+                d:DesignHeight="70"
+                d:DesignWidth="990"  
+                MinWidth="990"
                 Margin="3,1,65,0"
             />
             <WpControl:ucWorkPlacementItem 

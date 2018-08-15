@@ -200,17 +200,24 @@ namespace ilrLearnerEntry.UserControls
         }
         private void AddLearner_Click(object sender, RoutedEventArgs e)
         {
-            Learner NewLr = App.ILRMessage.CreateLearner();
+            Learner newLr = App.ILRMessage.CreateLearner();
             App.ILRMessage.Save();
+
             if (App.ILRMessage.LearnerList.Count == 1)
-            {
-                SetupListData();
+            {               
+                SetupListData();               
             }
-            NewLr.IsSelected = true;
-            LearnerItemsCV.MoveCurrentTo(NewLr);
+            foreach(Learner l in LearnerItemsCV)
+            {
+                //if (l != newLr)
+                    l.IsSelected = false;
+            }
+            newLr.IsSelected = true;
+            DataItemListBox.SelectedItem = newLr;                
+            //LearnerItemsCV.MoveCurrentTo(newLr);
             LearnerItemsCV.Refresh();
             OnPropertyChanged("LearnerItemsCV");
-            NewLr.RefreshData();
+            newLr.RefreshData();
         }
         private void RemoveLearner_Click(object sender, RoutedEventArgs e)
         {

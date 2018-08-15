@@ -101,7 +101,8 @@
                      Margin="3"
                      Width="60"
                      MaxLength="6" TabIndex="7"
-                     />
+                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"     />
 
 
 
