@@ -10,9 +10,9 @@
              ScrollViewer.CanContentScroll="True" 
              ScrollViewer.VerticalScrollBarVisibility="Visible"
              d:DesignWidth="900"  
-             d:DesignHeight="670"  
+             d:DesignHeight="450"  
              MinWidth="950" 
-             MinHeight="670"
+             MinHeight="450"
              HorizontalAlignment="Left"
              >
     <UserControl.Resources>

@@ -361,7 +361,7 @@
             </Trigger>
 		</Style.Triggers>
 	<Setter Property="Background" Value="Black" />
-	<Setter Property="OverridesDefaultStyle" Value="True" />
+	<!--<Setter Property="OverridesDefaultStyle" Value="True" />-->
 		<Setter Property="HeaderTemplate">
 			<Setter.Value>
 				<DataTemplate>

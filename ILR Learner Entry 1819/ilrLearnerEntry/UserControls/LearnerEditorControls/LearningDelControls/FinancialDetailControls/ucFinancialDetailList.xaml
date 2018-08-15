@@ -11,7 +11,7 @@
              d:DesignHeight="300" 
              d:DesignWidth="800">
     <UserControl.Resources>
-        <IlrTypes:ApprenticeshipFinancialRecord x:Key="DesignTimeViewModel" />
+        <!--<IlrTypes:ApprenticeshipFinancialRecord x:Key="DesignTimeViewModel" />-->
         
         <DataTemplate x:Key="DataTemplate" DataType="{x:Type IlrTypes:ApprenticeshipFinancialRecord}">
             <Border BorderThickness="1" CornerRadius="4" Margin="1" >
@@ -90,7 +90,10 @@
                 x:Name="lv" 
                 SelectionChanged="lv_SelectionChanged" 
                 MaxHeight="70"
-                MinHeight="25" 
+                MinHeight="50"
+                d:DesignHeight="70"
+                d:DesignWidth="990"  
+                MinWidth="990"
                 Margin="3,1,65,0"
             />
             <AFRControl:ucFinancialDetailtem

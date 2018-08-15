@@ -62,7 +62,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 }
                 OnPropertyChanged("CurrentItem");
                 OnPropertyChanged("ApprenticeshipFinancialItemsCV");
-                //ShouldShowListView();
+                ShouldShowListView();
             }
         }
         public ICollectionView ApprenticeshipFinancialItemsCV
