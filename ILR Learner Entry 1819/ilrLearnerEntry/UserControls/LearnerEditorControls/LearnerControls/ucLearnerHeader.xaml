@@ -162,7 +162,7 @@
                 <DatePicker  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" x:Name="dtDOB"  VerticalAlignment="Center" 
                      TabIndex="6" 
                      DisplayDate="{Binding Path=DOB, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
-                     SelectedDate="{Binding Path=DOB, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                     SelectedDate="{Binding Path=DOB, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
                      SelectedDateChanged="dtDOB_SelectedDateChanged"  
                     Style="{DynamicResource DatePickerWithError}"
 />
