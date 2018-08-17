@@ -118,8 +118,6 @@ namespace ILR
                                 learningDeliveriesToMigrate.Add(learningDelivery);
                             else if (this.LearningDeliveryList.Exists(ld => ld.AimType == 3 && ld.ShouldProbablyMigrate && ld.FworkCode == learningDelivery.FworkCode && ld.ProgType == learningDelivery.ProgType && ld.PwayCode == learningDelivery.PwayCode))
                                 learningDeliveriesToMigrate.Add(learningDelivery);
-                            //else if (this.LearningDeliveryList.Exists(ld => ld.AimType == 3 && ld.ShouldProbablyMigrate && learningDelivery.ProgType == 24))
-                                learningDeliveriesToMigrate.Add(learningDelivery);
                             break;
                         case 4:
                             if (learningDelivery.ShouldProbablyMigrate)
