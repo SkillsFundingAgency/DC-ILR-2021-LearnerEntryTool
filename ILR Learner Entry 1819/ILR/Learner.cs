@@ -102,7 +102,7 @@ namespace ILR
             }
         }
 
-        public bool HasContinuingAims { get { return LearningDeliveriesToMigrate.Count > 0; } }
+        public bool HasContinuingAims => LearningDeliveriesToMigrate.Count > 0;
 
         public List<LearningDelivery> LearningDeliveriesToMigrate
         {
