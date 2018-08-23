@@ -139,6 +139,7 @@ namespace ilrLearnerEntry.UserControls
             }
             else
             {
+                LearnerItemsCV = CollectionViewSource.GetDefaultView(App.ILRMessage.LearnerList);
                 if (LearnerItemsCV != null)
                 {
                     LearnerItemsCV.Refresh();
@@ -336,8 +337,15 @@ namespace ilrLearnerEntry.UserControls
 
         private void SelectFirstLearnerWhenNewDocumentUploaded()
         {
-            if (App.ILRMessage.LearnerList.Count > 0)            
-                DataItemListBox.SelectedIndex = 0;            
+            if (App.ILRMessage.LearnerList.Count > 0)
+            {
+                DataItemListBox.SelectedIndex = 0;
+            }
+            else
+            {
+                SetupListData();
+            }            
+                          
         }
 
         #endregion
