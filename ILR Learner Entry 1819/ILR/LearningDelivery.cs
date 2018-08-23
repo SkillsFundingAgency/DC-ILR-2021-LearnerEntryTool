@@ -65,28 +65,45 @@ namespace ILR
                 return message;
             }
         }
+
+        private bool CanMigrateDueToCompletionStatus => CompStatus == 6;
+
         public bool ShouldProbablyMigrate
         {
             get
             {
-                switch (this.AimType)
+                //if completion status is 6 that means learner has taken break and aim should be migrated
+                if (CanMigrateDueToCompletionStatus)
                 {
-                    case 1:
-                    case 4:
-                        return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 && this.LearnActEndDate == null) || (this.FundModel == 70));
-                    case 5:
-                        if (this.FundModel == 70)
-                            return true;
-                        else
-                        {
-                            if ((this.LearnPlanEndDate >= FIRST_AUG_2015) && ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
-                                return this.LearnActEndDate == null || (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6 || this.Outcome == 8);
-                            else
-                                return false;
-                        }
-                    case 3:
-                        return this.LearnPlanEndDate >= FIRST_AUG_2013 && this.LearnActEndDate == null;
+                    return true;
                 }
+                else
+                {
+
+                    switch (this.AimType)
+                    {
+                        case 1:
+                        case 4:
+                            return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 &&
+                                     this.LearnActEndDate == null) || (this.FundModel == 70));
+                        case 5:
+                            if (this.FundModel == 70)
+                                return true;
+                            else
+                            {
+                                if ((this.LearnPlanEndDate >= FIRST_AUG_2015) &&
+                                    ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
+                                    return this.LearnActEndDate == null ||
+                                           (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6 ||
+                                            this.Outcome == 8);
+                                else
+                                    return false;
+                            }
+                        case 3:
+                            return this.LearnPlanEndDate >= FIRST_AUG_2013 && this.LearnActEndDate == null;
+                    }
+                }
+
                 return false;
             }
         }
