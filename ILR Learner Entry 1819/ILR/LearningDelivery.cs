@@ -867,7 +867,7 @@ namespace ILR
             }
 
             OnPropertyChanged("CompStatus");
-
+            this.SWSupAimId = getSwSuppAimId();
             this.IsImportRunning = false;
 
         }
