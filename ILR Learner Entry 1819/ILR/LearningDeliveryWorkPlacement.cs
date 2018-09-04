@@ -25,7 +25,7 @@ namespace ILR
         public DateTime? WorkPlaceEndDate { get { string WorkPlaceEndDate = XMLHelper.GetChildValue("WorkPlaceEndDate", Node, NSMgr); return (WorkPlaceEndDate != null ? DateTime.Parse(WorkPlaceEndDate) : (DateTime?)null); } set { XMLHelper.SetChildValue("WorkPlaceEndDate", value, Node, NSMgr); OnPropertyChanged("WorkPlaceEndDate"); } }
         public string WorkPlaceHours { get { return XMLHelper.GetChildValue("WorkPlaceHours", Node, NSMgr); } set { XMLHelper.SetChildValue("WorkPlaceHours", value, Node, NSMgr); OnPropertyChanged("WorkPlaceHours"); } }
         public int? WorkPlaceMode { get { string WorkPlaceMode = XMLHelper.GetChildValue("WorkPlaceMode", Node, NSMgr); return (WorkPlaceMode != null ? int.Parse(WorkPlaceMode) : (int?)null); } set { XMLHelper.SetChildValue("WorkPlaceMode", value, Node, NSMgr); OnPropertyChanged("WorkPlaceMode"); } }
-        public int? WorkPlaceEmpId { get { string WorkPlaceEmpId = XMLHelper.GetChildValue("WorkPlaceEmpId", Node, NSMgr); return (WorkPlaceEmpId != null ? int.Parse(WorkPlaceEmpId) : (int?)null); } set { XMLHelper.SetChildValue("WorkPlaceEmpId", value, Node, NSMgr); OnPropertyChanged("WorkPlaceEmpId"); } }
+        public string WorkPlaceEmpId { get { return XMLHelper.GetChildValue("WorkPlaceEmpId", Node, NSMgr); } set { XMLHelper.SetChildValue("WorkPlaceEmpId", value, Node, NSMgr); OnLearningDeliveryWPPropertyChanged(); OnPropertyChanged("WorkPlaceEmpId"); } }
         #endregion
 
         #region Constructors
@@ -115,7 +115,7 @@ namespace ILR
                 }
 				if (columnName == "WorkPlaceEmpId")
 				{
-					if (WorkPlaceEmpId != null && WorkPlaceEmpId.ToString().Length > 8)
+					if (WorkPlaceEmpId != null && WorkPlaceEmpId.Length > 8)
 					{
 						result = "WorkPlaceEmpId exceeds maximum length (8 digits).";
 						//WorkPlaceEmpId = (int?)int.Parse(WorkPlaceEmpId.ToString().Substring(0, 8));

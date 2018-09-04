@@ -246,6 +246,7 @@ namespace ILR
         //        OnPropertyChanged("LDA");
         //    }
         //}
+
         public bool HNS
         {
             get
@@ -261,6 +262,7 @@ namespace ILR
                 OnPropertyChanged("HNS");
             }
         }
+
         public bool EHC
         {
             get
@@ -1211,7 +1213,12 @@ namespace ILR
             }
             foreach (LearnerFAM migrationItem in MigrationLearner.LearnerFAMList)
             {
-                if (migrationItem.LearnFAMType != "LDA")
+                if (   migrationItem.LearnFAMType != "LDA" 
+                    || migrationItem.LearnFAMType != "HNS"
+                    || migrationItem.LearnFAMType != "LSR"
+                    || migrationItem.LearnFAMType != "SEN"
+                    || migrationItem.LearnFAMType != "FME"
+                    || migrationItem.LearnFAMType != "FME"  )
                 {
                     XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerFAM", NSMgr.LookupNamespace("ia"));
                     LearnerFAM newInstance = new LearnerFAM(migrationItem, newNode, NSMgr);
