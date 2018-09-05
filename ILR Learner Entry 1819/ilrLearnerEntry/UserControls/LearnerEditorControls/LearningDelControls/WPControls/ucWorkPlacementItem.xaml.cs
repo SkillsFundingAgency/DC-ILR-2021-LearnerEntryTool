@@ -66,16 +66,16 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         public string WorkPlaceEmpId
         {
-            get { return _workplaceempid; }
+            get { return _learningDeliveryWorkPlacement.WorkPlaceEmpId; }
             set
             {
-                _workplaceempid = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-                if (result)
-                {
-                    CurrentItem.WorkPlaceEmpId = number.ToString();
-                }
+                _learningDeliveryWorkPlacement.WorkPlaceEmpId = value;
+                //int number;
+                //bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                //if (result)
+                //{
+                //    CurrentItem.WorkPlaceEmpId = number.ToString();
+                //}
                 _learningDeliveryWorkPlacement.Refresh();
             }
         }
