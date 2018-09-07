@@ -66,7 +66,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         public string WorkPlaceEmpId
         {
-            get { return _learningDeliveryWorkPlacement.WorkPlaceEmpId; }
+            get
+            {                
+                return (_learningDeliveryWorkPlacement!=null)?_learningDeliveryWorkPlacement.WorkPlaceEmpId:string.Empty;
+            }
             set
             {
                 _learningDeliveryWorkPlacement.WorkPlaceEmpId = value;

@@ -78,7 +78,8 @@ namespace ILR
                 switch (CompStatus)
                 {
                     case 1:
-                        return (LearnActEndDate == null && LearnPlanEndDate > FIRST_AUG_2016);                       
+                        canMigrate = (LearnActEndDate == null && LearnPlanEndDate >= FIRST_AUG_2016);
+                        break;                                              
                     case 6:
                         canMigrate = true;
                         break;
@@ -102,35 +103,46 @@ namespace ILR
             }
         }
 
+
+        private bool CanMigrateDuetoESFFunding
+        {
+
+            get { return this.FundModel == 70 && this.LearnStartDate >= FIRST_AUG_2015; }
+        }
+
         public bool ShouldProbablyMigrate
         {
             get
             {
                 //if completion status is "" that means learner has taken break and aim should be migrated
-                if (CanMigrateDueToCompletionStatus)
+                if (CanMigrateDueToCompletionStatus) //migration rule 8
                 {
                     return true;
                 }
+                else if (CanMigrateDueToUnknownOutcome) //migration rule 10
+                {
+                    return true;
+                }
+                else if (CanMigrateDuetoESFFunding) //migration rule 11
+                {
+                    return true;
 
-                if (CanMigrateDueToUnknownOutcome)
-                {
-                    return true;
                 }
-                else
+                else //all existing migration rules
                 {
 
                     switch (this.AimType)
                     {
                         case 1:
                         case 4:
-                            return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 &&
+                            return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2016 &&
                                      this.LearnActEndDate == null) || (this.FundModel == 70));
                         case 5:
                             if (this.FundModel == 70)
                                 return true;
                             else
                             {
-                                if ((this.LearnPlanEndDate >= FIRST_AUG_2015) &&
+                                if ((this.LearnPlanEndDate >= FIRST_AUG_2016) &&
                                     ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
                                     return this.LearnActEndDate == null ||
                                            (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6 ||
