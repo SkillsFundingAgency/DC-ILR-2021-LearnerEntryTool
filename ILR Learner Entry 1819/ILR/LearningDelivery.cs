@@ -16,6 +16,7 @@ namespace ILR
         private const String TABS = "\t\t";
         DateTime FIRST_AUG_2013 = new DateTime(2013, 8, 1);
         DateTime FIRST_AUG_2015 = new DateTime(2015, 8, 1);
+        DateTime FIRST_AUG_2016 = new DateTime(2016, 8, 1);
 
         #region LD updateLearnerEvent
         public event PropertyChangedEventHandler LearningDeliveryPropertyChanged;
@@ -66,32 +67,82 @@ namespace ILR
             }
         }
 
-        private bool CanMigrateDueToCompletionStatus => CompStatus == 6;
+        //private bool CanMigrateDueToCompletionStatusSix => CompStatus == 6 || CompStatus == 1;
+
+        private bool CanMigrateDueToCompletionStatus
+        {
+            get
+            {
+                bool canMigrate = false;
+
+                switch (CompStatus)
+                {
+                    case 1:
+                        canMigrate = (LearnActEndDate == null && LearnPlanEndDate >= FIRST_AUG_2016);
+                        break;                                              
+                    case 6:
+                        canMigrate = true;
+                        break;
+                }
+
+                return canMigrate;
+            }
+        }
+
+        private bool CanMigrateDueToUnknownOutcome
+        {
+            get
+            {
+                var canMigrate = false;
+                if (Outcome != null)
+                {
+                    canMigrate = Outcome == 8;
+                }
+
+                return canMigrate;
+            }
+        }
+
+
+        private bool CanMigrateDuetoESFFunding
+        {
+
+            get { return this.FundModel == 70 && this.LearnStartDate >= FIRST_AUG_2015; }
+        }
 
         public bool ShouldProbablyMigrate
         {
             get
             {
-                //if completion status is 6 that means learner has taken break and aim should be migrated
-                if (CanMigrateDueToCompletionStatus)
+                //if completion status is "" that means learner has taken break and aim should be migrated
+                if (CanMigrateDueToCompletionStatus) //migration rule 8
                 {
                     return true;
                 }
-                else
+                else if (CanMigrateDueToUnknownOutcome) //migration rule 10
+                {
+                    return true;
+                }
+                else if (CanMigrateDuetoESFFunding) //migration rule 11
+                {
+                    return true;
+
+                }
+                else //all existing migration rules
                 {
 
                     switch (this.AimType)
                     {
                         case 1:
                         case 4:
-                            return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 &&
+                            return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2016 &&
                                      this.LearnActEndDate == null) || (this.FundModel == 70));
                         case 5:
                             if (this.FundModel == 70)
                                 return true;
                             else
                             {
-                                if ((this.LearnPlanEndDate >= FIRST_AUG_2015) &&
+                                if ((this.LearnPlanEndDate >= FIRST_AUG_2016) &&
                                     ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
                                     return this.LearnActEndDate == null ||
                                            (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6 ||
@@ -898,6 +949,8 @@ namespace ILR
                 this.StdCode = MigrationLearningDelivery.StdCode;
 
             this.PartnerUKPRN = MigrationLearningDelivery.PartnerUKPRN;
+            this.EPAOrgID = MigrationLearningDelivery.EPAOrgID;
+            this.AddHours = MigrationLearningDelivery.AddHours;
             this.DelLocPostCode = MigrationLearningDelivery.DelLocPostCode;
             this.ConRefNumber = MigrationLearningDelivery.ConRefNumber;
             this.PriorLearnFundAdj = MigrationLearningDelivery.PriorLearnFundAdj;

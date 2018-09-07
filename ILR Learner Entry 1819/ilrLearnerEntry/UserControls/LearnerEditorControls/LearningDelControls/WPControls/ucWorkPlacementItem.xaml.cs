@@ -49,7 +49,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 if (value != null)
                 {
                     _learningDeliveryWorkPlacement = value;
-                    WorkPlaceEmpId = _learningDeliveryWorkPlacement.WorkPlaceEmpId.ToString();
+                    WorkPlaceEmpId = _learningDeliveryWorkPlacement.WorkPlaceEmpId;
                     WorkPlaceHours = _learningDeliveryWorkPlacement.WorkPlaceHours;
                     this.DataContext = this;
                     OnPropertyChanged("CurrentItem");
@@ -66,16 +66,19 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         public string WorkPlaceEmpId
         {
-            get { return _workplaceempid; }
+            get
+            {                
+                return (_learningDeliveryWorkPlacement!=null)?_learningDeliveryWorkPlacement.WorkPlaceEmpId:string.Empty;
+            }
             set
             {
-                _workplaceempid = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-                if (result)
-                {
-                    CurrentItem.WorkPlaceEmpId = number;
-                }
+                _learningDeliveryWorkPlacement.WorkPlaceEmpId = value;
+                //int number;
+                //bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                //if (result)
+                //{
+                //    CurrentItem.WorkPlaceEmpId = number.ToString();
+                //}
                 _learningDeliveryWorkPlacement.Refresh();
             }
         }

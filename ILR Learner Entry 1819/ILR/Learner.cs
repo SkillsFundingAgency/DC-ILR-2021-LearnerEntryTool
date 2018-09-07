@@ -16,6 +16,7 @@ namespace ILR
         private const string CAMPID_PATTERN = "^[A-Za-z0-9]{1,8}$";
         private const string OTJHOURS_PATTERN = "^[0-9]{1,4}$";
 
+        private readonly IList<string> _learnFamTypeListExcludedForMigration = new List<string>() { "LDA", "HNS", "LSR", "SEN", "FME", "PPE", "EDF", "MCF", "ECF" };
 
         #region Accessors
         public Boolean IsFileImportLoadingRunning
@@ -246,6 +247,7 @@ namespace ILR
         //        OnPropertyChanged("LDA");
         //    }
         //}
+
         public bool HNS
         {
             get
@@ -261,6 +263,7 @@ namespace ILR
                 OnPropertyChanged("HNS");
             }
         }
+
         public bool EHC
         {
             get
@@ -1209,16 +1212,32 @@ namespace ILR
                 LLDDandHealthProblemList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
-            foreach (LearnerFAM migrationItem in MigrationLearner.LearnerFAMList)
+
+            foreach (LearnerFAM migrationItem in MigrationLearner.LearnerFAMList.Where(fmType =>
+                !_learnFamTypeListExcludedForMigration.Contains(fmType.LearnFAMType)))
             {
-                if (migrationItem.LearnFAMType != "LDA")
-                {
-                    XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerFAM", NSMgr.LookupNamespace("ia"));
-                    LearnerFAM newInstance = new LearnerFAM(migrationItem, newNode, NSMgr);
-                    LearnerFAMList.Add(newInstance);
-                    AppendToLastOfNodeNamed(newNode, newNode.Name);
-                }
+                XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerFAM", NSMgr.LookupNamespace("ia"));
+                LearnerFAM newInstance = new LearnerFAM(migrationItem, newNode, NSMgr);
+                LearnerFAMList.Add(newInstance);
+                AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
+
+            //private readonly IList<string> _learnFamTypeListExcludedForMigration = new List<string>() { "LDA", "HNS", "LSR", "SEN", "FEM" };
+
+            //foreach (LearnerFAM migrationItem in MigrationLearner.LearnerFAMList)
+            //{
+            //    foreach (var learnFamType in learnFamTypeList)
+            //    {
+            //        if (migrationItem.LearnFAMType != learnFamType)
+            //        {
+            //            XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerFAM", NSMgr.LookupNamespace("ia"));
+            //            LearnerFAM newInstance = new LearnerFAM(migrationItem, newNode, NSMgr);
+            //            LearnerFAMList.Add(newInstance);
+            //            AppendToLastOfNodeNamed(newNode, newNode.Name);
+            //        }
+            //    } 
+            //}
+
             foreach (ProviderSpecLearnerMonitoring migrationItem in MigrationLearner.ProviderSpecLearnerMonitoringList)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("ProviderSpecLearnerMonitoring", NSMgr.LookupNamespace("ia"));
