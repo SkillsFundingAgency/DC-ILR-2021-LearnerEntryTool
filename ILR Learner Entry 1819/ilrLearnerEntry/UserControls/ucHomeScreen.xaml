@@ -75,7 +75,11 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Name="lblStatsMsg" Text="{Binding Path=StatsMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Style="{DynamicResource HomeScreemLoadingMessageStyle}" Visibility="Visible" />
-            <DataGrid Name="dgStats" Grid.Row="1" Margin="10" ItemsSource="{Binding Path=Statistics, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" AlternatingRowBackground="Gainsboro"  HeadersVisibility="None" HorizontalAlignment="Left" SelectionMode="Single" CanUserAddRows="false" />
+			<DataGrid Name="dgStats" Grid.Row="1" Margin="10" ItemsSource="{Binding Path=Statistics, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+					  AlternatingRowBackground="Gainsboro"  HeadersVisibility="None" HorizontalAlignment="Left" SelectionMode="Single" CanUserAddRows="false" FontSize="18">
+
+
+			</DataGrid>
         </Grid>
         <Grid x:Name="ImportExportGrid" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" >
             <Grid.RowDefinitions>
