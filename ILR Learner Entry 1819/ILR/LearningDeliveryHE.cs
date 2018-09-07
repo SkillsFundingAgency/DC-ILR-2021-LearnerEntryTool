@@ -66,6 +66,8 @@ namespace ILR
 			this.NUMHUS = MigrationLearningDeliveryHE.NUMHUS;
 			this.SSN = MigrationLearningDeliveryHE.SSN;
 			this.QUALENT3 = MigrationLearningDeliveryHE.QUALENT3;
+		    this.HEPostCode = MigrationLearningDeliveryHE.HEPostCode;
+		    this.ELQ = MigrationLearningDeliveryHE.ELQ;
 			this.SOC2000 = MigrationLearningDeliveryHE.SOC2000;
 			this.SEC = MigrationLearningDeliveryHE.SEC;
 			this.UCASAPPID = MigrationLearningDeliveryHE.UCASAPPID;
@@ -85,6 +87,7 @@ namespace ILR
 			this.PCTLDCS = MigrationLearningDeliveryHE.PCTLDCS;
 			this.SPECFEE = MigrationLearningDeliveryHE.SPECFEE;
 			this.NETFEE = MigrationLearningDeliveryHE.NETFEE;
+		    this.GROSSFEE = MigrationLearningDeliveryHE.GROSSFEE;
 			this.DOMICILE = MigrationLearningDeliveryHE.DOMICILE;
 		}
 		#endregion
