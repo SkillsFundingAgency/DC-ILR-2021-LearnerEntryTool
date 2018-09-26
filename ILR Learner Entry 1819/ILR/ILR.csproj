@@ -84,6 +84,7 @@
     <Compile Include="Schema.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Utils\CommonValidations.cs" />
+    <Compile Include="Utils\MessagesConstants.cs" />
     <Compile Include="XMLHelper.cs" />
     <Compile Include="_base.cs" />
   </ItemGroup>
