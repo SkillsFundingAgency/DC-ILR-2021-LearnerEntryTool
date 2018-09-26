@@ -515,6 +515,12 @@
   <ItemGroup>
     <Resource Include="Images\ESFA-logo-white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ILR\ILR.csproj">
+      <Project>{1A88CD3F-D823-45BB-9EAB-7A2DB4EA3612}</Project>
+      <Name>ILR</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

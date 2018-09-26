@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using ilrLearnerEntry.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,7 +11,8 @@ namespace ILR
 {
 	public class LearningDeliveryHE : ChildEntity, IDataErrorInfo
 	{
-		public bool IsBlank
+        //TODO: this property looks unused, needs to be removed after tests have been written.
+        public bool IsBlank
 		{
 			get
 			{
@@ -128,7 +131,11 @@ namespace ILR
 						result = "TYPEYR exceeds maximum length (8 digits).";
 						//TYPEYR = (int?)int.Parse(TYPEYR.ToString().Substring(0, 8));
 					}
-				} 
+                    else if (!TYPEYR.HasValue)
+                    {
+                        result = MessagesConstants.TYPEYR_VALIDATION_MESSAGE;
+                    }
+                } 
 				if (columnName == "MODESTUD")
 				{
 					if (MODESTUD != null && MODESTUD.ToString().Length > 8)
@@ -136,7 +143,11 @@ namespace ILR
 						result = "MODESTUD exceeds maximum length (8 digits).";
 						//MODESTUD = (int?)int.Parse(MODESTUD.ToString().Substring(0, 8));
 					}
-				} 
+                    else if (!MODESTUD.HasValue)
+                    {
+                        result = MessagesConstants.MODESTUD_VALIDATION_MESSAGE;
+                    }
+                } 
 				if (columnName == "FUNDLEV")
 				{
 					if (FUNDLEV != null && FUNDLEV.ToString().Length > 8)

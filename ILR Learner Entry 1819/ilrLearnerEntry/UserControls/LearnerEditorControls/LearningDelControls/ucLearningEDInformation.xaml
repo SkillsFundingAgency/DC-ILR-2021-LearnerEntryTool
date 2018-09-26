@@ -204,10 +204,11 @@
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Type of instance year :" HorizontalAlignment="Right"  Margin="0,6.4,3.2,6.4" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <ComboBox Grid.Row="1" Grid.Column="2"
-                      Margin="3.8,4.4,0,4.4"
+                      Margin="0,4,0,5"
                       Width="125"
                       TabIndex="5"
-                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      HorizontalAlignment="Right" HorizontalContentAlignment="Left"
+                      Style="{DynamicResource ComboBoxWithError}"    
                       ItemsSource="{Binding Path=TYPEYRList, UpdateSourceTrigger=PropertyChanged}" 
                       DisplayMemberPath="Description" 
                       SelectedValuePath="Code" 
@@ -221,6 +222,7 @@
                       Margin="3.8,3.6,0,5.2"
                       Width="125"
                       TabIndex="5"
+                          Style="{DynamicResource ComboBoxWithError}"    
                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
                       ItemsSource="{Binding Path=MODESTUDList, UpdateSourceTrigger=PropertyChanged}" 
                       DisplayMemberPath="Description" 
@@ -461,9 +463,9 @@
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Text="HEM Indicators :" HorizontalAlignment="Left"  Margin="3" FontSize="15" FontWeight="Bold" />
 
-				<CheckBox Grid.Row="1" Grid.Column="1" Content="1 - Student is funded by HEFCE using the old funding regime (only for learning aims starting on or after 1 September 2012)" IsChecked="{Binding Path=HEM1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-				<CheckBox Grid.Row="2" Grid.Column="1" Content="3 - Student has received an award under the National Scholarship programme for this learning aim" IsChecked="{Binding Path=HEM2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-				<CheckBox Grid.Row="3" Grid.Column="1" Content="5 - Student's qualifications and grades prior to enrolment are included in the student number control exemption list according to HEFCE" IsChecked="{Binding Path=HEM3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+                <CheckBox Grid.Row="1" Grid.Column="1" Content="1 - Student is funded by HEFCE using the old funding regime (only for learning aims starting on or after 1 September 2012)" IsChecked="{Binding Path=HEM1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+                <CheckBox Grid.Row="2" Grid.Column="1" Content="3 - Student has received an award under the National Scholarship programme for this learning aim" IsChecked="{Binding Path=HEM2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
+                <CheckBox Grid.Row="3" Grid.Column="1" Content="5 - Student's qualifications and grades prior to enrolment are included in the student number control exemption list according to HEFCE" IsChecked="{Binding Path=HEM3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
 
             </Grid>
 
