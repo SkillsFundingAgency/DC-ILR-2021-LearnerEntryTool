@@ -133,7 +133,7 @@ namespace ILR
 					}
                     else if (!TYPEYR.HasValue)
                     {
-                        result = MessagesConstants.TYPEYR_VALIDATION_MESSAGE;
+                        result = MessagesConstants.TYPEYR_ValidationMessage;
                     }
                 } 
 				if (columnName == "MODESTUD")
@@ -145,7 +145,7 @@ namespace ILR
 					}
                     else if (!MODESTUD.HasValue)
                     {
-                        result = MessagesConstants.MODESTUD_VALIDATION_MESSAGE;
+                        result = MessagesConstants.MODESTUD_ValidationMessage;
                     }
                 } 
 				if (columnName == "FUNDLEV")
@@ -155,7 +155,11 @@ namespace ILR
 						result = "FUNDLEV exceeds maximum length (8 digits).";
 						//FUNDLEV = (int?)int.Parse(FUNDLEV.ToString().Substring(0, 8));
 					}
-				} 
+					else if (!FUNDLEV.HasValue)
+					{
+					    result = MessagesConstants.FUNDLEV_ValidationMessage;
+					}
+                } 
 				if (columnName == "FUNDCOMP")
 				{
 					if (FUNDCOMP != null && FUNDCOMP.ToString().Length > 8)
@@ -163,7 +167,11 @@ namespace ILR
 						result = "FUNDCOMP exceeds maximum length (8 digits).";
 						//FUNDCOMP = (int?)int.Parse(FUNDCOMP.ToString().Substring(0, 8));
 					}
-				} 
+					else if (!FUNDCOMP.HasValue)
+					{
+					    result = MessagesConstants.FUNDCOMP_ValidationMessage;
+					}
+                } 
 				if (columnName == "STULOAD")
 				{
 					if (STULOAD != null && STULOAD.ToString().Length > 10)
@@ -179,7 +187,11 @@ namespace ILR
 						result = "YEARSTU exceeds maximum length (8 digits).";
 						//YEARSTU = (int?)int.Parse(YEARSTU.ToString().Substring(0, 8));
 					}
-				} 
+					else if (!YEARSTU.HasValue)
+					{
+					    result = MessagesConstants.YEARSTU_ValidationMessage;
+					}
+                } 
 				if (columnName == "MSTUFEE")
 				{
 					if (MSTUFEE != null && MSTUFEE.ToString().Length > 8)
@@ -187,7 +199,11 @@ namespace ILR
 						result = "MSTUFEE exceeds maximum length (8 digits).";
 						//MSTUFEE = (int?)int.Parse(MSTUFEE.ToString().Substring(0, 8));
 					}
-				} 
+					else if (!MSTUFEE.HasValue)
+					{
+					    result = MessagesConstants.MSTUFEE_ValidationMessage;
+					}
+                } 
 				if (columnName == "PCOLAB")
 				{
 					if (PCOLAB != null && PCOLAB.ToString().Length > 10)
@@ -227,7 +243,11 @@ namespace ILR
 						result = "SPECFEE exceeds maximum length (8 digits).";
 						//SPECFEE = (int?)int.Parse(SPECFEE.ToString().Substring(0, 8));
 					}
-				} 
+					else if (!SPECFEE.HasValue)
+					{
+					    result = MessagesConstants.SPECFEE_ValidationMessage;
+					}
+                } 
 				if (columnName == "NETFEE")
 				{
 					if (NETFEE != null && NETFEE.ToString().Length > 8)
