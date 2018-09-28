@@ -26,6 +26,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_NUMHUS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
@@ -43,6 +44,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_NUMHUS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
@@ -61,6 +63,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SSN_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
@@ -78,6 +81,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SSN_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -96,6 +100,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_QUALENT3_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -113,6 +118,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_QUALENT3_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -131,6 +137,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SOC2000_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -148,6 +155,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SOC2000_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -166,6 +174,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SEC_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -183,6 +192,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SEC_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -201,6 +211,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_UCASAPPID_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -218,6 +229,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_UCASAPPID_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -235,8 +247,8 @@ namespace ILR.LearnerEntry.Tests
             Assert.IsTrue(string.IsNullOrEmpty(validationMessage));
         }
 
-
         [Test]
+        [Category("Unit")]
         public void When_TYPEYR_IsBlank_ShouldGiveTypeOfYearSpecificValidationError()
         {
             // Arrange
@@ -255,6 +267,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_TYPEYR_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
@@ -273,6 +286,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_MODESTUD_IsBlank_ShouldGiveModeOfStudyValidationError()
         {
             // Arrange
@@ -291,6 +305,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_MODESTUD_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
@@ -309,6 +324,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_FUNDLEV_IsBlank_ShouldGiveLevelApplicableToFundingCouncilHEIFESValidationError()
         {
             // Arrange
@@ -327,6 +343,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_FUNDLEV_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
@@ -345,6 +362,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_FUNDCOMP_IsBlank_ShouldGiveCompletionOfYearOfInstanceValidationError()
         {
             // Arrange
@@ -363,6 +381,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_FUNDCOMP_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
@@ -381,6 +400,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_STULOAD_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -398,6 +418,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_STULOAD_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
@@ -416,6 +437,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_YEARSTU_IsBlank_ShouldGiveYearOfStudentOnThisInstanceValidationError()
         {
             // Arrange
@@ -434,6 +456,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_YEARSTU_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
@@ -452,6 +475,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_MSTUFEE_IsBlank_ShouldGiveMajorSourceOfTuitonFeesValidationError()
         {
             // Arrange
@@ -470,6 +494,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_MSTUFEE_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
@@ -488,6 +513,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCOLAB_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -505,6 +531,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCOLAB_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -523,6 +550,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCFLDCS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -540,6 +568,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCFLDCS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -558,6 +587,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCSLDCS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -575,6 +605,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCSLDCS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -593,6 +624,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCTLDCS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -610,6 +642,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_PCTLDCS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
@@ -628,6 +661,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SPECFEE_IsBlank_ShouldGiveSpecialFeeIndicatorValidationError()
         {
             // Arrange
@@ -646,6 +680,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_SPECFEE_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
@@ -664,6 +699,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_NETFEE_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange            
@@ -681,6 +717,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_NETFEE_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange   
@@ -699,6 +736,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_GROSSFEE_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -716,6 +754,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_GROSSFEE_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -734,6 +773,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_DOMICILE_IsBlank_ShouldNotHaveValidationError()
         {
             //AAA 
@@ -747,6 +787,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_DOMICILE_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -765,6 +806,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_ELQ_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -782,6 +824,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_ELQ_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -800,6 +843,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_HEPostCode_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
@@ -817,6 +861,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
+        [Category("Unit")]
         public void When_HEPostCode_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 

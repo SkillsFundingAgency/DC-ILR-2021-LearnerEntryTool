@@ -19,6 +19,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
         #region LearnerHeaderInformation
 
         [Fact]
+        [Trait("Category", "Regression")]
         public void Learner_Create_Learner_NonNumericULN_ShouldRaiseError()
         {
             LearnerWindow learnerWindow = IlrLearnerEntry.UIAutomation.Tests.WindowObjects.Windows.Main.SelectLearnerTab; //select the learner tab
@@ -32,6 +33,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
 
         }
         [Fact]
+        [Trait("Category", "Regression")]
         public void Learner_Create_Learner_NumericULN_Shoul1dNotRaiseError()
         {
             LearnerWindow learnerWindow = IlrLearnerEntry.UIAutomation.Tests.WindowObjects.Windows.Main.SelectLearnerTab; //select the learner tab
@@ -45,6 +47,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
         }
 
         [Fact]
+        [Trait("Category", "Regression")]
         public void Learner_Create_Learner_MissingGivenName_ShoulldRaiseError()
         {
             LearnerWindow learnerWindow = IlrLearnerEntry.UIAutomation.Tests.WindowObjects.Windows.Main.SelectLearnerTab; //select the learner tab
@@ -55,6 +58,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
 
         }
         [Fact]
+        [Trait("Category", "Regression")]
         public void Learner_Create_Learner_GivenNameExist_ShoulldNotRaiseError()
         {
             LearnerWindow learnerWindow = IlrLearnerEntry.UIAutomation.Tests.WindowObjects.Windows.Main.SelectLearnerTab; //select the learner tab

@@ -14,6 +14,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
     {
         string expectedUKPRNMessage = "Please enter a valid integer value for the UKPRN!";
         [Fact]
+        [Trait("Category", "Regression")]
         public void HomePage_UKPRN_When_NonNumeric_ShouldShowError()
         {
             
@@ -27,6 +28,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
         }
 
         [Fact]
+        [Trait("Category", "Regression")]
         public void HomePage_UKPRN_When_NumericNumberUpdated_ShouldNotShowError()
         {
             HomeWindow homeWindow = WindowObjects.Windows.Main.SelectHomeTab; //select the learner tab
