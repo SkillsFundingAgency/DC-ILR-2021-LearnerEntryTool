@@ -9,9 +9,9 @@ using TestStack.White.UIItems.WindowItems;
 
 namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
 {
-    public class LearnerWindow: WindowObject
+    public class Learners_LearnerListObjects: WindowObject
     {
-        internal LearnerWindow(Window window) : base(window)
+        internal Learners_LearnerListObjects(Window window) : base(window)
         {
         }
 
@@ -70,66 +70,66 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
             get { return ComboBox("cmbSex"); }
         }
 
-        public LearnerWindow SetReferenceNumber(string refNumber)
+        public Learners_LearnerListObjects SetReferenceNumber(string refNumber)
         {
             LearnerRefTextBox.Text = refNumber;
             return this;
         }
 
-        public LearnerWindow SetULN(string uln)
+        public Learners_LearnerListObjects SetULN(string uln)
         {
             LearnerULNTextBox.Text = uln;
             return this;
         }
 
-        public LearnerWindow SetPreviousRefNumber(string refNumber)
+        public Learners_LearnerListObjects SetPreviousRefNumber(string refNumber)
         {
             LearnerPrevRefTextBox.Text = refNumber;
             return this;
         }
-        public LearnerWindow SetPreviousUKPRN(string ukprn)
+        public Learners_LearnerListObjects SetPreviousUKPRN(string ukprn)
         {
             LearnerPrevUKPFRNTextBox.Text = ukprn;
             return this;
         }
 
-        public LearnerWindow SetCampusId(string campusId)
+        public Learners_LearnerListObjects SetCampusId(string campusId)
         {
             LearnerCampusIdTextBox.Text = campusId;
             return this;
         }
 
-        public LearnerWindow SetOffTheJobHours(string otHours)
+        public Learners_LearnerListObjects SetOffTheJobHours(string otHours)
         {
             LearnerOTJHoursTextBox.Text = otHours;
             return this;
         }
 
-        public LearnerWindow SetGivenName(string givenName)
+        public Learners_LearnerListObjects SetGivenName(string givenName)
         {
             LearnerGivenNameTextBox.Text = givenName;
             return this;
         }
 
-        public LearnerWindow SetFamilyName(string familyName)
+        public Learners_LearnerListObjects SetFamilyName(string familyName)
         {
             LearnerGivenNameTextBox.Text = familyName;
             return this;
         }
 
-        public LearnerWindow SetDoB(DateTime dateOfBirth)
+        public Learners_LearnerListObjects SetDoB(DateTime dateOfBirth)
         {
             LearnerDoBDateTimePicker.SetValue(dateOfBirth);
             return this;
         }
 
-        public LearnerWindow SetSex(string sex)
+        public Learners_LearnerListObjects SetSex(string sex)
         {
             LearnerSexComboBox.SetValue("Male");
             return this;
         }
 
-        public LearnerWindow ClickAddLearnerButton()
+        public Learners_LearnerListObjects ClickAddLearnerButton()
         {
             AddLearnerButton.Click();
             return this;

@@ -4,16 +4,14 @@ using System.Reflection;
 namespace ILR.LearnerEntry.Tests
 {
     [TestFixture]
-    public class LearnerDeliveryHETests
+    public class LearningDelivery_LearningDeliveryHETests
     {
         private Message message =null;
         private string dataFolder = string.Empty;
         private string internalFileName = "internal1819.ilr";
         //private const string TYPEYR_VALIDATION_MESSAGE = "Type of instance year is mandatory.";
 
-        #pragma warning disable 618
-        [TestFixtureSetUp]
-        #pragma warning restore 618
+        [SetUp]
         public void Setup()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -24,14 +22,14 @@ namespace ILR.LearnerEntry.Tests
             var logFileName = System.IO.Path.Combine(dataFolder, "learnerdeliveryHETests.log");
             message = new Message(fileName, logFileName);
         }
-
+        
         [Test]
-        [Category("Unit")]
-        public void When_NUMHUS_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_NUMHUS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
             var learner = message.CreateLearner();
-            learner.FamilyName ="familyName";
+            learner.FamilyName = "familyName";
             learner.GivenNames = "GivenName";
 
             // Act
@@ -44,8 +42,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_NUMHUS_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearnerDeliveryHE_When_NUMHUS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
             var learner = message.CreateLearner();
@@ -63,8 +61,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SSN_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SSN_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
             var learner = message.CreateLearner();
@@ -81,8 +79,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SSN_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SSN_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -100,8 +98,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_QUALENT3_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_QUALENT3_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -118,8 +116,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_QUALENT3_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_QUALENT3_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -137,8 +135,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SOC2000_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SOC2000_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -155,8 +153,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SOC2000_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SOC2000_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -174,8 +172,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SEC_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SEC_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -192,8 +190,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SEC_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SEC_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -211,8 +209,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_UCASAPPID_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_UCASAPPID_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -229,8 +227,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_UCASAPPID_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_UCASAPPID_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -248,8 +246,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_TYPEYR_IsBlank_ShouldGiveTypeOfYearSpecificValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_TYPEYR_IsBlank_ShouldGiveTypeOfYearSpecificValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -267,8 +265,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_TYPEYR_IsNotBlank_ShouldNotGiveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_TYPEYR_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -286,8 +284,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_MODESTUD_IsBlank_ShouldGiveModeOfStudyValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_MODESTUD_IsBlank_ShouldGiveModeOfStudyValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -305,8 +303,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_MODESTUD_IsNotBlank_ShouldNotGiveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_MODESTUD_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -324,8 +322,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_FUNDLEV_IsBlank_ShouldGiveLevelApplicableToFundingCouncilHEIFESValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_FUNDLEV_IsBlank_ShouldGiveLevelApplicableToFundingCouncilHEIFESValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -343,8 +341,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_FUNDLEV_IsNotBlank_ShouldNotGiveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_FUNDLEV_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -362,8 +360,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_FUNDCOMP_IsBlank_ShouldGiveCompletionOfYearOfInstanceValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_FUNDCOMP_IsBlank_ShouldGiveCompletionOfYearOfInstanceValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -381,8 +379,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_FUNDCOMP_IsNotBlank_ShouldNotGiveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_FUNDCOMP_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -400,8 +398,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_STULOAD_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_STULOAD_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -418,8 +416,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_STULOAD_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_STULOAD_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange  
             var learner = message.CreateLearner();
@@ -437,8 +435,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_YEARSTU_IsBlank_ShouldGiveYearOfStudentOnThisInstanceValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_YEARSTU_IsBlank_ShouldGiveYearOfStudentOnThisInstanceValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -456,11 +454,11 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_YEARSTU_IsNotBlank_ShouldNotGiveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_YEARSTU_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
-            var learner = message.CreateLearner();
+            Learner learner = message.CreateLearner();
             learner.FamilyName = "familyName";
             learner.GivenNames = "GivenName";
 
@@ -475,8 +473,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_MSTUFEE_IsBlank_ShouldGiveMajorSourceOfTuitonFeesValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_MSTUFEE_IsBlank_ShouldGiveMajorSourceOfTuitonFeesValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -494,8 +492,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_MSTUFEE_IsNotBlank_ShouldNotGiveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_MSTUFEE_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -513,8 +511,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCOLAB_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCOLAB_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -531,8 +529,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCOLAB_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCOLAB_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -550,8 +548,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCFLDCS_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCFLDCS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -568,8 +566,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCFLDCS_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCFLDCS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -587,8 +585,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCSLDCS_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCSLDCS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -605,8 +603,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCSLDCS_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCSLDCS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -624,8 +622,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCTLDCS_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCTLDCS_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -642,8 +640,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_PCTLDCS_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_PCTLDCS_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -661,8 +659,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SPECFEE_IsBlank_ShouldGiveSpecialFeeIndicatorValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SPECFEE_IsBlank_ShouldGiveSpecialFeeIndicatorValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -680,8 +678,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_SPECFEE_IsNotBlank_ShouldNotGiveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_SPECFEE_IsNotBlank_ShouldNotGiveValidationError()
         {
             // Arrange
             var learner = message.CreateLearner();
@@ -699,8 +697,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_NETFEE_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_NETFEE_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange            
             var learner = message.CreateLearner();
@@ -717,8 +715,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_NETFEE_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_NETFEE_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange   
             var learner = message.CreateLearner();
@@ -736,8 +734,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_GROSSFEE_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_GROSSFEE_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -754,8 +752,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_GROSSFEE_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_GROSSFEE_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -773,8 +771,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_DOMICILE_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_DOMICILE_IsBlank_ShouldNotHaveValidationError()
         {
             //AAA 
             var learner = message.CreateLearner();
@@ -787,8 +785,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_DOMICILE_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_DOMICILE_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -806,8 +804,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_ELQ_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_ELQ_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -824,8 +822,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_ELQ_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_ELQ_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -843,8 +841,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_HEPostCode_IsBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_HEPostCode_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();
@@ -861,8 +859,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void When_HEPostCode_IsNotBlank_ShouldNotHaveValidationError()
+        [Category("Category [Unit]")]
+        public void Learners_LearningDelivery_LearningDeliveryHE_When_HEPostCode_IsNotBlank_ShouldNotHaveValidationError()
         {
             // Arrange 
             var learner = message.CreateLearner();

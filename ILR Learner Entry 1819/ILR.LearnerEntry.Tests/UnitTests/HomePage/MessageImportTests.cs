@@ -37,8 +37,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test01_Import_WhenFileContainsStdCode_OutputFile_ShouldHaveCode()
+        [Category("Category [Unit]")]
+        public void Import_WhenFileContainsStdCode_OutputFile_ShouldHaveCode()
         {
             //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
             //Message ilrMessage = new Message(fileName);
@@ -52,8 +52,8 @@ namespace ILR.LearnerEntry.Tests
         }
        
         [Test]
-        [Category("Unit")]
-        public void Test03_Import_WhenFileContainsTrailBlazerFinRecord_OutputFile_ShouldHaveFinRecords()
+        [Category("Category [Unit]")]
+        public void Import_WhenFileContainsTrailBlazerFinRecord_OutputFile_ShouldHaveFinRecords()
         {                      
             //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
             //Message ilrMessage = new Message(fileName);
@@ -70,8 +70,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test04_Export_WhenFileValidatedWithSchema_ShouldHaveNoErrors()
+        [Category("Category [Unit]")]
+        public void Export_WhenFileValidatedWithSchema_ShouldHaveNoErrors()
         {
             XNamespace targateNs = "ESFA/ILR/2018-19";
 
@@ -101,8 +101,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test05_Import_WhenFileContainsESFConRefNum_OutputFile_ShouldHaveConRefNum()
+        [Category("Category [Unit]")]
+        public void Import_WhenFileContainsESFConRefNum_OutputFile_ShouldHaveConRefNum()
         {            
             XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
 
@@ -121,8 +121,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test06_Import_WhenFileDoesNotContainsSwAimId_OutputFile_ShouldHaveSwAimId()
+        [Category("Category [Unit]")]
+        public void Import_WhenFileDoesNotContainsSwAimId_OutputFile_ShouldHaveSwAimId()
         {
             //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
             //Message ilrMessage = new Message(fileName);
@@ -149,8 +149,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test07_LearnerCampId_WhenGreaterThan8_ShouldGiveError()
+        [Category("Category [Unit]")]
+        public void LearnerCampId_WhenGreaterThan8_ShouldGiveError()
         {
             var learner = ilrMessage.LearnerList[0];
             learner.CampId = LARGER_INVALID_CAMPID;
@@ -158,8 +158,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test08_LearnerCampId_WhenHasNonAlphaNumeric_ShouldGiveError()
+        [Category("Category [Unit]")]
+        public void LearnerCampId_WhenHasNonAlphaNumeric_ShouldGiveError()
         {
             var learner = ilrMessage.LearnerList[0];
             learner.CampId = NONALPHANUMERIC_INVALID_CAMPID;
@@ -167,8 +167,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test09_LearnerOffTheJobHours_WhenGreaterThan4_ShouldGiveError()
+        [Category("Category [Unit]")]
+        public void LearnerOffTheJobHours_WhenGreaterThan4_ShouldGiveError()
         {
             var learner = ilrMessage.LearnerList[0];
             learner.OTJHours = LARGER_INVALID_OFFTHEJOBHOURS;
@@ -176,8 +176,8 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        [Category("Unit")]
-        public void Test10_LearnerOffTheJobHours_WhenHasNonNumeric_ShouldGiveError()
+        [Category("Category [Unit]")]
+        public void LearnerOffTheJobHours_WhenHasNonNumeric_ShouldGiveError()
         {
             var learner = ilrMessage.LearnerList[0];
             learner.OTJHours = NONNUMERIC_INVALID_OFFTHEJOBHOURS;

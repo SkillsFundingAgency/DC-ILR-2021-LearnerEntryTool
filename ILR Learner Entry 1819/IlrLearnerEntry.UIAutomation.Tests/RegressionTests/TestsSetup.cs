@@ -17,7 +17,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
 {
 
     
-    public class Tests
+    public class TestsSetup
     {
 
        // const string ApplicationPath = @"E:\Downloads\ILRLearnerTool_1718.2.3\ILRLearnerEntry1819.exe";
@@ -25,7 +25,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
         const string ApplicationProcessName1 = "ILRLearnerEntry1819";
 
 
-        public  Tests()
+        public  TestsSetup()
         {
             Reportpath = ConfigurationManager.AppSettings["ReportPath"].ToString();
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IlrLearnerEntry.UIAutomation.Tests.TabObjects.LearnersObjects;
+using System;
 using System.Linq;
 
 using TestStack.White;
@@ -22,14 +23,21 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
             get { return new MainWindow(GetWindow(MainWindowTitle)); }
         }
 
-        public static LearnerWindow LearnerWindow
+        public static Learners_LearnerListObjects LearnerWindow
         {
-            get { return new LearnerWindow(GetWindow(MainWindowTitle)); }
+            get { return new Learners_LearnerListObjects(GetWindow(MainWindowTitle)); }
         }
 
-        public static HomeWindow HomeWindow
+        public static LearningDeliveryObjects LearningDeliveryTab
         {
-            get { return new HomeWindow(GetWindow(MainWindowTitle)); }
+            get
+            {
+                return new LearningDeliveryObjects(GetWindow(MainWindowTitle));
+            }
+        }
+        public static HomeObjects HomeWindow
+        {
+            get { return new HomeObjects(GetWindow(MainWindowTitle)); }
         }
 
 

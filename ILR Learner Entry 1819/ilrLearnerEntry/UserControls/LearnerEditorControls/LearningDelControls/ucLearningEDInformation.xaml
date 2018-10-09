@@ -47,6 +47,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Student instance identifier :" HorizontalAlignment="Right"  Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="0" Grid.Column="1" 
+                     Name="studentInstanceIdentifier"
                      Text="{Binding Path=HeItem.NUMHUS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
@@ -61,6 +62,7 @@
 
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="Student support number :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="0" Grid.Column="3" 
+                     Name="studentSupportNumber"
                      Text="{Binding Path=HeItem.SSN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
@@ -74,6 +76,7 @@
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="UCAS application code :" HorizontalAlignment="Right"  Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="1" Grid.Column="1" 
+                     Name="ucasApplicationCode"
                      Text="{Binding Path=HeItem.UCASAPPID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
@@ -89,6 +92,7 @@
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Occupation code :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
 
                 <TextBox Grid.Row="1" Grid.Column="3" 
+                     Name="occupationCode"
                      Text="{Binding Path=HeItem.SOC2000, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
