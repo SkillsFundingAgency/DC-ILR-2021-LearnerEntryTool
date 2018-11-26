@@ -28,13 +28,13 @@ namespace ilrLearnerEntry
         public MainWindow()
         {
             InitializeComponent();
-            App.Log("MainWindow"," Constructor", "Start");
+            App.Log("MainWindow", " Constructor", "Start");
             HomeScreenControl.OnNewFileImported += HomeScreenControl_OnNewFileImported;
             HomeScreenControl.OnUkprnUpdated += HomeScreenControl_OnUkprnUpdated;
             this.DataContext = this;
             OnPropertyChanged("WindowTitle");
             OnPropertyChanged("ProductVersion");
-            
+
             if (App.ILRMessage.LearnerCount > 0 || App.ILRMessage.LearnerDestinationandProgressionCount > 0)
             {
                 App.Log("MainWindow", " Constructor", "Update Child Controls");
@@ -50,7 +50,7 @@ namespace ilrLearnerEntry
 
         private void TabControlMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
         #endregion
 
@@ -61,7 +61,7 @@ namespace ilrLearnerEntry
             {
                 if (App.ILRMessage.LearningProvider.UKPRN != null)
                 {
-                    return String.Format("{0} - UKPRN : {1}", App.ApplicationName, App.ILRMessage.LearningProvider.UKPRN.ToString());				
+                    return String.Format("{0} - UKPRN : {1}", App.ApplicationName, App.ILRMessage.LearningProvider.UKPRN.ToString());
                 }
                 else
                 {
@@ -82,7 +82,7 @@ namespace ilrLearnerEntry
 #if DEBUG
                     vReturn = version.ToString();
 #else
-                    vReturn = version.Major.ToString() + "." + version.Minor.ToString() + "." + version.Build.ToString();
+                                    vReturn = version.Major.ToString() + "." + version.Minor.ToString() + "." + version.Build.ToString();
 #endif
                 }
                 else
@@ -90,6 +90,7 @@ namespace ilrLearnerEntry
                     vReturn = "Unable to get Version.";
                 }
 
+                vReturn = "1.3"; // Temporary hack until the GitVersion is fixed. 
                 return $"v{vReturn}";
             }
         }
@@ -121,7 +122,7 @@ namespace ilrLearnerEntry
             {
                 App.ILRMessage.Save();
             }
-            
+
         }
 
         protected override void OnClosed(EventArgs e)
