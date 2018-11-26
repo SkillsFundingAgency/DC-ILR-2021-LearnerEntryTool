@@ -37,21 +37,24 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="A :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=CurrentItem.ProvSpecMonA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="A :" HorizontalAlignment="Right" Margin="3" />
+                <TextBox Grid.Row="0" Grid.Column="1" 
+                     Text="{Binding Path=CurrentItem.ProvSpecMonA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left"                       
-                     MaxLength="20" TabIndex="1" Width="150"
-                     Margin="2.5,4,0,2" />
+                     HorizontalContentAlignment="Stretch"                       
+                     MaxLength="20" Width="150"
+                     Margin="3" />
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="B :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding Path=CurrentItem.ProvSpecMonB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="B :" HorizontalAlignment="Right" Margin="3" />
+                <TextBox Grid.Row="0" Grid.Column="4" 
+                     Text="{Binding Path=CurrentItem.ProvSpecMonB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Stretch" 
-                     HorizontalContentAlignment="Left" 
-                     MaxLength="20" TabIndex="2" Width="150" 
-                     Margin="2,4,47,2" />
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Stretch" 
+                     MaxLength="20"
+                     Width="150" 
+                     Margin="3" />
             </Grid>
         </Grid>
     </ScrollViewer>

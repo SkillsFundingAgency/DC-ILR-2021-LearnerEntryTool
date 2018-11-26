@@ -225,9 +225,11 @@
           </xsl:for-each>
           <xsl:for-each select="dc:LearnerEmploymentStatus">
             <LearnerEmploymentStatus>
+              <xsl:if test="dc:EmpStat != ''">
               <EmpStat>
                 <xsl:value-of select="dc:EmpStat"/>
               </EmpStat>
+              </xsl:if>
               <xsl:if test="dc:DateEmpStatApp != ''">
                 <DateEmpStatApp>
                   <xsl:value-of select="dc:DateEmpStatApp"/>
@@ -504,29 +506,41 @@
                       <xsl:value-of select="dc:UCASAPPID "/>
                     </UCASAPPID >
                   </xsl:if>
+                  <xsl:if test="dc:TYPEYR != ''">
                   <TYPEYR>
                     <xsl:value-of select="dc:TYPEYR"/>
                   </TYPEYR>
+                   </xsl:if>
+                  <xsl:if test="dc:MODESTUD != ''">
                   <MODESTUD>
                     <xsl:value-of select="dc:MODESTUD"/>
                   </MODESTUD>
+                  </xsl:if>
+                  <xsl:if test="dc:FUNDLEV != ''">
                   <FUNDLEV>
                     <xsl:value-of select="dc:FUNDLEV"/>
                   </FUNDLEV>
-                  <FUNDCOMP>
+                  </xsl:if>
+                  <xsl:if test="dc:FUNDCOMP != ''">
+                    <FUNDCOMP>
                     <xsl:value-of select="dc:FUNDCOMP"/>
                   </FUNDCOMP>
+                    </xsl:if>
                   <xsl:if test="dc:STULOAD  != ''">
-                    <STULOAD >
+                    <STULOAD>
                       <xsl:value-of select="dc:STULOAD "/>
                     </STULOAD >
                   </xsl:if>
-                  <YEARSTU>
+                  <xsl:if test="dc:YEARSTU != ''">
+                    <YEARSTU>
                     <xsl:value-of select="dc:YEARSTU"/>
                   </YEARSTU>
+                  </xsl:if>
+                   <xsl:if test="dc:MSTUFEE != ''">
                   <MSTUFEE>
                     <xsl:value-of select="dc:MSTUFEE"/>
                   </MSTUFEE>
+                     </xsl:if>
                   <xsl:if test="dc:PCOLAB != ''">
                     <PCOLAB>
                       <xsl:value-of select="dc:PCOLAB"/>
@@ -547,9 +561,11 @@
                       <xsl:value-of select="dc:PCTLDCS "/>
                     </PCTLDCS >
                   </xsl:if>
+                  <xsl:if test="dc:SPECFEE != ''">
                   <SPECFEE>
                     <xsl:value-of select="dc:SPECFEE"/>
                   </SPECFEE>
+                    </xsl:if>
                   <xsl:if test="dc:NETFEE != ''">
                     <NETFEE>
                       <xsl:value-of select="dc:NETFEE"/>

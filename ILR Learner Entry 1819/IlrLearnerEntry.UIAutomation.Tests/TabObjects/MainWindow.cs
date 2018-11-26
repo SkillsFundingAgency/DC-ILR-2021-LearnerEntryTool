@@ -6,6 +6,7 @@ using TestStack.White.UIItems.ListBoxItems;
 using TestStack.White.UIItems.WindowItems;
 using TestStack.White.UIItems.TabItems;
 using TestStack.White.UIItems.Finders;
+using IlrLearnerEntry.UIAutomation.Tests.TabObjects.LearnersObjects;
 
 namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
 {
@@ -37,6 +38,20 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
             }
         }
 
+        private TabPage LearningDeliveryTab
+        {
+            get
+            {
+                return _window.Get<TabPage>(SearchCriteria.ByText(" Learning Delivery "));
+            }
+        }
+        private TabPage EmploymentStatusTab
+        {
+            get
+            {
+                return _window.Get<TabPage>(SearchCriteria.ByText(" Employment Status "));
+            }
+        }
 
         private Button ImportButton
         {
@@ -57,7 +72,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
         {
         }
     
-        public LearnerWindow SelectLearnerTab
+        public Learners_LearnerListObjects SelectLearnerTab
         {
             get {
                 Learners.Select();
@@ -66,7 +81,25 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
 
         }
 
-        public HomeWindow SelectHomeTab
+        public LearningDeliveryObjects SelectLearningDeliveryTab
+        {
+            get
+            {
+                LearningDeliveryTab.Select();
+                return Windows.LearningDeliveryTab;
+            }
+        }
+
+        public EmploymentStatusObjects SelectEmploymentStatusTab
+        {
+            get
+            {
+                EmploymentStatusTab.Select();
+                return Windows.EmploymentStatusTab;
+            }
+        }
+
+        public HomeObjects SelectHomeTab
         {
             get
             {

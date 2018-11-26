@@ -12,11 +12,11 @@
              d:DesignHeight="500" 
              d:DesignWidth="750"
              RequestBringIntoView="UserControl_RequestBringIntoView"  >
-	<UserControl.Resources>
-		<CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
-		<CommonConverters:IsCompleteVisabilityConverter x:Key="IsCompleteVisibilityConverter" />
-		<CommonConverters:StringToNullableLongConverter x:Key="StringToNullableLongConverter" />
-		<CommonConverters:StringToNullableIntConverter x:Key="StringToNullableIntConverter" />
+    <UserControl.Resources>
+        <CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
+        <CommonConverters:IsCompleteVisabilityConverter x:Key="IsCompleteVisibilityConverter" />
+        <CommonConverters:StringToNullableLongConverter x:Key="StringToNullableLongConverter" />
+        <CommonConverters:StringToNullableIntConverter x:Key="StringToNullableIntConverter" />
         <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -43,15 +43,15 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Text="Long term disability, health problem or learning difficulty :" TextWrapping="WrapWithOverflow" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,3,3,3" />
 
+                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Text="Long term disability, health problem or learning difficulty :" TextWrapping="WrapWithOverflow" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,3,3,3" Style="{DynamicResource StandardTextBlockStyle}"/>
                 <ComboBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
                       TabIndex="2"   Margin="4" 
                       Style="{DynamicResource ComboBoxWithError}"    
-                      ItemsSource="{Binding Path=LLDDHealthProblemList, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                      ItemsSource="{Binding Path=LLDDHealthProblemList, UpdateSourceTrigger=PropertyChanged}" 
                       DisplayMemberPath="Description" 
                       SelectedValuePath="Code" 
-                      SelectedValue="{Binding Path=LLDDHealthProbTest, Mode=TwoWay, NotifyOnValidationError=True}"                    
+                      SelectedValue="{Binding Path=CurrentItem.LLDDHealthProb, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"                    
                       VerticalAlignment="Top" 
                       HorizontalAlignment="Left" 
                       MinWidth="350"

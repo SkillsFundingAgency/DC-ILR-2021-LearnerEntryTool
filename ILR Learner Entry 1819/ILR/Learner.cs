@@ -79,7 +79,7 @@ namespace ILR
                 {
                     foreach (var lEmpStatus in this.LearnerEmploymentStatusList.FindAll(x => x.IsComplete == false))
                     {
-                        message += "\tLearner Employment status is not valid: "+lEmpStatus.IncompleteMessage;
+                        message += "\tLearner Employment status is not valid: " + lEmpStatus.IncompleteMessage;
                     }
 
                 }
@@ -185,11 +185,7 @@ namespace ILR
         public DateTime? DateOfBirth { get { string DateOfBirth = XMLHelper.GetChildValue("DateOfBirth", Node, NSMgr); return (DateOfBirth != null ? DateTime.Parse(DateOfBirth) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateOfBirth", value, Node, NSMgr); OnPropertyChanged("DateOfBirth"); GiveFrountEndkickToRefresh(); } }
         public int? Ethnicity { get { string Ethnicity = XMLHelper.GetChildValue("Ethnicity", Node, NSMgr); return (Ethnicity != null ? int.Parse(Ethnicity) : (int?)null); } set { XMLHelper.SetChildValue("Ethnicity", value, Node, NSMgr); OnPropertyChanged("Ethnicity"); GiveFrountEndkickToRefresh(); } }
         public string Sex { get { return XMLHelper.GetChildValue("Sex", Node, NSMgr); } set { XMLHelper.SetChildValue("Sex", value, Node, NSMgr); OnPropertyChanged("Sex"); GiveFrountEndkickToRefresh(); } }
-        public int? LLDDHealthProb
-        {
-            get { string LLDDHealthProb = XMLHelper.GetChildValue("LLDDHealthProb", Node, NSMgr); return (LLDDHealthProb != null ? int.Parse(LLDDHealthProb) : (int?)null); }
-            set { XMLHelper.SetChildValue("LLDDHealthProb", value, Node, NSMgr); OnPropertyChanged("LLDDHealthProb"); GiveFrountEndkickToRefresh(); }
-        }
+        public int? LLDDHealthProb { get { string LLDDHealthProb = XMLHelper.GetChildValue("LLDDHealthProb", Node, NSMgr); return (LLDDHealthProb != null ? int.Parse(LLDDHealthProb) : (int?)null); } set { XMLHelper.SetChildValue("LLDDHealthProb", value, Node, NSMgr); OnPropertyChanged("LLDDHealthProb"); GiveFrountEndkickToRefresh(); } }
         public string NINumber { get { return XMLHelper.GetChildValue("NINumber", Node, NSMgr); } set { XMLHelper.SetChildValue("NINumber", value, Node, NSMgr); OnPropertyChanged("NINumber"); GiveFrountEndkickToRefresh(); } }
         public int? PriorAttain { get { string PriorAttain = XMLHelper.GetChildValue("PriorAttain", Node, NSMgr); return (PriorAttain != null ? int.Parse(PriorAttain) : (int?)null); } set { XMLHelper.SetChildValue("PriorAttain", value, Node, NSMgr); OnPropertyChanged("PriorAttain"); GiveFrountEndkickToRefresh(); } }
         public bool Accom { get { string Accom = XMLHelper.GetChildValue("Accom", Node, NSMgr); return (Accom != null ? true : false); } set { XMLHelper.SetChildValue("Accom", value ? (int?)5 : (int?)null, Node, NSMgr); OnPropertyChanged("Accom"); GiveFrountEndkickToRefresh(); } }
@@ -730,7 +726,7 @@ namespace ILR
                 OnPropertyChanged("RUI2");
             }
         }
-       
+
         public bool RUI4
         {
             get
@@ -791,8 +787,8 @@ namespace ILR
                 else if (!value && RUI5)
                 {
                     ContactPreference deleteInstance = this.ContactPreferenceList.Where(x => x.ContPrefType == "RUI" && x.ContPrefCode == 5).FirstOrDefault();
-                   
-                        this.DeleteContactInstance(deleteInstance);
+
+                    this.DeleteContactInstance(deleteInstance);
                 }
                 OnPropertyChanged("RUI5");
             }
@@ -1402,7 +1398,7 @@ namespace ILR
             GiveFrountEndkickToRefresh();
         }
 
-       
+
 
         #region FAM management
         public LearnerFAM GetFAM(LearnerFAM.SingleOccurrenceFAMs FAMType)
@@ -1591,9 +1587,9 @@ namespace ILR
         private void GiveFrountEndkickToRefresh()
         {
             if (!IsFileImportLoadingRunning)
+
                 OnPropertyChanged("GivenNames");
             OnPropertyChanged("FamilyName");
-
             OnPropertyChanged("DateOfBirth");
             OnPropertyChanged("Ethnicity");
             OnPropertyChanged("Sex");
@@ -1694,12 +1690,12 @@ namespace ILR
                             return CheckPropertyLength(Ethnicity, CLASSNAME, columnName, TABS);
                         break;
                     case "LLDDHealthProb":
-                        if ((LLDDHealthProb == null)
-                             || ((LLDDHealthProb != null && LLDDHealthProb.ToString().Length == 0))
-                            )
+                        if ((LLDDHealthProb == null) || ((LLDDHealthProb != null && LLDDHealthProb.ToString().Length == 0)))
                         {
                             return "LLDDHealthProb - required\r\n";
                         }
+                        if (LLDDHealthProb != null)
+                            return CheckPropertyLength(LLDDHealthProb, CLASSNAME, columnName, TABS);
                         break;
                     case "LLDDandHealthProblemList":
                         if ((this.LLDDHealthProb != null) && (this.LLDDHealthProb == 1)
@@ -1788,7 +1784,7 @@ namespace ILR
             bool isValid = false;
             string strULN = ULN.ToString();
             if (strULN == null || strULN.Length == 0)
-               sReturn += "ULN - required\r\n";
+                sReturn += "ULN - required\r\n";
             if (strULN != null && strULN.Length > 0)
             {
                 long number;

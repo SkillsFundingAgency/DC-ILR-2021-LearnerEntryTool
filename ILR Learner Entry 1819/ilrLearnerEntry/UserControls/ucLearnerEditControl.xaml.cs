@@ -29,7 +29,7 @@ namespace ilrLearnerEntry.UserControls
         private String _learnerfilterString = string.Empty;
         private const string FILTER_TEXT_PROMPT = "Enter value to search for";
         private String _filterText = String.Empty;
-        
+
         #endregion
 
         #region Constructor
@@ -85,7 +85,7 @@ namespace ilrLearnerEntry.UserControls
 
         #region Private Properties
         #endregion
-        
+
         #region Public Methods
         public void UpdateChildControlAsNewDataLoaded()
         {
@@ -103,9 +103,10 @@ namespace ilrLearnerEntry.UserControls
         public string FilterValue
         {
             get { return _filterText; }
-            set {
+            set
+            {
 
-                if(_filterText != value)
+                if (_filterText != value)
                 {
                     _filterText = value;
                     OnPropertyChanged("FilterValue");
@@ -201,24 +202,42 @@ namespace ilrLearnerEntry.UserControls
         }
         private void AddLearner_Click(object sender, RoutedEventArgs e)
         {
+            //if (LearnerItemsCV != null && LearnerItemsCV.CurrentItem != null)
+            //{                
+            //    foreach (Learner learner in LearnerItemsCV)
+            //    {
+            //        if (!string.IsNullOrWhiteSpace(learner.IncompleteMessage))
+            //        {
+            //            MessageBox.Show($"Please complete all mandatory fields for learner {learner.LearnRefNumber} before proceeding"
+            //                                                   , "Cannot proceed"
+            //                                                   , MessageBoxButton.OK
+            //                                                   , MessageBoxImage.Error
+            //                                                   , MessageBoxResult.OK);
+            //            return;
+            //        }
+            //    }                
+            //}
             Learner newLr = App.ILRMessage.CreateLearner();
             App.ILRMessage.Save();
 
             if (App.ILRMessage.LearnerList.Count == 1)
-            {               
-                SetupListData();               
+            {
+                SetupListData();
             }
-            foreach(Learner l in LearnerItemsCV)
+
+            foreach (Learner l in LearnerItemsCV)
             {
                 //if (l != newLr)
-                    l.IsSelected = false;
+                l.IsSelected = false;
             }
+
             newLr.IsSelected = true;
-            DataItemListBox.SelectedItem = newLr;                
+            DataItemListBox.SelectedItem = newLr;
             //LearnerItemsCV.MoveCurrentTo(newLr);
             LearnerItemsCV.Refresh();
             OnPropertyChanged("LearnerItemsCV");
             newLr.RefreshData();
+
         }
         private void RemoveLearner_Click(object sender, RoutedEventArgs e)
         {
@@ -347,8 +366,8 @@ namespace ilrLearnerEntry.UserControls
             else
             {
                 SetupListData();
-            }            
-                          
+            }
+
         }
 
         #endregion
