@@ -35,6 +35,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Employment status :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
 
                     <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
+                                      Name="employmentStatus"
                                       Margin="4"
                                       MinWidth="175"  MaxWidth="300"
                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
@@ -47,9 +48,14 @@
 
                     <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Date status applies :" Style="{DynamicResource StandardTextBlockStyle}"/>
 
-                    <DatePicker  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" x:Name="dtEmpStatDate"  VerticalAlignment="Top" 
-                             DisplayDate="{Binding Path=CurrentItem.DateEmpStatApp, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
-                             SelectedDate="{Binding Path=CurrentItem.DateEmpStatApp, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                    <DatePicker  
+                        Grid.Row="2" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left" 
+                        x:Name="dtEmpStatDate"  
+                        VerticalAlignment="Top" 
+                        DisplayDate="{Binding Path=CurrentItem.DateEmpStatApp, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectedDate="{Binding Path=CurrentItem.DateEmpStatApp, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                           />
 
                     <TextBlock Grid.Row="2" Grid.Column="2" Text="Employer Identifier :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
@@ -121,6 +127,7 @@
 
                     <TextBlock Grid.Row="1" Grid.Column="3" Text="Length of unemployment :" HorizontalAlignment="Right" Margin="0,7,2,7"  Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2"/>
                     <ComboBox Grid.Row="1" Grid.Column="5" Margin="10,4,0,4" MinWidth="230" MaxWidth="300"
+                      Name="lengthOfUnemployment"
                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
                       ItemsSource="{Binding Path=LengthOfUnemploymentList}"
                       DisplayMemberPath="Description" 
@@ -130,6 +137,7 @@
                    />
                     <TextBlock Grid.Row="2" Grid.Column="4" Text="Benefit status indicator :" HorizontalAlignment="Right" Margin="0,12,2,12"  Style="{DynamicResource StandardTextBlockStyle}" />
                     <ComboBox Grid.Row="2" Grid.Column="5" Margin="10,8,0,9" MinWidth="230" MaxWidth="300"
+                      Name="benefitStatusIndicator"
                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
                       ItemsSource="{Binding Path=BenifitStatusIndicatorList}" 
                       Style="{DynamicResource ComboBoxWithError}"                                      
@@ -139,6 +147,7 @@
                    />
                     <TextBlock Grid.Row="3" Grid.Column="2" Text="Employment intensity indicator :" HorizontalAlignment="Right" Margin="0,12,2,12"  Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="3" />
                     <ComboBox Grid.Row="3" Grid.Column="5" Margin="10,9,0,8" MinWidth="230" MaxWidth="300"
+                      Name="employmentIntensityIndicator"
                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
                       ItemsSource="{Binding Path=EmploymentIntensityIndicatorList}" 
                       Style="{DynamicResource ComboBoxWithError}"                                      
@@ -148,6 +157,7 @@
                    />
                     <TextBlock Grid.Row="4" Grid.Column="4" Text="Length of employment :" HorizontalAlignment="Right" Margin="0,7,3,7"  Style="{DynamicResource StandardTextBlockStyle}" />
                     <ComboBox Grid.Row="4" Grid.Column="5" Margin="10,4,0,4" MinWidth="230" MaxWidth="300"
+                      Name="lengthOfEmployment"
                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
                       ItemsSource="{Binding Path=LengthOfEmploymentList}" 
                       Style="{DynamicResource ComboBoxWithError}"                                      

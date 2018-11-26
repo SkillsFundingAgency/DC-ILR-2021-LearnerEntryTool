@@ -99,7 +99,7 @@
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
                      Margin="2.8,3.6,3,0"
-				     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+				     
                      MaxLength="4" 
                      TabIndex="3"
                      Width="35" />
@@ -261,17 +261,19 @@
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Year of student on this instance :" HorizontalAlignment="Right" Margin="0,1.8,2.2,3.8" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <TextBox Grid.Row="4" Grid.Column="2" 
                      Name="yearOfStudentOnThisInstance"
-                     Text="{Binding Path=HeItem.YEARSTU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=HeItem.YEARSTU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
-                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="2"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
+                     PreviewTextInput ="ValidateToNumeric"
+                     MaxLength="2"
                      VerticalAlignment="Top" 
-                     Margin="2.8,2.8,0,0"
-                     MaxLength="2" 
+                     Margin="2.8,2.8,0,0"                      
                      TabIndex="3"
-                     Width="25" />
+                     Width="25"
+                     />
 
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="Completion of year of instance :" HorizontalAlignment="Right"  Margin="0,5.2,2.2,6.8" Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2" />
                 <ComboBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5"
@@ -298,8 +300,9 @@
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Stretch" 
                      Margin="3,3,0,1"
-                         TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
-                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
+                     TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
+                     PreviewTextInput ="ValidateToNumeric" 
                      MaxLength="6" 
                      TabIndex="3"
                      Width="50" >
@@ -313,11 +316,12 @@
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
-					TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
-                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
-                         TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
+					 TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="5"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
+                     PreviewTextInput ="ValidateToNumeric" 
                      Margin="2.8,3.4,0,0"
-                     MaxLength="4" 
+                     MaxLength="5" 
                      TabIndex="3"
                      Width="50" />
                 <TextBlock Grid.Row="1" Grid.Column="6" Text="%" HorizontalAlignment="Right" Margin="0,6.4,3.2,6.4" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -331,10 +335,11 @@
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
                      TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
-                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="5"
                      TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
+                     PreviewTextInput ="ValidateToNumeric"
                      Margin="2.8,3.6,0,0"
-                     MaxLength="4" 
+                     MaxLength="5" 
                      TabIndex="3"
                      Width="50" />
                 <TextBlock Grid.Row="2" Grid.Column="6" Text="%" HorizontalAlignment="Right" Margin="0,6.6,3.2,6.2" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -347,11 +352,12 @@
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Top" 
-                         TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
-                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
-                         TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
+                     TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="5"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
+                     PreviewTextInput ="ValidateToNumeric" 
                      Margin="3,4,0,0"
-                     MaxLength="4" 
+                     MaxLength="5" 
                      TabIndex="3"
                      Width="50" Height="18" />
                 <TextBlock Grid.Row="3" Grid.Column="6" Text="%" HorizontalAlignment="Right" Margin="0,5.8,3.2,6.2" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -366,10 +372,11 @@
                      HorizontalContentAlignment="Left" 
                      VerticalAlignment="Bottom" 
                      Margin="3,0,0,0"
-                         TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
-                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
-                         TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
-                     MaxLength="4" 
+                     TextBoxMask:TextBoxMaskBehavior.Mask="Decimal"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="5"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumValue="100.0"
+                     PreviewTextInput ="ValidateToNumeric"
+                     MaxLength="5" 
                      TabIndex="3"
                      Width="50" />
                 <TextBlock Grid.Row="4" Grid.Column="6" Text="%" HorizontalAlignment="Right" Margin="0,2.8,3.2,2.8" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -444,8 +451,9 @@
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
-                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
-                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
+                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
+                     PreviewTextInput ="ValidateToNumeric"
                      VerticalAlignment="Top" 
                      Margin="2.8,3.6,3,0"
                      MaxLength="6" 

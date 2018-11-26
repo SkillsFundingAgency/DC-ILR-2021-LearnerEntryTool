@@ -45,6 +45,13 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
                 return _window.Get<TabPage>(SearchCriteria.ByText(" Learning Delivery "));
             }
         }
+        private TabPage EmploymentStatusTab
+        {
+            get
+            {
+                return _window.Get<TabPage>(SearchCriteria.ByText(" Employment Status "));
+            }
+        }
 
         private Button ImportButton
         {
@@ -80,6 +87,15 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
             {
                 LearningDeliveryTab.Select();
                 return Windows.LearningDeliveryTab;
+            }
+        }
+
+        public EmploymentStatusObjects SelectEmploymentStatusTab
+        {
+            get
+            {
+                EmploymentStatusTab.Select();
+                return Windows.EmploymentStatusTab;
             }
         }
 

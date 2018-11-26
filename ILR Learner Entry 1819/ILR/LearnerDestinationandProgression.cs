@@ -23,8 +23,8 @@ namespace ILR
         }
         #endregion
         #region ILR Properties
-        public string LearnRefNumber { get { return XMLHelper.GetChildValue("LearnRefNumber", Node, NSMgr); } set { XMLHelper.SetChildValue("LearnRefNumber", value, Node, NSMgr); PropertyChanged("LearnRefNumber"); } }
-        public long? ULN { get { string ULN = XMLHelper.GetChildValue("ULN", Node, NSMgr); return (ULN != null ? long.Parse(ULN) : (long?)null); } set { XMLHelper.SetChildValue("ULN", value, Node, NSMgr); PropertyChanged("ULN"); } }
+        public string LearnRefNumber { get { return XMLHelper.GetChildValue("LearnRefNumber", Node, NSMgr); } set { XMLHelper.SetChildValue("LearnRefNumber", value, Node, NSMgr); PropertyChanged("LearnRefNumber"); RefreshFrontEnd(); } }
+        public long? ULN { get { string ULN = XMLHelper.GetChildValue("ULN", Node, NSMgr); return (ULN != null ? long.Parse(ULN) : (long?)null); } set { XMLHelper.SetChildValue("ULN", value, Node, NSMgr); PropertyChanged("ULN"); RefreshFrontEnd(); } }
 
         public int OutcomeCount
         {
@@ -49,6 +49,8 @@ namespace ILR
             }
         }
 
+        //public List<DPOutcome> DPOutcomeList = new List<DPOutcome>();
+
         public override string IncompleteMessage
         {
             get
@@ -57,6 +59,9 @@ namespace ILR
 
                 message += this["LearnRefNumber"];
                 message += this["ULN"];
+
+                if (this.DPOutcomeList.Count == 0)
+                    message += "No Outcome records\r\n";
 
                 foreach (var dp in this.DPOutcomeList.Where(dp => !dp.IsComplete))
                 {
@@ -68,7 +73,7 @@ namespace ILR
         }
         #endregion
 
-                #region ILR Child Entites
+        #region ILR Child Entites
         public ObservableCollection<DPOutcome> DPOutcomeList = new ObservableCollection<DPOutcome>();
         #endregion
 
@@ -88,6 +93,7 @@ namespace ILR
         private void NewInstance_OutcomeChanged(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged("IsComplete");
+            RefreshFrontEnd();
         }
         #endregion
 
@@ -137,7 +143,7 @@ namespace ILR
         public string Error
         {
             get { throw new NotImplementedException(); }
-        }       
+        }
 
         public bool ExcludeFromExport
         {
@@ -165,7 +171,7 @@ namespace ILR
                 if (columnName == "LearnRefNumber")
                 {
                     if (String.IsNullOrEmpty(LearnRefNumber))
-                        result = String.Format("{0} required.", columnName);
+                        result = String.Format("{0} required.\r\n", columnName);
                     if (ULN != null)
                         return CheckPropertyLength(LearnRefNumber, CLASSNAME, columnName, TABS);
                     //if (LearnRefNumber != null && LearnRefNumber.ToString().Length > 12)
@@ -175,9 +181,9 @@ namespace ILR
                 if (columnName == "ULN")
                 {
                     if (String.IsNullOrEmpty(ULN.ToString()))
-                        result = String.Format("{0} required.", columnName);
+                        result = String.Format("{0} required.\r\n", columnName);
                     if (ULN != null)
-                        return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);    
+                        return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
                 }
                 return result;
             }
@@ -188,6 +194,14 @@ namespace ILR
         {
             OnPropertyChanged(propertyName);
             OnPropertyChanged("IsComplete");
+            OnPropertyChanged("ExcludeFromExport");
+        }
+
+        private void RefreshFrontEnd()
+        {
+            OnPropertyChanged("IsComplete");
+            OnPropertyChanged("IncompleteMessage");
+            OnPropertyChanged("ExcludeFromExport");
         }
 
     }

@@ -35,6 +35,14 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
                 return new LearningDeliveryObjects(GetWindow(MainWindowTitle));
             }
         }
+
+        public static EmploymentStatusObjects EmploymentStatusTab
+        {
+            get
+            {
+                return new EmploymentStatusObjects(GetWindow(MainWindowTitle));
+            }
+        }
         public static HomeObjects HomeWindow
         {
             get { return new HomeObjects(GetWindow(MainWindowTitle)); }

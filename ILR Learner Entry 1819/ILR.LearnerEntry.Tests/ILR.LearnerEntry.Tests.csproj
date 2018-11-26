@@ -55,6 +55,7 @@
     <Compile Include="ContactPreferencesTest.cs" />
     <Compile Include="UnitTests\HomePage\MessageImportTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\Learners\EmploymentStatusTests.cs" />
     <Compile Include="UnitTests\Learners\LearningDelivery_LearningDeliveryHETests.cs" />
   </ItemGroup>
   <ItemGroup>
