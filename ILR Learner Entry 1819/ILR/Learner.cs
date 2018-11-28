@@ -40,10 +40,6 @@ namespace ILR
             }
         }
 
-        //public void SetErrorMessage(string msg)
-        //{
-
-        //}
         public override string IncompleteMessage
         {
             get
