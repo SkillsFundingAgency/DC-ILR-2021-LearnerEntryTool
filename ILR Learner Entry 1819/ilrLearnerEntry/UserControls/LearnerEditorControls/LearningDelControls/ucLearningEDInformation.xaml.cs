@@ -3,17 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 using ILR;
 
@@ -47,6 +39,11 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             this.DataContext = this;
         }
         #endregion
+        private void ValidateToNumeric(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[0 - 9]{ 1,2} ([.][0 - 9]{ 1,2})?$");           
+            e.Handled = regex.IsMatch(e.Text);
+        }
 
         #region Public Properties
         public ILR.LearningDeliveryHE HeItem
@@ -82,40 +79,40 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                         _learningDelivery.CreateLearningDeliveryHE();
                     }
                 }
-                //    _pcolab = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCOLAB == null)) ? null : _learningDelivery.LearningDeliveryHE.PCOLAB.ToString());
-                //    _pcfldcs = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCFLDCS == null)) ? null : _learningDelivery.LearningDeliveryHE.PCFLDCS.ToString());
-                //    _pcsldcs = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCSLDCS == null)) ? null : _learningDelivery.LearningDeliveryHE.PCSLDCS.ToString());
-                //    _pctldcs = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCTLDCS == null)) ? null : _learningDelivery.LearningDeliveryHE.PCTLDCS.ToString());
-                //    _soc2000 = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.SOC2000 == null)) ? null : _learningDelivery.LearningDeliveryHE.SOC2000.ToString());
-                //    _yearstu = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.YEARSTU == null)) ? null : _learningDelivery.LearningDeliveryHE.YEARSTU.ToString());
-                //    _netfee = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.NETFEE == null)) ? null : _learningDelivery.LearningDeliveryHE.NETFEE.ToString());
-                //    _grossfee = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.GROSSFEE == null)) ? null : _learningDelivery.LearningDeliveryHE.GROSSFEE.ToString());
-                //    _studload = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.STULOAD == null)) ? null : _learningDelivery.LearningDeliveryHE.STULOAD.ToString());
+                //_pcolab = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCOLAB == null)) ? null : _learningDelivery.LearningDeliveryHE.PCOLAB.ToString());
+                //_pcfldcs = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCFLDCS == null)) ? null : _learningDelivery.LearningDeliveryHE.PCFLDCS.ToString());
+                //_pcsldcs = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCSLDCS == null)) ? null : _learningDelivery.LearningDeliveryHE.PCSLDCS.ToString());
+                //_pctldcs = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.PCTLDCS == null)) ? null : _learningDelivery.LearningDeliveryHE.PCTLDCS.ToString());
+                //_soc2000 = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.SOC2000 == null)) ? null : _learningDelivery.LearningDeliveryHE.SOC2000.ToString());
+                //_yearstu = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.YEARSTU == null)) ? null : _learningDelivery.LearningDeliveryHE.YEARSTU.ToString());
+                //_netfee = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.NETFEE == null)) ? null : _learningDelivery.LearningDeliveryHE.NETFEE.ToString());
+                //_grossfee = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.GROSSFEE == null)) ? null : _learningDelivery.LearningDeliveryHE.GROSSFEE.ToString());
+                //_studload = (((_learningDelivery == null) || (_learningDelivery.LearningDeliveryHE == null) || (_learningDelivery.LearningDeliveryHE.STULOAD == null)) ? null : _learningDelivery.LearningDeliveryHE.STULOAD.ToString());
                 //}
                 //OnPropertyChanged("SOC2000List");
                 //OnPropertyChanged("EconomicList");
-                //OnPropertyChanged("ELQList");
-                //OnPropertyChanged("TYPEYRList");
-                //OnPropertyChanged("MSTUFEEList");
+                OnPropertyChanged("ELQList");
+                OnPropertyChanged("TYPEYRList");
+                OnPropertyChanged("MSTUFEEList");
                 //OnPropertyChanged("SPECFEEList");
-                //OnPropertyChanged("MODESTUDList");
-                //OnPropertyChanged("FUNDLEVList");
-                //OnPropertyChanged("FUNDCOMPList");
-                //OnPropertyChanged("QUALENT3List");
-                //OnPropertyChanged("CurrentItem");
-                //OnPropertyChanged("PCOLAB");
-                //OnPropertyChanged("PCFLDCS");
-                //OnPropertyChanged("PCSLDCS");
-                //OnPropertyChanged("PCTLDCS");
-                //OnPropertyChanged("SOC2000");
-                //OnPropertyChanged("YEARSTU");
-                //OnPropertyChanged("NETFEE");
-                //OnPropertyChanged("GROSSFEE");
-                //OnPropertyChanged("HeItem");
+                OnPropertyChanged("MODESTUDList");
+                OnPropertyChanged("FUNDLEVList");
+                OnPropertyChanged("FUNDCOMPList");
+                OnPropertyChanged("QUALENT3List");
+                OnPropertyChanged("CurrentItem");
+                //OnPropertyChanged("PCOLAB"); --
+                //OnPropertyChanged("PCFLDCS"); --
+                //OnPropertyChanged("PCSLDCS");--
+                //OnPropertyChanged("PCTLDCS"); --
+                //OnPropertyChanged("SOC2000"); --
+                //OnPropertyChanged("YEARSTU"); --
+                //OnPropertyChanged("NETFEE"); --
+                //OnPropertyChanged("GROSSFEE"); --
+                OnPropertyChanged("HeItem");
                 OnPropertyChanged("HEM3");
                 OnPropertyChanged("HEM2");
                 OnPropertyChanged("HEM1");
-                //OnPropertyChanged("STULOAD");                
+                //OnPropertyChanged("STULOAD"); --
             }
         }
         //public String PCOLAB
@@ -181,6 +178,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         //                HeItem.PCSLDCS = number;
         //            }
         //        }
+
         //        OnPropertyChanged("PCSLDCS");
         //    }
         //}
@@ -473,54 +471,54 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         //        string sReturn = null;
         //        switch (columnName)
         //        {
-        //            case "PCOLAB":
-        //                if (PCOLAB != null && PCOLAB.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(PCOLAB, CLASSNAME, columnName);
-        //                    int number;
-        //                    bool result = Int32.TryParse(PCOLAB, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
-        //            case "PCFLDCS":
-        //                if (PCFLDCS != null && PCFLDCS.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(PCFLDCS, CLASSNAME, columnName);
-        //                    int number;
-        //                    bool result = Int32.TryParse(PCFLDCS, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
-        //            case "PCSLDCS":
-        //                if (PCSLDCS != null && PCSLDCS.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(PCSLDCS, CLASSNAME, columnName);
-        //                    int number;
-        //                    bool result = Int32.TryParse(PCSLDCS, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
-        //            case "PCTLDCS":
-        //                if (PCTLDCS != null && PCTLDCS.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(PCTLDCS, CLASSNAME, columnName);
-        //                    int number;
-        //                    bool result = Int32.TryParse(PCTLDCS, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
+        //            //            case "PCOLAB":
+        //            //                if (PCOLAB != null && PCOLAB.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(PCOLAB, CLASSNAME, columnName);
+        //            //                    int number;
+        //            //                    bool result = Int32.TryParse(PCOLAB, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
+        //            //            case "PCFLDCS":
+        //            //                if (PCFLDCS != null && PCFLDCS.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(PCFLDCS, CLASSNAME, columnName);
+        //            //                    int number;
+        //            //                    bool result = Int32.TryParse(PCFLDCS, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
+        //            //            case "PCSLDCS":
+        //            //                if (PCSLDCS != null && PCSLDCS.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(PCSLDCS, CLASSNAME, columnName);
+        //            //                    int number;
+        //            //                    bool result = Int32.TryParse(PCSLDCS, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
+        //            //            case "PCTLDCS":
+        //            //                if (PCTLDCS != null && PCTLDCS.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(PCTLDCS, CLASSNAME, columnName);
+        //            //                    int number;
+        //            //                    bool result = Int32.TryParse(PCTLDCS, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
         //            case "SOC2000":
         //                if (SOC2000 != null && SOC2000.Length > 0)
         //                {
@@ -533,55 +531,55 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         //                    }
         //                }
         //                break;
-        //            case "YEARSTU":
-        //                if (YEARSTU != null && YEARSTU.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(YEARSTU, CLASSNAME, columnName);
-        //                    int number;
-        //                    bool result = Int32.TryParse(YEARSTU, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
-        //            case "NETFEE":
-        //                if (NETFEE != null && NETFEE.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(NETFEE, CLASSNAME, columnName);
-        //                    int number;
-        //                    bool result = Int32.TryParse(NETFEE, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
-        //            case "GROSSFEE":
-        //                if (GROSSFEE != null && GROSSFEE.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(GROSSFEE, CLASSNAME, columnName);
-        //                    int number;
-        //                    bool result = Int32.TryParse(GROSSFEE, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
+        //            //            case "YEARSTU":
+        //            //                if (YEARSTU != null && YEARSTU.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(YEARSTU, CLASSNAME, columnName);
+        //            //                    int number;
+        //            //                    bool result = Int32.TryParse(YEARSTU, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
+        //            //            case "NETFEE":
+        //            //                if (NETFEE != null && NETFEE.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(NETFEE, CLASSNAME, columnName);
+        //            //                    int number;
+        //            //                    bool result = Int32.TryParse(NETFEE, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
+        //            //            case "GROSSFEE":
+        //            //                if (GROSSFEE != null && GROSSFEE.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(GROSSFEE, CLASSNAME, columnName);
+        //            //                    int number;
+        //            //                    bool result = Int32.TryParse(GROSSFEE, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
 
-        //            case "STULOAD":
-        //                if (STULOAD != null && STULOAD.Length > 0)
-        //                {
-        //                    sReturn += CheckPropertyLength(STULOAD, CLASSNAME, columnName);
-        //                    decimal number;
-        //                    bool result = decimal.TryParse(STULOAD, out number);
-        //                    if (!result)
-        //                    {
-        //                        sReturn += String.Format("{0} cannot be converted to decimal. this will NOT be SAVED !!!", columnName);
-        //                    }
-        //                }
-        //                break;
+        //            //            case "STULOAD":
+        //            //                if (STULOAD != null && STULOAD.Length > 0)
+        //            //                {
+        //            //                    sReturn += CheckPropertyLength(STULOAD, CLASSNAME, columnName);
+        //            //                    decimal number;
+        //            //                    bool result = decimal.TryParse(STULOAD, out number);
+        //            //                    if (!result)
+        //            //                    {
+        //            //                        sReturn += String.Format("{0} cannot be converted to decimal. this will NOT be SAVED !!!", columnName);
+        //            //                    }
+        //            //                }
+        //            //                break;
 
         //            default:
         //                break;

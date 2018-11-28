@@ -114,6 +114,7 @@
                      MinWidth="95" 
                      TabIndex="3"
                      MaxLength="8"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="8"
                      Margin="3" 
                      TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True" />
 

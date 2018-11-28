@@ -43,7 +43,7 @@ namespace ILR
 
         public void OnOutcomeChanged()
         {
-            if (OutcomeChanged!=null)
+            if (OutcomeChanged != null)
                 OutcomeChanged(this, new PropertyChangedEventArgs("From LD record"));
         }
         #region overrided methods
@@ -66,6 +66,7 @@ namespace ILR
 
                 message += this["OutType"];
                 message += this["OutCode"];
+
                 return message;
             }
         }
@@ -85,10 +86,13 @@ namespace ILR
                 string result = null;
                 if (columnName == "OutType")
                 {
-                    if (OutType == null)
-                    {
-                        result = "OutType not supplied.";
-                    }
+                    if (String.IsNullOrEmpty(OutType))
+                        result = String.Format("{0} required.\r\n", columnName);
+
+                    //if (OutType == null)
+                    //{
+                    //    result = "OutType not supplied.";
+                    //}
                 }
                 if (columnName == "OutCode")
                 {

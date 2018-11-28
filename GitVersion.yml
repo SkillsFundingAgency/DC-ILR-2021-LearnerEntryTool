@@ -1,6 +1,6 @@
 next-version: 3.0.1
 mode: ContinuousDelivery
-assembly-versioning-scheme: MajorMinorPatch
+assembly-versioning-scheme: MajorMinorPatch 
 assembly-informational-format: '{NuGetVersion}'
 branches: {}
 ignore:

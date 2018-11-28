@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                       
              xmlns:IlrTypes="clr-namespace:ILR"
+             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
              mc:Ignorable="d" 
              d:DesignHeight="300" 
              d:DesignWidth="600">
@@ -49,24 +50,38 @@
                 />-->
             </Grid>
         </DataTemplate>
+        <CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
+        <CommonConverters:IsCompleteVisabilityConverter x:Key="IsCompleteVisibilityConverter" />
+        <CommonConverters:StringToNullableIntConverter x:Key="StringToNullableIntConverter" />
+        <CommonConverters:StringToNullableLongConverter x:Key="StringToNullableLongConverter" />
     </UserControl.Resources>
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="5" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition MinHeight="35" MaxHeight="90" />
-                <RowDefinition Height="*" />
 
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="110" />
+                <RowDefinition MinHeight="35" MaxHeight="90" Height="30*" />
+                <RowDefinition Height="37*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <ScrollViewer  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="300" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" >
+                <TextBox
+                   Text="{Binding CurrentItem.IncompleteMessage, Mode=OneWay, FallbackValue=Incomplete Error Message Here}"
+                   Visibility="{Binding CurrentItem.IsComplete, Converter={StaticResource IsCompleteVisibilityConverter}, Mode=OneWay}"
+                   Panel.ZIndex="999" AutomationProperties.AutomationId="LearnerHeaderErrorText"
+                   Margin="0" 
+                   Style="{DynamicResource TextBoxIncompleteMessage}" Height="50"/>
+            </ScrollViewer>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Learner reference number :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
-            <TextBox Grid.Row="0" Grid.Column="1" 
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Learner reference number :" HorizontalAlignment="Right" Margin="0,7,3,87"  Style="{DynamicResource StandardTextBlockStyle}" Height="16" Width="143"/>
+            <TextBox Grid.Row="2" Grid.Column="1" 
                      Name="txtEmpId" 
                      Text="{Binding Path=CurrentItem.LearnRefNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
@@ -74,10 +89,10 @@
                      HorizontalContentAlignment="Left" 
                      Width="120"                       
                      MaxLength="12"
-                     Margin="3,4,0,3" />
+                     Margin="3,7,0,85" Height="18" />
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Unique learner number :" HorizontalAlignment="Right" Margin="0,4,17,5"  Style="{DynamicResource StandardTextBlockStyle}"/>
-            <TextBox Grid.Row="1" Grid.Column="1" 
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Unique learner number :" HorizontalAlignment="Right" Margin="0,32,17,62"  Style="{DynamicResource StandardTextBlockStyle}" Height="16" Width="129"/>
+            <TextBox Grid.Row="2" Grid.Column="1" 
                      Name="txtULN" 
                      Text="{Binding Path=ULN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
@@ -85,20 +100,24 @@
                      HorizontalContentAlignment="Left" 
                      Width="120"                       
                      MaxLength="10"
-                     Margin="3" 
-                     PreviewTextInput="ValidateToNumeric"/>
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Height="90" >
+                     Margin="3,31,0,61" 
+                     PreviewTextInput="ValidateToNumeric" Height="18"/>
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,26,0,84" Grid.RowSpan="2" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="62*" />
+                    <ColumnDefinition Width="62*"/>
+                    <ColumnDefinition Width="28*"/>
+                    <ColumnDefinition Width="34*"/>
+                    <ColumnDefinition Width="62*"/>
+                    <ColumnDefinition Width="87*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Row="0" Grid.Column="1" 
+                <Button Grid.Row="1" Grid.Column="5" 
                 x:Name="btnNew" 
                 Content="Add" 
                 Panel.ZIndex="200" 
@@ -109,10 +128,9 @@
                 TabIndex="2" 
                 MinWidth="50"
                 MinHeight="15"
-                Style="{DynamicResource RoundedButton}"
-                 Grid.RowSpan="3" Click="AddNewOutcome" />
+                Style="{DynamicResource RoundedButton}" Click="AddNewOutcome" Margin="0,5,0,0" />
 
-                <Button Grid.Row="1" Grid.Column="1" 
+                <Button Grid.Row="1" Grid.Column="5" 
                 x:Name="btnRemove" 
                 Content="Remove" 
                 Panel.ZIndex="200" 
@@ -124,14 +142,11 @@
                 TabIndex="2" 
                 MinWidth="50"
                 MinHeight="15"
-                Style="{DynamicResource RoundedButton}"
-                 Grid.RowSpan="3" Click="RemoveOutcome" />
+                Style="{DynamicResource RoundedButton}" Click="RemoveOutcome" Margin="0,26,0,0" />
 
-                <ListView 
-                Grid.Row="0"
+                <ListView
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Grid.RowSpan="2"
+                Grid.ColumnSpan="6"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 HorizontalContentAlignment="Stretch"
@@ -141,17 +156,17 @@
                 SelectionMode="Single" 
                 IsSynchronizedWithCurrentItem="True"
                 Name="lv" 
-                Margin="2,1,66,3"               
+                Margin="0,6,68,-27"               
                 d:DesignWidth="600"  
                 MinWidth="600"
-                MaxHeight="190"
+                MaxHeight="190" Grid.Row="1"
         />
             </Grid>
 
             <DPLearnerControls:ucDPO_OutcomeDetail x:Name="OutcomeDetailControl"
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="0"
-            Grid.ColumnSpan="2" VerticalContentAlignment="Top" />
+            Grid.ColumnSpan="2" VerticalContentAlignment="Top" Margin="0,35,0,0" Grid.RowSpan="2" />
         </Grid>
 
     </ScrollViewer>

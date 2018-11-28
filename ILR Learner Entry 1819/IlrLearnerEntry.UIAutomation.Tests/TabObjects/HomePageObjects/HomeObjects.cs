@@ -8,9 +8,9 @@ using TestStack.White.UIItems.WindowItems;
 
 namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
 {
-    public class HomeWindow: WindowObject
+    public class HomeObjects: WindowObject
     {
-        internal HomeWindow(Window window) : base(window)
+        internal HomeObjects(Window window) : base(window)
         {
 
         }
@@ -22,7 +22,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
             get { return TextBox("txtUKPRM"); }
         }
 
-        public HomeWindow SetUkPRN(string newUKPrn)
+        public HomeObjects SetUkPRN(string newUKPrn)
         {
             UKPRNTextBox.Text = newUKPrn;
             return this;

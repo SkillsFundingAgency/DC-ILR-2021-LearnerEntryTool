@@ -203,14 +203,14 @@
                         <ColumnDefinition Width="85"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="GCSE English Qualification Grade  :" HorizontalAlignment="Right" Margin="0,2.6,2,2.8" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="GCSE English Qualification Grade  :" HorizontalAlignment="Right" Margin="0,7,5,7.5" Style="{DynamicResource StandardTextBlockStyle}" />
                     <TextBox Grid.Row="0" Grid.Column="2" 
                                  Name="txtEngGrade" 
                                  Text="{Binding Path=CurrentItem.EngGrade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                                  Style="{DynamicResource TextBoxWithError}"
                                  Width="75" 
                                  HorizontalAlignment="Left" 
-                                 Margin="3,6.6,0,5.8"                      
+                                 Margin="1,7,0,5.5"                      
                                  TabIndex="9"
                                  MaxLength="4"
                          />
@@ -244,22 +244,22 @@
                         <ColumnDefinition Width="85"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="GCSE Maths Qualification Grade :" HorizontalAlignment="Right" Margin="0,2.6,2,2.8" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="GCSE Maths Qualification Grade :" HorizontalAlignment="Right" Margin="0,7,12,7.5" Style="{DynamicResource StandardTextBlockStyle}" />
                     <TextBox Grid.Row="0" Grid.Column="2" 
                              Name="txtMathGrade" 
                              Text="{Binding Path=CurrentItem.MathGrade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                              Style="{DynamicResource TextBoxWithError}"
                              Width="75" 
                              HorizontalAlignment="Left" 
-                             Margin="3,6.6,0,5.8"                      
+                             Margin="1,7,0,5.5"                      
                              TabIndex="9"
                              MaxLength="4"
                      />
                     <CheckBox Grid.Row="0" Grid.Column="3" Content=": Learner has not achieved a Maths GCSE (at grade A*-C/9-4) by the end of year 11" 
                               IsChecked="{Binding Path=CurrentItem.EDF1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
                               HorizontalAlignment="Left" Margin="3,6,0,5.5" TabIndex="17" Width="457" />
-                    
-                    <TextBlock Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Text="GCSE Maths Condition of Funding :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="GCSE Maths Condition of Funding :" HorizontalAlignment="Right" Margin="0,3.5,2,4.5" Style="{DynamicResource StandardTextBlockStyle}" />
                     <ComboBox Grid.Row="1" Grid.Column="2" MinWidth="250"  Grid.ColumnSpan="15"  
                               ItemsSource="{Binding Path=MCFList, UpdateSourceTrigger=PropertyChanged}" 
                               DisplayMemberPath="Description" 
