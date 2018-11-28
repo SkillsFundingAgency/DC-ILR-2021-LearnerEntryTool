@@ -1,7 +1,8 @@
-next-version: 3.0.1
+next-version: 1.2.9
 mode: ContinuousDelivery
 assembly-versioning-scheme: MajorMinorPatch 
 assembly-informational-format: '{NuGetVersion}'
 branches: {}
 ignore:
-  sha: []
+  sha: [0b3db27389a5d6b417e5330eacd6f4a8b8aeb4c2,9212ad4af3336c5ecd994ddf638777cf2fb5c8d5,94728013457bc65137d9ad70d2d0d0c3d619866f]
+  commits-before: 2018-11-01T00:00:00
