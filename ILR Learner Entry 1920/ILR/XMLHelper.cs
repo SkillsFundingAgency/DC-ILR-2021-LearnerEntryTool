@@ -21,7 +21,7 @@ namespace ILR
             {"LearnerFAM",new List<string>() {"LearnFAMType","LearnFAMCode"}},
             {"LearnerHE",new List<string>() {"UCASPERID","TTACCOM","LearnerHEFinancialSupport"}},
             {"LearnerHEFinancialSupport",new List<string>() {"FINTYPE","FINAMOUNT"}},
-            {"LearningDelivery",new List<string>() {"LearnAimRef","AimType","AimSeqNumber","LearnStartDate","OrigLearnStartDate","LearnPlanEndDate","FundModel","ProgType","FworkCode","PwayCode","StdCode","PartnerUKPRN","DelLocPostCode","AddHours","PriorLearnFundAdj","OtherFundAdj","ConRefNumber","EPAOrgID","EmpOutcome","CompStatus","LearnActEndDate","WithdrawReason","Outcome","AchDate","OutGrade","SWSupAimId","LearningDeliveryFAM", "AppFinRecord","TrailblazerApprenticeshipFinancialRecord", "ProviderSpecDeliveryMonitoring","LearningDeliveryHE","LearningDeliveryWorkPlacement"}},
+            {"LearningDelivery",new List<string>() {"LearnAimRef","AimType","AimSeqNumber","LearnStartDate","OrigLearnStartDate","LearnPlanEndDate","FundModel","ProgType","FworkCode","PwayCode","StdCode","PartnerUKPRN", "LSDPostCode", "DelLocPostCode", "AddHours", "PHours", "PriorLearnFundAdj","OtherFundAdj","ConRefNumber","EPAOrgID","EmpOutcome","CompStatus","LearnActEndDate","WithdrawReason","Outcome","AchDate","OutGrade","SWSupAimId","LearningDeliveryFAM", "AppFinRecord","TrailblazerApprenticeshipFinancialRecord", "ProviderSpecDeliveryMonitoring","LearningDeliveryHE","LearningDeliveryWorkPlacement"}},
             {"LearningDeliveryFAM",new List<string>() {"LearnDelFAMType","LearnDelFAMCode","LearnDelFAMDateFrom","LearnDelFAMDateTo"}},
             {"LearningDeliveryHE",new List<string>() {"NUMHUS","SSN","QUALENT3","SOC2000","SEC","TOTALTS","UCASAPPID","TYPEYR","MODESTUD","FUNDLEV","FUNDCOMP","STULOAD","YEARSTU","MSTUFEE","PCOLAB","PCFLDCS","PCSLDCS","PCTLDCS","SPECFEE","NETFEE","GROSSFEE","DOMICILE","ELQ","HEPostCode"}},
             {"LearningDeliveryWorkPlacement",new List<string>() {"WorkPlaceStartDate","WorkPlaceEndDate","WorkPlaceMode","WorkPlaceEmpId"}},
@@ -49,14 +49,18 @@ namespace ILR
         internal static void SetChildValue(string Name, object Value, XmlNode Node, XmlNamespaceManager NSMgr)
         {
             XmlNode childNode = Node.SelectSingleNode("./ia:" + Name, NSMgr);
-            if (Value == null || (Value.GetType().ToString()=="System.String" && Value.ToString().Length==0))
+
+            if (Value == null 
+            || (Value.GetType().ToString()=="System.String" && Value.ToString().Length==0))
             {
                 if (childNode != null)
                     childNode.ParentNode.RemoveChild(childNode);
                 return;
             }
+
             if (childNode == null)
                 childNode = CreateChildNode(Name, Node, NSMgr);
+
             switch (Value.GetType().ToString())
             {
                 case "System.DateTime":
@@ -66,6 +70,7 @@ namespace ILR
                     else
                         childNode.InnerText = dateTimeValue.ToString("yyyy-MM-ddThh:mm:ss");
                     break;
+
                 default:
                     childNode.InnerText = Value.ToString();
                     break;
@@ -81,6 +86,7 @@ namespace ILR
             {
                 List<string> attributes = Entities[Node.Name];
                 int newNodeIndex = attributes.IndexOf(Name);
+
                 foreach (XmlNode childNode in Node.ChildNodes)
                 {
                     if (attributes.IndexOf(childNode.Name)==-1 || attributes.IndexOf(childNode.Name) > newNodeIndex)
@@ -89,6 +95,7 @@ namespace ILR
                         break;
                     }
                 }
+
                 if (newNode.ParentNode==null)
                     Node.AppendChild(newNode);
             }

@@ -101,6 +101,27 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             }
         }
 
+        private string _pre_mergerUkprn = string.Empty;
+        public string PMUKPRN
+        {
+            get { return _pre_mergerUkprn; }
+            set
+            {
+                _pre_mergerUkprn = value;
+                if (String.IsNullOrEmpty(value))
+                {
+                    CurrentItem.PMUKPRN = null;
+                }
+                else
+                {
+                    int number;
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    if (result)
+                    { CurrentItem.PMUKPRN = number; }
+                }
+            }
+        }
+
         private string _uln = string.Empty;
         public string ULN
         {

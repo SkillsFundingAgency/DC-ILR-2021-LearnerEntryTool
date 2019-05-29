@@ -369,7 +369,7 @@ namespace ILR
                 filename += "\\";
             string exportFileName = FileNameTemplate.Replace("$$UKPRN$$", LearningProvider.UKPRN.ToString()).Replace("$$YEAR$$", CurrentYear.ToString()).Replace("$$NOW$$", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
 
-            filename += exportFileName; // FileNameTemplate.Replace("$$UKPRN$$", LearningProvider.UKPRN.ToString()).Replace("$$YEAR$$", CurrentYear.ToString()).Replace("$$NOW$$", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
+            filename += exportFileName;
             Log("Message", "Export", String.Format("filename  : {0}", filename));
 
             //Update header information
@@ -387,18 +387,6 @@ namespace ILR
             Save();
 
             TransformAndExport(filename, exportFileName);
-
-            //Message exportMessage = new Message(this.Filename, _logFileName);
-
-            //// remove non complete learner so we only export good learners.
-            //foreach (Learner learner in exportMessage.LearnerList)
-            //{
-            //    if (!learner.IsComplete || learner.ExcludeFromExport)
-            //        learner.DeleteNode();
-            //}
-            //exportMessage.Save(filename);
-            //exportMessage = null;
-            //GC.Collect();
         }
 
         public void TransformAndExport(string fullExportFileName, string exportFileName)
@@ -410,12 +398,7 @@ namespace ILR
                 var learner = exportMessage.LearnerList[i];
                 if (!learner.IsComplete || learner.ExcludeFromExport)
                 {
-                   // var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList.Where(c => c.ULN == learner.ULN).FirstOrDefault();
                     exportMessage.Delete(learner);                   
-                    //if(learnerDestinationandProgression != null)
-                    //{
-                    //    exportMessage.Delete(learnerDestinationandProgression);
-                    //}
                 }                
             }
 
@@ -467,8 +450,6 @@ namespace ILR
 
         public void TransformExportedFile(string sourceFile, string destinationFile)
         {
-
-
             if (xslTransformer == null)
             {
                 string xslFile = getXslFileName();

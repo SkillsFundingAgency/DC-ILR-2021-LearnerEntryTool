@@ -39,6 +39,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         private string _pwaycode = string.Empty;
         private string _otherfundadj = string.Empty;
         private string _addhours = string.Empty;
+        private string _phours = string.Empty;
         private string _partnerukprn = string.Empty;
         #endregion
 
@@ -66,6 +67,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 _pwaycode = string.Empty;
                 _otherfundadj = string.Empty;
                 _addhours = string.Empty;
+                _phours = string.Empty;
                 _partnerukprn = string.Empty;
                 ClearAllHHSSelected();
                 if (value != null)
@@ -78,6 +80,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     _pwaycode = _learningDelivery.PwayCode.ToString();
                     _otherfundadj = _learningDelivery.OtherFundAdj.ToString();
                     _addhours = _learningDelivery.AddHours.ToString();
+                    _phours = _learningDelivery.PHours.ToString();
                     _partnerukprn = _learningDelivery.PartnerUKPRN.ToString();
                     foreach (LearningDeliveryFAM HHSFam in _learningDelivery.HHS)
                     {
@@ -93,6 +96,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 OnPropertyChanged("PwayCode");
                 OnPropertyChanged("OtherFundAdj");
                 OnPropertyChanged("AddHours");
+                OnPropertyChanged("PHours");
                 OnPropertyChanged("PartnerUKPRN");
                 OnPropertyChanged("ProgTypeList");
                 OnPropertyChanged("HHSList");
@@ -177,6 +181,21 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 { CurrentItem.AddHours = number; }
                 else
                 { CurrentItem.AddHours = null; }
+            }
+        }
+
+        public string PHours
+        {
+            get { return _phours; }
+            set
+            {
+                _phours = value;
+                int number;
+                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                if (result)
+                { CurrentItem.PHours = number; }
+                else
+                { CurrentItem.PHours = null; }
             }
         }
 

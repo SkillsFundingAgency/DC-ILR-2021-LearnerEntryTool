@@ -237,10 +237,10 @@
     <Compile Include="UserControls\LearnerEditorControls\LearnerControls\ucProviderSpecifiedLearningMonitorInformation.xaml.cs">
       <DependentUpon>ucProviderSpecifiedLearningMonitorInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\LearnerEditorControls\LearningDelControls\LdFramControls\ucLdFamItem.xaml.cs">
+    <Compile Include="UserControls\LearnerEditorControls\LearningDelControls\FinancialDetailControls\LdFramControls\ucLdFamItem.xaml.cs">
       <DependentUpon>ucLdFamItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\LearnerEditorControls\LearningDelControls\LdFramControls\ucLdFamList.xaml.cs">
+    <Compile Include="UserControls\LearnerEditorControls\LearningDelControls\FinancialDetailControls\LdFramControls\ucLdFamList.xaml.cs">
       <DependentUpon>ucLdFamList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LearnerEditorControls\LearningDelControls\FinancialDetailControls\ucFinancialDetailList.xaml.cs">
@@ -376,11 +376,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LearnerEditorControls\LearningDelControls\LdFramControls\ucLdFamItem.xaml">
+    <Page Include="UserControls\LearnerEditorControls\LearningDelControls\FinancialDetailControls\LdFramControls\ucLdFamItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LearnerEditorControls\LearningDelControls\LdFramControls\ucLdFamList.xaml">
+    <Page Include="UserControls\LearnerEditorControls\LearningDelControls\FinancialDetailControls\LdFramControls\ucLdFamList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -533,6 +533,11 @@
       <Project>{1A88CD3F-D823-45BB-9EAB-7A2DB4EA3612}</Project>
       <Name>ILR</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\ILR\ILR-2019-20.xslt">
+      <Link>ILR-2019-20.xslt</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

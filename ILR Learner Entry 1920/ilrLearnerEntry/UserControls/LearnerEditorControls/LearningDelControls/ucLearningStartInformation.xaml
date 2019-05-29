@@ -203,7 +203,7 @@
                 <TextBox Grid.Row="6" Grid.Column="1"
                          Name="txtLSDPostCode" 
                          TabIndex="18"
-                         Text="{Binding Path=CurrentItem.DelLocPostCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                         Text="{Binding Path=CurrentItem.LSDPostCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                          Style="{DynamicResource TextBoxWithError}"
                          HorizontalAlignment="Left" 
                          HorizontalContentAlignment="Left" 
@@ -271,7 +271,7 @@
                 <TextBlock Grid.Row="9" Grid.Column="0" Text="Planned hours : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2"
                          Name="txtPHours" 
-                         Text="{Binding Path=AddHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                         Text="{Binding Path=PHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                          Style="{DynamicResource TextBoxWithError}"
                          HorizontalAlignment="Left" 
                          HorizontalContentAlignment="Left" 

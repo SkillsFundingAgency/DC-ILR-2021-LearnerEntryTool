@@ -66,6 +66,7 @@ namespace ILR
                 message += this["FundModel"];
                 message += this["CompStatus"];
                 message += this["DelLocPostCode"];
+                message += this["LSDPostCode"];
 
                 message += this["StdCode"];
                 message += this["FworkCode"];
@@ -144,14 +145,14 @@ namespace ILR
                     {
                         case 1:
                         case 4:
-                            return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2016 &&
+                            return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2019 &&
                                      this.LearnActEndDate == null) || (this.FundModel == 70));
                         case 5:
                             if (this.FundModel == 70)
                                 return true;
                             else
                             {
-                                if ((this.LearnPlanEndDate >= FIRST_AUG_2016) &&
+                                if ((this.LearnPlanEndDate >= FIRST_AUG_2019) &&
                                     ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
                                     return this.LearnActEndDate == null ||
                                            (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6 ||
@@ -1934,6 +1935,19 @@ namespace ILR
                         if (EPAOrgID != null)
                             return CheckPropertyLength(EPAOrgID, CLASSNAME, columnName, TABS);
                         break;
+                    case "PHours":
+                        if (PHours != null)
+                            return CheckPropertyLength(PHours, CLASSNAME, columnName, TABS);
+                        break;
+                    case "LSDPostCode":
+                        if ((LSDPostCode == null)
+                            || ((LSDPostCode != null && LSDPostCode.ToString().Length == 0))
+                        )
+                            return "\t\tLocation Start Date Post Code - required\r\n";
+                        break;
+
+
+
                     default:
                         break;
                 }
