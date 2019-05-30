@@ -1940,13 +1940,9 @@ namespace ILR
                             return CheckPropertyLength(PHours, CLASSNAME, columnName, TABS);
                         break;
                     case "LSDPostCode":
-                        if ((LSDPostCode == null)
-                            || ((LSDPostCode != null && LSDPostCode.ToString().Length == 0))
-                        )
-                            return "\t\tLocation Start Date Post Code - required\r\n";
+                        if (LSDPostCode != null)
+                            return CheckPropertyLength(LSDPostCode, CLASSNAME, columnName, TABS);
                         break;
-
-
 
                     default:
                         break;
