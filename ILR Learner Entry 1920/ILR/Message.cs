@@ -17,21 +17,27 @@ namespace ILR
     public class Message : INotifyPropertyChanged
     {
         #region Year-specific constants
-        public static int       CurrentYear         = 1920;
-        public static string    CurrentNameSpace    = @"ESFA/ILR/2019-20";
-        public static string    PreviousNameSpace   = @"ESFA/ILR/2018-19";
-        public static string    FileNameTemplate    = "ILR-$$UKPRN$$-$$YEAR$$-$$NOW$$-01.xml";
-        public static DateTime  CurrentYearStart    = new DateTime(2019, 8, 1);
-        public static string    ProtectiveMarking   = "OFFICIAL-SENSITIVE-Personal";
-        private DataTable       _statistics         = new DataTable();
-        private static bool     _isImportRunning    = false;
-        private static string   _logFileName        = string.Empty;
-        public static string    ILR2019_20_XSLT     = "ILR-2019-20.xslt";
+
+        public static int CurrentYear = 1920;
+        public static string CurrentNameSpace = @"ESFA/ILR/2019-20";
+        public static string PreviousNameSpace = @"ESFA/ILR/2018-19";
+        public static string FileNameTemplate = "ILR-$$UKPRN$$-$$YEAR$$-$$NOW$$-01.xml";
+        public static DateTime CurrentYearStart = new DateTime(2019, 8, 1);
+        public static string ProtectiveMarking = "OFFICIAL-SENSITIVE-Personal";
+        private DataTable _statistics = new DataTable();
+        private static bool _isImportRunning = false;
+        private static string _logFileName = string.Empty;
+        public static string ILR2019_20_XSLT = "ILR-2019-20.xslt";
 
         #endregion
 
         #region Counts
-        public DataTable Statistics { get { return _statistics; } }
+
+        public DataTable Statistics
+        {
+            get { return _statistics; }
+        }
+
         public DataTable StatisticsOld
         {
             get
@@ -98,6 +104,7 @@ namespace ILR
         {
             ReBuildStatisticsDatatable();
         }
+
         public void ReBuildStatisticsDatatable()
         {
             _statistics = new DataTable();
@@ -157,6 +164,7 @@ namespace ILR
                 _statistics.Rows.Add(row);
                 //}
             }
+
             OnPropertyChanged("Statistics");
         }
 
@@ -171,13 +179,12 @@ namespace ILR
                 Table.Rows.Add(row);
             }
         }
+
         public int LearnerCount
         {
-            get
-            {
-                return this.LearnerList.Count();
-            }
+            get { return this.LearnerList.Count(); }
         }
+
         public int LearnerExportCount
         {
             get
@@ -186,6 +193,7 @@ namespace ILR
                 return ExportlearnCounter;
             }
         }
+
         public int LearningDeliveryCount
         {
             get
@@ -196,45 +204,63 @@ namespace ILR
                 return learningDeliveries;
             }
         }
+
         public int LearnerDestinationandProgressionCount
         {
-            get
-            {
-                return this.LearnerDestinationandProgressionList.Count();
-            }
+            get { return this.LearnerDestinationandProgressionList.Count(); }
         }
+
         #endregion
 
         #region Private Properties
-        XmlDocument         ILRFile;
-        XmlNamespaceManager NSMgr;
-        string              Filename;
 
-        public static Boolean IsLoggingEnabled { get { return _logFileName == string.Empty ? false : true; } }
+        XmlDocument ILRFile;
+        XmlNamespaceManager NSMgr;
+        string Filename;
+
+        public static Boolean IsLoggingEnabled
+        {
+            get { return _logFileName == string.Empty ? false : true; }
+        }
+
         #endregion
 
         #region public Properties
-        public static String LogFileName { set { _logFileName = value; } }
+
+        public static String LogFileName
+        {
+            set { _logFileName = value; }
+        }
+
         public Boolean IsFileImportLoadingRunning
         {
             get { return _isImportRunning; }
             set
             {
                 foreach (Learner l in LearnerList)
-                { l.IsFileImportLoadingRunning = value; }
+                {
+                    l.IsFileImportLoadingRunning = value;
+                }
+
                 _isImportRunning = value;
             }
         }
+
         #endregion
 
         #region ILR Child Entites
+
         private Header Header;
         public LearningProvider LearningProvider;
         public List<Learner> LearnerList = new List<Learner>();
-        public List<LearnerDestinationandProgression> LearnerDestinationandProgressionList = new List<LearnerDestinationandProgression>(0);
+
+        public List<LearnerDestinationandProgression> LearnerDestinationandProgressionList =
+            new List<LearnerDestinationandProgression>(0);
+
         #endregion
 
         #region Public Methods
+
         public void Load(string Filename)
         {
             Log("Message", "Load", String.Format("Filename : {0}", Filename));
@@ -287,6 +313,7 @@ namespace ILR
                 else
                     Document.DocumentElement.AppendChild(headerNode);
             }
+
             this.Header = new ILR.Header(headerNode, NSMgr);
 
             //Find the LearningProvider node 
@@ -316,11 +343,14 @@ namespace ILR
                 newInstance.ResequenceAimSeqNumber();
                 newInstance.IsFileImportLoadingRunning = false;
                 LearnerList.Add(newInstance);
-                Log("Message", "Load", String.Format("Add Leaerner {0} of {1} - {2}", LearnerList.Count, learnerNodes.Count, newInstance.LearnRefNumber));
+                Log("Message", "Load",
+                    String.Format("Add Leaerner {0} of {1} - {2}", LearnerList.Count, learnerNodes.Count,
+                        newInstance.LearnRefNumber));
             }
 
             //Find the LearnerDestinationandProgression nodes
-            XmlNodeList learnerDestinationandProgressionNodes = Document.SelectNodes("/ia:Message/ia:LearnerDestinationandProgression", NSMgr);
+            XmlNodeList learnerDestinationandProgressionNodes =
+                Document.SelectNodes("/ia:Message/ia:LearnerDestinationandProgression", NSMgr);
 
             //Create LearnerDestinationandProgression instances for all of the LearnerDestinationandProgressions in the XML
             foreach (XmlNode node in learnerDestinationandProgressionNodes)
@@ -328,7 +358,9 @@ namespace ILR
                 LearnerDestinationandProgression newLDP = new LearnerDestinationandProgression(node, NSMgr);
                 newLDP.Message = this;
                 LearnerDestinationandProgressionList.Add(newLDP);
-                Log("Message", "Load", String.Format("Add LDP {0} of {1} - {2}", LearnerDestinationandProgressionList.Count, learnerDestinationandProgressionNodes.Count, newLDP.LearnRefNumber));
+                Log("Message", "Load",
+                    String.Format("Add LDP {0} of {1} - {2}", LearnerDestinationandProgressionList.Count,
+                        learnerDestinationandProgressionNodes.Count, newLDP.LearnRefNumber));
             }
 
             //foreach (Learner l in LearnerList)
@@ -341,6 +373,7 @@ namespace ILR
             //}
             IsFileImportLoadingRunning = false;
         }
+
         public void Save(string fileName)
         {
             Log("Message", "Save", fileName);
@@ -348,17 +381,19 @@ namespace ILR
             var document = XDocument.Parse(this.ILRFile.OuterXml);
 
             document.Descendants()
-                    .Where(e => e.IsEmpty || String.IsNullOrWhiteSpace(e.Value))
-                    .Remove();
+                .Where(e => e.IsEmpty || String.IsNullOrWhiteSpace(e.Value))
+                .Remove();
             document.Save(fileName);
 
             //this.ILRFile.Save(Filename);
         }
+
         public void Save()
         {
             Log("Message", "Save", "");
             this.Save(this.Filename);
         }
+
         public void Export(string ExportFolder, string Release)
         {
             Log("Message", "Export", String.Format("Release : {0} - ExportFolder : {1}", Release, ExportFolder));
@@ -367,18 +402,21 @@ namespace ILR
             string filename = ExportFolder;
             if (!filename.EndsWith("\\"))
                 filename += "\\";
-            string exportFileName = FileNameTemplate.Replace("$$UKPRN$$", LearningProvider.UKPRN.ToString()).Replace("$$YEAR$$", CurrentYear.ToString()).Replace("$$NOW$$", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
+            string exportFileName = FileNameTemplate.Replace("$$UKPRN$$", LearningProvider.UKPRN.ToString())
+                .Replace("$$YEAR$$", CurrentYear.ToString())
+                .Replace("$$NOW$$", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
 
             filename += exportFileName;
             Log("Message", "Export", String.Format("filename  : {0}", filename));
 
             //Update header information
-            this.Header.CollectionDetails.FilePreparationDate   = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            this.Header.Source.UKPRN                            = LearningProvider.UKPRN;
-            this.Header.Source.SerialNo                         = "01";
-            this.Header.Source.DateTime                         = DateTime.Now;
-            this.Header.Source.ProtectiveMarking                = Message.ProtectiveMarking;
-            this.Header.CollectionDetails.Year                  = Message.CurrentYear.ToString();
+            this.Header.CollectionDetails.FilePreparationDate =
+                new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            this.Header.Source.UKPRN = LearningProvider.UKPRN;
+            this.Header.Source.SerialNo = "01";
+            this.Header.Source.DateTime = DateTime.Now;
+            this.Header.Source.ProtectiveMarking = Message.ProtectiveMarking;
+            this.Header.CollectionDetails.Year = Message.CurrentYear.ToString();
 
             if (Release != null)
                 this.Header.Source.Release = Release;
@@ -398,8 +436,8 @@ namespace ILR
                 var learner = exportMessage.LearnerList[i];
                 if (!learner.IsComplete || learner.ExcludeFromExport)
                 {
-                    exportMessage.Delete(learner);                   
-                }                
+                    exportMessage.Delete(learner);
+                }
             }
 
             for (int i = exportMessage.LearnerDestinationandProgressionList.Count - 1; i >= 0; i--)
@@ -409,7 +447,7 @@ namespace ILR
                 {
                     exportMessage.Delete(learnerDestinationandProgression);
                 }
-            }           
+            }
 
             string tempInternalPath = Path.Combine(Path.GetTempPath(), exportFileName);
             exportMessage.Save(tempInternalPath);
@@ -418,6 +456,7 @@ namespace ILR
 
             GC.Collect();
         }
+
         XslCompiledTransform xslTransformer;
 
         private string getXslFileName()
@@ -425,7 +464,8 @@ namespace ILR
 
             var assembly = Assembly.GetExecutingAssembly();
             //string xslResourceName = assembly.GetManifestResourceNames().Where(x => x.ToUpper().EndsWith(ILR2018_19_XSLT.ToUpper())).FirstOrDefault();
-            string xslResourceName = assembly.GetManifestResourceNames().Where(x => x.ToUpper().EndsWith(ILR2019_20_XSLT.ToUpper())).FirstOrDefault();
+            string xslResourceName = assembly.GetManifestResourceNames()
+                .Where(x => x.ToUpper().EndsWith(ILR2019_20_XSLT.ToUpper())).FirstOrDefault();
 
             //string path = Path.Combine(Path.GetDirectoryName(assembly.Location), ILR2017_18_XSLT);
             //string path = Path.Combine(Path.GetTempPath(), ILR2018_19_XSLT);
@@ -456,9 +496,11 @@ namespace ILR
                 xslTransformer = new XslCompiledTransform();
                 xslTransformer.Load(xslFile);
             }
+
             xslTransformer.Transform(sourceFile, destinationFile);
 
         }
+
         public void Import(string FilenameToLoad)
         {
             Log("Message", "Import", String.Format("File : {0}", FilenameToLoad));
@@ -496,6 +538,7 @@ namespace ILR
                 {
                     headerNode = this.ILRFile.CreateElement("Header", NSMgr.LookupNamespace("ia"));
                 }
+
                 if (this.ILRFile.DocumentElement.HasChildNodes)
                     this.ILRFile.DocumentElement.InsertBefore(headerNode, this.ILRFile.DocumentElement.FirstChild);
                 else
@@ -523,7 +566,7 @@ namespace ILR
                 this.LearningProvider.UKPRN = importMessage.LearningProvider.UKPRN;
 
 
-               var x = importMessage.LearnerList.Where(l => l.HasContinuingAims);
+                var x = importMessage.LearnerList.Where(l => l.HasContinuingAims);
                 //var x = importMessage.LearnerList.ToList();
                 var y = importMessage.LearnerDestinationandProgressionList.Where(ldp => ldp.HasCurrentDPOutcomes);
 
@@ -539,7 +582,8 @@ namespace ILR
                         LearnerList.Add(newInstance);
                         AppendToLastOfNodeNamed(newNode, newNode.Name);
                         newInstance.ResequenceAimSeqNumber();
-                        Log("Message", "Import", String.Format("Learner {0} : {0}", LearnerList.Count, newInstance.LearnRefNumber));
+                        Log("Message", "Import",
+                            String.Format("Learner {0} : {0}", LearnerList.Count, newInstance.LearnRefNumber));
                     }
                     catch (Exception el)
                     {
@@ -550,44 +594,57 @@ namespace ILR
 
                 foreach (LearnerDestinationandProgression learnerDestinationandProgression in y)
                 {
-                    XmlNode newNode = ILRFile.CreateElement("LearnerDestinationandProgression", NSMgr.LookupNamespace("ia"));
-                    LearnerDestinationandProgression newInstance = new LearnerDestinationandProgression(learnerDestinationandProgression, newNode, NSMgr);
+                    XmlNode newNode =
+                        ILRFile.CreateElement("LearnerDestinationandProgression", NSMgr.LookupNamespace("ia"));
+                    LearnerDestinationandProgression newInstance =
+                        new LearnerDestinationandProgression(learnerDestinationandProgression, newNode, NSMgr);
                     newInstance.Message = this;
                     LearnerDestinationandProgressionList.Add(newInstance);
                     AppendToLastOfNodeNamed(newNode, newNode.Name);
-                    Log("Message", "Import", String.Format("LearnerDestinationandProgressionList {0} : {0}", LearnerDestinationandProgressionList.Count, newInstance.LearnRefNumber));
+                    Log("Message", "Import",
+                        String.Format("LearnerDestinationandProgressionList {0} : {0}",
+                            LearnerDestinationandProgressionList.Count, newInstance.LearnRefNumber));
                 }
+
                 importMessage = null;
             }
             else
             {
-                throw (new Exception("Unable to identify Year from filename. Confirm the file name matchesd the ILR Specification."));
+                throw (new Exception(
+                    "Unable to identify Year from filename. Confirm the file name matchesd the ILR Specification."));
             }
+
             this.Filename = InterlStoreFilename;
             Save();
             GC.Collect();
         }
+
         public void Delete(ChildEntity Child)
         {
             ILRFile.DocumentElement.RemoveChild(Child.Node);
             switch (Child.GetType().ToString())
             {
                 case "ILR.Learner":
-                    this.LearnerList.Remove((Learner)Child);
+                    this.LearnerList.Remove((Learner) Child);
                     break;
                 case "ILR.LearnerDestinationandProgression":
-                    this.LearnerDestinationandProgressionList.Remove((LearnerDestinationandProgression)Child);
+                    this.LearnerDestinationandProgressionList.Remove((LearnerDestinationandProgression) Child);
                     break;
             }
         }
+
         public bool LearnRefNumberExists(string LearnRefNumber)
         {
-            return ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber[text()='" + LearnRefNumber + "']", NSMgr).Count > 0;
+            return ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber[text()='" + LearnRefNumber + "']",
+                       NSMgr).Count > 0;
         }
+
         public int CountLearnRefNumberInstances(string LearnRefNumber)
         {
-            return ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber[text()='" + LearnRefNumber + "']", NSMgr).Count;
+            return ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber[text()='" + LearnRefNumber + "']",
+                NSMgr).Count;
         }
+
         public void FixLDAPULN()
         {
             XmlNodeList ldaps = ILRFile.SelectNodes("ia:Message/ia:LearnerDestinationandProgression", NSMgr);
@@ -613,14 +670,17 @@ namespace ILR
             {
                 using (System.IO.StreamWriter writer = new System.IO.StreamWriter(_logFileName, true))
                 {
-                    writer.WriteLine("{0} | {1} | {2} | {3}", DateTime.Now.ToString("yyyy.MM.dd.hhss"), className, caller, message);
+                    writer.WriteLine("{0} | {1} | {2} | {3}", DateTime.Now.ToString("yyyy.MM.dd.hhss"), className,
+                        caller, message);
                 }
             }
 #endif
         }
+
         #endregion
 
         #region Child Entity Creation
+
         public Learner CreateLearner()
         {
             XmlNode newNode = ILRFile.CreateElement("Learner", NSMgr.LookupNamespace("ia"));
@@ -631,6 +691,7 @@ namespace ILR
             AppendToLastOfNodeNamed(newNode, newNode.Name);
             return newInstance;
         }
+
         public LearnerDestinationandProgression CreateLearnerDestinationandProgression()
         {
             XmlNode newNode = ILRFile.CreateElement("LearnerDestinationandProgression", NSMgr.LookupNamespace("ia"));
@@ -640,6 +701,7 @@ namespace ILR
             AppendToLastOfNodeNamed(newNode, newNode.Name);
             return newInstance;
         }
+
         private void AppendToLastOfNodeNamed(XmlNode NewNode, string NodeName)
         {
             switch (NodeName)
@@ -648,13 +710,15 @@ namespace ILR
                     if (LearnerDestinationandProgressionList.Count() == 0)
                         AppendToLastOfNodeNamed(NewNode, "LearnerDestinationandProgression");
                     else
-                        ILRFile.DocumentElement.InsertBefore(NewNode, LearnerDestinationandProgressionList.First().Node);
+                        ILRFile.DocumentElement.InsertBefore(NewNode,
+                            LearnerDestinationandProgressionList.First().Node);
                     break;
                 case "LearnerDestinationandProgression":
                     ILRFile.DocumentElement.AppendChild(NewNode);
                     break;
             }
         }
+
         private string GetNextLearnRefNumber()
         {
             XmlNodeList learnerNodes = ILRFile.SelectNodes("/ia:Message/ia:Learner", NSMgr);
@@ -667,21 +731,26 @@ namespace ILR
             return learnRefNumber.ToString("0000");
 
         }
+
         #endregion
 
         #region Constructor
+
         protected Message()
         {
         }
+
         public Message(string Filename)
         {
             CreateMessage(Filename);
         }
+
         public Message(string Filename, string LogFilename)
         {
             _logFileName = LogFilename;
             CreateMessage(Filename);
         }
+
         private void CreateMessage(string Filename)
         {
             Log("Message", "Constructor", String.Format("Filename : {0}", Filename));
@@ -689,17 +758,21 @@ namespace ILR
             {
                 Log("Message", "Constructor", "Filename not found create new file");
                 ILRFile = new XmlDocument();
-                ILRFile.LoadXml("<Message xmlns=\"" + CurrentNameSpace + "\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />");
+                ILRFile.LoadXml("<Message xmlns=\"" + CurrentNameSpace +
+                                "\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />");
                 ILRFile.Save(Filename);
             }
+
             IsFileImportLoadingRunning = true;
             Load(Filename);
             FixLDAPULN();
             IsFileImportLoadingRunning = false;
         }
+
         #endregion
 
         #region INotifyPropertyChanged Members
+
         /// <summary>
         /// INotifyPropertyChanged requires a property called PropertyChanged.
         /// </summary>
@@ -710,7 +783,7 @@ namespace ILR
         /// </summary>
         protected virtual void OnPropertyChanged(string propertyName)
         {
-#if DEBUG     
+#if DEBUG
             VerifyPropertyName(propertyName);
 #endif
             if (PropertyChanged != null)
@@ -739,6 +812,7 @@ namespace ILR
         }
 
         protected bool ThrowOnInvalidPropertyName { get; set; }
+
         #endregion
     }
 }

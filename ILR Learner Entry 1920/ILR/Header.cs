@@ -13,11 +13,23 @@ namespace ILR
         public CollectionDetails _collectionDetails;
 
         #region ILR Child Entites
-        public CollectionDetails CollectionDetails { get { return _collectionDetails; } set { _collectionDetails = value; } }
-        public Source Source { get { return _source; } set { _source = value; } }
+
+        public CollectionDetails CollectionDetails
+        {
+            get { return _collectionDetails; }
+            set { _collectionDetails = value; }
+        }
+
+        public Source Source
+        {
+            get { return _source; }
+            set { _source = value; }
+        }
+
         #endregion
 
         #region Constructors
+
         internal Header(XmlNode Node, XmlNamespaceManager NSMgr)
         {
             this.Node = Node;
@@ -30,12 +42,14 @@ namespace ILR
             //If we have no CollectionDetails node create one in the correct place
             if (collectionDetailsNode == null)
             {
-                collectionDetailsNode = Node.OwnerDocument.CreateElement("CollectionDetails", NSMgr.LookupNamespace("ia"));
+                collectionDetailsNode =
+                    Node.OwnerDocument.CreateElement("CollectionDetails", NSMgr.LookupNamespace("ia"));
                 if (sourceNode == null)
                     Node.AppendChild(collectionDetailsNode);
                 else
                     Node.InsertBefore(collectionDetailsNode, sourceNode);
             }
+
             CollectionDetails = new CollectionDetails(collectionDetailsNode, NSMgr);
 
             //If we have no Source node create one in the correct place
@@ -44,9 +58,11 @@ namespace ILR
                 sourceNode = Node.OwnerDocument.CreateElement("Source", NSMgr.LookupNamespace("ia"));
                 Node.AppendChild(sourceNode);
             }
+
             Source = new Source(sourceNode, NSMgr);
 
         }
+
         #endregion
 
         #region IDataErrorInfo Members
@@ -64,10 +80,12 @@ namespace ILR
                 if (columnName == "NINumber")
                 {
                     result = "Error message here";
-                }            
+                }
+
                 return result;
             }
         }
+
         #endregion
     }
 }

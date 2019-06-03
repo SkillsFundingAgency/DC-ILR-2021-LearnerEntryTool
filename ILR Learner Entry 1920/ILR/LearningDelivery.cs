@@ -88,7 +88,7 @@ namespace ILR
                 switch (CompStatus)
                 {
                     case 1:
-                        canMigrate = (LearnActEndDate == null && LearnPlanEndDate >= FIRST_AUG_2016);
+                        canMigrate = (LearnActEndDate == null && LearnPlanEndDate >= FIRST_AUG_2017);
                         break;
                     case 6:
                         canMigrate = true;
@@ -162,7 +162,7 @@ namespace ILR
                             }
 
                         case 3:
-                            return this.LearnPlanEndDate >= FIRST_AUG_2013 && this.LearnActEndDate == null;
+                            return this.LearnPlanEndDate >= FIRST_AUG_2017 && this.LearnActEndDate == null;
                     }
                 }
 

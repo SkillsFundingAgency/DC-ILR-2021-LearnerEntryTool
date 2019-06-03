@@ -47,15 +47,18 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 			{
                 _prevukprn = string.Empty;
                 _uln = string.Empty;
+                _pre_mergerUkprn = string.Empty;
                 if (value != null)
 				{
 					_learner = value;
                     _prevukprn = value.PrevUKPRN.ToString();
+                    _pre_mergerUkprn = value.PMUKPRN.ToString();
                     _uln = value.ULN.ToString();
                     this.DataContext = this;
 					OnPropertyChanged("GenderList");
 					OnPropertyChanged("DOB");
                     OnPropertyChanged("PrevUKPRN");
+                    OnPropertyChanged("PMUKPRN");
                     OnPropertyChanged("ULN");
                     OnPropertyChanged("CurrentItem");
                 }
