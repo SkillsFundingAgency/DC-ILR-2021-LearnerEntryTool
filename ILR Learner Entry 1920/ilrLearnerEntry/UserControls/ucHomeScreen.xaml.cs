@@ -321,8 +321,8 @@ namespace ilrLearnerEntry.UserControls
         private void btnImport_Click(object sender, RoutedEventArgs e)
         {
             App.Log("Home Screen", "Import", "Show Warning Message");
-            MessageBoxResult result = MessageBox.Show(String.Format("      Importing a new file will WIPE ALL the current data." +
-                                                                    "{0}{0}      Any changes to learner you have made WILL be wiped out." +
+            MessageBoxResult result = MessageBox.Show(String.Format("      Importing a new file will OVERWRITE the current data." +
+                                                                    "{0}{0}      Any changes you have made WILL BE LOST." +
                                                                     "{0}{0}{0}      Are you sure you want to do this ?", Environment.NewLine)
                                                            , "    Warning!"
                                                            , MessageBoxButton.YesNo

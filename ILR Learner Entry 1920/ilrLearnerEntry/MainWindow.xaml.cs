@@ -90,8 +90,9 @@ namespace ilrLearnerEntry
                     vReturn = "Unable to get Version.";
                 }
 
-                vReturn = "1.3"; // Temporary hack until the GitVersion is fixed. 
-                return $"v{vReturn}";
+                //vReturn = "1.3"; // Temporary hack until the GitVersion is fixed. 
+                //return $"v{vReturn}";
+                return "v1920.1";
             }
         }
         #endregion
