@@ -21,6 +21,8 @@ namespace ILR
         DateTime FIRST_AUG_2018 = new DateTime(2018, 8, 1);
         DateTime FIRST_AUG_2019 = new DateTime(2019, 8, 1);
 
+        DateTime CurrentAccademicYear = new DateTime(2019, 8, 1);
+
         private const string PHOURS_PATTERN = "^[0-9]{1,4}$";
 
         #region LD updateLearnerEvent
@@ -88,7 +90,7 @@ namespace ILR
                 switch (CompStatus)
                 {
                     case 1:
-                        canMigrate = (LearnActEndDate == null && LearnPlanEndDate >= FIRST_AUG_2017);
+                        canMigrate = (LearnActEndDate == null && LearnPlanEndDate >= CurrentAccademicYear.AddYears(-2));
                         break;
                     case 6:
                         canMigrate = true;

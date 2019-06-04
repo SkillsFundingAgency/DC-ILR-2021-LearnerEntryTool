@@ -528,20 +528,7 @@ namespace ILR
                 OnPropertyChanged("PlanEEPHours");
                 RefreshFormProperties();
             }
-        }
-
-        // ILR 1920 Spec v2 - OTJHours has been moved to the LearningDelivery entity and renamed to PHours
-        //public string OTJHours
-        //{
-        //    get { return XMLHelper.GetChildValue("OTJHours", Node, NSMgr); }
-        //    set
-        //    {
-        //        XMLHelper.SetChildValue("OTJHours", value, Node, NSMgr);
-        //        OnPropertyChanged("OTJHours");
-        //        RefreshFormProperties();
-        //    }
-        //}
-
+        } 
 
         #endregion
 
