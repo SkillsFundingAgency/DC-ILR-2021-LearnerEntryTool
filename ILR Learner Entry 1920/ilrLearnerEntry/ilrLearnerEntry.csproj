@@ -82,9 +82,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>ProjectLibs\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -538,6 +538,9 @@
     <EmbeddedResource Include="..\ILR\ILR-2019-20.xslt">
       <Link>ILR-2019-20.xslt</Link>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProjectLibs\System.Windows.Interactivity.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
