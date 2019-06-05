@@ -66,7 +66,7 @@ namespace ILR.LearnerEntry.Tests
                         select t.Value;
             var val = query.First();
             Assert.NotNull(val, "AppFinRecords are not created");
-            Assert.AreEqual(val, "5000", "ApprenticeShip finance amount is wrong");
+            Assert.AreEqual(val, "1500", "ApprenticeShip finance amount is wrong");
             // Assert.True(File.Exists(fileName), "Failed to create internal file");
         }
 
