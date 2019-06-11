@@ -1563,37 +1563,28 @@ namespace ILR
             this.Node = LearnerNode;
             this.NSMgr = NSMgr;
 
-            this.LearnRefNumber = MigrationLearner.LearnRefNumber;
-            this.ULN = MigrationLearner.ULN;
-            this.FamilyName = MigrationLearner.FamilyName;
-            this.GivenNames = MigrationLearner.GivenNames;
-            this.DateOfBirth = MigrationLearner.DateOfBirth;
-            this.Ethnicity = MigrationLearner.Ethnicity;
-            this.Sex = MigrationLearner.Sex;
-            this.LLDDHealthProb = MigrationLearner.LLDDHealthProb;
-            this.NINumber = MigrationLearner.NINumber;
-            this.PriorAttain = MigrationLearner.PriorAttain;
+            this.LearnRefNumber             = MigrationLearner.LearnRefNumber;
+            this.PMUKPRN                    = MigrationLearner.PMUKPRN;
+            this.CampId                     = MigrationLearner.CampId;
+            this.ULN                        = MigrationLearner.ULN;
+            this.FamilyName                 = MigrationLearner.FamilyName;
+            this.GivenNames                 = MigrationLearner.GivenNames;
+            this.DateOfBirth                = MigrationLearner.DateOfBirth;
+            this.Ethnicity                  = MigrationLearner.Ethnicity;
+            this.Sex                        = MigrationLearner.Sex;
+            this.LLDDHealthProb             = MigrationLearner.LLDDHealthProb;
+            this.NINumber                   = MigrationLearner.NINumber;
+            this.PriorAttain                = MigrationLearner.PriorAttain;
 
-            this.PostcodePrior = MigrationLearner.PostcodePrior;
-            this.PostCode = MigrationLearner.PostCode;
-            this.AddLine1 = MigrationLearner.AddLine1;
-            this.AddLine2 = MigrationLearner.AddLine2;
-            this.AddLine3 = MigrationLearner.AddLine3;
-            this.AddLine4 = MigrationLearner.AddLine4;
+            this.PostcodePrior              = MigrationLearner.PostcodePrior;
+            this.PostCode                   = MigrationLearner.PostCode;
+            this.AddLine1                   = MigrationLearner.AddLine1;
+            this.AddLine2                   = MigrationLearner.AddLine2;
+            this.AddLine3                   = MigrationLearner.AddLine3;
+            this.AddLine4                   = MigrationLearner.AddLine4;
 
-            this.Email = MigrationLearner.Email;
-            this.TelNo = MigrationLearner.TelNo;
-
-
-            //TODO this is not needed, need to remove for the 1819
-            //foreach (LearnerContact migrationItem in MigrationLearner.LearnerContactList)
-            //{
-            //    XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerContact", NSMgr.LookupNamespace("ia"));
-            //    LearnerContact newInstance = new LearnerContact(migrationItem, newNode, NSMgr);
-            //    LearnerContactList.Add(newInstance);
-            //    //AppendToLastOfNodeNamed(newNode, newNode.Name);
-            //}
-
+            this.Email                      = MigrationLearner.Email;
+            this.TelNo                      = MigrationLearner.TelNo;
 
             foreach (ContactPreference migrationItem in MigrationLearner.ContactPreferenceList)
             {
@@ -1619,22 +1610,6 @@ namespace ILR
                 LearnerFAMList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
-
-            //private readonly IList<string> _learnFamTypeListExcludedForMigration = new List<string>() { "LDA", "HNS", "LSR", "SEN", "FEM" };
-
-            //foreach (LearnerFAM migrationItem in MigrationLearner.LearnerFAMList)
-            //{
-            //    foreach (var learnFamType in learnFamTypeList)
-            //    {
-            //        if (migrationItem.LearnFAMType != learnFamType)
-            //        {
-            //            XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerFAM", NSMgr.LookupNamespace("ia"));
-            //            LearnerFAM newInstance = new LearnerFAM(migrationItem, newNode, NSMgr);
-            //            LearnerFAMList.Add(newInstance);
-            //            AppendToLastOfNodeNamed(newNode, newNode.Name);
-            //        }
-            //    } 
-            //}
 
             foreach (ProviderSpecLearnerMonitoring migrationItem in MigrationLearner.ProviderSpecLearnerMonitoringList)
             {

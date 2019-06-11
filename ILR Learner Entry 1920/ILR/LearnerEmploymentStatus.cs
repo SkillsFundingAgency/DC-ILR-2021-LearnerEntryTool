@@ -188,6 +188,7 @@ namespace ILR
             this.EmpStat = MigrationLearnerEmploymentStatus.EmpStat;
             this.DateEmpStatApp = MigrationLearnerEmploymentStatus.DateEmpStatApp;
             this.EmpId = MigrationLearnerEmploymentStatus.EmpId;
+            this.AgreeId = MigrationLearnerEmploymentStatus.AgreeId;
 
             foreach (EmploymentStatusMonitoring migrationItem in MigrationLearnerEmploymentStatus.EmploymentStatusMonitoringList.Where(x => x.ESMType != "RON"))
             {
