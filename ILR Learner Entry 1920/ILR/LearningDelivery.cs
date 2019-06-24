@@ -68,7 +68,7 @@ namespace ILR
                 message += this["FundModel"];
                 message += this["CompStatus"];
                 message += this["DelLocPostCode"];
-                message += this["LSDPostCode"];
+                message += this["LSDPostcode"];
 
                 message += this["StdCode"];
                 message += this["FworkCode"];
@@ -420,16 +420,16 @@ namespace ILR
         }
 
         /// <summary>
-        /// LSDPostCode - added for 1920
+        /// LSDPostcode - added for 1920
         /// </summary>
-        public string LSDPostCode
+        public string LSDPostcode
         {
-            get { return XMLHelper.GetChildValue("LSDPostCode", Node, NSMgr); }
+            get { return XMLHelper.GetChildValue("LSDPostcode", Node, NSMgr); }
             set
             {
-                XMLHelper.SetChildValue("LSDPostCode", value, Node, NSMgr);
+                XMLHelper.SetChildValue("LSDPostcode", value, Node, NSMgr);
                 OnLearningDeliveryPropertyChanged();
-                OnPropertyChanged("LSDPostCode");
+                OnPropertyChanged("LSDPostcode");
             }
         }
 
@@ -1941,9 +1941,9 @@ namespace ILR
                         if (PHours != null)
                             return CheckPropertyLength(PHours, CLASSNAME, columnName, TABS);
                         break;
-                    case "LSDPostCode":
-                        if (LSDPostCode != null)
-                            return CheckPropertyLength(LSDPostCode, CLASSNAME, columnName, TABS);
+                    case "LSDPostcode":
+                        if (LSDPostcode != null)
+                            return CheckPropertyLength(LSDPostcode, CLASSNAME, columnName, TABS);
                         break;
 
                     default:
