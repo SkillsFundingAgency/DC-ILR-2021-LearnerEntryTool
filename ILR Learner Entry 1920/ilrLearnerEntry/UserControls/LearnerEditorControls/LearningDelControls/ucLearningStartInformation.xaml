@@ -278,9 +278,10 @@
                          VerticalAlignment="Top" 
                          TabIndex="30"
                          Margin="3" 
-                         Width="45" 
-                         MaxLength="4"                         
-                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True"/>
+                         Width="45"                       
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+                         IsUndoEnabled="True"/>
 
 
                 <TextBlock Grid.Row="9" Grid.Column="3" Text="Additional delivery hours : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
