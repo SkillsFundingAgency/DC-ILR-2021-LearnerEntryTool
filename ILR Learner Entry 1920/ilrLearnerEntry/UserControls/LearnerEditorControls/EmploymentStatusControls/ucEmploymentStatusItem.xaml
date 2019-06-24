@@ -78,7 +78,7 @@
                      HorizontalContentAlignment="Left" 
                      MinWidth="65"  
                      Margin="3"
-                     MaxLength="9"/>
+                     MaxLength="6"/>
 
                 </Grid>
                 <Grid Grid.Row="1" 
