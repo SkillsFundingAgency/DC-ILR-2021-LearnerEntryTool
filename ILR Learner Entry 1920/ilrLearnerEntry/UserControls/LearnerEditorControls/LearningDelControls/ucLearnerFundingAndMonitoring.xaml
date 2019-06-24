@@ -221,7 +221,7 @@
                      MinWidth="50" 
                      TabIndex="20"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                     <!-- Tickbox 2 -->
                     <TextBlock Grid.Row="0" Grid.Column="2" Text=" 2 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -234,7 +234,7 @@
                      MinWidth="50" 
                      TabIndex="22"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                     <!-- Tickbox 3 -->
                     <TextBlock Grid.Row="0" Grid.Column="4" Text=" 3 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -247,7 +247,7 @@
                      MinWidth="50"  
                      TabIndex="24"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                     <!-- Tickbox 4 -->
                     <TextBlock Grid.Row="0" Grid.Column="6" Text=" 4 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -260,7 +260,7 @@
                      MinWidth="50" 
                      TabIndex="26"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                     <!-- Tickbox 5 -->
                     <TextBlock Grid.Row="0" Grid.Column="8" Text=" 5 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -273,7 +273,7 @@
                              MinWidth="50" 
                              TabIndex="28"
                              Margin="3"
-                             MaxLength="3"/>
+                             MaxLength="5"/>
 
                     <!-- Tickbox 6 -->
                     <TextBlock Grid.Row="0" Grid.Column="10" Text=" 6 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -286,7 +286,7 @@
                              MinWidth="50" 
                              TabIndex="30"
                              Margin="3"
-                             MaxLength="3"/>
+                             MaxLength="5"/>
 
                 </Grid>
 
@@ -331,7 +331,7 @@
                      MinWidth="50" 
                      TabIndex="32"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                     <!-- Tickbox 2 -->
                     <TextBlock Grid.Row="0" Grid.Column="2" Text=" 2 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -344,7 +344,7 @@
                      MinWidth="50" 
                      TabIndex="34"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                     <!-- Tickbox 3 -->
                     <TextBlock Grid.Row="0" Grid.Column="4" Text=" 3 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -357,7 +357,7 @@
                      MinWidth="50"  
                      TabIndex="36"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                     <!-- Tickbox 4 -->
                     <TextBlock Grid.Row="0" Grid.Column="6" Text=" 4 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -370,7 +370,7 @@
                      MinWidth="50" 
                      TabIndex="38"
                      Margin="3"
-                     MaxLength="3"/>
+                     MaxLength="5"/>
 
                 </Grid>
 
