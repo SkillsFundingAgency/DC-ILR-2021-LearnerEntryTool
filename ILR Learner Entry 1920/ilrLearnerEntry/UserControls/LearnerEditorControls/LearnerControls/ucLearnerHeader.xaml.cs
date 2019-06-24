@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -22,7 +23,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 	/// <summary>
 	/// Interaction logic for ucLearnerHeader.xaml
 	/// </summary>
-	public partial class ucLearnerHeader : UserControl, INotifyPropertyChanged, IDataErrorInfo
+	public partial class ucLearnerHeader : System.Windows.Controls.UserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
         private const String CLASSNAME = "Learner";
@@ -162,13 +163,25 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 				this.DOB = Convert.ToDateTime(e.AddedItems[0]);
 			}
 		}
-		#endregion
 
-		#region INotifyPropertyChanged Members
-		/// <summary>
-		/// INotifyPropertyChanged requires a property called PropertyChanged.
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
+        // If the text is not a valid date, show a message.
+        private void dtDOB_DateValidationError(object sender, DatePickerDateValidationErrorEventArgs e)
+        {
+            DateTime newDate;
+
+            if (!DateTime.TryParse(e.Text, out newDate))
+            {
+                string message = String.Format("The date, {0} is not a valid date, please enter a valid date.", e.Text);
+                System.Windows.MessageBox.Show(message, "Date of birth", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        #endregion
+
+        #region INotifyPropertyChanged Members
+        /// <summary>
+        /// INotifyPropertyChanged requires a property called PropertyChanged.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
 		/// Fires the event for the property when it changes.

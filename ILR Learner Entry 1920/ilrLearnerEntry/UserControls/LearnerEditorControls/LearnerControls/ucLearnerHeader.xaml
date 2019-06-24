@@ -175,13 +175,19 @@
                      TabIndex="14"
                      Width="150" HorizontalAlignment="Left" Margin="3" MaxLength="100" />
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Date of birth :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <DatePicker  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" x:Name="dtDOB"  VerticalAlignment="Center" 
-                     TabIndex="16" 
-                     DisplayDate="{Binding Path=DOB, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
-                     SelectedDate="{Binding Path=DOB, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
-                     SelectedDateChanged="dtDOB_SelectedDateChanged"  
+                <DatePicker 
+                    x:Name="dtDOB"
+                    Grid.Row="4" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    TabIndex="16" 
+                    DisplayDate="{Binding Path=DOB, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                    SelectedDate="{Binding Path=DOB, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                    SelectedDateChanged="dtDOB_SelectedDateChanged" 
+                    DateValidationError="dtDOB_DateValidationError"
                     Style="{DynamicResource DatePickerWithError}"
-/>
+                    />
 
                 <TextBlock Grid.Row="4" Grid.Column="3" Text="Sex :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <ComboBox Grid.Row="4" Grid.Column="4" Width="95" HorizontalAlignment="Left" x:Name="cmbSex"
