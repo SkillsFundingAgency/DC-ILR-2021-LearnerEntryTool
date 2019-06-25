@@ -97,7 +97,7 @@
                         MaxLength="6"
                         TabIndex="3"
                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer" 
-                        TextBoxMask:TextBoxMaskBehavior.MaximumValue="999999"
+                        TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
                         IsUndoEnabled="True" 
                         MaxLines="1" 
                     />
@@ -113,7 +113,7 @@
                      TabIndex="4"
                      MaxLength="6"
                      TextBoxMask:TextBoxMaskBehavior.Mask="Integer"
-                        TextBoxMask:TextBoxMaskBehavior.MaximumValue="999999"
+                     TextBoxMask:TextBoxMaskBehavior.MaximumLength="6"
                              IsUndoEnabled="True" />
 
 
@@ -127,7 +127,7 @@
                      Margin="3" 
                      TabIndex="5"
                      MaxLength="6"
-                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" TextBoxMask:TextBoxMaskBehavior.MaximumValue="999999" IsUndoEnabled="True"/>
+                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" TextBoxMask:TextBoxMaskBehavior.MaximumLength="6" IsUndoEnabled="True"/>
 
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Financial support amount - Other :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
@@ -139,7 +139,7 @@
                      MaxLength="6"
                      TabIndex="6"
                      Margin="3" 
-                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" TextBoxMask:TextBoxMaskBehavior.MaximumValue="999999" IsUndoEnabled="True" />
+                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" TextBoxMask:TextBoxMaskBehavior.MaximumLength="6" IsUndoEnabled="True" />
 
 
                 </Grid>
