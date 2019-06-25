@@ -10,30 +10,87 @@ namespace ILR
     {
         private static Dictionary<string, List<string>> Entities = new Dictionary<string, List<string>>()
         {
-            {"CollectionDetails",new List<string>() {"Collection","Year","FilePreparationDate"}},
-            {"ContactPreference",new List<string>() {"ContPrefType","ContPrefCode"}},
-            {"DPOutcome",new List<string>() {"OutType","OutCode","OutStartDate","OutEndDate","OutCollDate"}},
-            {"EmploymentStatusMonitoring",new List<string>() {"DateEmpStatApp","LearnRefNumber","ESMType","ESMCode"}},
-            {"Learner",new List<string>() {"LearnRefNumber","PrevLearnRefNumber","PrevUKPRN","ULN","FamilyName","GivenNames","DateOfBirth","Ethnicity","Sex","LLDDHealthProb","NINumber","PriorAttain","Accom","ALSCost","PlanLearnHours","PlanEEPHours","MathGrade","EngGrade","PostcodePrior","Postcode","AddLine1","AddLine2","AddLine3","AddLine4","TelNo","Email","LearnerContact","ContactPreference","LLDDandHealthProblem","LearnerFAM","ProviderSpecLearnerMonitoring","LearnerEmploymentStatus","LearnerHE","LearningDelivery"}},
-            {"LearnerContact",new List<string>() {"LocType","ContType","PostCode","TelNumber","Email","PostAdd"}},
-            {"LearnerDestinationandProgression",new List<string>() {"LearnRefNumber","ULN"}},
-            {"LearnerEmploymentStatus",new List<string>() {"EmpStat","DateEmpStatApp","EmpId","EmploymentStatusMonitoring"}},
-            {"LearnerFAM",new List<string>() {"LearnFAMType","LearnFAMCode"}},
-            {"LearnerHE",new List<string>() {"UCASPERID","TTACCOM","LearnerHEFinancialSupport"}},
-            {"LearnerHEFinancialSupport",new List<string>() {"FINTYPE","FINAMOUNT"}},
-            {"LearningDelivery",new List<string>() {"LearnAimRef","AimType","AimSeqNumber","LearnStartDate","OrigLearnStartDate","LearnPlanEndDate","FundModel","ProgType","FworkCode","PwayCode","StdCode","PartnerUKPRN", "LSDPostCode", "DelLocPostCode", "AddHours", "PHours", "PriorLearnFundAdj","OtherFundAdj","ConRefNumber","EPAOrgID","EmpOutcome","CompStatus","LearnActEndDate","WithdrawReason","Outcome","AchDate","OutGrade","SWSupAimId","LearningDeliveryFAM", "AppFinRecord","TrailblazerApprenticeshipFinancialRecord", "ProviderSpecDeliveryMonitoring","LearningDeliveryHE","LearningDeliveryWorkPlacement"}},
-            {"LearningDeliveryFAM",new List<string>() {"LearnDelFAMType","LearnDelFAMCode","LearnDelFAMDateFrom","LearnDelFAMDateTo"}},
-            {"LearningDeliveryHE",new List<string>() {"NUMHUS","SSN","QUALENT3","SOC2000","SEC","TOTALTS","UCASAPPID","TYPEYR","MODESTUD","FUNDLEV","FUNDCOMP","STULOAD","YEARSTU","MSTUFEE","PCOLAB","PCFLDCS","PCSLDCS","PCTLDCS","SPECFEE","NETFEE","GROSSFEE","DOMICILE","ELQ","HEPostCode"}},
-            {"LearningDeliveryWorkPlacement",new List<string>() {"WorkPlaceStartDate","WorkPlaceEndDate","WorkPlaceMode","WorkPlaceEmpId"}},
-            {"LearningProvider",new List<string>() {"UKPRN"}},
-            {"LLDDandHealthProblem",new List<string>() {"LLDDCat","PrimaryLLDD"}},
-            {"PostAdd",new List<string>() {"AddLine1","AddLine2","AddLine3","AddLine4"}},
-            {"ProviderSpecDeliveryMonitoring",new List<string>() {"ProvSpecDelMonOccur","ProvSpecDelMon"}},
-            {"ProviderSpecLearnerMonitoring",new List<string>() {"ProvSpecLearnMonOccur","ProvSpecLearnMon"}},
-            {"Source",new List<string>() {"ProtectiveMarking","UKPRN","SoftwareSupplier","SoftwarePackage","Release","SerialNo","DateTime","ReferenceData","ComponentSetVersion"}},
-            {"SourceFile",new List<string>() {"SourceFileName","FilePreparationDate","SoftwareSupplier","SoftwarePackage","Release","SerialNo","DateTime"}},
-            {"AppFinRecord",new List<string>() {"AFinType","AFinCode","AFinDate","AFinAmount"}},
-            { "ApprenticeshipFinancialRecord",new List<string>() {"AFinType","AFinCode","AFinDate","AFinAmount"}}
+            {"CollectionDetails", new List<string>() {"Collection", "Year", "FilePreparationDate"}},
+            {"ContactPreference", new List<string>() {"ContPrefType", "ContPrefCode"}},
+            {"DPOutcome", new List<string>() {"OutType", "OutCode", "OutStartDate", "OutEndDate", "OutCollDate"}},
+            {
+                "EmploymentStatusMonitoring",
+                new List<string>() {"DateEmpStatApp", "LearnRefNumber", "ESMType", "ESMCode"}
+            },
+            {
+                "Learner",
+                new List<string>()
+                {
+                    "LearnRefNumber", "PrevLearnRefNumber", "PrevUKPRN", "ULN", "FamilyName", "GivenNames",
+                    "DateOfBirth", "Ethnicity", "Sex", "LLDDHealthProb", "NINumber", "PriorAttain", "Accom", "ALSCost",
+                    "PlanLearnHours", "PlanEEPHours", "MathGrade", "EngGrade", "PostcodePrior", "Postcode", "AddLine1",
+                    "AddLine2", "AddLine3", "AddLine4", "TelNo", "Email", "LearnerContact", "ContactPreference",
+                    "LLDDandHealthProblem", "LearnerFAM", "ProviderSpecLearnerMonitoring", "LearnerEmploymentStatus",
+                    "LearnerHE", "LearningDelivery"
+                }
+            },
+            {"LearnerContact", new List<string>() {"LocType", "ContType", "PostCode", "TelNumber", "Email", "PostAdd"}},
+            {"LearnerDestinationandProgression", new List<string>() {"LearnRefNumber", "ULN"}},
+            {
+                "LearnerEmploymentStatus",
+                new List<string>() {"EmpStat", "DateEmpStatApp", "EmpId", "EmploymentStatusMonitoring"}
+            },
+            {"LearnerFAM", new List<string>() {"LearnFAMType", "LearnFAMCode"}},
+            {"LearnerHE", new List<string>() {"UCASPERID", "TTACCOM", "LearnerHEFinancialSupport"}},
+            {"LearnerHEFinancialSupport", new List<string>() {"FINTYPE", "FINAMOUNT"}},
+            {
+                "LearningDelivery",
+                new List<string>()
+                {
+                    "LearnAimRef", "AimType", "AimSeqNumber", "LearnStartDate", "OrigLearnStartDate",
+                    "LearnPlanEndDate", "FundModel", "ProgType", "FworkCode", "PwayCode", "StdCode", "PartnerUKPRN",
+                    "LSDPostcode", "DelLocPostCode", "AddHours", "PHours", "PriorLearnFundAdj", "OtherFundAdj",
+                    "ConRefNumber", "EPAOrgID", "EmpOutcome", "CompStatus", "LearnActEndDate", "WithdrawReason",
+                    "Outcome", "AchDate", "OutGrade", "SWSupAimId", "LearningDeliveryFAM", "AppFinRecord",
+                    "TrailblazerApprenticeshipFinancialRecord", "ProviderSpecDeliveryMonitoring", "LearningDeliveryHE",
+                    "LearningDeliveryWorkPlacement"
+                }
+            },
+            {
+                "LearningDeliveryFAM",
+                new List<string>() {"LearnDelFAMType", "LearnDelFAMCode", "LearnDelFAMDateFrom", "LearnDelFAMDateTo"}
+            },
+            {
+                "LearningDeliveryHE",
+                new List<string>()
+                {
+                    "NUMHUS", "SSN", "QUALENT3", "SOC2000", "SEC", "TOTALTS", "UCASAPPID", "TYPEYR", "MODESTUD",
+                    "FUNDLEV", "FUNDCOMP", "STULOAD", "YEARSTU", "MSTUFEE", "PCOLAB", "PCFLDCS", "PCSLDCS", "PCTLDCS",
+                    "SPECFEE", "NETFEE", "GROSSFEE", "DOMICILE", "ELQ", "HEPostCode"
+                }
+            },
+            {
+                "LearningDeliveryWorkPlacement",
+                new List<string>() {"WorkPlaceStartDate", "WorkPlaceEndDate", "WorkPlaceMode", "WorkPlaceEmpId"}
+            },
+            {"LearningProvider", new List<string>() {"UKPRN"}},
+            {"LLDDandHealthProblem", new List<string>() {"LLDDCat", "PrimaryLLDD"}},
+            {"PostAdd", new List<string>() {"AddLine1", "AddLine2", "AddLine3", "AddLine4"}},
+            {"ProviderSpecDeliveryMonitoring", new List<string>() {"ProvSpecDelMonOccur", "ProvSpecDelMon"}},
+            {"ProviderSpecLearnerMonitoring", new List<string>() {"ProvSpecLearnMonOccur", "ProvSpecLearnMon"}},
+            {
+                "Source",
+                new List<string>()
+                {
+                    "ProtectiveMarking", "UKPRN", "SoftwareSupplier", "SoftwarePackage", "Release", "SerialNo",
+                    "DateTime", "ReferenceData", "ComponentSetVersion"
+                }
+            },
+            {
+                "SourceFile",
+                new List<string>()
+                {
+                    "SourceFileName", "FilePreparationDate", "SoftwareSupplier", "SoftwarePackage", "Release",
+                    "SerialNo", "DateTime"
+                }
+            },
+            {"AppFinRecord", new List<string>() {"AFinType", "AFinCode", "AFinDate", "AFinAmount"}},
+            {"ApprenticeshipFinancialRecord", new List<string>() {"AFinType", "AFinCode", "AFinDate", "AFinAmount"}}
 
         };
 
@@ -50,8 +107,8 @@ namespace ILR
         {
             XmlNode childNode = Node.SelectSingleNode("./ia:" + Name, NSMgr);
 
-            if (Value == null 
-            || (Value.GetType().ToString()=="System.String" && Value.ToString().Length==0))
+            if (Value == null
+                || (Value.GetType().ToString() == "System.String" && Value.ToString().Length == 0))
             {
                 if (childNode != null)
                     childNode.ParentNode.RemoveChild(childNode);
@@ -64,8 +121,9 @@ namespace ILR
             switch (Value.GetType().ToString())
             {
                 case "System.DateTime":
-                    DateTime dateTimeValue = (DateTime)Value;
-                    if (dateTimeValue.Hour == 0 && dateTimeValue.Minute == 0 && dateTimeValue.Second == 0 && dateTimeValue.Millisecond == 0)
+                    DateTime dateTimeValue = (DateTime) Value;
+                    if (dateTimeValue.Hour == 0 && dateTimeValue.Minute == 0 && dateTimeValue.Second == 0 &&
+                        dateTimeValue.Millisecond == 0)
                         childNode.InnerText = dateTimeValue.ToString("yyyy-MM-dd");
                     else
                         childNode.InnerText = dateTimeValue.ToString("yyyy-MM-ddThh:mm:ss");
@@ -76,6 +134,7 @@ namespace ILR
                     break;
             }
         }
+
         private static XmlNode CreateChildNode(string Name, XmlNode Node, XmlNamespaceManager NSMgr)
         {
             XmlNode newNode = Node.OwnerDocument.CreateElement(Name, NSMgr.LookupNamespace("ia"));
@@ -89,16 +148,17 @@ namespace ILR
 
                 foreach (XmlNode childNode in Node.ChildNodes)
                 {
-                    if (attributes.IndexOf(childNode.Name)==-1 || attributes.IndexOf(childNode.Name) > newNodeIndex)
+                    if (attributes.IndexOf(childNode.Name) == -1 || attributes.IndexOf(childNode.Name) > newNodeIndex)
                     {
                         Node.InsertBefore(newNode, childNode);
                         break;
                     }
                 }
 
-                if (newNode.ParentNode==null)
+                if (newNode.ParentNode == null)
                     Node.AppendChild(newNode);
             }
+
             return newNode;
         }
     }

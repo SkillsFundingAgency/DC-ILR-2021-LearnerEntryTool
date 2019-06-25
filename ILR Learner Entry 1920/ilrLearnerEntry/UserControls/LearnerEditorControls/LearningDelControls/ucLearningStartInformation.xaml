@@ -200,10 +200,11 @@
                      MaxLength="8" />
 
                 <TextBlock Grid.Row="6" Grid.Column="0" Text="Learning start date postcode :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="6" Grid.Column="1"
-                         Name="txtLSDPostCode" 
+                <TextBox Grid.Row="6" 
+                         Grid.Column="1"
+                         Name="txtLSDPostcode" 
                          TabIndex="18"
-                         Text="{Binding Path=CurrentItem.LSDPostCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                         Text="{Binding Path=CurrentItem.LSDPostcode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                          Style="{DynamicResource TextBoxWithError}"
                          HorizontalAlignment="Left" 
                          HorizontalContentAlignment="Left" 

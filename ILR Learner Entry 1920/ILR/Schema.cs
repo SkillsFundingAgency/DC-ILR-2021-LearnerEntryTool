@@ -112,7 +112,7 @@ namespace ILR
             {"LearningDelivery.StdCode",5 },
             {"LearningDelivery.PartnerUKPRN",8},
             {"LearningDelivery.DelLocPostCode",8},
-            {"LearningDelivery.LSDPostCode",8},
+            {"LearningDelivery.LSDPostcode",8},
              {"LearningDelivery.AddHours",4},
             {"LearningDelivery.PriorLearnFundAdj",2},
             {"LearningDelivery.OtherFundAdj",3},

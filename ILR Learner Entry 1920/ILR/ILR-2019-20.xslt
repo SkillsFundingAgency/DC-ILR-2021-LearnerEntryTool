@@ -332,12 +332,12 @@
                 </PartnerUKPRN>
               </xsl:if>
               <DelLocPostCode>
-                <xsl:value-of select="dc:DelLocPostCode"/>
+                <xsl:value-of select="dc:DelLocPostcode"/>
               </DelLocPostCode>
-              <xsl:if test="dc:LSDPostCode != ''">
-                <LSDPostCode>
-                  <xsl:value-of select="dc:LSDPostCode"/>
-                </LSDPostCode>
+              <xsl:if test="dc:LSDPostcode != ''">
+                <LSDPostcode>
+                  <xsl:value-of select="dc:LSDPostcode"/>
+                </LSDPostcode>
               </xsl:if>
               <xsl:if test="dc:AddHours != ''">
                 <AddHours>
