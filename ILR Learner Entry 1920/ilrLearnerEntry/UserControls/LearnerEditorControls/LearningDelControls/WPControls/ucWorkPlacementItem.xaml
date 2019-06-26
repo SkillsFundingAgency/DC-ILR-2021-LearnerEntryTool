@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+             xmlns:maskBehavior="clr-namespace:ilrLearnerEntry.MaskBehavior"
              mc:Ignorable="d" 
              d:DesignHeight="120"
              d:DesignWidth="650"
@@ -73,7 +74,8 @@
                      MaxWidth="120"  
                      Margin="3"
                      TabIndex="4"
-                     MaxLength="9"/>
+                     maskBehavior:TextBoxMaskBehavior.Mask="Integer"
+                     maskBehavior:TextBoxMaskBehavior.MaximumLength="9"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="5" Text="Hours :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
                 <TextBox Grid.Row="2" Grid.Column="6" 
@@ -85,7 +87,8 @@
                      MaxWidth="70"  
                      Margin="3"
                      TabIndex="4"
-                     MaxLength="4"/>
+                     maskBehavior:TextBoxMaskBehavior.Mask="Integer"
+                     maskBehavior:TextBoxMaskBehavior.MaximumLength="4"/>
 
             </Grid>
         </Grid>
