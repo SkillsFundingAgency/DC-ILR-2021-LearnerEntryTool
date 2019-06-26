@@ -2056,6 +2056,8 @@ namespace ILR
                 switch (columnName)
                 {
                     case "LearnRefNumber":
+                        if (LearnRefNumber == null || LearnRefNumber.ToString().Length == 0)
+                            return "Learner Reference Number - required\r\n";
                         if (LearnRefNumber != null)
                         {
                             String sReturn = string.Empty;
