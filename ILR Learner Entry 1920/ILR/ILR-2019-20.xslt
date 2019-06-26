@@ -331,9 +331,11 @@
                   <xsl:value-of select="dc:PartnerUKPRN"/>
                 </PartnerUKPRN>
               </xsl:if>
-              <DelLocPostCode>
-                <xsl:value-of select="dc:DelLocPostcode"/>
+              <xsl:if test="dc:DelLocPostCode != ''">
+                <DelLocPostCode>
+                <xsl:value-of select="dc:DelLocPostCode"/>
               </DelLocPostCode>
+              </xsl:if>
               <xsl:if test="dc:LSDPostcode != ''">
                 <LSDPostcode>
                   <xsl:value-of select="dc:LSDPostcode"/>

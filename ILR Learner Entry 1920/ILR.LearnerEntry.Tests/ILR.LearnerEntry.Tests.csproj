@@ -62,6 +62,12 @@
     <Content Include="..\ILR\ILR-2018-19.xslt">
       <Link>ILR-2018-19.xslt</Link>
     </Content>
+    <Content Include="ILR-10000001-1920-20190624-141555-01.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ILR-10000275-1920-20190613-112424-01.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ILR-1234567-1920-01.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
