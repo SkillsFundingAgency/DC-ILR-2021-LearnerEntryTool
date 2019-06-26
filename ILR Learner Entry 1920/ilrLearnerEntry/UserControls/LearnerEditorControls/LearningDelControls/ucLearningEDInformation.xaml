@@ -167,7 +167,7 @@
                    />
 
 
-                <TextBlock Grid.Row="4" Grid.Column="2" Text="HE center location postcode  :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="4" Grid.Column="2" Text="HE centre location postcode  :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="4" Grid.Column="3" 
                      Name="heCentreLocationPostCode"
                      Text="{Binding Path=HeItem.HEPostCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  

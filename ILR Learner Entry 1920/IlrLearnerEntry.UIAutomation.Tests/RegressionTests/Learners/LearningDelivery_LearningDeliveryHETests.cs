@@ -195,7 +195,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.Tests
             // Assert 
             var error = learningDeliveryTab.GetHECenterLocationPostCodeValidationMessage;
             TakeScreenShot();  
-            Assert.True(string.IsNullOrEmpty(error), $"Validation failed for invalid HE center location postcode {heCenterLocationPostCode}");
+            Assert.True(string.IsNullOrEmpty(error), $"Validation failed for invalid HE centre location postcode {heCenterLocationPostCode}");
         }
 
         [Fact]
