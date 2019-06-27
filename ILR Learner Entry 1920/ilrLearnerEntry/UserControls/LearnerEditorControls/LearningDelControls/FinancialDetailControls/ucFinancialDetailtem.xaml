@@ -22,8 +22,8 @@
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="128"/>
                     <ColumnDefinition MinWidth="150" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -31,38 +31,42 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="Apprenticeship Financial Record" HorizontalAlignment="Left" Margin="3" FontSize="18" />
+                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" Text="Apprenticeship Financial Record" HorizontalAlignment="Left" Margin="3,3,0,2.6" FontSize="18" Width="254" />
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text=" Financial type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="1" Grid.Column="1"
-                     Text="{Binding Path=CurrentItem.AFinType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
-                     Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" 
-                     MinWidth="50"  
-                     Margin="3"
-                     MaxLength="3"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text=" Financial type :" HorizontalAlignment="Right" Margin="0,7.4,3.4,7" Style="{DynamicResource StandardTextBlockStyle}" Height="16" Width="81" />
+                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="FinancialTypeList"
+                          ItemsSource="{Binding Path=AFinTypeList, UpdateSourceTrigger=PropertyChanged}" 
+                          DisplayMemberPath="Description" 
+                          SelectedValuePath="Code" 
+                          TabIndex="2"
+                          Style="{DynamicResource ComboBoxWithError}"    
+                          SelectedValue="{Binding Path=CurrentItem.AFinTypeList, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                          Margin="4.6,4.4,7.4,0" VerticalAlignment="Top" Height="22" 
+                />
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Financial code :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Financial code :" HorizontalAlignment="Right" Margin="0,5,3.4,5.4"  Style="{DynamicResource StandardTextBlockStyle}" Height="16" Width="81"/>
 
                 <!--Text="{Binding Path=CurrentItem.AFinCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToNullableIntConverter}, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"-->
 
-                <TextBox Grid.Row="2" Grid.Column="1"
-                     Text="{Binding Path=CurrentItem.AFinCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true,TargetNullValue=''}"  
-                     Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" 
-                     MinWidth="50"  
-                     Margin="3"
-                     MaxLength="2"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" x:Name="FinancialCodeList"
+                          ItemsSource="{Binding Path=AFinCodetList, UpdateSourceTrigger=PropertyChanged}" 
+                          DisplayMemberPath="Description" 
+                          SelectedValuePath="Code" 
+                          TabIndex="2"
+                          Style="{DynamicResource ComboBoxWithError}"    
+                          SelectedValue="{Binding Path=CurrentItem.AFinCodetList, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                          Margin="4.6,4,7.4,0" VerticalAlignment="Top" Height="22" 
+                          IsEditable="False" IsHitTestVisible="False" Focusable="False"
+                />
 
-                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Financial record date :" Style="{DynamicResource StandardTextBlockStyle}"/>
-                <DatePicker  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="3" x:Name="dtEmpStatDate"  VerticalAlignment="Top" MinWidth="120" 
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="0,7.4,0.4,7" TextWrapping="Wrap" Text="Financial record date :" Style="{DynamicResource StandardTextBlockStyle}" Height="16" Width="116"/>
+                <DatePicker  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="5.6,3.4,0,0" x:Name="dtEmpStatDate"  VerticalAlignment="Top" MinWidth="120" 
                            TabIndex="2"
                              DisplayDate="{Binding Path=CurrentItem.AFinDate, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
-                             SelectedDate="{Binding Path=CurrentItem.AFinDate, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                             SelectedDate="{Binding Path=CurrentItem.AFinDate, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" Height="24" Width="120" 
                           />
-                <TextBlock Grid.Row="2" Grid.Column="2" Text="Financial amount (£) :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="Financial amount (£) :" HorizontalAlignment="Right" Margin="0,5,0.4,5.4"  Style="{DynamicResource StandardTextBlockStyle}" Height="16" Width="116"/>
                 <TextBox Grid.Row="2" Grid.Column="3"                          
                      TabIndex="4"
                      Name="TrailblazerCode" 
@@ -71,8 +75,8 @@
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      MinWidth="150"  
-                     Margin="3"
-                     MaxLength="6"/>
+                     Margin="5.6,4,0,4.4"
+                     MaxLength="6" Height="18" Width="151"/>
 
             </Grid>
 

@@ -36,6 +36,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         {
             InitializeComponent();
             this.DataContext = this;
+            SetupLookups();
+            this.FinancialTypeList.SelectionChanged += ComboBox_SelectionChanged;
         }
 
         #region Public Properties
@@ -96,6 +98,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #endregion
 
         #region PRIVATE Methods
+
+        private void SetupLookups()
+        {
+            var lp = new ILR.Lookup();
+            AFinTypeList = lp.GetLookup("AppFinRecord");
+        }
+
         #endregion
 
         #region INotifyPropertyChanged Members
@@ -139,6 +148,37 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
 
         protected bool ThrowOnInvalidPropertyName { get; set; }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var lp = new ILR.Lookup();
+
+            switch (FinancialTypeList.SelectedValue.ToString())
+            {
+                case "TNP":
+                    FinancialCodeList.IsHitTestVisible = true;
+                    FinancialCodeList.Focusable = true;
+                    FinancialCodeList.IsEditable = true;
+                    AFinCodetList = lp.GetLookup("ApprenticeshipFinancialRecord", "TNP");
+                    OnPropertyChanged("AFinCodetList");
+
+                    break;
+                case "PMR":
+                    FinancialCodeList.IsHitTestVisible = true;
+                    FinancialCodeList.Focusable = true;
+                    FinancialCodeList.IsEditable = true;
+                    AFinCodetList = lp.GetLookup("ApprenticeshipFinancialRecord", "PMR");
+                    OnPropertyChanged("AFinCodetList");
+                    break;
+                default:
+                    FinancialCodeList.IsHitTestVisible = false;
+                    FinancialCodeList.Focusable = false;
+                    FinancialCodeList.IsEditable = false;
+                    AFinCodetList = null;
+                    OnPropertyChanged("AFinCodetList");
+                    break;
+            }
+        }
 
         #endregion
 
