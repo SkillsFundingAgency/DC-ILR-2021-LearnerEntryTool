@@ -146,6 +146,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             ApprenticeshipFinancialItemsCV.Refresh();
             OnPropertyChanged("ApprenticeshipFinancialItemsCV");
             ShouldShowListView();
+            LDFinancialDetailControl.AFinType = null; 
+            LDFinancialDetailControl.FinancialCodeList.IsHitTestVisible = false;
+            LDFinancialDetailControl.FinancialCodeList.Focusable = false;
         }
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
