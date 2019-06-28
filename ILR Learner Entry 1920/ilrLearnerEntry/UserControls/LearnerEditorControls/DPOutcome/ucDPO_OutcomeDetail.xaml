@@ -37,16 +37,18 @@
             <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="Outcome Record" HorizontalAlignment="Left" Margin="3" FontSize="18" />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
-                                      Margin="4"
-                                      MinWidth="175"
-                                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
-                                      ItemsSource="{Binding Path=OutcomeTypeList, UpdateSourceTrigger=PropertyChanged}" 
-                                      DisplayMemberPath="Description" 
-                                      SelectedValuePath="Code" 
-                                      Style="{DynamicResource ComboBoxWithError}"
-                                      SelectedValue="{Binding Path=CurrentItem.OutType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=False, NotifyOnValidationError=False}" 
-                                   />
+            <ComboBox Grid.Row="1" 
+                      Grid.Column="1" 
+                      Grid.ColumnSpan="2"
+                      Margin="4"
+                      MinWidth="175"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=OutcomeTypeList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"
+                      SelectedValue="{Binding Path=CurrentItem.OutType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=False}" 
+            />
 
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Code :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
             <TextBox Grid.Row="2" Grid.Column="1" 

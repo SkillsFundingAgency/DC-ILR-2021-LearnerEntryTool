@@ -152,23 +152,23 @@ namespace ILR
             get
             {
                 string result = null;
-                //if (columnName == "OutType")
-                //{
-                    //if (String.IsNullOrEmpty(OutType))
-                        //result = String.Format("{0} required.\r\n", columnName);
+                if (columnName == "OutType")
+                {
+                    if (String.IsNullOrEmpty(OutType))
+                        result = String.Format("{0} required.\r\n", columnName);
 
-                    //if (OutType == null)
-                    //{
-                    //    result = "OutType not supplied.";
-                    //}
-                //}
+                    if (OutType == null)
+                    {
+                        result = "OutType not supplied.";
+                    }
+                }
 
                 if (columnName == "OutCode")
                 {
                     if (OutCode != null && OutCode.ToString().Length > 8)
                     {
                         result = "OutCode exceeds maximum length (8 digits).";
-                        //OutCode = (int?)int.Parse(OutCode.ToString().Substring(0, 8));
+                        OutCode = (int?)int.Parse(OutCode.ToString().Substring(0, 8));
                     }
                 }
 
