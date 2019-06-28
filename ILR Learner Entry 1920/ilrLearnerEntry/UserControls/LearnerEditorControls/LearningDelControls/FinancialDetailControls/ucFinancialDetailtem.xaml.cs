@@ -30,6 +30,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         private ApprenticeshipFinancialRecord _item;
         private string _tbfincode = string.Empty;
+        private string _tbfintype = string.Empty;
         private string _tbfinamount = string.Empty;
 
         public ucFinancialDetailtem()
@@ -37,7 +38,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             InitializeComponent();
             this.DataContext = this;
             SetupLookups();
-            this.FinancialTypeList.SelectionChanged += ComboBox_SelectionChanged;
+            this.FinancialTypeList.SelectionChanged += FinancialType_ComboBox_SelectionChanged;
         }
 
         #region Public Properties
@@ -74,8 +75,23 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 {
                     CurrentItem.AFinCode = number;
                 }
+                else if (value == null)
+                {
+                    CurrentItem.AFinCode = null;
+                }
             }
         }
+
+        public string AFinType
+        {
+            get { return _tbfintype; }
+            set
+            {
+                _tbfintype = value;
+                CurrentItem.AFinType = value;
+            }
+        }
+
         public string AFinAmount
         {
             get { return _tbfinamount; }
@@ -83,7 +99,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             {
                 _tbfinamount = value;
                 int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result =   Int32.TryParse(System.Convert.ToString(value), out number);
                 if (result)
                 {
                     CurrentItem.AFinAmount = number;
@@ -149,7 +165,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         protected bool ThrowOnInvalidPropertyName { get; set; }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FinancialType_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var lp = new ILR.Lookup();
 
@@ -158,26 +174,39 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 case "TNP":
                     FinancialCodeList.IsHitTestVisible = true;
                     FinancialCodeList.Focusable = true;
-                    FinancialCodeList.IsEditable = true;
+                    AFinCode = null;
                     AFinCodetList = lp.GetLookup("ApprenticeshipFinancialRecord", "TNP");
                     OnPropertyChanged("AFinCodetList");
-
+                    this.FinancialCodeList.SelectionChanged += FinancialCode_ComboBox_SelectionChanged;
                     break;
                 case "PMR":
                     FinancialCodeList.IsHitTestVisible = true;
                     FinancialCodeList.Focusable = true;
-                    FinancialCodeList.IsEditable = true;
+                    AFinCode = null;
                     AFinCodetList = lp.GetLookup("ApprenticeshipFinancialRecord", "PMR");
                     OnPropertyChanged("AFinCodetList");
+                    this.FinancialCodeList.SelectionChanged += FinancialCode_ComboBox_SelectionChanged;
                     break;
                 default:
                     FinancialCodeList.IsHitTestVisible = false;
-                    FinancialCodeList.Focusable = false;
-                    FinancialCodeList.IsEditable = false;
+                    FinancialCodeList.Focusable = false; 
                     AFinCodetList = null;
+                    AFinType = null;
+                    AFinCode = null;
                     OnPropertyChanged("AFinCodetList");
                     break;
             }
+
+            AFinType = FinancialTypeList.SelectedValue.ToString();
+        }
+
+        private void FinancialCode_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AFinCode = null;
+            if (FinancialCodeList.SelectedValue != null)
+            {
+                AFinCode = FinancialCodeList.SelectedValue.ToString();
+            } 
         }
 
         #endregion

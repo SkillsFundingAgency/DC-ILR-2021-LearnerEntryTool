@@ -57,7 +57,7 @@
                           Style="{DynamicResource ComboBoxWithError}"    
                           SelectedValue="{Binding Path=CurrentItem.AFinCodetList, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
                           Margin="4.6,4,7.4,0" VerticalAlignment="Top" Height="22" 
-                          IsEditable="False" IsHitTestVisible="False" Focusable="False"
+                          IsHitTestVisible="False" Focusable="False"
                 />
 
                 <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="0,7.4,0.4,7" TextWrapping="Wrap" Text="Financial record date :" Style="{DynamicResource StandardTextBlockStyle}" Height="16" Width="116"/>
