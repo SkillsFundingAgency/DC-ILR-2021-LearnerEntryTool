@@ -1,0 +1,86 @@
+
+name: $(GitVersion_NuGetVersion)
+#name: $(VersionNumberMajor).$(VersionNumberMinor).$(VersionNumberBuild)$(Rev:.rrrr)
+
+parameters:
+- name: buildConfiguration
+  displayName: Release or Debug
+  type: string
+  default: Release
+  values:
+  - Release
+  - Debug
+- name: VersionNumberMajor
+  displayName: VersionNumberMajor
+  type: string
+  default: '0'
+- name: VersionNumberMinor
+  displayName: VersionNumberMinor
+  type: string
+  default: '1'
+- name: DotnetCore_Version
+  displayName: .net Coer SDK Version 
+  type: string
+  default: '2.2.x'  
+  values:
+  - '2.1.x'
+  - '2.2.x'
+  - '3.0.x'
+  - '3.1.x'
+
+trigger:
+  paths:
+    include:
+    - azure-pipelines.yml
+    - ILR Learner Entry 2021
+
+resources:
+  repositories:
+  - repository: templates
+    type: git
+    name: DC-Infrastructure-YML-Files
+
+variables:
+- group: 'CodeSign KV'
+- name: "Build.Platform"
+  value: 'Any CPU'
+- name: "Nuget.Feed"
+  value: 'dct-pkg'  
+- name: "Nuget.Version"
+  value: '5.3.0'
+- Name: AcademicYear
+  value: '2021'
+
+stages:
+#********************************************************************************
+# Build Application and put into Afticats.
+#********************************************************************************
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    workspace:
+        clean: all
+
+    pool:
+      name: DCT
+      demands:
+      - IsBuildServer
+
+    steps:    
+    - template: Build/Desktop/IsDeployableBranch.yml@templates
+      parameters:
+        VariableNameToStoreOutputIn: 'IsDeployableBranch'
+
+    - template: Build/Desktop/MsBuild.Desktop.yml@templates
+      parameters:
+        WorkingDirectory: "$(build.sourcesdirectory)/ILR Learner Entry $(AcademicYear)"
+        BuildConfiguration: "${{ parameters.buildConfiguration }}"    
+        DesktopApplicationSourceFolder: 'ILR Learner Entry $(AcademicYear)\ilrLearnerEntry'
+
+    - template: Build/Desktop/RunUnitTest.Desktop.yml@templates
+      parameters:
+        WorkingDirectory: "$(build.sourcesdirectory)/ILR Learner Entry $(AcademicYear)"
+        BuildConfiguration: "${{ parameters.buildConfiguration }}"    
+
+    - template: Build/Desktop/CopyAndPublish.Desktop.yml@templates

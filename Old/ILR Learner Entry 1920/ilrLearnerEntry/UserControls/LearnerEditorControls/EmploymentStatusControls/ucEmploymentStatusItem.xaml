@@ -1,0 +1,174 @@
+﻿<UserControl xmlns:EmploymentStatus="clr-namespace:ilrLearnerEntry.UserControls.EmploymentStatus"  
+             x:Class="ilrLearnerEntry.UserControls.EmploymentStatus.ucEmploymentStatusItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:maskBehavior="clr-namespace:ilrLearnerEntry.MaskBehavior"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="700">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="2" >
+            <Grid Margin="5" x:Name="MasterGrid" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" MinWidth="100"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="Employment Status" HorizontalAlignment="Left" Margin="3" FontSize="18" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Employment status :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+
+                    <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
+                                      Name="employmentStatus"
+                                      Margin="4"
+                                      MinWidth="175"  MaxWidth="300"
+                                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                      ItemsSource="{Binding Path=EmpStatList, UpdateSourceTrigger=PropertyChanged}" 
+                                      DisplayMemberPath="Description" 
+                                      SelectedValuePath="Code" 
+                                      Style="{DynamicResource ComboBoxWithError}"                                      
+                                      SelectedValue="{Binding Path=CurrentItem.EmpStat, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                                   />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Date status applies :" Style="{DynamicResource StandardTextBlockStyle}"/>
+
+                    <DatePicker  
+                        Grid.Row="2" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Left" 
+                        x:Name="dtEmpStatDate"  
+                        VerticalAlignment="Top" 
+                        DisplayDate="{Binding Path=CurrentItem.DateEmpStatApp, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectedDate="{Binding Path=CurrentItem.DateEmpStatApp, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                          />
+
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Employer Identifier :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" 
+                     Name="txtEmpId" 
+                     Text="{Binding Path=CurrentItem.EmpId, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="65"  
+                     Margin="3"
+                     maskBehavior:TextBoxMaskBehavior.Mask="Integer" 
+                     maskBehavior:TextBoxMaskBehavior.MaximumLength="9"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="4" Text="Agreement Identifier :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+                    <TextBox Grid.Row="2" Grid.Column="5" 
+                     Name="txtAgreeId" 
+                     Text="{Binding Path=CurrentItem.AgreeId, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="65"  
+                     Margin="3"
+                     MaxLength="6"/>
+
+                </Grid>
+                <Grid Grid.Row="1" 
+              Grid.Column="0" 
+              Grid.ColumnSpan="5"
+              Grid.RowSpan="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="215" />
+                        <ColumnDefinition Width="Auto" MinWidth="45" />
+                        <ColumnDefinition Width="28.61" />
+                        <ColumnDefinition Width="8.932"/>
+                        <ColumnDefinition Width="138.068"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="5" Text="Employment status monitoring types and codes" HorizontalAlignment="Left" Margin="3,3,0,3" FontSize="18" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Is the learner self employed ?" HorizontalAlignment="Right" Margin="0,7,3,7" TextWrapping="Wrap" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <CheckBox Grid.Row="1" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.SEI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  HorizontalAlignment="Left" Margin="3,3,0,3" />
+
+                    <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0,3,3,3">
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="Was the learner in full time education" />
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text=" or training prior to enrolment ?" />
+                    </StackPanel>
+
+                    <CheckBox Grid.Row="2" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.PEI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,12,0,12" />
+
+                    <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,3,3,3">
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="Is the employer a small employer?" />
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="(applicable programmes only)" />
+                    </StackPanel>
+
+                    <CheckBox Grid.Row="3" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.SEM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,12,0,12" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="Length of unemployment :" HorizontalAlignment="Right" Margin="0,7,2,7"  Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="2"/>
+                    <ComboBox Grid.Row="1" Grid.Column="5" Margin="10,4,0,4" MinWidth="230" MaxWidth="300"
+                      Name="lengthOfUnemployment"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=LengthOfUnemploymentList}"
+                      DisplayMemberPath="Description" 
+                      Style="{DynamicResource ComboBoxWithError}"                                      
+                      SelectedValuePath="Code" 
+                      SelectedValue="{Binding Path=CurrentItem.LOU, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                   />
+                    <TextBlock Grid.Row="2" Grid.Column="4" Text="Benefit status indicator :" HorizontalAlignment="Right" Margin="0,12,2,12"  Style="{DynamicResource StandardTextBlockStyle}" />
+                    <ComboBox Grid.Row="2" Grid.Column="5" Margin="10,8,0,9" MinWidth="230" MaxWidth="300"
+                      Name="benefitStatusIndicator"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=BenifitStatusIndicatorList}" 
+                      Style="{DynamicResource ComboBoxWithError}"                                      
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      SelectedValue="{Binding Path=CurrentItem.BSI, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                   />
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Employment intensity indicator :" HorizontalAlignment="Right" Margin="0,12,2,12"  Style="{DynamicResource StandardTextBlockStyle}" Grid.ColumnSpan="3" />
+                    <ComboBox Grid.Row="3" Grid.Column="5" Margin="10,9,0,8" MinWidth="230" MaxWidth="300"
+                      Name="employmentIntensityIndicator"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=EmploymentIntensityIndicatorList}" 
+                      Style="{DynamicResource ComboBoxWithError}"                                      
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      SelectedValue="{Binding Path=CurrentItem.EII, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                   />
+                    <TextBlock Grid.Row="4" Grid.Column="4" Text="Length of employment :" HorizontalAlignment="Right" Margin="0,7,3,7"  Style="{DynamicResource StandardTextBlockStyle}" />
+                    <ComboBox Grid.Row="4" Grid.Column="5" Margin="10,4,0,4" MinWidth="230" MaxWidth="300"
+                      Name="lengthOfEmployment"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=LengthOfEmploymentList}" 
+                      Style="{DynamicResource ComboBoxWithError}"                                      
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      SelectedValue="{Binding Path=CurrentItem.LOE, Mode=TwoWay, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+                   />
+                </Grid>
+            </Grid>
+        </Border>
+    </ScrollViewer>
+</UserControl>
