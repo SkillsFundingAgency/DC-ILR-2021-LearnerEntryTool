@@ -74,13 +74,13 @@ stages:
 
     - template: Build/Desktop/MsBuild.Desktop.yml@templates
       parameters:
-        WorkingDirectory: "$(build.sourcesdirectory)/ILR Learner Entry $(AcademicYear)"
+        WorkingDirectory: "$(build.sourcesdirectory)/src"
         BuildConfiguration: "${{ parameters.buildConfiguration }}"    
-        DesktopApplicationSourceFolder: 'ILR Learner Entry $(AcademicYear)\ilrLearnerEntry'
+        DesktopApplicationSourceFolder: 'src/ilrLearnerEntry'
 
     - template: Build/Desktop/RunUnitTest.Desktop.yml@templates
       parameters:
-        WorkingDirectory: "$(build.sourcesdirectory)/ILR Learner Entry $(AcademicYear)"
+        WorkingDirectory: "$(build.sourcesdirectory)/src"
         BuildConfiguration: "${{ parameters.buildConfiguration }}"    
 
     - template: Build/Desktop/CopyAndPublish.Desktop.yml@templates
