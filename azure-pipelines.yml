@@ -80,6 +80,9 @@ stages:
         WorkingDirectory: "$(build.sourcesdirectory)/src"
         BuildConfiguration: "${{ parameters.buildConfiguration }}"    
         DesktopApplicationSourceFolder: 'src/ilrLearnerEntry'
+        DesktopApplicationCopyContents: '**\!(*.pdb)
+                                         **\!(*.xsd)
+                                        '
 
     - template: Build/Desktop/RunUnitTest.Desktop.yml@templates
       parameters:
