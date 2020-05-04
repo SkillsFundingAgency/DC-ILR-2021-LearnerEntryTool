@@ -11,7 +11,7 @@ parameters:
   - Release
   - Debug
 - name: VersionNumberMajor
-  displayName: Version Number : Major'
+  displayName: 'Version Number : Major'
   type: string
   default: '0'
 - name: VersionNumberMinor
