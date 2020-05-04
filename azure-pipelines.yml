@@ -48,7 +48,7 @@ variables:
   value: 'dct-pkg'  
 - name: "Nuget.Version"
   value: '5.3.0'
-- Name: AcademicYear
+- name: "AcademicYear"
   value: '2021'
 
 stages:
