@@ -81,6 +81,7 @@ stages:
         BuildConfiguration: "${{ parameters.buildConfiguration }}"    
         DesktopApplicationSourceFolder: 'src/ilrLearnerEntry'
         DesktopApplicationCopyContents: '**\ilrLearnerEntry*.exe'
+        CodeSignFileFilter: 'ilrLearnerEntry*'
 
     - template: Build/Desktop/RunUnitTest.Desktop.yml@templates
       parameters:
