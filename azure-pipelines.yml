@@ -30,9 +30,8 @@ parameters:
 
 trigger:
   paths:
-    include:
-    - azure-pipelines.yml
-    - ILR Learner Entry 2021
+    exclude:
+    - Old
 
 resources:
   repositories:
