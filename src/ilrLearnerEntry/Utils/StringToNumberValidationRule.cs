@@ -6,8 +6,7 @@ namespace ilrLearnerEntry.Utils
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-            int i;
-            if (int.TryParse(value.ToString(), out i))
+            if (int.TryParse(value.ToString(), out _))
                 return new ValidationResult(true, null);
 
             return new ValidationResult(false, "Please enter a valid integer value.");
@@ -18,8 +17,7 @@ namespace ilrLearnerEntry.Utils
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-            int i;
-            if (int.TryParse(value.ToString(), out i))
+            if (int.TryParse(value.ToString(), out _))
                 return new ValidationResult(true, null);
 
             return new ValidationResult(false, "Please enter a valid integer value for the UKPRN!");

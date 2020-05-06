@@ -105,6 +105,7 @@
     </ApplicationDefinition>
     <Compile Include="Behaviors\TextBoxUnsignedIntegersOnlyBehavior.cs" />
     <Compile Include="InputValiator.cs" />
+    <Compile Include="UserControls\BaseUserControl.cs" />
     <Compile Include="UserControls\LearnerEditorControls\DPOutcomeControls\ucDPO_LearnerList.xaml.cs">
       <DependentUpon>ucDPO_LearnerList.xaml</DependentUpon>
     </Compile>

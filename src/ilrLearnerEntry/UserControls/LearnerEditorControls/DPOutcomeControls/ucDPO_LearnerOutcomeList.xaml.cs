@@ -14,11 +14,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
     /// <summary>
     /// Interaction logic for ucDPO_LearnerOutcomeList.xaml
     /// </summary>
-    public partial class ucDPO_LearnerOutcomeList : UserControl, INotifyPropertyChanged, IDataErrorInfo
+    public partial class ucDPO_LearnerOutcomeList : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
         private LearnerDestinationandProgression _learnerDP;
-        private ILR.Schema XmlSchema = new ILR.Schema();
         private const String CLASSNAME = "LearnerDestinationandProgression";
         #endregion
 
@@ -92,8 +91,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
             set
             {
                 _uln = value;
-                long number;
-                bool result = Int64.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int64.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 {
                     _learnerDP.ULN = number;
@@ -236,8 +234,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 
@@ -268,10 +265,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 
 
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -296,22 +289,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                 return sReturn;
             }
         }
-
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
-
 
         #endregion
 

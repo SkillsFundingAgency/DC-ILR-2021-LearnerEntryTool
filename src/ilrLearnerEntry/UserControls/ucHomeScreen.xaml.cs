@@ -62,8 +62,7 @@ namespace ilrLearnerEntry.UserControls
         {
             OnPropertyChanged("UKPRN");
             string ukprnValue = (UKPRN.HasValue) ? UKPRN.ToString() : string.Empty;
-            if (OnUkprnUpdated != null)
-                OnUkprnUpdated(ukprnValue);
+            OnUkprnUpdated?.Invoke(ukprnValue);
 
             //RaiseEvent(new RoutedEventArgs(OnUkprnUpdateEvent, String.Empty));
         }
@@ -157,9 +156,8 @@ namespace ilrLearnerEntry.UserControls
             set
             {
                 //int number;
-                UInt32 number;
 
-                bool result = UInt32.TryParse(System.Convert.ToString(value), out number);
+                bool result = UInt32.TryParse(System.Convert.ToString(value), out var number);
                 //if (result) { UKPRN = (int)number; }
                 //bool result = Int32.TryParse(System.Convert.ToString(value), out number);
                 if (result)
@@ -403,10 +401,7 @@ namespace ilrLearnerEntry.UserControls
                 OnPropertyChanged("LoadMessage");
                 OnPropertyChanged("UKPRN");
                 App.DoEvents();
-                if (OnNewFileImported != null)
-                {
-                    OnNewFileImported(string.Empty);
-                }
+                OnNewFileImported?.Invoke(string.Empty);
             }
             else
             {
@@ -552,8 +547,7 @@ namespace ilrLearnerEntry.UserControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 

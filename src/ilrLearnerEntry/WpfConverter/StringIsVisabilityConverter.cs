@@ -9,11 +9,7 @@ namespace ilrLearnerEntry.WpfConverter
 
         public object Convert(object value, Type targetType, object parameter,  System.Globalization.CultureInfo culture)
         {
-            bool flag = false;
-            if (String.IsNullOrEmpty(value.ToString()))
-            {
-                flag = true;
-            }
+            bool flag = String.IsNullOrEmpty(value.ToString());
             return flag ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
 

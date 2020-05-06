@@ -24,8 +24,8 @@ namespace ILR
         {
             get
             {
-                string FilePreparationDate = XMLHelper.GetChildValue("FilePreparationDate", Node, NSMgr);
-                return (FilePreparationDate != null ? DateTime.Parse(FilePreparationDate) : (DateTime?) null);
+                string filePreparationDate = XMLHelper.GetChildValue("FilePreparationDate", Node, NSMgr);
+                return (filePreparationDate != null ? DateTime.Parse(filePreparationDate) : (DateTime?) null);
             }
             set { XMLHelper.SetChildValue("FilePreparationDate", value, Node, NSMgr); }
         }

@@ -1,11 +1,12 @@
-﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.ucLearningEDInformation"
+﻿<userControls:BaseUserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.ucLearningEDInformation"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
 			 xmlns:TextBoxMask="clr-namespace:ilrLearnerEntry.MaskBehavior"
-             mc:Ignorable="d"
+			 xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+			 mc:Ignorable="d"
              d:DesignHeight="550" 
              d:DesignWidth="825"
              MinWidth="825"
@@ -501,4 +502,4 @@
 
         </Grid>
     </ScrollViewer>
-</UserControl>
+</userControls:BaseUserControl>

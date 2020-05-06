@@ -11,8 +11,7 @@ namespace ilrLearnerEntry.WpfConverter
 			String sReturn = string.Empty;
 			if (value != null)
 			{
-				int number;
-				bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
 				if (result)
 				{
 					sReturn = number.ToString(culture);

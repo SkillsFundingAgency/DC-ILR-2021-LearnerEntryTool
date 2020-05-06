@@ -12,11 +12,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
     /// <summary>
     /// Interaction logic for ucApprenticeshipFinancialRecordItem.xaml
     /// </summary>
-    public partial class ucFinancialDetailtem : UserControl, INotifyPropertyChanged
+    public partial class ucFinancialDetailtem : BaseUserControl, INotifyPropertyChanged
     {
         private const String CLASSNAME = "ApprenticeshipFinancialRecord";
-        private ILR.Schema XmlSchema = new ILR.Schema();
-
         private ApprenticeshipFinancialRecord _item;
         private string _tbfincode = string.Empty;
         private string _tbfinamount = string.Empty;
@@ -55,8 +53,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _tbfincode = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 {
                     CurrentItem.AFinCode = number;
@@ -69,8 +66,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _tbfinamount = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 {
                     CurrentItem.AFinAmount = number;
@@ -101,8 +97,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 
@@ -132,10 +127,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #endregion
 
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -166,22 +157,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 return sReturn;
             }
         }
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
         #endregion
-
-
     }
 }

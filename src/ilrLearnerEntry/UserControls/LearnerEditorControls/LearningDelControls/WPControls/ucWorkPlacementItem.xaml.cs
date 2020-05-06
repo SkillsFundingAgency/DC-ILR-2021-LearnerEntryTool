@@ -11,10 +11,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
     /// <summary>
     /// Interaction logic for ucWorkPlacementItem.xaml
     /// </summary>
-    public partial class ucWorkPlacementItem : UserControl, INotifyPropertyChanged, IDataErrorInfo
+    public partial class ucWorkPlacementItem : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         private const String CLASSNAME = "LearningDeliveryWorkPlacement";
-        private ILR.Schema XmlSchema = new ILR.Schema();
 
         private LearningDeliveryWorkPlacement _learningDeliveryWorkPlacement;
         private string _workplaceempid = string.Empty;
@@ -103,8 +102,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 
@@ -134,10 +132,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #endregion
 
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
+
         public string this[string columnName]
         {
             get
@@ -170,22 +165,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 return sReturn;
             }
         }
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
         #endregion
-
-
     }
 }

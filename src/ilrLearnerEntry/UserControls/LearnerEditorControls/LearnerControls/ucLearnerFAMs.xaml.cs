@@ -13,11 +13,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
     /// <summary>
     /// Interaction logic for ucLearnerFAMs.xaml
     /// </summary>
-    public partial class ucLearnerFAMs : UserControl, INotifyPropertyChanged
+    public partial class ucLearnerFAMs : BaseUserControl, INotifyPropertyChanged
     {
         #region Private Variables
         private const String CLASSNAME = "Learner";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         private Learner _learner;
         private DataTable _dt;
         private const Int32 _maxNLMItem = 2;
@@ -82,8 +81,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             set
             {
                 _planlearnhours = value;
-                int number;
-                bool result = Int32.TryParse(Convert.ToString(value), out number);
+                bool result = Int32.TryParse(Convert.ToString(value), out var number);
                 if (result)
                 {
                     CurrentItem.PlanLearnHours = number;
@@ -101,8 +99,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             set
             {
                 _planeephours = value;
-                int number;
-                bool result = Int32.TryParse(Convert.ToString(value), out number);
+                bool result = Int32.TryParse(Convert.ToString(value), out var number);
                 if (result)
                 {
                     CurrentItem.PlanEEPHours = number;
@@ -228,8 +225,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 
@@ -260,10 +256,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 
 
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -293,20 +285,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 return sReturn;
             }
-        }
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
         }
         #endregion
 

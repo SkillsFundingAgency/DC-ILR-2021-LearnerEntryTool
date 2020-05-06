@@ -14,12 +14,11 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
     /// <summary>
     /// Interaction logic for ucLearningEDInformation.xaml
     /// </summary>
-    public partial class ucLearningEDInformation : UserControl, INotifyPropertyChanged//, IDataErrorInfo
+    public partial class ucLearningEDInformation : BaseUserControl, INotifyPropertyChanged//, IDataErrorInfo
     {
 
         #region Private Variables
         private const String CLASSNAME = "LearningDeliveryHE";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         private ILR.LearningDelivery _learningDelivery;
         private String _pcolab = string.Empty;
         private String _pcfldcs = string.Empty;
@@ -429,8 +428,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 

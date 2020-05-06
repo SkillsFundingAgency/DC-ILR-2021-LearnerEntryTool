@@ -1,17 +1,18 @@
-﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucLLDDAndLearningSupport"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-			 xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
-             xmlns:llddControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucLLDDControls"  
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:interactivity="schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:TextBoxMask="clr-namespace:ilrLearnerEntry.MaskBehavior"
-             mc:Ignorable="d"
-             d:DesignHeight="500" 
-             d:DesignWidth="750"
-             RequestBringIntoView="UserControl_RequestBringIntoView"  >
+﻿<userControls:BaseUserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucLLDDAndLearningSupport"
+                              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+                              xmlns:llddControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucLLDDControls"  
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                              xmlns:interactivity="schemas.microsoft.com/expression/2010/interactivity"
+                              xmlns:TextBoxMask="clr-namespace:ilrLearnerEntry.MaskBehavior"
+                              xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              mc:Ignorable="d"
+                              d:DesignHeight="500" 
+                              d:DesignWidth="750"
+                              RequestBringIntoView="UserControl_RequestBringIntoView"  >
     <UserControl.Resources>
         <CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
         <CommonConverters:IsCompleteVisabilityConverter x:Key="IsCompleteVisibilityConverter" />
@@ -165,4 +166,4 @@
             </Grid>
         </Grid>
     </ScrollViewer>
-</UserControl>
+</userControls:BaseUserControl>

@@ -12,11 +12,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
     /// <summary>
     /// Interaction logic for ucLearnerHEInformation.xaml
     /// </summary>
-    public partial class ucLearnerHEInformation : UserControl, INotifyPropertyChanged
+    public partial class ucLearnerHEInformation : BaseUserControl, INotifyPropertyChanged
     {
         #region Private Variables
         private const String CLASSNAME = "Learner";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         private Learner _learner;
         private String _hefincash = string.Empty;
         private String _hefinnearcash = string.Empty;
@@ -74,8 +73,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinCash = number; }
                 }
                 OnPropertyChanged("HEFinCash");
@@ -93,8 +91,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinNearCash = number; }
                 }
                 OnPropertyChanged("HEFinNearCash");
@@ -112,8 +109,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinAccommodationDiscounts = number; }
                 }
                 OnPropertyChanged("HEFinAccommodationDiscounts");
@@ -131,8 +127,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinOther = number; }
                 }
                 OnPropertyChanged("HEFinOther");
@@ -168,8 +163,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 
@@ -240,24 +234,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 return sReturn;
             }
-        }
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
         }
         #endregion
 

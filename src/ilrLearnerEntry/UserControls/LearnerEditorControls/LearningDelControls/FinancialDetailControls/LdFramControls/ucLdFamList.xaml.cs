@@ -67,7 +67,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 		public String UserControlTitle { get { return _title; } set { _title = value; OnPropertyChanged("UserControlTitle"); } }
 		public Int32 MaxItems { get; set; }
 
-		public Visibility IsTypeVisable
+		public Visibility IsTypeVisible
 		{
 			get
 			{
@@ -85,7 +85,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				return v;
 			}
 		}
-		public Visibility IsCodeVisable
+		public Visibility IsCodeVisible
 		{
 			get
 			{
@@ -106,7 +106,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				return v;
 			}
 		}
-		public Visibility IsFromVisable
+		public Visibility IsFromVisible
 		{
 			get
 			{
@@ -279,8 +279,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 #if DEBUG
 			VerifyPropertyName(propertyName);
 #endif
-			if (PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
 		[Conditional("DEBUG")]

@@ -62,8 +62,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result)
                     {
                         CurrentItem.OutCode = number;
@@ -104,8 +103,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 

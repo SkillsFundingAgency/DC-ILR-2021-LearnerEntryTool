@@ -1,16 +1,17 @@
-﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.ucLearningEndInformation"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
-             mc:Ignorable="d" 
-             d:DesignHeight="200" 
-             d:DesignWidth="695" 
-             MinWidth="750"
-             HorizontalAlignment="Left"
-             RequestBringIntoView="UserControl_RequestBringIntoView">
+﻿<userControls:BaseUserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.ucLearningEndInformation"
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+                              xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              mc:Ignorable="d" 
+                              d:DesignHeight="200" 
+                              d:DesignWidth="695" 
+                              MinWidth="750"
+                              HorizontalAlignment="Left"
+                              RequestBringIntoView="UserControl_RequestBringIntoView">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
@@ -112,4 +113,4 @@
                      MaxLength="6" />
         </Grid>
     </ScrollViewer>
-</UserControl>
+</userControls:BaseUserControl>

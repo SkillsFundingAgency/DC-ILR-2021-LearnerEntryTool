@@ -12,8 +12,7 @@ namespace ilrLearnerEntry.WpfConverter
 			String sReturn = string.Empty;
 			if (value != null)
 			{
-				decimal number;
-				bool result = decimal.TryParse(System.Convert.ToString(value), out number);
+                bool result = decimal.TryParse(System.Convert.ToString(value), out var number);
 				if (result)
 				{
 					sReturn = number.ToString(culture);

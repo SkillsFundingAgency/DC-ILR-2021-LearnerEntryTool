@@ -15,12 +15,11 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
     /// <summary>
     /// Interaction logic for ucLearningStartInformation.xaml
     /// </summary>
-    public partial class ucLearningStartInformation : UserControl, INotifyPropertyChanged, IDataErrorInfo
+    public partial class ucLearningStartInformation : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
 
         private const String CLASSNAME = "LearningDelivery";
-        private ILR.Schema XmlSchema = new ILR.Schema();
 
         private ILR.LearningDelivery _learningDelivery;
         private const Int32 _maxHHSItem = 4;
@@ -103,8 +102,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _priorlearnfundadj = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result) { CurrentItem.PriorLearnFundAdj = number; }
                 else { CurrentItem.PriorLearnFundAdj = null; }
             }
@@ -115,8 +113,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _progtype = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result) { CurrentItem.ProgType = number; }
                 else { CurrentItem.ProgType = null; }
             }
@@ -139,8 +136,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _pwaycode = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.PwayCode = number; }
                 else            
@@ -153,8 +149,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _otherfundadj = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.OtherFundAdj = number; }
                 else
@@ -167,8 +162,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _addhours = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.AddHours = number; }
                 else
@@ -182,8 +176,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _phours = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.PHours = number; }
                 else
@@ -197,8 +190,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _partnerukprn = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.PartnerUKPRN = number; }
                 else
@@ -325,8 +317,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 
@@ -356,10 +347,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #endregion
 
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -426,21 +413,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 }
                 return sReturn;
             }
-        }
-
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
         }
         #endregion
     }

@@ -12,11 +12,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 	/// <summary>
 	/// Interaction logic for ucLearnerHeader.xaml
 	/// </summary>
-	public partial class ucLearnerHeader : System.Windows.Controls.UserControl, INotifyPropertyChanged, IDataErrorInfo
+	public partial class ucLearnerHeader : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
         private const String CLASSNAME = "Learner";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         #endregion
 
         #region Constructor
@@ -86,8 +85,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result)
                     { CurrentItem.PrevUKPRN = number; }
                 }
@@ -107,8 +105,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result)
                     { CurrentItem.PMUKPRN = number; }
                 }
@@ -128,8 +125,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    long number;
-                    bool result = Int64.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int64.TryParse(System.Convert.ToString(value), out var number);
                     if (result)
                     {
                         CurrentItem.ULN = number;
@@ -156,9 +152,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         // If the text is not a valid date, show a message.
         private void dtDOB_DateValidationError(object sender, DatePickerDateValidationErrorEventArgs e)
         {
-            DateTime newDate;
-
-            if (!DateTime.TryParse(e.Text, out newDate))
+            if (!DateTime.TryParse(e.Text, out var newDate))
             {
                 string message = String.Format("The date, {0} is not a valid date, please enter a valid date.", e.Text);
                 System.Windows.MessageBox.Show(message, "Date of birth", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -180,10 +174,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 #if DEBUG
 			VerifyPropertyName(propertyName);
 #endif
-			if (PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-		}
+        }
 
 		[Conditional("DEBUG")]
 		[DebuggerStepThrough]
@@ -211,10 +204,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         #endregion
 
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -247,20 +236,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             }
         }
 
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
         #endregion
         private void UserControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
 		{

@@ -34,10 +34,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					_learningDeliverFAM = value;
 					this.DataContext = this;
 					OnPropertyChanged("CurrentItem");
-					OnPropertyChanged("IsTypeVisable");
+					OnPropertyChanged("IsTypeVisible");
 					OnPropertyChanged("IsCodeReadOnly");
-					OnPropertyChanged("IsCodeVisable");
-					OnPropertyChanged("IsFromVisable");
+					OnPropertyChanged("IsCodeVisible");
+					OnPropertyChanged("IsFromVisible");
 					OnPropertyChanged("IsToVisable");
 				}
 				else
@@ -213,8 +213,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 #if DEBUG
 			VerifyPropertyName(propertyName);
 #endif
-			if (PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 		}
 
