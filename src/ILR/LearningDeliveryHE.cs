@@ -1,10 +1,5 @@
-﻿
-using ilrLearnerEntry.Utils;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace ILR

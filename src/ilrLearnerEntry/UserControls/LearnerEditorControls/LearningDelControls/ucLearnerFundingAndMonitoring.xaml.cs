@@ -5,8 +5,6 @@ using System.Data;
 using System.Diagnostics;
 using System.Windows.Controls;
 
-using ILR;
-
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 {
     /// <summary>

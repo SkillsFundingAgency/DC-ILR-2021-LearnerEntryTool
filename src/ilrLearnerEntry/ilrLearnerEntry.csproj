@@ -103,111 +103,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\ILR\ChildEntity.cs">
-      <Link>BusinessEntities\ILR\ChildEntity.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\CollectionDetails.cs">
-      <Link>BusinessEntities\ILR\CollectionDetails.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\ContactPreference.cs">
-      <Link>BusinessEntities\ILR\ContactPreference.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\DPOutcome.cs">
-      <Link>BusinessEntities\ILR\DPOutcome.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\EmploymentStatusMonitoring.cs">
-      <Link>BusinessEntities\ILR\EmploymentStatusMonitoring.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Header.cs">
-      <Link>BusinessEntities\ILR\Header.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Learner.cs">
-      <Link>BusinessEntities\ILR\Learner.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearnerContact.cs">
-      <Link>BusinessEntities\ILR\LearnerContact.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearnerDestinationandProgression.cs">
-      <Link>BusinessEntities\ILR\LearnerDestinationandProgression.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearnerEmploymentStatus.cs">
-      <Link>BusinessEntities\ILR\LearnerEmploymentStatus.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearnerFAM.cs">
-      <Link>BusinessEntities\ILR\LearnerFAM.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearnerHE.cs">
-      <Link>BusinessEntities\ILR\LearnerHE.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearnerHEFinancialSupport.cs">
-      <Link>BusinessEntities\ILR\LearnerHEFinancialSupport.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearningDelivery.cs">
-      <Link>BusinessEntities\ILR\LearningDelivery.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearningDeliveryApprenticeshipFinancialRecord.cs">
-      <Link>BusinessEntities\ILR\LearningDeliveryApprenticeshipFinancialRecord.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearningDeliveryFAM.cs">
-      <Link>BusinessEntities\ILR\LearningDeliveryFAM.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearningDeliveryHE.cs">
-      <Link>BusinessEntities\ILR\LearningDeliveryHE.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearningDeliveryWorkPlacement.cs">
-      <Link>BusinessEntities\ILR\LearningDeliveryWorkPlacement.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LearningProvider.cs">
-      <Link>BusinessEntities\ILR\LearningProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\LLDDandHealthProblem.cs">
-      <Link>BusinessEntities\ILR\LLDDandHealthProblem.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Lookup.cs">
-      <Link>BusinessEntities\ILR\Lookup.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Message.cs">
-      <Link>BusinessEntities\ILR\Message.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\PostAdd.cs">
-      <Link>BusinessEntities\ILR\PostAdd.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\ProviderSpecDeliveryMonitoring.cs">
-      <Link>BusinessEntities\ILR\ProviderSpecDeliveryMonitoring.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\ProviderSpecLearnerMonitoring.cs">
-      <Link>BusinessEntities\ILR\ProviderSpecLearnerMonitoring.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Renormalised\LearnerContact.cs">
-      <Link>BusinessEntities\ILR\Renormalised\LearnerContact.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Renormalised\LearnerFAM.cs">
-      <Link>BusinessEntities\ILR\Renormalised\LearnerFAM.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Schema.cs">
-      <Link>BusinessEntities\ILR\Schema.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Source.cs">
-      <Link>BusinessEntities\ILR\Source.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\Utils\CommonValidations.cs">
-      <Link>BusinessEntities\ILR\CommonValidations.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\XMLHelper.cs">
-      <Link>Processing\XMLHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\ILR\_base.cs">
-      <Link>BusinessEntities\ILR\_base.cs</Link>
-    </Compile>
     <Compile Include="Behaviors\TextBoxUnsignedIntegersOnlyBehavior.cs" />
     <Compile Include="InputValiator.cs" />
-    <Compile Include="UserControls\LearnerEditorControls\DPOutcome\ucDPO_LearnerList.xaml.cs">
+    <Compile Include="UserControls\LearnerEditorControls\DPOutcomeControls\ucDPO_LearnerList.xaml.cs">
       <DependentUpon>ucDPO_LearnerList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\LearnerEditorControls\DPOutcome\ucDPO_LearnerOutcomeList.xaml.cs">
+    <Compile Include="UserControls\LearnerEditorControls\DPOutcomeControls\ucDPO_LearnerOutcomeList.xaml.cs">
       <DependentUpon>ucDPO_LearnerOutcomeList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\LearnerEditorControls\DPOutcome\ucDPO_OutcomeDetail.xaml.cs">
+    <Compile Include="UserControls\LearnerEditorControls\DPOutcomeControls\ucDPO_OutcomeDetail.xaml.cs">
       <DependentUpon>ucDPO_OutcomeDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LearnerEditorControls\EmploymentStatusControls\ucEmploymentStatusList.xaml.cs">
@@ -328,15 +232,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LearnerEditorControls\DPOutcome\ucDPO_LearnerList.xaml">
+    <Page Include="UserControls\LearnerEditorControls\DPOutcomeControls\ucDPO_LearnerList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LearnerEditorControls\DPOutcome\ucDPO_LearnerOutcomeList.xaml">
+    <Page Include="UserControls\LearnerEditorControls\DPOutcomeControls\ucDPO_LearnerOutcomeList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LearnerEditorControls\DPOutcome\ucDPO_OutcomeDetail.xaml">
+    <Page Include="UserControls\LearnerEditorControls\DPOutcomeControls\ucDPO_OutcomeDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -529,12 +433,6 @@
     <Resource Include="Images\ESFA-logo-white.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ILR\ILR.csproj">
-      <Project>{1A88CD3F-D823-45BB-9EAB-7A2DB4EA3612}</Project>
-      <Name>ILR</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="..\ILR\ILR-2019-20.xslt">
       <Link>ILR-2019-20.xslt</Link>
     </EmbeddedResource>
@@ -543,6 +441,12 @@
     <EmbeddedResource Include="ProjectLibs\System.Windows.Interactivity.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ILR\ILR.csproj">
+      <Project>{1a88cd3f-d823-45bb-9eab-7a2db4ea3612}</Project>
+      <Name>ILR</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

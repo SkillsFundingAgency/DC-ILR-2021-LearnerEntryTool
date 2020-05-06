@@ -1,14 +1,5 @@
 ﻿using IlrLearnerEntry.UIAutomation.Tests.TestHelper;
 using IlrLearnerEntry.UIAutomation.Tests.WindowObjects;
-using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using TestStack.White;
 using Xunit;
 
 namespace IlrLearnerEntry.UIAutomation.Tests.Tests

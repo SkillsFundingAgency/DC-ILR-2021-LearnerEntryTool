@@ -1,14 +1,9 @@
 ﻿<UserControl x:Class="ilrLearnerEntry.UserControls.ucLearnerEditControl"
-           
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
-            
-             
              xmlns:LearnerControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls"  
              xmlns:LearnerDelControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls"               
              xmlns:EmpStatControls="clr-namespace:ilrLearnerEntry.UserControls.EmploymentStatus"   
-             xmlns:IlrTypes="clr-namespace:ILR"
-             
-             
+             xmlns:IlrTypes="clr-namespace:ILR;assembly=ILR"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

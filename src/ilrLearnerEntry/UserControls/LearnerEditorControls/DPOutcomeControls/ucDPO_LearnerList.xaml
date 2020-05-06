@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls.ucDPO_LearnerList"
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
              xmlns:DPLearnerControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls"   	 
-             xmlns:IlrTypes="clr-namespace:ILR"
+             xmlns:IlrTypes="clr-namespace:ILR;assembly=ILR"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
