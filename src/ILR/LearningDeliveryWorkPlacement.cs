@@ -128,7 +128,7 @@ namespace ILR
                 if (columnName == "WorkPlaceHours")
                 {
 
-                    if (WorkPlaceHours != null && WorkPlaceHours.Length > 0)
+                    if (!string.IsNullOrEmpty(WorkPlaceHours))
                     {
                         int number;
                         bool valid = Int32.TryParse(WorkPlaceHours, out number);

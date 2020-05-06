@@ -1,11 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Controls;
 using ILR;
-
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls
 {
@@ -149,27 +148,17 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     switch (columnName)
                     { 
                         case "WorkPlaceEmpId":
-                            if (WorkPlaceEmpId != null && WorkPlaceEmpId.Length > 0)
+                            if (!string.IsNullOrEmpty(WorkPlaceEmpId))
                             {
                                 sReturn += CheckPropertyLength(WorkPlaceEmpId, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(WorkPlaceEmpId, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += NumericValidations.CheckInt32ValidValue(WorkPlaceEmpId, columnName);
                             }
                             break;
                         case "WorkPlaceHours":
-                            if (WorkPlaceHours != null && WorkPlaceHours.Length > 0)
+                            if (!string.IsNullOrEmpty(WorkPlaceHours))
                             {
                                 sReturn += CheckPropertyLength(WorkPlaceHours, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(WorkPlaceHours, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += NumericValidations.CheckInt32ValidValue(WorkPlaceHours, columnName);
                             }
                             else if (WorkPlaceHours == null || WorkPlaceHours.ToString().Length == 0)
                                 return "Work Place Hours is required\r\n";

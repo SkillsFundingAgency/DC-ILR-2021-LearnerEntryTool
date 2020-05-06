@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Windows.Controls;
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.FinancialDetailControls
 {
@@ -145,27 +146,17 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     switch (columnName)
                     {
                         case "AFinCode":
-                            if (AFinCode != null && AFinCode.Length > 0)
+                            if (!string.IsNullOrEmpty(AFinCode))
                             {
                                 sReturn += CheckPropertyLength(AFinCode, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(AFinCode, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += NumericValidations.CheckInt32ValidValue(AFinCode, columnName);
                             }
                             break;
                         case "AFinAmount":
-                            if (AFinAmount != null && AFinAmount.Length > 0)
+                            if (!string.IsNullOrEmpty(AFinAmount))
                             {
                                 sReturn += CheckPropertyLength(AFinAmount, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(AFinAmount, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += NumericValidations.CheckInt32ValidValue(AFinAmount, columnName);
                             }
                             break;
                         default:

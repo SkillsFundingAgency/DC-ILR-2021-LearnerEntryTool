@@ -195,6 +195,7 @@
     <Compile Include="UserControls\ucLearnerEditControl.xaml.cs">
       <DependentUpon>ucLearnerEditControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Validations\NumericValidations.cs" />
     <Compile Include="UserControls\winAppAlreadyRunning.xaml.cs">
       <DependentUpon>winAppAlreadyRunning.xaml</DependentUpon>
     </Compile>
@@ -448,6 +449,7 @@
       <Name>ILR</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

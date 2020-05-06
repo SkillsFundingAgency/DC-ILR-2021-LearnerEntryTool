@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 {
@@ -225,28 +226,18 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                     case "ULN":
                         if (ULN == null || ULN.ToString().Length == 0)
                             return "ULN - required\r\n";
-                        if (ULN != null && ULN.Length > 0)
+                        if (!string.IsNullOrEmpty(ULN))
                         {
                             sReturn += CheckPropertyLength(ULN, CLASSNAME, columnName);
-                            long number;
-                            bool result = Int64.TryParse(ULN, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt64ValidValue(ULN, columnName);
                         }
-                        
+
                         break;
                     case "PrevUKPRN":
-                        if (PrevUKPRN != null && PrevUKPRN.Length > 0)
+                        if (!string.IsNullOrEmpty(PrevUKPRN))
                         {
                             sReturn += CheckPropertyLength(PrevUKPRN, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PrevUKPRN, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt64ValidValue(PrevUKPRN, columnName);
                         }
                         break;
                     default:

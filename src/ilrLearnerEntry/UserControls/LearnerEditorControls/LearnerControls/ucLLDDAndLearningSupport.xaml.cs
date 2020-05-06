@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
+
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 {
     /// <summary>
@@ -280,15 +282,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                         //	}
                         //	break;
                         case "ALSCost":
-                            if (ALSCost != null && ALSCost.Length > 0)
+                            if (!string.IsNullOrEmpty(ALSCost))
                             {
                                 sReturn += CheckPropertyLength(ALSCost, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(ALSCost, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += NumericValidations.CheckInt32ValidValue(ALSCost, columnName);
                             }
                             break;
                         default:

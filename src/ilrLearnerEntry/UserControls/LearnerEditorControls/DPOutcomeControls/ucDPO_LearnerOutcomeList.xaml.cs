@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 {
@@ -282,15 +283,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                         if (String.IsNullOrEmpty(ULN.ToString()))
                             sReturn = String.Format("{0} required.", columnName);
 
-                        if (ULN != null && ULN.Length > 0)
+                        if (!string.IsNullOrEmpty(ULN))
                         {
                             sReturn += CheckPropertyLength(ULN, CLASSNAME, columnName);
-                            long number;
-                            bool result = Int64.TryParse(ULN, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt64ValidValue(ULN, columnName);
                         }
                         break;
 

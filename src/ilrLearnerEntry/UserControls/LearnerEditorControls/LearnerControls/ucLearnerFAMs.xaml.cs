@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 {
@@ -273,27 +274,17 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                     switch (columnName)
                     {
                         case "PlanEEPHours":
-                            if (PlanEEPHours != null && PlanEEPHours.Length > 0)
+                            if (!string.IsNullOrEmpty(PlanEEPHours))
                             {
                                 sReturn += CheckPropertyLength(PlanEEPHours, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(PlanEEPHours, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += NumericValidations.CheckInt32ValidValue(PlanEEPHours, columnName);
                             }
                             break;
                         case "PlanLearnHours":
-                            if (PlanLearnHours != null && PlanLearnHours.Length > 0)
+                            if (!string.IsNullOrEmpty(PlanLearnHours))
                             {
                                 sReturn += CheckPropertyLength(PlanLearnHours, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(PlanLearnHours, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += NumericValidations.CheckInt32ValidValue(PlanLearnHours, columnName);
                             }
                             break;
                         default:

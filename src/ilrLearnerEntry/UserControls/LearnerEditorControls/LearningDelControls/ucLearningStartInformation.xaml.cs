@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 {
@@ -367,27 +368,17 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 switch (columnName)
                 {
                     case "PriorLearnFundAdj":
-                        if (PriorLearnFundAdj != null && PriorLearnFundAdj.Length > 0)
+                        if (!string.IsNullOrEmpty(PriorLearnFundAdj))
                         {
                             sReturn += CheckPropertyLength(PriorLearnFundAdj, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PriorLearnFundAdj, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(PriorLearnFundAdj, columnName);
                         }
                         break;
                     case "ProgType":
-                        if (ProgType != null && ProgType.Length > 0)
+                        if (!string.IsNullOrEmpty(ProgType))
                         {
                             sReturn += CheckPropertyLength(ProgType, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(ProgType, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(ProgType, columnName);
                         }
                         break;
                     //case "FworkCode":
@@ -403,51 +394,31 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     //    }
                     //    break;
                     case "PwayCode":
-                        if (PwayCode != null && PwayCode.Length > 0)
+                        if (!string.IsNullOrEmpty(PwayCode))
                         {
                             sReturn += CheckPropertyLength(PwayCode, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PwayCode, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(PwayCode, columnName);
                         }
                         break;
                     case "OtherFundAdj":
-                        if (OtherFundAdj != null && OtherFundAdj.Length > 0)
+                        if (!string.IsNullOrEmpty(OtherFundAdj))
                         {
                             sReturn += CheckPropertyLength(OtherFundAdj, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(OtherFundAdj, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(OtherFundAdj, columnName);
                         }
                         break;
                     case "AddHours":
-                        if (AddHours != null && AddHours.Length > 0)
-                       {
+                        if (!string.IsNullOrEmpty(AddHours))
+                        {
                             sReturn += CheckPropertyLength(AddHours, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(AddHours, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(AddHours, columnName);
                         }
                         break;
                     case "PartnerUKPRN":
-                        if (PartnerUKPRN != null && PartnerUKPRN.Length > 0)
+                        if (!string.IsNullOrEmpty(PartnerUKPRN))
                         {
                             sReturn += CheckPropertyLength(PartnerUKPRN, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PartnerUKPRN, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(PartnerUKPRN, columnName);
                         }
                         break;                    
                     default:

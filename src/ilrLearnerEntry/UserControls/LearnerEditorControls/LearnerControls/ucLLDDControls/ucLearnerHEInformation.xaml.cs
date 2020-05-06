@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 {
@@ -207,51 +208,31 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 switch (columnName)
                 {
                     case "HEFinCash":
-                        if (HEFinCash != null && HEFinCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinCash))
                         {
                             sReturn += CheckPropertyLength(HEFinCash, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinCash, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinCash, columnName);
                         }
                         break;
                     case "HEFinNearCash":
-                        if (HEFinNearCash != null && HEFinNearCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinNearCash))
                         {
                             sReturn += CheckPropertyLength(HEFinNearCash, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinNearCash, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinNearCash, columnName);
                         }
                         break;
                     case "HEFinOther":
-                        if (HEFinOther != null && HEFinNearCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinOther))
                         {
                             sReturn += CheckPropertyLength(HEFinOther, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinOther, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinOther, columnName);
                         }
                         break;
                     case "HEFinAccommodationDiscounts":
-                        if (HEFinAccommodationDiscounts != null && HEFinNearCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinAccommodationDiscounts))
                         {
                             sReturn += CheckPropertyLength(HEFinAccommodationDiscounts, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinAccommodationDiscounts, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinAccommodationDiscounts, columnName);
                         }
                         break;
                     default:
