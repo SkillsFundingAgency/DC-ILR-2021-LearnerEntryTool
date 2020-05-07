@@ -72,16 +72,7 @@
                      maskBehavior:TextBoxMaskBehavior.Mask="Integer" 
                      maskBehavior:TextBoxMaskBehavior.MaximumLength="9"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="4" Text="Agreement Identifier :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
-                    <TextBox Grid.Row="2" Grid.Column="5" 
-                     Name="txtAgreeId" 
-                     Text="{Binding Path=CurrentItem.AgreeId, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
-                     Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" 
-                     MinWidth="65"  
-                     Margin="3"
-                     MaxLength="6"/>
+
 
                 </Grid>
                 <Grid Grid.Row="1" 

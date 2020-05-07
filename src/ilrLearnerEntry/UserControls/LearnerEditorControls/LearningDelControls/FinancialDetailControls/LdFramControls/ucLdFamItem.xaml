@@ -54,14 +54,14 @@
                      IsReadOnly="{Binding Path=IsCodeReadOnly, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                 />
 
-                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="From  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsFromVisable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="From  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsFromVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DatePicker  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="3" x:Name="dtFromDate"  VerticalAlignment="Top" MinWidth="120" 
                            TabIndex="2"
                              DisplayDate="{Binding Path=CurrentItem.LearnDelFAMDateFrom, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
                              SelectedDate="{Binding Path=CurrentItem.LearnDelFAMDateFrom, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
                           />
 
-                <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="To  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsToVisable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="To  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsToVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DatePicker  Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Margin="3" x:Name="dtToDate"  VerticalAlignment="Top" MinWidth="120" 
                            TabIndex="2"
                              DisplayDate="{Binding Path=CurrentItem.LearnDelFAMDateTo, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 

@@ -84,7 +84,6 @@ namespace ILR
             {"LearnerEmploymentStatus.EmpStat",2},
             {"LearnerEmploymentStatus.DateEmpStatApp",10},
             {"LearnerEmploymentStatus.EmpId",9},
-            {"LearnerEmploymentStatus.AgreeId",9},
 
             {"EmploymentStatusMonitoring.ESMType",3},
             {"EmploymentStatusMonitoring.ESMCode",2},

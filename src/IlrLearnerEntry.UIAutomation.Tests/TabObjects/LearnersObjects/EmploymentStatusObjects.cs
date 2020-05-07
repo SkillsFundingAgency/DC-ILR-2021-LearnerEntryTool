@@ -41,11 +41,6 @@ namespace IlrLearnerEntry.UIAutomation.Tests.TabObjects.LearnersObjects
             get { return TextBox("txtEmpId"); }
         }
 
-        private TextBox AgreementIdentifierTextBox
-        {
-            get { return TextBox("txtAgreeId"); }
-        }
-
         private ComboBox LengthOfUnemploymentComboBox
         {
             get { return ComboBox("lengthOfUnemployment"); }
@@ -84,12 +79,6 @@ namespace IlrLearnerEntry.UIAutomation.Tests.TabObjects.LearnersObjects
             return this;
         }
         
-        public EmploymentStatusObjects SetAgreementIdentifierTextBox(string agreementIdentifier)
-        {
-            AgreementIdentifierTextBox.SetValue(agreementIdentifier);
-            return this;
-        }
-
         public EmploymentStatusObjects SetLengthOfUnemploymentComboBox(string lengthOfUnemployment)
         {
             LengthOfUnemploymentComboBox.SetValue(lengthOfUnemployment);
@@ -127,14 +116,6 @@ namespace IlrLearnerEntry.UIAutomation.Tests.TabObjects.LearnersObjects
             get
             {
                 return EmployerIdentifierTextBox.HelpText;
-            }
-        }
-
-        public string GetAgreementIdentifierValidationMessage
-        {
-            get
-            {
-                return AgreementIdentifierTextBox.HelpText;
             }
         }
 
