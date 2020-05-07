@@ -18,8 +18,8 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Source="/ILRLearnerEntry1920;component/Images/esfa.jpg" Width="150" Height="75" />
-        <Image Grid.Row="3" Grid.Column="2" Grid.RowSpan="2" Source="/ILRLearnerEntry1920;component/Images/WarningTriangle.jpg" Height="55" />
+        <Image Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Source="/ILRLearnerEntry2021;component/Images/esfa.jpg" Width="150" Height="75" />
+        <Image Grid.Row="3" Grid.Column="2" Grid.RowSpan="2" Source="/ILRLearnerEntry2021;component/Images/WarningTriangle.jpg" Height="55" />
         <TextBlock Grid.Row="2" Grid.Column="1" x:Name="txtApplicationName" FontWeight="Bold" />
         <TextBlock Grid.Row="3" Grid.Column="1" >
                 <Run Text="App Already Running"/>

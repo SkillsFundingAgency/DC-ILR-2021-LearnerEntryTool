@@ -9,8 +9,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.TestHelper
 {
     public class ApplicationFixture : IDisposable
     {
-
-        const string ApplicationProcessName1 = "ILRLearnerEntry1920";
+        const string ApplicationProcessName1 = "ILRLearnerEntry2021";
 
         public string ApplicationPath { get; private set; }
 

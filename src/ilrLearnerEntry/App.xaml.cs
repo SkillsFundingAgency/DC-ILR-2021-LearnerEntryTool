@@ -14,8 +14,8 @@ namespace ilrLearnerEntry
         private static readonly string appGuid = "SFA-ilrLearnerEntry-A07151B7-8F1A-4423-ABFB-B85387423E98-1920";
         private Mutex mutex = new Mutex(false, appGuid);
 
-        private static readonly string  appYear         = "1920";
-        private static readonly string  appYearPrevious = "1819";
+        private static readonly string  appYear         = "2021";
+        private static readonly string  appYearPrevious = "1920";
         private static bool             NoCheckOnStart  = false;
 
         #region Public Methods

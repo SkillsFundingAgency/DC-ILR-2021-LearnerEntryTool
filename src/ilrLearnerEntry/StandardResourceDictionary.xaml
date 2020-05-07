@@ -485,7 +485,7 @@
 
     <!--thise styles needs to be moved in the common resource dictionary-->
     <ImageBrush x:Key="WhiteCrownIconBrush"
-                ImageSource="pack://application:,,,/ILRLearnerEntry1920;component/Images/ESFA_2955_AW.png" />
+                ImageSource="pack://application:,,,/ILRLearnerEntry2021;component/Images/ESFA_2955_AW.png" />
     <!--<Style x:Key="GlobalMarginStyle"
            TargetType="FrameworkElement">
         <Setter Property="Margin"

@@ -302,7 +302,7 @@ namespace ILR
         }
 
         /// <summary>
-        /// PHours - added for 1920
+        /// PHours
         /// Code template copied from the FundModel property
         /// however the int.Parse() function could throw an exception so at some point this may need to be looked at if the form is allowing non-numeric entries
         /// </summary>
@@ -418,7 +418,7 @@ namespace ILR
         }
 
         /// <summary>
-        /// LSDPostcode - added for 1920
+        /// LSDPostcode
         /// </summary>
         public string LSDPostcode
         {

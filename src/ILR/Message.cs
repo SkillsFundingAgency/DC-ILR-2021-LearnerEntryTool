@@ -16,16 +16,16 @@ namespace ILR
     {
         #region Year-specific constants
 
-        public static int CurrentYear = 1920;
-        public static string CurrentNameSpace = @"ESFA/ILR/2019-20";
-        public static string PreviousNameSpace = @"ESFA/ILR/2018-19";
+        public static int CurrentYear = 2021;
+        public static string CurrentNameSpace = @"ESFA/ILR/2020-21";
+        public static string PreviousNameSpace = @"ESFA/ILR/2019-20";
         public static string FileNameTemplate = "ILR-$$UKPRN$$-$$YEAR$$-$$NOW$$-01.xml";
-        public static DateTime CurrentYearStart = new DateTime(2019, 8, 1);
+        public static DateTime CurrentYearStart = new DateTime(2020, 8, 1);
         public static string ProtectiveMarking = "OFFICIAL-SENSITIVE-Personal";
         private DataTable _statistics = new DataTable();
         private static bool _isImportRunning = false;
         private static string _logFileName = string.Empty;
-        public static string ILR2019_20_XSLT = "ILR-2019-20.xslt";
+        public static string ILR2020_21_XSLT = "ILR-2020-21.xslt";
 
         #endregion
 
@@ -457,20 +457,18 @@ namespace ILR
 
         XslCompiledTransform xslTransformer;
 
-        private string getXslFileName()
+        private string getXsltFileName()
         {
 
             var assembly = Assembly.GetExecutingAssembly();
-            //string xslResourceName = assembly.GetManifestResourceNames().Where(x => x.ToUpper().EndsWith(ILR2018_19_XSLT.ToUpper())).FirstOrDefault();
-            string xslResourceName = assembly.GetManifestResourceNames()
-                .Where(x => x.ToUpper().EndsWith(ILR2019_20_XSLT.ToUpper())).FirstOrDefault();
+            var xsltResourceName = assembly
+                .GetManifestResourceNames()
+                .First(x => x.ToUpper().EndsWith(ILR2020_21_XSLT.ToUpper()));
 
-            //string path = Path.Combine(Path.GetDirectoryName(assembly.Location), ILR2017_18_XSLT);
-            //string path = Path.Combine(Path.GetTempPath(), ILR2018_19_XSLT);
-            string path = Path.Combine(Path.GetTempPath(), ILR2019_20_XSLT);
+            string path = Path.Combine(Path.GetTempPath(), ILR2020_21_XSLT);
             try
             {
-                using (Stream stream = assembly.GetManifestResourceStream(xslResourceName))
+                using (Stream stream = assembly.GetManifestResourceStream(xsltResourceName))
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string result = reader.ReadToEnd();
@@ -480,7 +478,7 @@ namespace ILR
             }
             catch (IOException iox)
             {
-                Log("Message", "getXslFileName", "Exception during reading the xsl resource");
+                Log("Message", "getXsltFileName", "Exception during reading the xslt resource");
             }
 
             return path;
@@ -490,15 +488,13 @@ namespace ILR
         {
             if (xslTransformer == null)
             {
-                string xslFile = getXslFileName();
+                string xslFile = getXsltFileName();
                 xslTransformer = new XslCompiledTransform();
                 xslTransformer.Load(xslFile);
             }
 
             xslTransformer.Transform(sourceFile, destinationFile);
-
         }
-
         public void Import(string FilenameToLoad)
         {
             Log("Message", "Import", String.Format("File : {0}", FilenameToLoad));
