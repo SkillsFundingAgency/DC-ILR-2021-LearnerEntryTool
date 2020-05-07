@@ -1,54 +1,33 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows.Controls;
 
-namespace ILR
+namespace ilrLearnerEntry.UserControls
 {
-    public class _base : INotifyPropertyChanged
+    public class BaseUserControl : UserControl
     {
-        private ILR.Schema XmlSchema = new ILR.Schema();
 
-        internal bool _isSelected = false;
+        private readonly ILR.Schema XmlSchema = new ILR.Schema();
 
-        #region Constructor
-#if DEBUG
-        public _base()
-        {
-            ThrowOnInvalidPropertyName = true;
-        }
-#endif
-        #endregion
-
-        #region Properties
-
-        public Boolean IsSelected
-        {
-            set { 
-                _isSelected = value; 
-                OnPropertyChanged("IsSelected"); 
-            }
-            get { return _isSelected; }
-        }
-        #endregion
-  
-        #region Methods
-        public int GetItemSize(string ItemName)
+        private int GetItemSize(string ItemName)
         {
             return XmlSchema.GetMaxLength(ItemName);
         }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName, string Tabs)
+
+        protected string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
         {
             String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
             int ItemSize = GetItemSize(ItemFullName);
             if (itemValue != null && itemValue.ToString().Length > ItemSize)
             {
-                return String.Format("{0}{1} exceeds maximum length ({2} characters). Current length : {3}\r\n", Tabs, ItemName, ItemSize, itemValue.ToString().Length);
+                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
             }
             return null;
         }
-    
-        #endregion
- 
+
+        public string Error => throw new NotImplementedException();
+
         #region INotifyPropertyChanged Members
         /// <summary>
         /// INotifyPropertyChanged requires a property called PropertyChanged.
@@ -60,10 +39,11 @@ namespace ILR
         /// </summary>
         protected virtual void OnPropertyChanged(string propertyName)
         {
-#if DEBUG     
+#if DEBUG
             VerifyPropertyName(propertyName);
 #endif
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         }
 
         [Conditional("DEBUG")]
@@ -88,6 +68,7 @@ namespace ILR
         }
 
         protected bool ThrowOnInvalidPropertyName { get; set; }
+
         #endregion
-    }
+	}
 }

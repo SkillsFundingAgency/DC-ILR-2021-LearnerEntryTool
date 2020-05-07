@@ -1,32 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using ILR;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 {
     /// <summary>
     /// Interaction logic for ucLearningEndInformation.xaml
     /// </summary>
-    public partial class ucLearningEndInformation : UserControl, INotifyPropertyChanged, IDataErrorInfo
+    public partial class ucLearningEndInformation : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
         private const String CLASSNAME = "LearningDelivery";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         private ILR.LearningDelivery _learningDelivery;        
         #endregion
 
@@ -61,14 +48,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         public DateTime? LearnActEndDate
         {
-            get { return _learningDelivery == null ? null : _learningDelivery.LearnActEndDate; }
+            get { return _learningDelivery?.LearnActEndDate; }
             set
             {
                 DateTime? dtRetunr = null;
                 if (value != null)
                 {
-                    DateTime dt;
-                    bool result = DateTime.TryParse(System.Convert.ToString(value), out dt);
+                    bool result = DateTime.TryParse(System.Convert.ToString(value), out var dt);
                     if (result && (dt != null))
                     {
                         dtRetunr = dt;
@@ -92,14 +78,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         public DateTime? AchDate
         {
-            get { return  _learningDelivery == null ? null : _learningDelivery.AchDate; ; }
+            get { return _learningDelivery?.AchDate; ; }
             set
             {
                 DateTime? dtRetunr = null;
                 if (value != null)
                 {
-                    DateTime dt;
-                    bool result = DateTime.TryParse(System.Convert.ToString(value), out dt);
+                    bool result = DateTime.TryParse(System.Convert.ToString(value), out var dt);
                     if (result && (dt != null))
                     {
                         dtRetunr = dt;
@@ -186,55 +171,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             }
         }
         #endregion
-
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Fires the event for the property when it changes.
-        /// </summary>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-#if DEBUG
-            VerifyPropertyName(propertyName);
-#endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
-        }
-
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
-        {
-            // Verify that the property name matches a real,  
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                var msg = "Invalid property name: " + propertyName;
-
-                if (this.ThrowOnInvalidPropertyName)
-                {
-                    throw new Exception(msg);
-                }
-                else
-                {
-                    Debug.Fail(msg);
-                }
-            }
-        }
-
-        protected bool ThrowOnInvalidPropertyName { get; set; }        
-        #endregion
         
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -252,22 +190,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 return sReturn;
             }
         }
-
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
         #endregion
-
     }
 }

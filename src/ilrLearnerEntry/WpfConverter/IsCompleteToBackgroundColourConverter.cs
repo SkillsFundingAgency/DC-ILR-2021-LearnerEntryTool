@@ -1,8 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
 namespace ilrLearnerEntry.WpfConverter
@@ -13,22 +10,7 @@ namespace ilrLearnerEntry.WpfConverter
         {
             if (value == null) return string.Empty;
 
-            String sReturn = String.Empty;
-            Boolean valueToTry = System.Convert.ToBoolean(value);
-            switch (valueToTry)
-            {
-                case true:
-                    sReturn = "#FFBDE891";
-                    break;
-                case false:
-                    sReturn = "#FFE89191";
-                    break;
-                default:
-                    Console.WriteLine(String.Format("valueToTry : {0}", valueToTry.ToString()));
-                    sReturn = String.Empty;
-                    break;
-            }
-            return sReturn;
+            return System.Convert.ToBoolean(value) ? "#FFBDE891" : "#FFE89191";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

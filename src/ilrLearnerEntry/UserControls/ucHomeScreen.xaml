@@ -1,11 +1,12 @@
-﻿<UserControl x:Class="ilrLearnerEntry.UserControls.ucHomeScreen"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:util="clr-namespace:ilrLearnerEntry.Utils"
-             xmlns:local="clr-namespace:ilrLearnerEntry.Behaviors"
-             MinWidth="400"
-             RequestBringIntoView="UserControl_RequestBringIntoView">
+﻿<userControls:BaseUserControl x:Class="ilrLearnerEntry.UserControls.ucHomeScreen"
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                              xmlns:util="clr-namespace:ilrLearnerEntry.Utils"
+                              xmlns:local="clr-namespace:ilrLearnerEntry.Behaviors"
+                              xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              MinWidth="400"
+                              RequestBringIntoView="UserControl_RequestBringIntoView">
     <Grid x:Name="MasterGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -209,4 +210,4 @@
                    Visibility="Visible" />
 
     </Grid>
-</UserControl>
+</userControls:BaseUserControl>

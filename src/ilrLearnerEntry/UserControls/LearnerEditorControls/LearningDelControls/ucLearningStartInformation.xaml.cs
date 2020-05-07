@@ -1,34 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 {
     /// <summary>
     /// Interaction logic for ucLearningStartInformation.xaml
     /// </summary>
-    public partial class ucLearningStartInformation : UserControl, INotifyPropertyChanged, IDataErrorInfo
+    public partial class ucLearningStartInformation : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
 
         private const String CLASSNAME = "LearningDelivery";
-        private ILR.Schema XmlSchema = new ILR.Schema();
 
         private ILR.LearningDelivery _learningDelivery;
         private const Int32 _maxHHSItem = 4;
@@ -111,8 +102,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _priorlearnfundadj = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result) { CurrentItem.PriorLearnFundAdj = number; }
                 else { CurrentItem.PriorLearnFundAdj = null; }
             }
@@ -123,8 +113,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _progtype = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result) { CurrentItem.ProgType = number; }
                 else { CurrentItem.ProgType = null; }
             }
@@ -147,8 +136,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _pwaycode = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.PwayCode = number; }
                 else            
@@ -161,8 +149,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _otherfundadj = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.OtherFundAdj = number; }
                 else
@@ -175,8 +162,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _addhours = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.AddHours = number; }
                 else
@@ -190,8 +176,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _phours = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.PHours = number; }
                 else
@@ -205,8 +190,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _partnerukprn = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                 if (result)
                 { CurrentItem.PartnerUKPRN = number; }
                 else
@@ -319,55 +303,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         #endregion
 
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Fires the event for the property when it changes.
-        /// </summary>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-#if DEBUG
-            VerifyPropertyName(propertyName);
-#endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
-        }
-
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
-        {
-            // Verify that the property name matches a real,  
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                var msg = "Invalid property name: " + propertyName;
-
-                if (this.ThrowOnInvalidPropertyName)
-                {
-                    throw new Exception(msg);
-                }
-                else
-                {
-                    Debug.Fail(msg);
-                }
-            }
-        }
-
-        protected bool ThrowOnInvalidPropertyName { get; set; }
-
-        #endregion
-
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -376,27 +312,17 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 switch (columnName)
                 {
                     case "PriorLearnFundAdj":
-                        if (PriorLearnFundAdj != null && PriorLearnFundAdj.Length > 0)
+                        if (!string.IsNullOrEmpty(PriorLearnFundAdj))
                         {
                             sReturn += CheckPropertyLength(PriorLearnFundAdj, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PriorLearnFundAdj, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(PriorLearnFundAdj, columnName);
                         }
                         break;
                     case "ProgType":
-                        if (ProgType != null && ProgType.Length > 0)
+                        if (!string.IsNullOrEmpty(ProgType))
                         {
                             sReturn += CheckPropertyLength(ProgType, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(ProgType, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(ProgType, columnName);
                         }
                         break;
                     //case "FworkCode":
@@ -412,51 +338,31 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     //    }
                     //    break;
                     case "PwayCode":
-                        if (PwayCode != null && PwayCode.Length > 0)
+                        if (!string.IsNullOrEmpty(PwayCode))
                         {
                             sReturn += CheckPropertyLength(PwayCode, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PwayCode, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(PwayCode, columnName);
                         }
                         break;
                     case "OtherFundAdj":
-                        if (OtherFundAdj != null && OtherFundAdj.Length > 0)
+                        if (!string.IsNullOrEmpty(OtherFundAdj))
                         {
                             sReturn += CheckPropertyLength(OtherFundAdj, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(OtherFundAdj, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(OtherFundAdj, columnName);
                         }
                         break;
                     case "AddHours":
-                        if (AddHours != null && AddHours.Length > 0)
-                       {
+                        if (!string.IsNullOrEmpty(AddHours))
+                        {
                             sReturn += CheckPropertyLength(AddHours, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(AddHours, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(AddHours, columnName);
                         }
                         break;
                     case "PartnerUKPRN":
-                        if (PartnerUKPRN != null && PartnerUKPRN.Length > 0)
+                        if (!string.IsNullOrEmpty(PartnerUKPRN))
                         {
                             sReturn += CheckPropertyLength(PartnerUKPRN, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PartnerUKPRN, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(PartnerUKPRN, columnName);
                         }
                         break;                    
                     default:
@@ -464,21 +370,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 }
                 return sReturn;
             }
-        }
-
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
         }
         #endregion
     }

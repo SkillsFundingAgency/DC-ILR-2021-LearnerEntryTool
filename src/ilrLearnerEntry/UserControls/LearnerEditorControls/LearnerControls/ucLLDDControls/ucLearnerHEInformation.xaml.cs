@@ -1,32 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 {
     /// <summary>
     /// Interaction logic for ucLearnerHEInformation.xaml
     /// </summary>
-    public partial class ucLearnerHEInformation : UserControl, INotifyPropertyChanged
+    public partial class ucLearnerHEInformation : BaseUserControl, INotifyPropertyChanged
     {
         #region Private Variables
         private const String CLASSNAME = "Learner";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         private Learner _learner;
         private String _hefincash = string.Empty;
         private String _hefinnearcash = string.Empty;
@@ -84,8 +71,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinCash = number; }
                 }
                 OnPropertyChanged("HEFinCash");
@@ -103,8 +89,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinNearCash = number; }
                 }
                 OnPropertyChanged("HEFinNearCash");
@@ -122,8 +107,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinAccommodationDiscounts = number; }
                 }
                 OnPropertyChanged("HEFinAccommodationDiscounts");
@@ -141,8 +125,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result) { CurrentItem.HEFinOther = number; }
                 }
                 OnPropertyChanged("HEFinOther");
@@ -164,50 +147,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         }
         #endregion
 
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Fires the event for the property when it changes.
-        /// </summary>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-#if DEBUG
-            VerifyPropertyName(propertyName);
-#endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
-        }
-
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
-        {
-            // Verify that the property name matches a real,  
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                var msg = "Invalid property name: " + propertyName;
-
-                if (this.ThrowOnInvalidPropertyName)
-                {
-                    throw new Exception(msg);
-                }
-                else
-                {
-                    Debug.Fail(msg);
-                }
-            }
-        }
-
-        protected bool ThrowOnInvalidPropertyName { get; set; }
-
-        #endregion
-
         #region IDataErrorInfo Members
 
         public string this[string columnName]
@@ -218,51 +157,31 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 switch (columnName)
                 {
                     case "HEFinCash":
-                        if (HEFinCash != null && HEFinCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinCash))
                         {
                             sReturn += CheckPropertyLength(HEFinCash, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinCash, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinCash, columnName);
                         }
                         break;
                     case "HEFinNearCash":
-                        if (HEFinNearCash != null && HEFinNearCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinNearCash))
                         {
                             sReturn += CheckPropertyLength(HEFinNearCash, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinNearCash, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinNearCash, columnName);
                         }
                         break;
                     case "HEFinOther":
-                        if (HEFinOther != null && HEFinNearCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinOther))
                         {
                             sReturn += CheckPropertyLength(HEFinOther, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinOther, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinOther, columnName);
                         }
                         break;
                     case "HEFinAccommodationDiscounts":
-                        if (HEFinAccommodationDiscounts != null && HEFinNearCash.Length > 0)
+                        if (!string.IsNullOrEmpty(HEFinAccommodationDiscounts))
                         {
                             sReturn += CheckPropertyLength(HEFinAccommodationDiscounts, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(HEFinAccommodationDiscounts, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt32ValidValue(HEFinAccommodationDiscounts, columnName);
                         }
                         break;
                     default:
@@ -270,24 +189,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 return sReturn;
             }
-        }
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
         }
         #endregion
 

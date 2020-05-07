@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ilrLearnerEntry
 {
@@ -92,7 +82,7 @@ namespace ilrLearnerEntry
 
                 //vReturn = "1.3"; // Temporary hack until the GitVersion is fixed. 
                 //return $"v{vReturn}";
-                return "v1920.2";
+                return "v1920.3";
             }
         }
         #endregion
@@ -149,8 +139,7 @@ namespace ilrLearnerEntry
 #if DEBUG
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
 

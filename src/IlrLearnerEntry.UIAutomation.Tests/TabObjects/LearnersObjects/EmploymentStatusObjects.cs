@@ -1,8 +1,6 @@
 ﻿using IlrLearnerEntry.UIAutomation.Tests.WindowObjects;
 using TestStack.White.UIItems.WindowItems;
 using TestStack.White.UIItems;
-using TestStack.White.UIItems.TabItems;
-using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.ListBoxItems;
 using System;
 

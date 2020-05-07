@@ -318,8 +318,7 @@ namespace ilrLearnerEntry.MaskBehavior
             {
                 case MaskType.Integer:
                     {
-                        int val;
-                        if (int.TryParse(value, out val))
+                        if (int.TryParse(value, out var val))
                         {
                             val = (int)ValidateLimits(min, max, val);
                             return val.ToString();
@@ -329,8 +328,7 @@ namespace ilrLearnerEntry.MaskBehavior
                     }
                 case MaskType.Decimal:
                     {
-                        double val;
-                        if (double.TryParse(value, out val))
+                        if (double.TryParse(value, out var val))
                         {
                             val = ValidateLimits(min, max, val);
                             return val.ToString();

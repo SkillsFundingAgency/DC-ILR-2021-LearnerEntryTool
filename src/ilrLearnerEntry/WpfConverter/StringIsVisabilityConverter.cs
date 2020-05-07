@@ -1,8 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
 namespace ilrLearnerEntry.WpfConverter
@@ -12,11 +9,7 @@ namespace ilrLearnerEntry.WpfConverter
 
         public object Convert(object value, Type targetType, object parameter,  System.Globalization.CultureInfo culture)
         {
-            bool flag = false;
-            if (String.IsNullOrEmpty(value.ToString()))
-            {
-                flag = true;
-            }
+            bool flag = String.IsNullOrEmpty(value.ToString());
             return flag ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
 

@@ -1,8 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
 namespace ilrLearnerEntry.WpfConverter
@@ -29,8 +26,7 @@ namespace ilrLearnerEntry.WpfConverter
             //if false is passed as a converter parameter then reverse the value of input value  
             if (parameter != null)
             {
-                bool par = true;
-                if ((bool.TryParse(parameter.ToString(), out par)) && (!par)) flag = !flag;
+                if ((bool.TryParse(parameter.ToString(), out bool par)) && (!par)) flag = !flag;
             }
 
             return flag ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;

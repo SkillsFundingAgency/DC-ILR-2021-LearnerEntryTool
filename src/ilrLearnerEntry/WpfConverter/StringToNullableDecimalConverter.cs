@@ -1,8 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 using System.Globalization;
 
@@ -15,8 +12,7 @@ namespace ilrLearnerEntry.WpfConverter
 			String sReturn = string.Empty;
 			if (value != null)
 			{
-				decimal number;
-				bool result = decimal.TryParse(System.Convert.ToString(value), out number);
+                bool result = decimal.TryParse(System.Convert.ToString(value), out var number);
 				if (result)
 				{
 					sReturn = number.ToString(culture);

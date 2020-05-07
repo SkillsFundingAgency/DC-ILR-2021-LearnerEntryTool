@@ -1,33 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using ILR;
+using ilrLearnerEntry.UserControls.Validations;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 {
 	/// <summary>
 	/// Interaction logic for ucLearnerHeader.xaml
 	/// </summary>
-	public partial class ucLearnerHeader : System.Windows.Controls.UserControl, INotifyPropertyChanged, IDataErrorInfo
+	public partial class ucLearnerHeader : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
         private const String CLASSNAME = "Learner";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         #endregion
 
         #region Constructor
@@ -97,8 +85,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result)
                     { CurrentItem.PrevUKPRN = number; }
                 }
@@ -118,8 +105,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    int number;
-                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
                     if (result)
                     { CurrentItem.PMUKPRN = number; }
                 }
@@ -139,8 +125,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
                 else
                 {
-                    long number;
-                    bool result = Int64.TryParse(System.Convert.ToString(value), out number);
+                    bool result = Int64.TryParse(System.Convert.ToString(value), out var number);
                     if (result)
                     {
                         CurrentItem.ULN = number;
@@ -167,9 +152,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         // If the text is not a valid date, show a message.
         private void dtDOB_DateValidationError(object sender, DatePickerDateValidationErrorEventArgs e)
         {
-            DateTime newDate;
-
-            if (!DateTime.TryParse(e.Text, out newDate))
+            if (!DateTime.TryParse(e.Text, out _))
             {
                 string message = String.Format("The date, {0} is not a valid date, please enter a valid date.", e.Text);
                 System.Windows.MessageBox.Show(message, "Date of birth", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -177,55 +160,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         }
         #endregion
 
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-		/// <summary>
-		/// Fires the event for the property when it changes.
-		/// </summary>
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
-#if DEBUG
-			VerifyPropertyName(propertyName);
-#endif
-			if (PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
-		}
-
-		[Conditional("DEBUG")]
-		[DebuggerStepThrough]
-		public void VerifyPropertyName(string propertyName)
-		{
-			// Verify that the property name matches a real,  
-			// public, instance property on this object.
-			if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-			{
-				var msg = "Invalid property name: " + propertyName;
-
-				if (this.ThrowOnInvalidPropertyName)
-				{
-					throw new Exception(msg);
-				}
-				else
-				{
-					Debug.Fail(msg);
-				}
-			}
-		}
-
-		protected bool ThrowOnInvalidPropertyName { get; set; }
-
-        #endregion
-
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
         public string this[string columnName]
         {
             get
@@ -237,28 +172,18 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                     case "ULN":
                         if (ULN == null || ULN.ToString().Length == 0)
                             return "ULN - required\r\n";
-                        if (ULN != null && ULN.Length > 0)
+                        if (!string.IsNullOrEmpty(ULN))
                         {
                             sReturn += CheckPropertyLength(ULN, CLASSNAME, columnName);
-                            long number;
-                            bool result = Int64.TryParse(ULN, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt64ValidValue(ULN, columnName);
                         }
-                        
+
                         break;
                     case "PrevUKPRN":
-                        if (PrevUKPRN != null && PrevUKPRN.Length > 0)
+                        if (!string.IsNullOrEmpty(PrevUKPRN))
                         {
                             sReturn += CheckPropertyLength(PrevUKPRN, CLASSNAME, columnName);
-                            int number;
-                            bool result = Int32.TryParse(PrevUKPRN, out number);
-                            if (!result)
-                            {
-                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                            }
+                            sReturn += NumericValidations.CheckInt64ValidValue(PrevUKPRN, columnName);
                         }
                         break;
                     default:
@@ -268,20 +193,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             }
         }
 
-        public int GetItemSize(string ItemName)
-        {
-            return XmlSchema.GetMaxLength(ItemName);
-        }
-        public string CheckPropertyLength(object itemValue, string ClassName, string ItemName)
-        {
-            String ItemFullName = String.Format("{0}.{1}", ClassName, ItemName);
-            int ItemSize = GetItemSize(ItemFullName);
-            if (itemValue != null && itemValue.ToString().Length > ItemSize)
-            {
-                return String.Format("exceeds maximum length ({0} characters). Current length : {1}\r\n", ItemSize, itemValue.ToString().Length);
-            }
-            return null;
-        }
         #endregion
         private void UserControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
 		{

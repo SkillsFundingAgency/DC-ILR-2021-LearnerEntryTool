@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 
@@ -108,8 +105,7 @@ namespace ILR
 
         public void OnOutcomeChanged()
         {
-            if (OutcomeChanged != null)
-                OutcomeChanged(this, new PropertyChangedEventArgs("From LD record"));
+            OutcomeChanged?.Invoke(this, new PropertyChangedEventArgs("From LD record"));
         }
 
         #region overrided methods

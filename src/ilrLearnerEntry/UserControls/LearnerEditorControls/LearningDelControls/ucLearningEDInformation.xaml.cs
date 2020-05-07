@@ -14,21 +14,20 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
     /// <summary>
     /// Interaction logic for ucLearningEDInformation.xaml
     /// </summary>
-    public partial class ucLearningEDInformation : UserControl, INotifyPropertyChanged//, IDataErrorInfo
+    public partial class ucLearningEDInformation : BaseUserControl, INotifyPropertyChanged//, IDataErrorInfo
     {
 
         #region Private Variables
         private const String CLASSNAME = "LearningDeliveryHE";
-        private ILR.Schema XmlSchema = new ILR.Schema();
         private ILR.LearningDelivery _learningDelivery;
-        private String _pcolab = string.Empty;
-        private String _pcfldcs = string.Empty;
-        private String _pcsldcs = string.Empty;
-        private String _pctldcs = string.Empty;
-        private String _soc2000 = string.Empty;
-        private String _yearstu = string.Empty;
-        private String _netfee = string.Empty;
-        private String _grossfee = string.Empty;
+        //private String _pcolab = string.Empty;
+        //private String _pcfldcs = string.Empty;
+        //private String _pcsldcs = string.Empty;
+        //private String _pctldcs = string.Empty;
+        //private String _soc2000 = string.Empty;
+        //private String _yearstu = string.Empty;
+        //private String _netfee = string.Empty;
+        //private String _grossfee = string.Empty;
         private String _studload = string.Empty;
         #endregion
 
@@ -412,50 +411,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #endregion
 
         #region PRIVATE Methods
-
-        #endregion
-
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Fires the event for the property when it changes.
-        /// </summary>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-#if DEBUG
-            VerifyPropertyName(propertyName);
-#endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
-        }
-
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
-        {
-            // Verify that the property name matches a real,  
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                var msg = "Invalid property name: " + propertyName;
-
-                if (this.ThrowOnInvalidPropertyName)
-                {
-                    throw new Exception(msg);
-                }
-                else
-                {
-                    Debug.Fail(msg);
-                }
-            }
-        }
-
-        protected bool ThrowOnInvalidPropertyName { get; set; }
 
         #endregion
 

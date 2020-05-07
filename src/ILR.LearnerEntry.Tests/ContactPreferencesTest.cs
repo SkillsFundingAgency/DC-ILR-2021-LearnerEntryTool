@@ -1,15 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
-using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Schema;
-using System.Security.Policy;
 
 namespace ILR.LearnerEntry.Tests
 {
