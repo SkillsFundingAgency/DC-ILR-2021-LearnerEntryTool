@@ -82,7 +82,7 @@ namespace ilrLearnerEntry
 
                 //vReturn = "1.3"; // Temporary hack until the GitVersion is fixed. 
                 //return $"v{vReturn}";
-                return "v1920.2";
+                return "v1920.3";
             }
         }
         #endregion

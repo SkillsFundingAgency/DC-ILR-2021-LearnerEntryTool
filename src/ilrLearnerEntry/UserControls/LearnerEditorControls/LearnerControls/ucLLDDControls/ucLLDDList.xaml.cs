@@ -14,7 +14,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
     /// <summary>
     /// Interaction logic for ucLLDDList.xaml
     /// </summary>
-    public partial class ucLLDDList : UserControl, INotifyPropertyChanged, IDataErrorInfo
+    public partial class ucLLDDList : BaseUserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         private Learner _learner;
         private List<Bob> _catList = new List<Bob>(0);
@@ -94,11 +94,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
                 {
                     if (!(String.IsNullOrWhiteSpace(dr["Code"].ToString())))
                     {
-                        Bob b = new Bob();
-                        b.Code = dr["Code"].ToString();
-                        b.Description = dr["Description"].ToString();
-                        b.IsSelected = false;
-                        b.IsPrimary = false;
+                        Bob b = new Bob
+                        {
+                            Code = dr["Code"].ToString(),
+                            Description = dr["Description"].ToString(),
+                            IsSelected = false,
+                            IsPrimary = false
+                        };
                         _catList.Add(b);
                     }
                 }
@@ -270,10 +272,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
         }
 
         #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
+
         public string this[string columnName]
         {
             get
@@ -299,49 +298,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucL
             }
         }
         #endregion
-
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Fires the event for the property when it changes.
-        /// </summary>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-#if DEBUG
-            VerifyPropertyName(propertyName);
-#endif
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
-        {
-            // Verify that the property name matches a real,  
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                var msg = "Invalid property name: " + propertyName;
-
-                if (this.ThrowOnInvalidPropertyName)
-                {
-                    throw new Exception(msg);
-                }
-                else
-                {
-                    Debug.Fail(msg);
-                }
-            }
-        }
-
-        protected bool ThrowOnInvalidPropertyName { get; set; }
-
-        #endregion
-
     }
 
 

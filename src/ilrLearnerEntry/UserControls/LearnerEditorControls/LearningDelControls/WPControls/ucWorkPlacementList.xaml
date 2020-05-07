@@ -1,15 +1,16 @@
-﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls.ucWorkPlacementList"
-             xmlns:WpControl="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls" 
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 			
-             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter" 
-             xmlns:IlrTypes="clr-namespace:ILR;assembly=ILR"
-             mc:Ignorable="d" 
-             d:DesignHeight="150" 
-             d:DesignWidth="700"
-             >
+﻿<userControls:BaseUserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls.ucWorkPlacementList"
+                              xmlns:WpControl="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls" 
+                              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 			
+                              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter" 
+                              xmlns:IlrTypes="clr-namespace:ILR;assembly=ILR"
+                              xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              mc:Ignorable="d" 
+                              d:DesignHeight="150" 
+                              d:DesignWidth="700"
+>
     <UserControl.Resources>     
         <DataTemplate x:Key="WorkPlacementDataTemplate" DataType="{x:Type IlrTypes:LearningDeliveryWorkPlacement}">
             <Grid >
@@ -96,4 +97,4 @@
                 MinHeight="80" />
         </Grid>
     </ScrollViewer>
-</UserControl>
+</userControls:BaseUserControl>

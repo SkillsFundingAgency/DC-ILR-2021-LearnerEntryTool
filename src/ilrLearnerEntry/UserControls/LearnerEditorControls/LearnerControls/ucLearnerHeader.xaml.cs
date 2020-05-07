@@ -152,55 +152,12 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         // If the text is not a valid date, show a message.
         private void dtDOB_DateValidationError(object sender, DatePickerDateValidationErrorEventArgs e)
         {
-            if (!DateTime.TryParse(e.Text, out var newDate))
+            if (!DateTime.TryParse(e.Text, out _))
             {
                 string message = String.Format("The date, {0} is not a valid date, please enter a valid date.", e.Text);
                 System.Windows.MessageBox.Show(message, "Date of birth", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        #endregion
-
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-		/// <summary>
-		/// Fires the event for the property when it changes.
-		/// </summary>
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
-#if DEBUG
-			VerifyPropertyName(propertyName);
-#endif
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        }
-
-		[Conditional("DEBUG")]
-		[DebuggerStepThrough]
-		public void VerifyPropertyName(string propertyName)
-		{
-			// Verify that the property name matches a real,  
-			// public, instance property on this object.
-			if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-			{
-				var msg = "Invalid property name: " + propertyName;
-
-				if (this.ThrowOnInvalidPropertyName)
-				{
-					throw new Exception(msg);
-				}
-				else
-				{
-					Debug.Fail(msg);
-				}
-			}
-		}
-
-		protected bool ThrowOnInvalidPropertyName { get; set; }
-
         #endregion
 
         #region IDataErrorInfo Members

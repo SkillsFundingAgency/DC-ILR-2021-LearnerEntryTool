@@ -13,7 +13,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 	/// <summary>
 	/// Interaction logic for LearnerSupportFundingList.xaml
 	/// </summary>
-	public partial class ucLdFamList : UserControl, INotifyPropertyChanged
+	public partial class ucLdFamList : BaseUserControl, INotifyPropertyChanged
 	{
 		private LearningDelivery _learnerDelivery;
 		private List<LearningDeliveryFAM> _FAMLList = new List<LearningDeliveryFAM>(0);
@@ -71,25 +71,20 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 		{
 			get
 			{
-				Visibility v = Visibility.Collapsed;
 				switch (FamType)
 				{
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
-                        v = Visibility.Collapsed;
-						break;
+                        return Visibility.Collapsed;
 					default:
-						v = Visibility.Collapsed;
-						break;
+						return Visibility.Collapsed;
 				}
-				return v;
 			}
 		}
 		public Visibility IsCodeVisible
 		{
 			get
 			{
-				Visibility v = Visibility.Collapsed;
 				switch (FamType)
 				{
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
@@ -97,20 +92,16 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
-						v = Visibility.Visible;
-						break;
+						return Visibility.Visible;
 					default:
-						v = Visibility.Collapsed;
-						break;
+                        return Visibility.Collapsed;
 				}
-				return v;
 			}
 		}
 		public Visibility IsFromVisible
 		{
 			get
 			{
-				Visibility v = Visibility.Collapsed;
 				switch (FamType)
 				{
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
@@ -118,20 +109,16 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
-						v = Visibility.Visible;
-						break;
+                        return Visibility.Visible;
 					default:
-						v = Visibility.Collapsed;
-						break;
+                        return Visibility.Collapsed;
 				}
-				return v;
 			}
 		}
 		public Visibility IsVisable
 		{
 			get
 			{
-				Visibility v = Visibility.Collapsed;
 				switch (FamType)
 				{
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
@@ -139,13 +126,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
-						v = Visibility.Visible;
-						break;
+                        return Visibility.Visible;
 					default:
-						v = Visibility.Collapsed;
-						break;
+                        return Visibility.Collapsed;
 				}
-				return v;
 			}
 		}
 
@@ -264,49 +248,5 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 		}
 
 		#endregion
-
-		#region INotifyPropertyChanged Members
-		/// <summary>
-		/// INotifyPropertyChanged requires a property called PropertyChanged.
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		/// <summary>
-		/// Fires the event for the property when it changes.
-		/// </summary>
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
-#if DEBUG
-			VerifyPropertyName(propertyName);
-#endif
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
-		[Conditional("DEBUG")]
-		[DebuggerStepThrough]
-		public void VerifyPropertyName(string propertyName)
-		{
-			// Verify that the property name matches a real,  
-			// public, instance property on this object.
-			if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-			{
-				var msg = "Invalid property name: " + propertyName;
-
-				if (this.ThrowOnInvalidPropertyName)
-				{
-					throw new Exception(msg);
-				}
-				else
-				{
-					Debug.Fail(msg);
-				}
-			}
-		}
-
-		protected bool ThrowOnInvalidPropertyName { get; set; }
-
-		#endregion
-
-
 	}
 }

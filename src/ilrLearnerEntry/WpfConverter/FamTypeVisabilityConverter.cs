@@ -41,24 +41,19 @@ namespace ilrLearnerEntry.WpfConverter
 
 		private System.Windows.Visibility Process_Visability_Code(String FamType)
 		{
-			System.Windows.Visibility v = System.Windows.Visibility.Visible;
-
 			switch (FamType.ToString().ToUpper())
 			{
 				case "ALB":
-					v = System.Windows.Visibility.Visible;
-					break;
+					return System.Windows.Visibility.Visible;
 				case "LSF":
 				case "HEM":
 				case "LDM":
-					v = System.Windows.Visibility.Collapsed;
-					break;
+					return System.Windows.Visibility.Collapsed;
 				default:
-					v = System.Windows.Visibility.Visible;
-					break;
+					return System.Windows.Visibility.Visible;
 			}
-			return v;
 		}
+
 		private System.Windows.Visibility Process_Visability_Type(String FamType)
 		{
 			System.Windows.Visibility v = System.Windows.Visibility.Visible;
