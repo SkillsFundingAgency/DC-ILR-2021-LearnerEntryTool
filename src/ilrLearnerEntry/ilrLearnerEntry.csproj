@@ -427,11 +427,6 @@
     <Resource Include="Images\ESFA_2955_BLK.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\ILR\ILR-2018-19.xslt">
-      <Link>ILR-2018-19.xslt</Link>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\ESFA-logo-white.png" />
   </ItemGroup>
   <ItemGroup>
