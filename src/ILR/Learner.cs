@@ -2077,7 +2077,6 @@ namespace ILR
 
                     case "ULN":
                         return IsUlnValid(columnName);
-                        break;
 
                     case "PrevUKPRN":
                         if (PrevUKPRN != null)
@@ -2209,8 +2208,7 @@ namespace ILR
                             String sReturn = string.Empty;
                             if (this.TelNo.Contains(" "))
                                 sReturn += "TelNumber should not have spaces\r\n";
-                            Int64 x;
-                            if (!Int64.TryParse(this.TelNo, out x))
+                            if (!Int64.TryParse(this.TelNo, out _))
                                 sReturn += "TelNumber Should contain only numbers\r\n";
                             return sReturn;
                         }
@@ -2236,14 +2234,12 @@ namespace ILR
         private string IsUlnValid(string columnName)
         {
             string sReturn = string.Empty;
-            bool isValid = false;
             string strULN = ULN.ToString();
             if (strULN == null || strULN.Length == 0)
                 sReturn += "ULN - required\r\n";
             if (strULN != null && strULN.Length > 0)
             {
-                long number;
-                bool result = Int64.TryParse(strULN, out number);
+                bool result = Int64.TryParse(strULN, out _);
                 if (!result)
                 {
                     sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);

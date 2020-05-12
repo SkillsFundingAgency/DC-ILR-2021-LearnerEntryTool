@@ -301,6 +301,11 @@
                   <xsl:value-of select="dc:PHours"/>
                 </PHours>
               </xsl:if>
+              <xsl:if test="dc:OTJActhours != ''">
+                <PHours>
+                  <xsl:value-of select="dc:OTJActhours"/>
+                </PHours>
+              </xsl:if>
               <xsl:if test="dc:ProgType != ''">
                 <ProgType>
                   <xsl:value-of select="dc:ProgType"/>

@@ -7,12 +7,9 @@ namespace ilrLearnerEntry.UserControls
 {
     public class BaseUserControl : UserControl
     {
-
-        private readonly ILR.Schema XmlSchema = new ILR.Schema();
-
         private int GetItemSize(string ItemName)
         {
-            return XmlSchema.GetMaxLength(ItemName);
+            return ILR.Schema.GetMaxLength(ItemName);
         }
 
         protected string CheckPropertyLength(object itemValue, string ClassName, string ItemName)

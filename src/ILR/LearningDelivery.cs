@@ -12,14 +12,14 @@ namespace ILR
     {
         private const String CLASSNAME = "LearningDelivery";
         private const String TABS = "\t\t";
-        DateTime FIRST_AUG_2013 = new DateTime(2013, 8, 1);
-        DateTime FIRST_AUG_2015 = new DateTime(2015, 8, 1);
-        DateTime FIRST_AUG_2016 = new DateTime(2016, 8, 1);
-        DateTime FIRST_AUG_2017 = new DateTime(2017, 8, 1);
-        DateTime FIRST_AUG_2018 = new DateTime(2018, 8, 1);
-        DateTime FIRST_AUG_2019 = new DateTime(2019, 8, 1);
+        private readonly DateTime FIRST_AUG_2013 = new DateTime(2013, 8, 1);
+        private readonly DateTime FIRST_AUG_2015 = new DateTime(2015, 8, 1);
+        private readonly DateTime FIRST_AUG_2016 = new DateTime(2016, 8, 1);
+        private readonly DateTime FIRST_AUG_2017 = new DateTime(2017, 8, 1);
+        private readonly DateTime FIRST_AUG_2018 = new DateTime(2018, 8, 1);
+        private readonly DateTime FIRST_AUG_2019 = new DateTime(2019, 8, 1);
 
-        DateTime CurrentAccademicYear = new DateTime(2019, 8, 1);
+        private readonly DateTime CurrentAccademicYear = new DateTime(2020, 8, 1);
 
         private const string PHOURS_PATTERN = "^[0-9]{1,4}$";
 
@@ -172,8 +172,6 @@ namespace ILR
 
         #endregion
 
-        Nullable<int> _defaultStdCode;
-
         #region ILR Properties
 
         /// <summary>
@@ -318,6 +316,26 @@ namespace ILR
                 XMLHelper.SetChildValue("PHours", value, Node, NSMgr);
                 OnLearningDeliveryPropertyChanged();
                 OnPropertyChanged("PHours");
+            }
+        }
+
+        /// <summary>
+        /// OTJActhours
+        /// Code template copied from the FundModel property
+        /// however the int.Parse() function could throw an exception so at some point this may need to be looked at if the form is allowing non-numeric entries
+        /// </summary>
+        public int? OTJActhours
+        {
+            get
+            {
+                string OTJActhours = XMLHelper.GetChildValue("OTJActhours", Node, NSMgr);
+                return (OTJActhours != null ? Int32.Parse(OTJActhours) : (int?)null);
+            }
+            set
+            {
+                XMLHelper.SetChildValue("OTJActhours", value, Node, NSMgr);
+                OnLearningDeliveryPropertyChanged();
+                OnPropertyChanged("OTJActhours");
             }
         }
 
@@ -1404,14 +1422,14 @@ namespace ILR
             this.OrigLearnStartDate = MigrationLearningDelivery.OrigLearnStartDate;
             this.LearnPlanEndDate = MigrationLearningDelivery.LearnPlanEndDate;
             this.FundModel = MigrationLearningDelivery.FundModel;
+            this.OTJActhours = MigrationLearningDelivery.OTJActhours;
             if (MigrationLearningDelivery.ProgType != 10)
                 this.ProgType = MigrationLearningDelivery.ProgType;
             this.FworkCode = MigrationLearningDelivery.FworkCode;
             this.PwayCode = MigrationLearningDelivery.PwayCode;
 
-            int stdCode;
             if (MigrationLearningDelivery.HasFAMType("TBS") &&
-                Int32.TryParse(MigrationLearningDelivery.GetLegacyFAM("TBS").LearnDelFAMCode, out stdCode))
+                Int32.TryParse(MigrationLearningDelivery.GetLegacyFAM("TBS").LearnDelFAMCode, out int stdCode))
                 this.StdCode = stdCode.ToString();
             else
                 this.StdCode = MigrationLearningDelivery.StdCode;
@@ -1938,6 +1956,10 @@ namespace ILR
                     case "PHours":
                         if (PHours != null)
                             return CheckPropertyLength(PHours, CLASSNAME, columnName, TABS);
+                        break;
+                    case "OTJActhours":
+                        if (OTJActhours != null)
+                            return CheckPropertyLength(OTJActhours, CLASSNAME, columnName, TABS);
                         break;
                     case "LSDPostcode":
                         if (LSDPostcode != null)

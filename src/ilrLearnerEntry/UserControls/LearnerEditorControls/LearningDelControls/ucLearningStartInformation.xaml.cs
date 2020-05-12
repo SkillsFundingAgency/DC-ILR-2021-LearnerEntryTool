@@ -31,6 +31,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         private string _otherfundadj = string.Empty;
         private string _addhours = string.Empty;
         private string _phours = string.Empty;
+        private string _otjActhours = string.Empty;
         private string _partnerukprn = string.Empty;
         #endregion
 
@@ -59,6 +60,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 _otherfundadj = string.Empty;
                 _addhours = string.Empty;
                 _phours = string.Empty;
+                _otjActhours = string.Empty;
                 _partnerukprn = string.Empty;
                 ClearAllHHSSelected();
                 if (value != null)
@@ -72,6 +74,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     _otherfundadj = _learningDelivery.OtherFundAdj.ToString();
                     _addhours = _learningDelivery.AddHours.ToString();
                     _phours = _learningDelivery.PHours.ToString();
+                    _otjActhours = _learningDelivery.OTJActhours.ToString();
                     _partnerukprn = _learningDelivery.PartnerUKPRN.ToString();
                     foreach (LearningDeliveryFAM HHSFam in _learningDelivery.HHS)
                     {
@@ -87,6 +90,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 OnPropertyChanged("PwayCode");
                 OnPropertyChanged("OtherFundAdj");
                 OnPropertyChanged("AddHours");
+                OnPropertyChanged("OTJActhours");
                 OnPropertyChanged("PHours");
                 OnPropertyChanged("PartnerUKPRN");
                 OnPropertyChanged("ProgTypeList");
@@ -118,18 +122,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 else { CurrentItem.ProgType = null; }
             }
         }
-        //public string FworkCode
-        //{
-        //    get { return _fworkcode; }
-        //    set
-        //    {
-        //        _fworkcode = value;
-        //        int number;
-        //        bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-        //        if (result) { CurrentItem.FworkCode = number.ToString(); }
-        //        else { CurrentItem.FworkCode = null; }
-        //    } 
-        //}
+
         public string PwayCode
         {
             get { return _pwaycode; }
@@ -181,6 +174,20 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 { CurrentItem.PHours = number; }
                 else
                 { CurrentItem.PHours = null; }
+            }
+        }
+
+        public string OTJActhours
+        {
+            get { return _otjActhours; }
+            set
+            {
+                _otjActhours = value;
+                bool result = Int32.TryParse(System.Convert.ToString(value), out var number);
+                if (result)
+                { CurrentItem.OTJActhours = number; }
+                else
+                { CurrentItem.OTJActhours = null; }
             }
         }
 
@@ -318,6 +325,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                             sReturn += NumericValidations.CheckInt32ValidValue(PriorLearnFundAdj, columnName);
                         }
                         break;
+                    case "OTJActhours":
+                        if (!string.IsNullOrEmpty(AddHours))
+                        {
+                            sReturn += CheckPropertyLength(AddHours, CLASSNAME, columnName);
+                            sReturn += NumericValidations.CheckInt32ValidValue(AddHours, columnName);
+                        }
+                        break;
                     case "ProgType":
                         if (!string.IsNullOrEmpty(ProgType))
                         {
@@ -325,18 +339,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                             sReturn += NumericValidations.CheckInt32ValidValue(ProgType, columnName);
                         }
                         break;
-                    //case "FworkCode":
-                    //    if (FworkCode != null && FworkCode.Length > 0)
-                    //    {
-                    //        sReturn += CheckPropertyLength(FworkCode, CLASSNAME, columnName);
-                    //        int number;
-                    //        bool result = Int32.TryParse(FworkCode, out number);
-                    //        if (!result)
-                    //        {
-                    //            sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                    //        }
-                    //    }
-                    //    break;
                     case "PwayCode":
                         if (!string.IsNullOrEmpty(PwayCode))
                         {

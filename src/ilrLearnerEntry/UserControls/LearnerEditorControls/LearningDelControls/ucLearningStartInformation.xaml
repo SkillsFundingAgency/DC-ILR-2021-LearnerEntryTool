@@ -57,7 +57,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="215"/>
@@ -285,10 +285,9 @@
                          TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
                          IsUndoEnabled="True"/>
 
-
-                <TextBlock Grid.Row="9" Grid.Column="3" Text="Additional delivery hours : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="9" Grid.Column="3" Text="On The Job Actual hours : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2"
-                         Text="{Binding Path=AddHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                         Text="{Binding Path=OTJActhours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                          Style="{DynamicResource TextBoxWithError}"
                          HorizontalAlignment="Left" 
                          HorizontalContentAlignment="Left" 
@@ -296,20 +295,23 @@
                          TabIndex="32"
                          Margin="3" 
                          Width="45" 
-                         MaxLength="4"                         
+                         MaxLength="4"            
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
                          TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True"/>
 
-                <TextBlock Grid.Row="10" Grid.Column="0" Text="Contract Reference Number :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="10" Grid.Column="1" 
-                     Text="{Binding Path=CurrentItem.ConRefNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
-                     Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" 
-                     VerticalAlignment="Center" 
-                     TabIndex="34"
-                     Margin="3" 
-                     Width="115" 
-                     MaxLength="20"/>
+                <TextBlock Grid.Row="10" Grid.Column="0" Text="Additional delivery hours : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBox Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2"
+                         Text="{Binding Path=AddHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                         Style="{DynamicResource TextBoxWithError}"
+                         HorizontalAlignment="Left" 
+                         HorizontalContentAlignment="Left" 
+                         VerticalAlignment="Top" 
+                         TabIndex="34"
+                         Margin="3" 
+                         Width="45" 
+                         MaxLength="4"                         
+                         TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
+                         TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True"/>
 
                 <TextBlock Grid.Row="10" Grid.Column="3" Text="End Point Assessment Organistion : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="3"
@@ -325,7 +327,19 @@
                      MaxLength="7"   
                      IsUndoEnabled="True"/>
 
-                <Border Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="10"  VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBlock Grid.Row="11" Grid.Column="0" Text="Contract Reference Number :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBox Grid.Row="11" Grid.Column="1" 
+                         Text="{Binding Path=CurrentItem.ConRefNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                         Style="{DynamicResource TextBoxWithError}"
+                         HorizontalAlignment="Left" 
+                         HorizontalContentAlignment="Left" 
+                         VerticalAlignment="Center" 
+                         TabIndex="38"
+                         Margin="3" 
+                         Width="115" 
+                         MaxLength="20"/>
+
+                <Border Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="10"  VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Grid x:Name="GridNLM"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />

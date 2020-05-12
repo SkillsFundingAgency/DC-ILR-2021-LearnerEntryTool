@@ -6,8 +6,6 @@ namespace ILR
 {
     public class _base : INotifyPropertyChanged
     {
-        private ILR.Schema XmlSchema = new ILR.Schema();
-
         internal bool _isSelected = false;
 
         #region Constructor
@@ -34,7 +32,7 @@ namespace ILR
         #region Methods
         public int GetItemSize(string ItemName)
         {
-            return XmlSchema.GetMaxLength(ItemName);
+            return ILR.Schema.GetMaxLength(ItemName);
         }
         public string CheckPropertyLength(object itemValue, string ClassName, string ItemName, string Tabs)
         {

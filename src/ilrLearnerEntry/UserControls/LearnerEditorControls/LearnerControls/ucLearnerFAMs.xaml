@@ -76,17 +76,7 @@
                          TabIndex="3"
                          MaxLength="4"
                      />
-				<!--<TextBlock Grid.Row="2" Grid.Column="2"  Name="lblOTJHours" Text="Off-the-job training hours :" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-				<TextBox Grid.Row="2" Grid.Column="3" 
-                     Name="txtOTJHours" 
-                     Panel.ZIndex="12" 
-                     Text="{Binding Path=CurrentItem.OTJHours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
-                     Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
-                     Width="95"  
-                     TabIndex="2"
-                     Margin="3" 
-                     MaxLength="12" />-->
+
 				<TextBlock Grid.Row="3" Grid.Column="0" Text="Free meals eligibility :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
 				<ComboBox Grid.Row="3" Grid.Column="1" 
                           Margin="4"

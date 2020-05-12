@@ -49,7 +49,7 @@ namespace ilrLearnerEntry
 #if DEBUG
                     case "LOGTOFILE":
                     case "/LOGTOFILE":
-                        Log("App", "Check Arg : ", "Enable loging to File");
+                        Log("App", "Check Arg : ", "Enable logging to File");
                         LogFileName = System.IO.Path.Combine(fi.DirectoryName, assembly.ManifestModule.Name.Split('.')[0] + "." + DateTime.Now.ToString("yyyy.MM.dd.hhss") + ".Log");
         #if DEBUG
                         LogFileName = System.IO.Path.Combine(fi.DirectoryName, assembly.ManifestModule.Name.Split('.')[0] + ".Log");
@@ -92,7 +92,7 @@ namespace ilrLearnerEntry
         
         private void SetupApplicationStuff()
         {
-            Log("App", "SetupApplicationStuff", "Enable loging to File");
+            Log("App", "SetupApplicationStuff", "Enable logging to File");
             Application.Current.ShutdownMode = System.Windows.ShutdownMode.OnMainWindowClose;
             ILRMessage = new ILR.Message(System.IO.Path.Combine(DataFolder, ApplicationInternalFilename),LogFileName);
         }

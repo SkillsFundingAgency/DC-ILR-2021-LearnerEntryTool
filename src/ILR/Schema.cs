@@ -2,9 +2,9 @@
 
 namespace ILR
 {
-    public class Schema
+    public static  class Schema
     {
-        public Dictionary<string, int> MaxLengths = new Dictionary<string, int> {
+        private static readonly Dictionary<string, int> MaxLengths = new Dictionary<string, int> {
             {"CollectionDetails.Collection",3},
             {"CollectionDetails.Year",4},
             {"CollectionDetails.FilePreparationDate",10},
@@ -102,6 +102,7 @@ namespace ILR
             {"LearningDelivery.LearnPlanEndDate",10},
             {"LearningDelivery.FundModel",2},
             {"LearningDelivery.PHours",4},
+            {"LearningDelivery.OTJActhours",4},
             {"LearningDelivery.ProgType",2},
             {"LearningDelivery.FworkCode",3},
             {"LearningDelivery.PwayCode",3},
@@ -180,13 +181,13 @@ namespace ILR
             {"DPOutcome.OutEndDate",10},
             {"DPOutcome.OutCollDate",10}
         };
-        public int GetMaxLength(string Attribute)
+        public static int GetMaxLength(string Attribute)
         {
-            return this.MaxLengths[Attribute];
+            return MaxLengths[Attribute];
         }
-        public Dictionary<string, int> GetMaxLengths()
+        public static Dictionary<string, int> GetMaxLengths()
         {
-            return this.MaxLengths;
+            return MaxLengths;
         }
     }
 }
