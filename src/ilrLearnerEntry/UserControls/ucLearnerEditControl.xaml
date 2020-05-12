@@ -137,7 +137,6 @@
                 <Expander.Header>
                     <TextBlock  TextWrapping="Wrap" HorizontalAlignment="Left">
                     <Run Text="Filter : " />                
-                    <Run Text="{Binding HeaderExtraText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </TextBlock>
                 </Expander.Header>
                 <Grid>

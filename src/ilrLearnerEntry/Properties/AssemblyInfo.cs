@@ -6,12 +6,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ILR Learner Entry - 1920")]
-[assembly: AssemblyDescription("ILR Form Entry for 1920")]
+[assembly: AssemblyTitle("ILR Learner Entry - 2021")]
+[assembly: AssemblyDescription("ILR Form Entry for 2021")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Education and Skills Funding Agency")]
-[assembly: AssemblyProduct("ILR Learner Entry 1920")]
-[assembly: AssemblyCopyright("Copyright © Education & Skills Funding Agency 2015")]
+[assembly: AssemblyProduct("ILR Learner Entry 2021")]
+[assembly: AssemblyCopyright("Copyright © Education & Skills Funding Agency 2020")]
 [assembly: AssemblyTrademark("Education & Skills Funding Agency")]
 [assembly: AssemblyCulture("")]
 
@@ -51,6 +51,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1920.0.1")]
-[assembly: AssemblyFileVersion("1920.0.1")]
+[assembly: AssemblyVersion("2021.0.1")]
+[assembly: AssemblyFileVersion("2021.0.1")]
 [assembly: NeutralResourcesLanguageAttribute("en-GB")]

@@ -42,10 +42,6 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
         {
             get { return TextBox("txtCampusId"); }
         }
-        //private TextBox LearnerOTJHoursTextBox
-        //{
-        //    get { return TextBox("txtOTJHours"); }
-        //}
 
         private TextBox LearnerGivenNameTextBox
         {

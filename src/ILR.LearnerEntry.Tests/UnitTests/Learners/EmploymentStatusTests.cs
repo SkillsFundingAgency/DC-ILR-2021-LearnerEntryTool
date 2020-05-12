@@ -130,41 +130,6 @@ namespace ILR.LearnerEntry.Tests.UnitTests.Learners
 
         [Test]
         [Category("Category [Unit]")]
-        public void EmploymentStatus_AgreementIdentifier_When_AgreeId_IsBlank_ShouldNotHaveValidationError()
-        {
-            // Arrange
-            var learner = message.CreateLearner();
-            learner.FamilyName = "familyName";
-            learner.GivenNames = "givenName";
-
-            // Act 
-            var employmentStatus = learner.CreateLearnerEmploymentStatus();
-            var validationMessage = employmentStatus.AgreeId;
-
-            // Assert 
-            Assert.AreEqual(null, validationMessage);
-        }
-
-        [Test]
-        [Category("Category [Unit]")]
-        public void EmploymentStatus_AgreementIdentifier_When_AgreeId_IsNotBlank_ShouldNotHaveValidationError()
-        {
-            // Arrange
-            var learner = message.CreateLearner();
-            learner.FamilyName = "familyName";
-            learner.GivenNames = "givenName";
-
-            // Act 
-            var employmentStatus = learner.CreateLearnerEmploymentStatus();
-            employmentStatus.AgreeId = "123456";
-            var validationMessage = employmentStatus.AgreeId;
-
-            // Assert 
-            Assert.IsFalse(string.IsNullOrEmpty(validationMessage.ToString()));
-        }
-
-        [Test]
-        [Category("Category [Unit]")]
         public void EmploymentStatus_LengthOfUnemployment_When_LOU_IsBlank_ShouldNotHaveValidationError()
         {
             // Arrange

@@ -12,13 +12,11 @@ namespace ILR
     {
         private const String CLASSNAME = "LearnerEmploymentStatus";
         private const String TABS = "\t";
-        private const string AGREEID_PATTERN = "^[A-Za-z0-9]{1,6}$";
 
         #region ILR Properties
         public int? EmpStat { get { string EmpStat = XMLHelper.GetChildValue("EmpStat", Node, NSMgr); return (EmpStat != null ? int.Parse(EmpStat) : (int?)null); } set { XMLHelper.SetChildValue("EmpStat", value, Node, NSMgr); OnPropertyChanged("EmpStat"); OnEmploymentStatusChangedChanged(); } }
         public DateTime? DateEmpStatApp { get { string DateEmpStatApp = XMLHelper.GetChildValue("DateEmpStatApp", Node, NSMgr); return (!string.IsNullOrEmpty(DateEmpStatApp) ? DateTime.Parse(DateEmpStatApp) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateEmpStatApp", value, Node, NSMgr); OnPropertyChanged("DateEmpStatApp"); OnEmploymentStatusChangedChanged(); } }
         public string EmpId { get { return XMLHelper.GetChildValue("EmpId", Node, NSMgr); } set { XMLHelper.SetChildValue("EmpId", value, Node, NSMgr); OnPropertyChanged("EmpId"); OnEmploymentStatusChangedChanged(); } }
-        public string AgreeId { get { return XMLHelper.GetChildValue("AgreeId", Node, NSMgr); } set { XMLHelper.SetChildValue("AgreeId", value, Node, NSMgr); OnPropertyChanged("AgreeId"); OnEmploymentStatusChangedChanged(); } }
         #endregion
 
         #region events
@@ -40,8 +38,7 @@ namespace ILR
         {
             get
             {
-                Lookup lookup = new Lookup();
-                return lookup.GetDescription("EmpStat", this.EmpStat.ToString());
+                return ILR.Lookup.GetDescription("EmpStat", this.EmpStat.ToString());
             }
         }
         #endregion
@@ -187,7 +184,6 @@ namespace ILR
             this.EmpStat = MigrationLearnerEmploymentStatus.EmpStat;
             this.DateEmpStatApp = MigrationLearnerEmploymentStatus.DateEmpStatApp;
             this.EmpId = MigrationLearnerEmploymentStatus.EmpId;
-            this.AgreeId = MigrationLearnerEmploymentStatus.AgreeId;
 
             foreach (EmploymentStatusMonitoring migrationItem in MigrationLearnerEmploymentStatus.EmploymentStatusMonitoringList.Where(x => x.ESMType != "RON"))
             {
@@ -265,28 +261,12 @@ namespace ILR
                                 result += CheckPropertyLength(EmpId, CLASSNAME, columnName, TABS);
                         }
                         break;
-                    case "AgreeId":
-                        if (AgreeId != null)
-                        {
-                            if (!IsAgreeIdValid())
-                                return $"Agreement Identifier: {AgreeId} is not valid";
-                        }
-                            
-                        break;
                     default:
                         break;
                 }
                 return result;
             }
         }
-
-        private bool IsAgreeIdValid()
-        {
-
-            var regEx = new Regex(AGREEID_PATTERN);
-            return string.IsNullOrEmpty(AgreeId) ? true : regEx.Match(this.AgreeId).Success;
-        }
-
         #endregion
 
         #region overrided properties
@@ -307,7 +287,6 @@ namespace ILR
                 string message = "";
                 message += this["EmpStat"];
                 message += this["EmpId"];
-                message += this["AgreeId"];
                 return message;
             }
         }

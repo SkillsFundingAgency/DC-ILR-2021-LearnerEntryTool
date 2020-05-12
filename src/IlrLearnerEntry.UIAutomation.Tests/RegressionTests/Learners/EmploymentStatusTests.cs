@@ -72,26 +72,6 @@ namespace IlrLearnerEntry.UIAutomation.Tests.RegressionTests.Learners
 
         [Fact]
         [Trait("Category", "Regression")]
-        public void AgreementIdentifier_WhenCorectValueEntered_ShouldAcceptWithNoValidationErrors()
-        {
-            // Arrange
-            string agreementIdentifier = RandomStrings.GetRandomNumber(6);
-
-            // Act
-            Learners_LearnerListObjects learnerTab = WindowObjects.Windows.Main.SelectLearnerTab;
-            learnerTab.ClickAddLearnerButton();
-            EmploymentStatusObjects employmentStatusTab = WindowObjects.Windows.Main.SelectEmploymentStatusTab;
-            employmentStatusTab.ClickAddEmploymentStatusButton();
-            employmentStatusTab.SetAgreementIdentifierTextBox(agreementIdentifier);
-
-            // Assert 
-            var error = employmentStatusTab.GetAgreementIdentifierValidationMessage;
-            TakeScreenShot();
-            Assert.True(string.IsNullOrEmpty(error), $"Validation failed for Agreement Identifier {agreementIdentifier}");
-        }
-
-        [Fact]
-        [Trait("Category", "Regression")]
         public void LengthOfUnemployment_WhenCorrectSelectionIsMade_ShouldAcceptWithNoValidationErrors()
         {
             // Arrange

@@ -11,11 +11,12 @@ namespace ILR.LearnerEntry.Tests
     [TestFixture]
     public class MessageImportTests
     {
-        private const string ILRFileName = "internalIlr1920.ilr";
-        private const string ILRFileToImport = "ILR-99999999-1819-20180626-144401-01.xml"; //1819
+        private const string ILRFileName = "internalIlr2021.ilr";
+        //private const string ILRFileToImport = "ILR-99999999-1819-20180626-144401-01.xml"; //1819
+        private const string ILRFileToImport = "ILR-99999999-1920-20190626-144401-01.xml"; //1819
         //private const string ILRFileToImport = "ILR-10000275-1920-20190613-112424-01.xml";
-        
-        XNamespace ns = "ESFA/ILR/2019-20";
+
+        XNamespace ns = "ESFA/ILR/2020-21";
         private const string LARGER_INVALID_CAMPID = "ABCD1234IJKL";
         private const string NONALPHANUMERIC_INVALID_CAMPID = "!--ABCD123-";
         private const string LARGER_INVALID_OFFTHEJOBHOURS = "123456";
@@ -38,30 +39,11 @@ namespace ILR.LearnerEntry.Tests
             ilrMessage.Import(importFile);
         }
 
-        // This test not relevant for the 1819 example ILR file as it has no stdcode
-        //[Test]
-        //[Category("Category [Unit]")]
-        //public void Import_WhenFileContainsStdCode_OutputFile_ShouldHaveCode()
-        //{
-        //    //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-        //    //Message ilrMessage = new Message(fileName);
-        //    //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-        //    //ilrMessage.Import(importFile);
-        //    Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
-        //    var learner = ilrMessage.LearnerList[0];
-        //    Assert.NotNull(learner.LearningDeliveryList[0].StdCode, "Apprenticeship standard code is failed to import, import failed");
-
-        //   // Assert.True(File.Exists(fileName), "Failed to create internal file");
-        //}
-       
+      
         [Test]
         [Category("Category [Unit]")]
         public void Import_WhenFileContainsTrailBlazerFinRecord_OutputFile_ShouldHaveFinRecords()
         {                      
-            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            //Message ilrMessage = new Message(fileName);
-            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
             XDocument xDoc = XDocument.Load(fileName);
             var query = from t in xDoc.Descendants(ns + "AFinAmount")
@@ -76,13 +58,7 @@ namespace ILR.LearnerEntry.Tests
         [Category("Category [Unit]")]
         public void Export_WhenFileValidatedWithSchema_ShouldHaveNoErrors()
         {
-            XNamespace targateNs = "ESFA/ILR/2019-20";
-
-            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            //Message ilrMessage = new Message(fileName);
-            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            //ilrMessage.Import(importFile);
-            //Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
+            XNamespace targateNs = "ESFA/ILR/2020-21";
 
             string exportFileFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Exported");
             if (!Directory.Exists(exportFileFolder))
@@ -92,7 +68,7 @@ namespace ILR.LearnerEntry.Tests
                 Directory.Delete(exportFileFolder, true);
                 Directory.CreateDirectory(exportFileFolder);
             }
-            string xsdFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ILR-2019-20-v2.xsd");
+            string xsdFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ILR-2020-21-v1.xsd");
             
             XDocument xDoc = XDocument.Load(fileName);
             ilrMessage.Export(exportFileFolder, "01");
@@ -109,10 +85,6 @@ namespace ILR.LearnerEntry.Tests
         {            
             XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
 
-            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            //Message ilrMessage = new Message(fileName);
-            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
             XDocument xDoc = XDocument.Load(fileName);
             var query = from t in xDoc.Descendants(ns + "ConRefNumber")
@@ -120,17 +92,12 @@ namespace ILR.LearnerEntry.Tests
             var val = query.First();
             Assert.NotNull(val, "ConRefNumber are not created");
             Assert.AreEqual(val, "ESF-123456789", "ConRefNumber value is wrong");
-            // Assert.True(File.Exists(fileName), "Failed to create internal file");
         }
 
         [Test]
         [Category("Category [Unit]")]
         public void Import_WhenFileDoesNotContainsSwAimId_OutputFile_ShouldHaveSwAimId()
         {
-            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
-            //Message ilrMessage = new Message(fileName);
-            //string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
-            //ilrMessage.Import(importFile);
             Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
 
             XDocument xDoc = XDocument.Load(importFile);           
@@ -168,24 +135,6 @@ namespace ILR.LearnerEntry.Tests
             learner.CampId = NONALPHANUMERIC_INVALID_CAMPID;
             Assert.AreEqual(learner["CampId"], $"Campus Identifier: {NONALPHANUMERIC_INVALID_CAMPID} is not valid", "Learner with invalid cmapid was not validated");
         }
-
-        //[Test]
-        //[Category("Category [Unit]")]
-        //public void LearnerOffTheJobHours_WhenGreaterThan4_ShouldGiveError()
-        //{
-        //    var learner = ilrMessage.LearnerList[0];
-        //    learner.OTJHours = LARGER_INVALID_OFFTHEJOBHOURS;
-        //    Assert.AreEqual(learner["OTJHours"], $"Off-the-job training hours : {LARGER_INVALID_OFFTHEJOBHOURS} is not valid", "Learner with invalid OTJHours was not validated");
-        //}
-
-        //[Test]
-        //[Category("Category [Unit]")]
-        //public void LearnerOffTheJobHours_WhenHasNonNumeric_ShouldGiveError()
-        //{
-        //    var learner = ilrMessage.LearnerList[0];
-        //    learner.OTJHours = NONNUMERIC_INVALID_OFFTHEJOBHOURS;
-        //    Assert.AreEqual(learner["OTJHours"], $"Off-the-job training hours : {NONNUMERIC_INVALID_OFFTHEJOBHOURS} is not valid", "Learner with invalid OTJHours was not validated");
-        //}
 
         #region helper functions
         public static bool IsValidXml(string xmlFilePath, string xsdFilePath, string namespaceName)

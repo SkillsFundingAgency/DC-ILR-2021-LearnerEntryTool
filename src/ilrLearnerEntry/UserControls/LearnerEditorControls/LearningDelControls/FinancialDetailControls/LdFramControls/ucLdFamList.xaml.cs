@@ -115,7 +115,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				}
 			}
 		}
-		public Visibility IsVisable
+		public Visibility IsVisible
 		{
 			get
 			{

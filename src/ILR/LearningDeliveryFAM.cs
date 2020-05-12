@@ -31,14 +31,14 @@ namespace ILR
             LSF,
             HHS,
             ACT,
-            DAM // added for 1920
+            DAM
         }
 
         public enum DatedFAMs
         {
             ABCDF,
             GHIH
-        } //{ ALB, LSF }
+        } 
 
         #endregion
 

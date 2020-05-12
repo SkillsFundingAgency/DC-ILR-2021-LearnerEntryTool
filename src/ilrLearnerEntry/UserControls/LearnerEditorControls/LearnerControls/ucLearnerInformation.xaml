@@ -64,7 +64,7 @@
                       TabIndex="2"
                       Style="{DynamicResource ComboBoxWithError}"    
                       SelectedValue="{Binding Path=CurrentItem.Ethnicity, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
-                      ToolTip="{Binding Path=CurrentItem.EthnicityDesc, Mode=OneWay}" Margin="4.5,4,25.5,0" VerticalAlignment="Top" 
+                      ToolTip="{Binding Path=CurrentItem.Ethnicity, Mode=OneWay}" Margin="4.5,4,25.5,0" VerticalAlignment="Top" 
                    />
                 <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" Text="Postcode Prior to Enrolment:" />
                 <TextBox Grid.Row="3" Grid.Column="1" 

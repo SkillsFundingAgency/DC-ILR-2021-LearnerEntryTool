@@ -13,7 +13,7 @@ namespace IlrLearnerEntry.UIAutomation.Tests.WindowObjects
         private static Application _application;
 
         #region ConfigItems
-        public const string MainWindowTitle = "ILR Learner Entry - 1920";
+        public const string MainWindowTitle = "ILR Learner Entry - 2021";
         #endregion
 
 

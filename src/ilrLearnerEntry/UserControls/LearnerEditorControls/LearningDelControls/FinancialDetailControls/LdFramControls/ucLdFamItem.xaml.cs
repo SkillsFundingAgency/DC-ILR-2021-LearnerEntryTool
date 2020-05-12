@@ -38,7 +38,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					OnPropertyChanged("IsCodeReadOnly");
 					OnPropertyChanged("IsCodeVisible");
 					OnPropertyChanged("IsFromVisible");
-					OnPropertyChanged("IsToVisable");
+					OnPropertyChanged("IsToVisible");
 				}
 				else
 				{
@@ -55,7 +55,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				return bRet;
 			}
 		}
-		public Visibility IsTypeVisable
+		public Visibility IsTypeVisible
 		{
 			get
 			{
@@ -84,7 +84,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				return v;
 			}
 		}
-		public Visibility IsCodeVisable
+		public Visibility IsCodeVisible
 		{
 			get
 			{
@@ -143,7 +143,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             }
         }
 
-        public Visibility IsFromVisable
+        public Visibility IsFromVisible
 		{
 			get
 			{
@@ -167,7 +167,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				return v;
 			}
 		}
-		public Visibility IsToVisable
+		public Visibility IsToVisible
 		{
 			get
 			{

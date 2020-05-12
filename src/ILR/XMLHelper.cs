@@ -41,7 +41,7 @@ namespace ILR
                 new List<string>()
                 {
                     "LearnAimRef", "AimType", "AimSeqNumber", "LearnStartDate", "OrigLearnStartDate",
-                    "LearnPlanEndDate", "FundModel", "ProgType", "FworkCode", "PwayCode", "StdCode", "PartnerUKPRN",
+                    "LearnPlanEndDate", "FundModel", "PHours", "OTJActhours", "ProgType", "FworkCode", "PwayCode", "StdCode", "PartnerUKPRN",
                     "LSDPostcode", "DelLocPostCode", "AddHours", "PHours", "PriorLearnFundAdj", "OtherFundAdj",
                     "ConRefNumber", "EPAOrgID", "EmpOutcome", "CompStatus", "LearnActEndDate", "WithdrawReason",
                     "Outcome", "AchDate", "OutGrade", "SWSupAimId", "LearningDeliveryFAM", "AppFinRecord",

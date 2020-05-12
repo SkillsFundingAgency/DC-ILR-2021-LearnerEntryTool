@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dc="ESFA/ILR/2018-19"
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dc="ESFA/ILR/2020-21"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exclude-result-prefixes="dc">
   <xsl:output method="xml" encoding="UTF-8" indent="yes" />
   <xsl:strip-space elements="*"/>
   <xsl:template match="/dc:Message">
-    <Message xmlns="ESFA/ILR/2018-19">
+    <Message xmlns="ESFA/ILR/2020-21">
       <Header >
         <CollectionDetails>
           <Collection>
@@ -63,15 +63,15 @@
               <xsl:value-of select="dc:PrevUKPRN"/>
             </PrevUKPRN>
           </xsl:if>
-          <xsl:if test="dc:CampId != ''">
-            <CampId>
-              <xsl:value-of select="dc:CampId"/>
-            </CampId>
-          </xsl:if>
           <xsl:if test="dc:PMUKPRN != ''">
             <PMUKPRN>
               <xsl:value-of select="dc:PMUKPRN"/>
             </PMUKPRN>
+          </xsl:if>
+          <xsl:if test="dc:CampId != ''">
+            <CampId>
+              <xsl:value-of select="dc:CampId"/>
+            </CampId>
           </xsl:if>
           <ULN>
             <xsl:value-of select="dc:ULN"/>
@@ -235,11 +235,6 @@
                   <xsl:value-of select="dc:EmpId"/>
                 </EmpId>
               </xsl:if>
-              <xsl:if test="dc:AgreeId != ''">
-                <AgreeId>
-                  <xsl:value-of select="dc:AgreeId"/>
-                </AgreeId>
-              </xsl:if>
               <xsl:for-each select="dc:EmploymentStatusMonitoring">
                 <EmploymentStatusMonitoring>
                   <ESMType>
@@ -301,6 +296,16 @@
               <FundModel>
                 <xsl:value-of select="dc:FundModel"/>
               </FundModel>
+              <xsl:if test="dc:PHours != ''">
+                <PHours>
+                  <xsl:value-of select="dc:PHours"/>
+                </PHours>
+              </xsl:if>
+              <xsl:if test="dc:OTJActhours != ''">
+                <PHours>
+                  <xsl:value-of select="dc:OTJActhours"/>
+                </PHours>
+              </xsl:if>
               <xsl:if test="dc:ProgType != ''">
                 <ProgType>
                   <xsl:value-of select="dc:ProgType"/>
@@ -326,9 +331,16 @@
                   <xsl:value-of select="dc:PartnerUKPRN"/>
                 </PartnerUKPRN>
               </xsl:if>
-              <DelLocPostCode>
+              <xsl:if test="dc:DelLocPostCode != ''">
+                <DelLocPostCode>
                 <xsl:value-of select="dc:DelLocPostCode"/>
               </DelLocPostCode>
+              </xsl:if>
+              <xsl:if test="dc:LSDPostcode != ''">
+                <LSDPostcode>
+                  <xsl:value-of select="dc:LSDPostcode"/>
+                </LSDPostcode>
+              </xsl:if>
               <xsl:if test="dc:AddHours != ''">
                 <AddHours>
                   <xsl:value-of select="dc:AddHours"/>
