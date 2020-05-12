@@ -664,8 +664,7 @@ namespace ILR
         {
             get
             {
-                Lookup lookup = new Lookup();
-                return lookup.GetDescription("AimType", this.AimType.ToString());
+                return ILR.Lookup.GetDescription("AimType", this.AimType.ToString());
             }
         }
 

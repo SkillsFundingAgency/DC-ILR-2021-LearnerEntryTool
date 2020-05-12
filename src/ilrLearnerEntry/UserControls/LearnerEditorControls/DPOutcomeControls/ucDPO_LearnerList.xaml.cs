@@ -218,8 +218,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 		}
 		private void SetupLookups()
 		{
-			ILR.Lookup lp = new ILR.Lookup();
-			LearnerOutcomeListControl.OutcomeDetailControl.OutcomeTypeList = lp.GetLookup("OutType");
+			LearnerOutcomeListControl.OutcomeDetailControl.OutcomeTypeList = ILR.Lookup.GetLookup("OutType");
 		}
 		#endregion
 

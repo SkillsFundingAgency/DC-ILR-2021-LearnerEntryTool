@@ -6,11 +6,11 @@ using System.IO;
 
 namespace ILR
 {
-    public class Lookup
+    public static class Lookup
     {
-        private XmlDocument lookupsXML;
+        private static XmlDocument lookupsXML;
 
-        public string GetDescription(string Item, string Code)
+        public static string GetDescription(string Item, string Code)
         {
             string result = null;
             if (Code.Length >0)
@@ -22,7 +22,7 @@ namespace ILR
             return result;
         }
 
-        public Lookup()
+        static Lookup()
         {
             lookupsXML = new XmlDocument();
 
@@ -33,10 +33,10 @@ namespace ILR
             lookupsXML.LoadXml(GetResourceXML(lookupXMLResourceName));
         }
 
-        private string GetResourceXML(string ResourceName)
+        private static string GetResourceXML(string ResourceName)
         {
             string result = "";
-            using (Stream stream = this.GetType().Assembly.GetManifestResourceStream(ResourceName))
+            using (Stream stream = typeof(Lookup).Assembly.GetManifestResourceStream(ResourceName))
             {
                 using (StreamReader reader = new StreamReader(stream))
                 {
@@ -46,7 +46,7 @@ namespace ILR
             return result;
         }
 
-        public DataTable GetLookup(string Item)
+        public static DataTable GetLookup(string Item)
         {
             using (DataTable result = new DataTable())
             {
@@ -74,7 +74,7 @@ namespace ILR
                 return result;
             }
         }
-        public DataTable GetLookup(string Item, string Type)
+        public static DataTable GetLookup(string Item, string Type)
         {
 
             using (DataTable result = new DataTable())

@@ -170,9 +170,8 @@ namespace ILR
         {
             if (Learners > 0)
             {
-                Lookup lu = new Lookup();
                 DataRow row = Table.NewRow();
-                row["Description"] = lu.GetDescription("FundModel", FundModel.ToString());
+                row["Description"] = ILR.Lookup.GetDescription("FundModel", FundModel.ToString());
                 row["Count"] = Learners;
                 Table.Rows.Add(row);
             }
@@ -215,6 +214,7 @@ namespace ILR
         XmlDocument ILRFile;
         XmlNamespaceManager NSMgr;
         string Filename;
+        Dictionary<string, int> LearnerRefNumbers = new Dictionary<string, int>(1024);
 
         public static Boolean IsLoggingEnabled
         {
@@ -272,6 +272,23 @@ namespace ILR
 
             //Load the data
             Load(Filename, ILRFile, NSMgr);
+
+            //Extract the Learner Ref numbers for quicker exist / count checks
+            var lrns =  ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber", NSMgr);
+
+            foreach (XmlNode lrn in lrns)
+            {
+                var data = lrn.FirstChild.Value;
+
+                if (LearnerRefNumbers.TryGetValue(data, out int existingCount))
+                {
+                    LearnerRefNumbers[data] = ++existingCount;
+                }
+                else
+                {
+                    LearnerRefNumbers.Add(data, 1);
+                }
+            }
         }
 
         protected void LoadPreviousYearILR(string Filename, string LogFilename)
@@ -629,14 +646,17 @@ namespace ILR
 
         public bool LearnRefNumberExists(string LearnRefNumber)
         {
-            return ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber[text()='" + LearnRefNumber + "']",
-                       NSMgr).Count > 0;
+            return LearnerRefNumbers.ContainsKey(LearnRefNumber);
         }
 
         public int CountLearnRefNumberInstances(string LearnRefNumber)
         {
-            return ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber[text()='" + LearnRefNumber + "']",
-                NSMgr).Count;
+            if (LearnerRefNumbers.TryGetValue(LearnRefNumber, out int existingCount))
+            {
+                return existingCount;
+            }
+
+            return 0;
         }
 
         public void FixLDAPULN()

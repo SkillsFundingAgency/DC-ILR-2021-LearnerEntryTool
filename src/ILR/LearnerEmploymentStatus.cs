@@ -38,8 +38,7 @@ namespace ILR
         {
             get
             {
-                Lookup lookup = new Lookup();
-                return lookup.GetDescription("EmpStat", this.EmpStat.ToString());
+                return ILR.Lookup.GetDescription("EmpStat", this.EmpStat.ToString());
             }
         }
         #endregion
