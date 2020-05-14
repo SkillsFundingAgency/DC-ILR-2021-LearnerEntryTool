@@ -659,6 +659,30 @@ namespace ILR
             return 0;
         }
 
+        public void UpdateLearnerRefCount(string oldLearnRefNumber, string newLearnRefNumber)
+        {
+            if (LearnerRefNumbers.TryGetValue(oldLearnRefNumber, out int oldCount))
+            {
+                if (oldCount == 1)
+                {
+                    LearnerRefNumbers.Remove(oldLearnRefNumber);
+                }
+                else
+                {
+                    LearnerRefNumbers[oldLearnRefNumber] = --oldCount;
+                }
+            }
+
+            if (LearnerRefNumbers.TryGetValue(newLearnRefNumber, out int newCount))
+            {
+                LearnerRefNumbers[newLearnRefNumber] = ++newCount;
+            }
+            else
+            {
+                LearnerRefNumbers.Add(newLearnRefNumber, 1);
+            }
+        }
+
         public void FixLDAPULN()
         {
             XmlNodeList ldaps = ILRFile.SelectNodes("ia:Message/ia:LearnerDestinationandProgression", NSMgr);
