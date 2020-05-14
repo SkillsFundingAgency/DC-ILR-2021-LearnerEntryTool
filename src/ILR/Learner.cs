@@ -185,6 +185,7 @@ namespace ILR
             get { return XMLHelper.GetChildValue("LearnRefNumber", Node, NSMgr); }
             set
             {
+                Message.UpdateLearnerRefCount(LearnRefNumber, value);
                 XMLHelper.SetChildValue("LearnRefNumber", value, Node, NSMgr);
                 OnPropertyChanged("LearnRefNumber");
                 RefreshFormProperties();
