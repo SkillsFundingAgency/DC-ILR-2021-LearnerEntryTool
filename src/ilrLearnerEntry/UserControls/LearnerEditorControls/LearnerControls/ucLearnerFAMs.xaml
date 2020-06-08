@@ -90,29 +90,6 @@
                           SelectedValue="{Binding Path=CurrentItem.FME, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
                    />
 			</Grid>
-			<Border Grid.Row="3" Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <Grid x:Name="GridPPE"  >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition  />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="Pupil premium funding eligibility :" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"  Margin="10,3,3,3" Style="{DynamicResource StandardTextBlockStyle}" />
-
-                    <CheckBox  Grid.Row="1" Grid.Column="0" IsChecked="{Binding Path=CurrentItem.PPE1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" Content="1: Learner is eligible for Service Child premium" TabIndex="8"/>
-                    <CheckBox Grid.Row="2" Grid.Column="0"  IsChecked="{Binding Path=CurrentItem.PPE2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" Content="2: Learner is eligible for Adopted from Care premium" TabIndex="9"/>
-
-                </Grid>
-            </Border>
             <Border Grid.Row="4" Grid.Column="1"  BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="10"  VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Grid x:Name="GridNLM"  >
                     <Grid.ColumnDefinitions>

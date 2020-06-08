@@ -47,11 +47,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     OnPropertyChanged("PlusLoanBursaryFundList");
                     OnPropertyChanged("SourceOfFundingList");
                     OnPropertyChanged("FullOrCoFundedList");
-                    OnPropertyChanged("NatioanSkillAgencyList");
                     OnPropertyChanged("SpecialProjectList");
                     OnPropertyChanged("EligibitiytAppFundingList");
                     OnPropertyChanged("ASLList");
-                    OnPropertyChanged("PODList");
                     OnPropertyChanged("CurrentItem");
                 }
                 else
@@ -85,23 +83,25 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             OnPropertyChanged("LDM1");
         }
 
-        private List<String> DamFamFormFields = new List<String>(4);
+        private List<String> DamFamFormFields = new List<String>(6);
         private void PopulateDamFamFormFields()
         {
             DamFamFormFields.Clear();
             foreach (String code in learningDelivery.DAM)
             {
                 DamFamFormFields.Add(code);
-                if (DamFamFormFields.Count >= 4)
+                if (DamFamFormFields.Count >= 6)
                 {
                     break;
                 }
             }
 
-            while (DamFamFormFields.Count < 4)
+            while (DamFamFormFields.Count < 6)
             {
                 DamFamFormFields.Add(String.Empty);
             }
+            OnPropertyChanged("DAM6");
+            OnPropertyChanged("DAM5");
             OnPropertyChanged("DAM4");
             OnPropertyChanged("DAM3");
             OnPropertyChanged("DAM2");
@@ -200,6 +200,23 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set { SetDamFormFieldValue(3, value); }
         }
 
+        /// <summary>
+        /// DAM5 
+        /// </summary>
+        public String DAM5
+        {
+            get { return DamFamFormFields.Count > 4 ? DamFamFormFields[4] : String.Empty; }
+            set { SetDamFormFieldValue(4, value); }
+        }
+
+        /// <summary>
+        /// DAM6
+        /// </summary>
+        public String DAM6
+        {
+            get { return DamFamFormFields.Count > 5 ? DamFamFormFields[5] : String.Empty; }
+            set { SetDamFormFieldValue(5, value); }
+        }
 
         private void SetLdmFormFieldValue(Int32 index, String value)
         {
@@ -235,7 +252,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     TmpList.Add(code);
                 }
 
-                if (TmpList.Count >= 4)
+                if (TmpList.Count >= 6)
                 {
                     break;
                 }
@@ -244,22 +261,14 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             PopulateDamFamFormFields();
         }
 
-
         public DataTable PlusLoanBursaryFundList { set; get; }
         public DataTable SourceOfFundingList { set; get; }
         public DataTable FullOrCoFundedList { set; get; }
-        public DataTable NatioanSkillAgencyList { set; get; }
         public DataTable SpecialProjectList { set; get; }
         public DataTable ASLList { set; get; }
-
-        public DataTable PODList{ set; get; }
-        
-
-        
         public DataTable EligibitiytAppFundingList { set; get; }
      
         #endregion
-
 
         #region INotifyPropertyChanged Members
         /// <summary>

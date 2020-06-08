@@ -104,14 +104,9 @@
                           Height="22" VerticalAlignment="Center" 
                 />
 
-                <!-- Is this part of the DWP work programme -->
-                <TextBlock Grid.Row="1" Grid.Column="3" Text="Is this part of the DWP work programme ?" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
-                <CheckBox Grid.Row="1" Grid.Column="4"  IsChecked="{Binding Path=CurrentItem.WPP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" 
-                          TabIndex="8" VerticalAlignment="Center" />
-
                 <!-- Community Learning provision type -->
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Community Learning provision type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="2" Grid.Column="1"
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="Community Learning provision type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="1" Grid.Column="4"
                           Margin="3,4,0,0"
                           MinWidth="100"
                           MaxWidth="225"
@@ -125,28 +120,13 @@
                 />
 
                 <!-- Family English, Maths and Language -->
-                <TextBlock Grid.Row="2" Grid.Column="3" Text="Family English, Maths and Language :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
-                <CheckBox Grid.Row="2" Grid.Column="4"  IsChecked="{Binding Path=CurrentItem.FLN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center"   HorizontalAlignment="Left" Margin="3" 
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Family English, Maths and Language :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
+                <CheckBox Grid.Row="2" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.FLN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center"   HorizontalAlignment="Left" Margin="3" 
                           TabIndex="12" />
 
-                <!-- National Skills Academy indicator -->
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="National Skills Academy indicator :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="3" Grid.Column="1"
-                          Margin="3,4,0,0"
-                      MinWidth="100"
-                      MaxWidth="225"
-                      TabIndex="14"
-                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
-                      ItemsSource="{Binding Path=NatioanSkillAgencyList, UpdateSourceTrigger=PropertyChanged}" 
-                      DisplayMemberPath="Description" 
-                      SelectedValuePath="Code" 
-                      Style="{DynamicResource ComboBoxWithError}"    
-                      SelectedValue="{Binding Path=CurrentItem.NSA, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" VerticalAlignment="Center" 
-                   />
-
                 <!-- Eligibility for enhanced apprenticeship funding -->
-                <TextBlock Grid.Row="3" Grid.Column="3" Text="Eligibility for enhanced apprenticeship funding :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="3" Grid.Column="4"
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="Eligibility for enhanced apprenticeship funding :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="2" Grid.Column="4"
                           Margin="3,4,0,0"
                           MinWidth="100"
                           MaxWidth="225"
@@ -158,21 +138,6 @@
                           Style="{DynamicResource ComboBoxWithError}"    
                           SelectedValue="{Binding Path=CurrentItem.EEF, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" VerticalAlignment="Center" 
                 />
-
-                <!-- Percentage of online delivery -->
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="Percentage of online delivery :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="4" Grid.Column="1"
-                      Margin="3,4,0,0"
-                      MinWidth="100"
-                      MaxWidth="225"
-                      TabIndex="18"
-                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
-                      ItemsSource="{Binding Path=PODList, UpdateSourceTrigger=PropertyChanged}" 
-                      DisplayMemberPath="Description" 
-                      SelectedValuePath="Code" 
-                      Style="{DynamicResource ComboBoxWithError}"    
-                      SelectedValue="{Binding Path=CurrentItem.POD, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" VerticalAlignment="Center" 
-                   />
 
                 <!-- Learning Delivery Monitoring Codes -->
                 <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="Learning Delivery Monitoring Codes :" HorizontalAlignment="Left" Margin="13,10,2,2" FontSize="14" FontWeight="Bold" />
@@ -302,15 +267,22 @@
                         <ColumnDefinition Width="75"/>
 
                         <!-- Tickbox 2 -->
-
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="75"/>
-                        <!-- Tickbox 3 -->
 
+                        <!-- Tickbox 3 -->
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="75"/>
 
                         <!-- Tickbox 4  -->
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="75"/>
+
+                        <!-- Tickbox 5 -->
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="75"/>
+
+                        <!-- Tickbox 6  -->
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="75"/>
 
@@ -372,6 +344,31 @@
                      Margin="3"
                      MaxLength="5"/>
 
+                    <!-- Tickbox 5 -->
+                    <TextBlock Grid.Row="0" Grid.Column="8" Text=" 5 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="9"
+                             Text="{Binding Path=DAM5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                             IsEnabled="{Binding Path=DAM4, Converter={StaticResource IsEnabledConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay }"        
+                             Style="{DynamicResource TextBoxWithError}"
+                             HorizontalAlignment="Left" 
+                             HorizontalContentAlignment="Left" 
+                             MinWidth="50"  
+                             TabIndex="39"
+                             Margin="3"
+                             MaxLength="5"/>
+
+                    <!-- Tickbox 4 -->
+                    <TextBlock Grid.Row="0" Grid.Column="10" Text=" 6 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="11"
+                             Text="{Binding Path=DAM6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                             IsEnabled="{Binding Path=DAM5, Converter={StaticResource IsEnabledConverter},UpdateSourceTrigger=PropertyChanged,  Mode=OneWay}"                                     
+                             Style="{DynamicResource TextBoxWithError}"
+                             HorizontalAlignment="Left" 
+                             HorizontalContentAlignment="Left" 
+                             MinWidth="50" 
+                             TabIndex="40"
+                             Margin="3"
+                             MaxLength="5"/>
                 </Grid>
 
             </Grid>

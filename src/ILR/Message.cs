@@ -661,7 +661,7 @@ namespace ILR
 
         public void UpdateLearnerRefCount(string oldLearnRefNumber, string newLearnRefNumber)
         {
-            if (LearnerRefNumbers.TryGetValue(oldLearnRefNumber, out int oldCount))
+            if (!string.IsNullOrEmpty(oldLearnRefNumber) &&  LearnerRefNumbers.TryGetValue(oldLearnRefNumber, out int oldCount))
             {
                 if (oldCount == 1)
                 {

@@ -9,7 +9,6 @@ namespace ILR.LearnerEntry.Tests
         private Message message =null;
         private string dataFolder = string.Empty;
         private string internalFileName = "internal1920.ilr";
-        //private const string TYPEYR_VALIDATION_MESSAGE = "Type of instance year is mandatory.";
 
         [SetUp]
         public void Setup()

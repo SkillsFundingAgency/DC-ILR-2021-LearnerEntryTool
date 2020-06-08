@@ -12,21 +12,12 @@ namespace ILR
         {
             SOF,
             FFI,
-            EEF,
             RES,
-            ADL,
-            ASL,
-            SPP,
-            NSA,
-            WPP,
-            POD,
-            FLN
         }
 
         public enum MultiOccurrenceFAMs
         {
             LDM,
-            HEM,
             ALB,
             LSF,
             HHS,

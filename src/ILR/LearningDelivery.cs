@@ -23,6 +23,9 @@ namespace ILR
 
         private const string PHOURS_PATTERN = "^[0-9]{1,4}$";
 
+        private readonly IList<string> _learnDeliveryFamTypeListExcludedForMigration = new List<string>()
+            {"TBS", "WPP", "NSA", "POD", "HEM"};
+
         #region LD updateLearnerEvent
 
         public event PropertyChangedEventHandler LearningDeliveryPropertyChanged;
@@ -687,45 +690,6 @@ namespace ILR
             }
         }
 
-        public bool ADL
-        {
-            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.ADL) == "1"; }
-            set
-            {
-                if (value)
-                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ADL, "1");
-                else
-                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ADL);
-                OnPropertyChanged("ADL");
-            }
-        }
-
-        public bool WPP
-        {
-            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.WPP) == "1"; }
-            set
-            {
-                if (value)
-                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.WPP, "1");
-                else
-                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.WPP);
-                OnPropertyChanged("WPP");
-            }
-        }
-
-        public bool FLN
-        {
-            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.FLN) == "1"; }
-            set
-            {
-                if (value)
-                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.FLN, "1");
-                else
-                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.FLN);
-                OnPropertyChanged("FLN");
-            }
-        }
-
         public string SOF
         {
             get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.SOF); }
@@ -752,78 +716,11 @@ namespace ILR
             }
         }
 
-        public string EEF
-        {
-            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.EEF); }
-            set
-            {
-                if (value != null)
-                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.EEF, value);
-                else
-                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.EEF);
-                OnPropertyChanged("EEF");
-            }
-        }
-
-        public string ASL
-        {
-            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.ASL); }
-            set
-            {
-                if (value != null)
-                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ASL, value);
-                else
-                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ASL);
-                OnPropertyChanged("ASL");
-            }
-        }
-
-        //public string SPP
-        //{
-        //    get
-        //    {
-        //        return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.SPP);
-        //    }
-        //    set
-        //    {
-        //        if (value != null)
-        //            SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.SPP, value);
-        //        else
-        //            RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.SPP);
-        //        OnPropertyChanged("SPP");
-        //    }
-        //}
-        public string NSA
-        {
-            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.NSA); }
-            set
-            {
-                if (value != null)
-                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.NSA, value);
-                else
-                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.NSA);
-                OnPropertyChanged("NSA");
-            }
-        }
-
-        public string POD
-        {
-            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.POD); }
-            set
-            {
-                if (value != null)
-                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.POD, value);
-                else
-                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.POD);
-                OnPropertyChanged("POD");
-            }
-        }
-
         public List<string> DAM
         {
             get
             {
-                List<string> DAMList = new List<string>(4);
+                List<string> DAMList = new List<string>(6);
 
                 foreach(LearningDeliveryFAM fam in this.LearningDeliveryFAMList.FindAll(x => x.LearnDelFAMType == "DAM"))
                 {
@@ -847,25 +744,13 @@ namespace ILR
                         i++;
                     }
 
-                    if (i > 4)
+                    if (i > 6)
                     {
                         break;
                     }
                 }
 
                 OnPropertyChanged("DAM");
-            }
-        }
-
-        public List<LearningDeliveryFAM> HEM
-        {
-            get { return this.LearningDeliveryFAMList.FindAll(x => x.LearnDelFAMType == "HEM"); }
-            set
-            {
-                ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HEM);
-                foreach (LearningDeliveryFAM fam in value)
-                    AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HEM, fam.LearnDelFAMCode);
-                OnPropertyChanged("HEM");
             }
         }
 
@@ -878,45 +763,6 @@ namespace ILR
                 foreach (LearningDeliveryFAM fam in value)
                     AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.LDM, fam.LearnDelFAMCode);
                 OnPropertyChanged("LDM");
-            }
-        }
-
-        public List<string> HEM2
-        {
-            get
-            {
-                List<string> LDMList = new List<string>(0);
-
-                foreach (LearningDeliveryFAM fam in this.LearningDeliveryFAMList.FindAll(
-                    x => x.LearnDelFAMType == "HEM"))
-                {
-                    if (!String.IsNullOrEmpty(fam.LearnDelFAMCode))
-                    {
-                        LDMList.Add(fam.LearnDelFAMCode);
-                    }
-                }
-
-                return LDMList;
-            }
-            set
-            {
-                ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HEM);
-                Int16 i = 1;
-                foreach (String code in value)
-                {
-                    if (!String.IsNullOrEmpty(code))
-                    {
-                        AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HEM, code);
-                        i++;
-                    }
-
-                    if (i > 3)
-                    {
-                        break;
-                    }
-                }
-
-                OnPropertyChanged("HEM");
             }
         }
 
@@ -970,30 +816,6 @@ namespace ILR
             }
         }
 
-        public List<LearningDeliveryFAM> ALB
-        {
-            get { return this.LearningDeliveryFAMList.FindAll(x => x.LearnDelFAMType == "ALB"); }
-            set
-            {
-                ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.ALB);
-                foreach (LearningDeliveryFAM fam in value)
-                    AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.ALB, fam.LearnDelFAMCode);
-                OnPropertyChanged("ALB");
-            }
-        }
-
-        public List<LearningDeliveryFAM> LSF
-        {
-            get { return this.LearningDeliveryFAMList.FindAll(x => x.LearnDelFAMType == "LSF"); }
-            set
-            {
-                ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.LSF);
-                foreach (LearningDeliveryFAM fam in value)
-                    AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.LSF, fam.LearnDelFAMCode);
-                OnPropertyChanged("LSF");
-            }
-        }
-
         public List<LearningDeliveryFAM> ACT
         {
             get { return this.LearningDeliveryFAMList.FindAll(x => x.LearnDelFAMType == "ACT"); }
@@ -1003,192 +825,6 @@ namespace ILR
                 foreach (LearningDeliveryFAM fam in value)
                     AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.ACT, fam.LearnDelFAMCode);
                 OnPropertyChanged("ACT");
-            }
-        }
-        //public string ALB1
-        //{
-        //    get
-        //    {
-        //        return GetFAMCode(LearningDeliveryFAM.DatedFAMs.ALB);
-        //    }
-        //    set
-        //    {
-        //        if (value != null)
-        //            SetFAM(LearningDeliveryFAM.DatedFAMs.ALB, value);
-        //        else
-        //            RemoveFAM(LearningDeliveryFAM.DatedFAMs.ALB);
-        //        OnPropertyChanged("ALB");
-        //    }
-        //}
-
-        //public DateTime? ALBFrom
-        //{
-        //    get
-        //    {
-        //        return GetFAMFrom(LearningDeliveryFAM.DatedFAMs.ALB);
-        //    }
-        //    set
-        //    {
-        //        SetFAMFrom(LearningDeliveryFAM.DatedFAMs.ALB, value);
-        //        OnPropertyChanged("ALBFrom");
-        //    }
-        //}
-        //public DateTime? ALBTo
-        //{
-        //    get
-        //    {
-        //        return GetFAMTo(LearningDeliveryFAM.DatedFAMs.ALB);
-        //    }
-        //    set
-        //    {
-        //        SetFAMTo(LearningDeliveryFAM.DatedFAMs.ALB, value);
-        //        OnPropertyChanged("ALBTo");
-        //    }
-        //}
-        //public bool? LSF1
-        //{
-        //    get
-        //    {
-        //        return GetFAMCode(LearningDeliveryFAM.DatedFAMs.LSF) == "1";
-        //    }
-        //    set
-        //    {
-        //        if (value == true)
-        //            SetFAM(LearningDeliveryFAM.DatedFAMs.LSF, "1");
-        //        else
-        //            RemoveFAM(LearningDeliveryFAM.DatedFAMs.LSF);
-        //        OnPropertyChanged("LSF");
-        //    }
-        //}
-        //public DateTime? LSFFrom
-        //{
-        //    get
-        //    {
-        //        return GetFAMFrom(LearningDeliveryFAM.DatedFAMs.LSF);
-        //    }
-        //    set
-        //    {
-        //        SetFAMFrom(LearningDeliveryFAM.DatedFAMs.LSF, value);
-        //        OnPropertyChanged("LSFFrom");
-        //    }
-        //}
-        //public DateTime? LSFTo
-        //{
-        //    get
-        //    {
-        //        return GetFAMTo(LearningDeliveryFAM.DatedFAMs.LSF);
-        //    }
-        //    set
-        //    {
-        //        SetFAMTo(LearningDeliveryFAM.DatedFAMs.LSF, value);
-        //        OnPropertyChanged("LSFTo");
-        //    }
-        //}
-
-        //public bool HHS_OneOrMoreApply
-        //{
-        //    get
-        //    {
-        //        return !HHS_NoneApply && !HHS_WontSay;
-        //    }
-        //    set
-        //    {
-
-        //    }
-        //}
-        //public bool HHS_OneOrMoreApply
-        //{
-        //    get
-        //    {
-        //        return !HHS_NoneApply && !HHS_WontSay;
-        //    }
-        //    set
-        //    {
-        //    }
-        //}
-        //public bool HHS_OneOrMoreApply_NoMemberIsEmployed
-        //{
-        //    get
-        //    {
-        //        List<string> hhs = GetFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-        //        return hhs.Contains("2") || hhs.Contains("1");
-        //    }
-        //    set
-        //    {
-        //        if (value)
-        //        {
-        //            ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-        //            AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "2");
-        //        }
-        //        else
-        //            RemoveFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "2");
-        //    }
-        //}
-        //public bool HHS_OneOrMoreApply_OneAdult
-        //{
-        //    get
-        //    {
-        //        List<string> hhs = GetFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-        //        return hhs.Contains("2")||hhs.Contains("1");
-        //    }
-        //    set
-        //    {
-        //        if (value)
-        //        {
-        //            ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-        //            AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "2");
-        //        }
-        //        else
-        //            RemoveFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "2");
-        //    }
-        //}
-        //public bool HHS_OneOrMoreApply_Kids
-        //{
-        //    get
-        //    {
-        //        List<string> hhs = GetFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-        //        return hhs.Contains("3")||hhs.Contains("1");
-        //    }
-        //    set
-        //    {
-        //        if (value)
-        //        {
-        //            ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-        //            AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "3");
-        //        }
-        //        else
-        //            RemoveFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "3");
-        //    }
-        //}
-
-
-        public bool HHS_NoneApply
-        {
-            get { return GetFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS).Contains("99"); }
-            set
-            {
-                if (value)
-                {
-                    ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-                    AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "99");
-                }
-                else
-                    RemoveFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "99");
-            }
-        }
-
-        public bool HHS_WontSay
-        {
-            get { return GetFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS).Contains("98"); }
-            set
-            {
-                if (value)
-                {
-                    ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS);
-                    AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "98");
-                }
-                else
-                    RemoveFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HHS, "98");
             }
         }
 
@@ -1454,8 +1090,8 @@ namespace ILR
             this.OutGrade = MigrationLearningDelivery.OutGrade;
             this.SWSupAimId = MigrationLearningDelivery.SWSupAimId;
 
-            foreach (LearningDeliveryFAM migrationItem in MigrationLearningDelivery.LearningDeliveryFAMList.Where(f =>
-                f.LearnDelFAMType != "TBS"))
+            foreach (LearningDeliveryFAM migrationItem in MigrationLearningDelivery.LearningDeliveryFAMList.Where(fmType =>
+                !_learnDeliveryFamTypeListExcludedForMigration.Contains(fmType.LearnDelFAMType)))
             {
                 if (migrationItem.LearnDelFAMType != "SPP" && migrationItem.LearnDelFAMType != "WPL" &&
                     !(migrationItem.LearnDelFAMType == "LDM" && migrationItem.LearnDelFAMType == "125") ||
