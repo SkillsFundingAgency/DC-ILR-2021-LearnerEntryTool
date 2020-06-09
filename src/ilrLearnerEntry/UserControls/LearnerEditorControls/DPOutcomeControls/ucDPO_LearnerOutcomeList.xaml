@@ -7,6 +7,9 @@
              xmlns:IlrTypes="clr-namespace:ILR;assembly=ILR"
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
              xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+             xmlns:maskBehavior="clr-namespace:ilrLearnerEntry.MaskBehavior"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:ilrLearnerEntry.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="300" 
              d:DesignWidth="600">
@@ -102,7 +105,13 @@
                      Width="120"                       
                      MaxLength="10"
                      Margin="3,31,0,61" 
-                     PreviewTextInput="ValidateToNumeric" Height="18"/>
+                     Height="18"
+                     maskBehavior:TextBoxMaskBehavior.MaximumLength="10"
+                     maskBehavior:TextBoxMaskBehavior.Mask="PositiveInteger" IsUndoEnabled="True" >
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                </i:Interaction.Behaviors>
+            </TextBox>
             <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,26,0,84" Grid.RowSpan="2" >
 
                 <Grid.RowDefinitions>

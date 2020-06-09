@@ -2,8 +2,10 @@
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ILR;
 using ilrLearnerEntry.UserControls.Validations;
 
@@ -199,6 +201,5 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 			OnPropertyChanged("CurrentItem");
 			CurrentItem.RefreshData();
 		}
-
-	}
+    }
 }

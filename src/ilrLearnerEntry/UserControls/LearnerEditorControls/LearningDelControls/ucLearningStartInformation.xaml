@@ -285,7 +285,7 @@
                          TextBoxMask:TextBoxMaskBehavior.MaximumLength="4"
                          IsUndoEnabled="True"/>
 
-                <TextBlock Grid.Row="9" Grid.Column="3" Text="On The Job Actual hours : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="9" Grid.Column="3" Text="Actual hours for off the job training : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2"
                          Text="{Binding Path=OTJActhours, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                          Style="{DynamicResource TextBoxWithError}"

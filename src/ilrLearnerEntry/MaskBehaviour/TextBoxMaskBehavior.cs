@@ -317,7 +317,8 @@ namespace ilrLearnerEntry.MaskBehavior
             switch (mask)
             {
                 case MaskType.Integer:
-                    {
+                case MaskType.PositiveInteger:
+                {
                         if (int.TryParse(value, out var val))
                         {
                             val = (int)ValidateLimits(min, max, val);
@@ -371,6 +372,9 @@ namespace ilrLearnerEntry.MaskBehavior
                         return true;
                     break;
 
+                case MaskType.PositiveInteger:
+                    break;
+
                 case MaskType.Decimal:
                     if (str == NumberFormatInfo.CurrentInfo.NumberDecimalSeparator ||
                         str == NumberFormatInfo.CurrentInfo.NegativeSign)
@@ -378,7 +382,7 @@ namespace ilrLearnerEntry.MaskBehavior
                     break;
             }
 
-            if (mask.Equals(MaskType.Integer) || mask.Equals(MaskType.Decimal))
+            if (mask.Equals(MaskType.Integer) || mask.Equals(MaskType.PositiveInteger) || mask.Equals(MaskType.Decimal))
             {
                 foreach (char ch in str)
                 {
@@ -402,6 +406,7 @@ namespace ilrLearnerEntry.MaskBehavior
     {
         Any,
         Integer,
+        PositiveInteger,
         Decimal
     }
 }

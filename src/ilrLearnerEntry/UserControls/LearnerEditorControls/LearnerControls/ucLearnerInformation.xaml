@@ -6,6 +6,8 @@
                               xmlns:sys="clr-namespace:System;assembly=mscorlib"
                               xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
                               xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                              xmlns:behaviors="clr-namespace:ilrLearnerEntry.Behaviors"
                               mc:Ignorable="d" 
                               d:DesignHeight="700" d:DesignWidth="970" MinWidth="200" RequestBringIntoView="UserControl_RequestBringIntoView" >
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -176,7 +178,11 @@
                              TabIndex="10"
                              MaxLength="18"
                              Margin="3,6,0,6" 
-                         />
+                         >
+                        <i:Interaction.Behaviors>
+                            <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
                     <TextBlock Grid.Row="7" Grid.Column="0" Text="Email :" HorizontalAlignment="Right" Margin="0,2.8,2,2.8" Style="{DynamicResource StandardTextBlockStyle}" />
                     <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5"
                              Name="txtEmail" 

@@ -315,17 +315,11 @@ namespace ilrLearnerEntry.UserControls
             LearningDeliveryListControl.LearningDeliveryItemControl.HEControl.TYPEYRList =ILR.Lookup.GetLookup("TypeYr");
             LearningDeliveryListControl.LearningDeliveryItemControl.LearnerFundingAndMonitoringControl.SourceOfFundingList =ILR.Lookup.GetLookup("LearningDeliveryFAM", "SOF");
             LearningDeliveryListControl.LearningDeliveryItemControl.LearnerFundingAndMonitoringControl.FullOrCoFundedList =ILR.Lookup.GetLookup("LearningDeliveryFAM", "FFI");
-            LearningDeliveryListControl.LearningDeliveryItemControl.LearnerFundingAndMonitoringControl.NatioanSkillAgencyList =ILR.Lookup.GetLookup("LearningDeliveryFAM", "NSA");
             LearningDeliveryListControl.LearningDeliveryItemControl.LearnerFundingAndMonitoringControl.EligibitiytAppFundingList =ILR.Lookup.GetLookup("LearningDeliveryFAM", "EEF");
             LearningDeliveryListControl.LearningDeliveryItemControl.LearnerFundingAndMonitoringControl.SpecialProjectList =ILR.Lookup.GetLookup("LearningDeliveryFAM", "SPP");
             LearningDeliveryListControl.LearningDeliveryItemControl.LearnerFundingAndMonitoringControl.ASLList =ILR.Lookup.GetLookup("LearningDeliveryFAM", "ASL");
-            LearningDeliveryListControl.LearningDeliveryItemControl.LearnerFundingAndMonitoringControl.PODList =ILR.Lookup.GetLookup("LearningDeliveryFAM", "POD");
-            //LearningDeliveryListControl.LearningDeliveryItemControl.TrailblazersListControl.TrlblazItemControl.TBFinTypeList =ILR.Lookup.GetLookup("TBFinType");
-            //LearningDeliveryListControl.LearningDeliveryItemControl.TrailblazersListControl.TrlblazItemControl.TBFinCodetList =ILR.Lookup.GetLookup("TrailblazerApprenticeshipFinancialRecord", "PMR");
 
             LearningDeliveryListControl.LearningDeliveryItemControl.FinancialDetailsListControl.FinTypeList =ILR.Lookup.GetLookup("AppFinRecord");
-            //LearningDeliveryListControl.LearningDeliveryItemControl.FinancialDetailsListControl.FinCodetList_TNP =ILR.Lookup.GetLookup("ApprenticeshipFinancialRecord", "TNP");
-            //LearningDeliveryListControl.LearningDeliveryItemControl.FinancialDetailsListControl.FinCodetList_PMR =ILR.Lookup.GetLookup("ApprenticeshipFinancialRecord", "PMR");
 
             LearningDeliveryListControl.LearningDeliveryItemControl.WorkplaceListControls.WorkPlacementItemControl.WorkplacementCodeList =ILR.Lookup.GetLookup("WorkPlaceMode");
             EmploymentStatusListControl.EmpStausItemControl.EmpStatList =ILR.Lookup.GetLookup("EmpStat");

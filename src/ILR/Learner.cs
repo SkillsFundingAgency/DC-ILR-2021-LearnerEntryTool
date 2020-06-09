@@ -15,7 +15,7 @@ namespace ILR
         private const string CAMPID_PATTERN = "^[A-Za-z0-9]{1,8}$";
 
         private readonly IList<string> _learnFamTypeListExcludedForMigration = new List<string>()
-            {"LDA", "HNS", "LSR", "SEN", "FME", "PPE", "EDF", "MCF", "ECF"};
+            {"LDA", "HNS", "LSR", "SEN", "FME", "PPE", "EDF", "MCF", "ECF", "WPP", "NSA", "POD"};
 
         #region Accessors
 
@@ -185,7 +185,7 @@ namespace ILR
             get { return XMLHelper.GetChildValue("LearnRefNumber", Node, NSMgr); }
             set
             {
-                Message.UpdateLearnerRefCount(LearnRefNumber, value);
+                Message?.UpdateLearnerRefCount(LearnRefNumber, value);
                 XMLHelper.SetChildValue("LearnRefNumber", value, Node, NSMgr);
                 OnPropertyChanged("LearnRefNumber");
                 RefreshFormProperties();
@@ -768,76 +768,6 @@ namespace ILR
                 }
 
                 OnPropertyChanged("EDF2");
-            }
-        }
-
-        public Boolean PPE1
-        {
-            get
-            {
-                LearnerFAM tmp = this.LearnerFAMList.Where(x =>
-                    x.LearnFAMType.ToUpper() == LearnerFAM.MultiOccurrenceFAMs.PPE.ToString()
-                    && x.LearnFAMCode == 1
-                ).FirstOrDefault();
-                return (tmp != null ? true : false);
-            }
-            set
-            {
-                LearnerFAM tmp = this.LearnerFAMList.Where(x =>
-                    x.LearnFAMType.ToUpper() == LearnerFAM.MultiOccurrenceFAMs.PPE.ToString()
-                    && x.LearnFAMCode == 1
-                ).FirstOrDefault();
-                if (value)
-                {
-                    if (tmp == null)
-                    {
-                        this.AddFAM(LearnerFAM.MultiOccurrenceFAMs.PPE, 1);
-                    }
-                }
-                else
-                {
-                    if (tmp != null)
-                    {
-                        this.Delete(tmp);
-                    }
-                }
-
-                OnPropertyChanged("PPE1");
-            }
-        }
-
-        public Boolean PPE2
-        {
-            get
-            {
-                LearnerFAM tmp = this.LearnerFAMList.Where(x =>
-                    x.LearnFAMType.ToUpper() == LearnerFAM.MultiOccurrenceFAMs.PPE.ToString()
-                    && x.LearnFAMCode == 2
-                ).FirstOrDefault();
-                return (tmp != null ? true : false);
-            }
-            set
-            {
-                LearnerFAM tmp = this.LearnerFAMList.Where(x =>
-                    x.LearnFAMType.ToUpper() == LearnerFAM.MultiOccurrenceFAMs.PPE.ToString()
-                    && x.LearnFAMCode == 2
-                ).FirstOrDefault();
-                if (value)
-                {
-                    if (tmp == null)
-                    {
-                        this.AddFAM(LearnerFAM.MultiOccurrenceFAMs.PPE, 2);
-                    }
-                }
-                else
-                {
-                    if (tmp != null)
-                    {
-                        this.Delete(tmp);
-                    }
-                }
-
-                OnPropertyChanged("PPE2");
             }
         }
 

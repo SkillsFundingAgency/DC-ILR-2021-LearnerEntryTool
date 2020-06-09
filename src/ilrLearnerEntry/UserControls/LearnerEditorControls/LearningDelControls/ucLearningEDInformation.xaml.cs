@@ -108,9 +108,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 //OnPropertyChanged("NETFEE"); --
                 //OnPropertyChanged("GROSSFEE"); --
                 OnPropertyChanged("HeItem");
-                OnPropertyChanged("HEM3");
-                OnPropertyChanged("HEM2");
-                OnPropertyChanged("HEM1");
                 //OnPropertyChanged("STULOAD"); --
             }
         }
@@ -314,86 +311,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         //        OnPropertyChanged("STULOAD");
         //    }
         //}
-
-        public Boolean HEM1
-        {
-            get { return FindHemFAM(1); }
-            set
-            {
-                SetHemValue(1, value);
-                OnPropertyChanged("HEM1");
-            }
-        }
-        public Boolean HEM2
-        {
-            get { return FindHemFAM(3); }
-            set
-            {
-                SetHemValue(3, value);
-                OnPropertyChanged("HEM2");
-            }
-        }
-        public Boolean HEM3
-        {
-            get { return FindHemFAM(5); }
-            set
-            {
-                SetHemValue(5, value);
-                OnPropertyChanged("HEM3");
-            }
-        }
-        private void SetHemValue(Int32 index, bool value)
-        {
-            bool Found = false;
-            if (FindHemFAM(index))
-            {
-                List<LearningDeliveryFAM> TmpFamList = _learningDelivery.HEM;
-
-                foreach (LearningDeliveryFAM fam in TmpFamList)
-                {
-                    if ((!string.IsNullOrEmpty(fam.LearnDelFAMCode)) && (fam.LearnDelFAMCode == index.ToString()))
-                    {
-                        if (value)
-                        {
-                            fam.LearnDelFAMCode = index.ToString();
-                        }
-                        else
-                        {
-                            TmpFamList.Remove(fam);
-                        }
-                        Found = true;
-                        break;
-                    }
-                }
-                _learningDelivery.HEM = TmpFamList;
-            }
-
-            // Didnot Find a record so Add 1
-            if (!Found)
-            {
-                _learningDelivery.AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.HEM, index.ToString());
-            }
-        }
-        private Boolean FindHemFAM(Int32 index)
-        {
-            Boolean IsFound = false;
-            if ((_learningDelivery == null) || (_learningDelivery.HEM == null))
-            {
-                IsFound = false;
-            }
-            else
-            {
-                foreach (LearningDeliveryFAM fam in _learningDelivery.HEM)
-                {
-                    if ((!string.IsNullOrEmpty(fam.LearnDelFAMCode)) && (fam.LearnDelFAMCode == index.ToString()))
-                    {
-                        IsFound = true;
-                        break;
-                    }
-                }
-            }
-            return IsFound;
-        }
 
         public DataTable SOC2000List { set; get; }
         public DataTable EconomicList { set; get; }

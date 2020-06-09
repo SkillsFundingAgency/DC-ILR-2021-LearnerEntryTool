@@ -6,6 +6,8 @@
                               xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
                               xmlns:maskBehavior="clr-namespace:ilrLearnerEntry.MaskBehavior"
                               xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                              xmlns:behaviors="clr-namespace:ilrLearnerEntry.Behaviors"
                               mc:Ignorable="d" 
                               d:DesignHeight="120"
                               d:DesignWidth="650"
@@ -75,8 +77,12 @@
                      MaxWidth="120"  
                      Margin="3"
                      TabIndex="4"
-                     maskBehavior:TextBoxMaskBehavior.Mask="Integer"
-                     maskBehavior:TextBoxMaskBehavior.MaximumLength="9"/>
+                     maskBehavior:TextBoxMaskBehavior.Mask="PositiveInteger"
+                     maskBehavior:TextBoxMaskBehavior.MaximumLength="9">
+                    <i:Interaction.Behaviors>
+                        <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>
 
                 <TextBlock Grid.Row="2" Grid.Column="5" Text="Hours :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
                 <TextBox Grid.Row="2" Grid.Column="6" 
@@ -88,8 +94,12 @@
                      MaxWidth="70"  
                      Margin="3"
                      TabIndex="4"
-                     maskBehavior:TextBoxMaskBehavior.Mask="Integer"
-                     maskBehavior:TextBoxMaskBehavior.MaximumLength="4"/>
+                     maskBehavior:TextBoxMaskBehavior.Mask="PositiveInteger"
+                     maskBehavior:TextBoxMaskBehavior.MaximumLength="4">
+                    <i:Interaction.Behaviors>
+                        <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>
 
             </Grid>
         </Grid>

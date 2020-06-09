@@ -20,7 +20,6 @@ namespace ILR
                       this.GROSSFEE == null ||
                       this.HEPostCode == null ||
                       this.UCASAPPID == null ||
-                      this.UCASAPPID == null ||
                       this.TYPEYR == null ||
                       this.MODESTUD == null ||
                       this.FUNDLEV == null ||
@@ -95,7 +94,9 @@ namespace ILR
             this.SOC2000 = MigrationLearningDeliveryHE.SOC2000;
             this.SEC = MigrationLearningDeliveryHE.SEC;
             this.UCASAPPID = MigrationLearningDeliveryHE.UCASAPPID;
-            this.TYPEYR = MigrationLearningDeliveryHE.TYPEYR;
+            this.TYPEYR = MigrationLearningDeliveryHE.TYPEYR.HasValue
+                ? Math.Min(MigrationLearningDeliveryHE.TYPEYR.Value, 2) as int?
+                : null;
             this.MODESTUD = MigrationLearningDeliveryHE.MODESTUD;
             this.FUNDLEV = MigrationLearningDeliveryHE.FUNDLEV;
             this.FUNDCOMP = MigrationLearningDeliveryHE.FUNDCOMP;

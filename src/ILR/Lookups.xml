@@ -382,29 +382,23 @@
       <option code="EEF" description="Eligibility for enhanced Apprenticeship funding" />
       <option code="FFI" description="Full or co-funding indicator" />
       <option code="FLN" description="Family English, Maths and Language" />
-      <option code="HEM" description="HE monitoring" />
       <option code="HHS" description="Household situation" />
       <option code="LDM" description="Learning delivery monitoring" />
       <option code="LSF" description="Learning support funding" />
-      <option code="NSA" description="National Skills Academy indicator" />
-      <option code="POD" description="Percentage of online delivery" />
       <option code="RES" description="Restart indicator" />
       <option code="SOF" description="Source of funding" />
       <option code="SPP" description="Special projects and pilots" />
-      <option code="WPP" description="Work programme participation" />
     </LearnDelFAMType>
     <LearnFAMType>
       <option code="DLA" description="Disabled students allowance" />
       <option code="ECF" description="GCSE English condition of funding" />
       <option code="EDF" description="Eligibility for 16-19 (excluding Apprenticeships) disadvantage funding" />
       <option code="EHC" description="Education Health Care plan" />
-      <option code="FME" description="Free meals eligiblity" />
       <option code="HNS" description="High needs students" />
       <!--<option code="LDA" description="Learning difficulty assessment" />-->
       <option code="LSR" description="Learner support reason" />
       <option code="MCF" description="GCSE maths condition of funding" />
       <option code="NLM" description="National learner monitoring" />
-      <option code="PPE" description="Pupil premium funding eligiblity" />
       <option code="SEN" description="Special educational needs" />
     </LearnFAMType>
     <LLDDHealthProb>
@@ -416,7 +410,7 @@
       <option code="1" description="Emotional/behavioural difficulties" />
       <option code="2" description="Multiple disabilities" />
       <option code="3" description="Multiple learning difficulties" />
-      <option code="4" description="Visual impairment" />
+      <option code="4" description="Vision impairment" />
       <option code="5" description="Hearing impairment" />
       <option code="6" description="Disability affecting mobility" />
       <option code="7" description="Profound complex disabilities" />
@@ -1046,6 +1040,8 @@
       <option code="23" description="Higher Apprenticeship – level 7+" />
       <option code="24" description="Traineeship" />
       <option code="25" description="Apprenticeship standard" />
+      <option code="30" description="T level transition programme" />
+      <option code="31" description="T level programme" />
     </ProgType>
     <QualEnt3>
       <option code="C20" description="Certificate of Higher Education" />
@@ -1500,9 +1496,6 @@
     <TypeYr>
       <option code="1" description="Year of instance contained within the reporting period 01 August to 31 July" />
       <option code="2" description="Year of instance not contained within the reporting period 01 August to 31 July" />
-      <option code="3" description="Learner commencing a year of instance of a course running across reporting periods" />
-      <option code="4" description="Learner mid-way through a learning aim running across reporting periods" />
-      <option code="5" description="Learner finishing a year of instance of a course running across reporting periods" />
     </TypeYr>
     <WithdrawReason>
       <option code="2" description="Learner transferred to another provider" />
@@ -1518,7 +1511,7 @@
       <option code="45" description="Written off after lapse of time – HE learning aims only" />
       <option code="46" description="Exclusion" />
       <option code="47" description="Learner has transferred to another provider due to merger" />
-      <option code="48" description="Industrial placement leaner has withdrawn due to circumstances outside the providers' control" />
+      <option code="48" description="Industry placement learner has withdrawn due to circumstances outside the providers' control" />
       <option code="97" description="Other" />
       <option code="98" description="Reason not known" />
     </WithdrawReason>
@@ -1547,6 +1540,7 @@
         <option code="2" description="Learner is in receipt of Employment and Support Allowance - Work Related Activity Group (ESA WRAG)" />
         <option code="3" description="Learner is in receipt of another state benefit other than JSA, Universal Credit or ESA (WRAG) " />
         <option code="4" description="Learner is in receipt of Universal Credit" />
+        <option code="5" description="Learner is in receipt of Employment and Support Allowance (all categories)" />
       </BSI>
       <EII>
         <option code="2" description="Learner is employed for less than 16 hours per week" />
@@ -1599,7 +1593,6 @@
         <option code="1" description="Learner has an Education Health Care plan " />
       </EHC>
       <FME>
-        <option code="1" description="14-15 year old learner is eligible for free meals " />
         <option code="2" description="16-19 year old learner is eligible for and in receipt of free meals " />
       </FME>
       <HNS>
@@ -1616,7 +1609,6 @@
         <option code="58" description="19+ Hardship (Adult Skills or Advanced Learner Loan funded learners only)" />
         <option code="59" description="20+ Childcare (Adult Skills or Advanced Learner Loan funded learners only)" />
         <option code="60" description="19+ Residential Access Fund (Adult Skills or Advanced Learner Loan funded learners only)" />
-        <option code="61" description="ESF funded learner receiving childcare support" />
       </LSR>
       <MCF>
         <option code="1" description="Learner is exempt from GCSE maths condition of funding due to a learning difficulty" />
@@ -1729,37 +1721,6 @@
         <option code="1" description="Learning support funding " />
         <option code="2-11" description="Unassigned" />
       </LSF>
-      <NSA>
-        <option code="1" description="Fashion Retail " />
-        <option code="2" description="Manufacturing " />
-        <option code="3" description="Financial Services " />
-        <option code="4" description="Construction " />
-        <option code="5" description="Food and Drink Manufacturing " />
-        <option code="6" description="Nuclear " />
-        <option code="7" description="Process Industries " />
-        <option code="8" description="Creative and Cultural " />
-        <option code="9" description="Hospitality " />
-        <option code="10" description="Sport and Active Leisure " />
-        <option code="11" description="Retail " />
-        <option code="12" description="Materials, Production and Supply " />
-        <option code="13" description="National Enterprise Academy " />
-        <option code="14" description="Social Care " />
-        <option code="15" description="Information Technology " />
-        <option code="16" description="Power " />
-        <option code="17" description="Rail Engineering " />
-        <option code="18" description="Environmental Technologies " />
-        <option code="19" description="Logistics " />
-        <option code="20" description="Health " />
-      </NSA>
-      <POD>
-        <option code="1" description="0% " />
-        <option code="2" description="1 - 9% " />
-        <option code="3" description="10 – 24% " />
-        <option code="4" description="25 – 49% " />
-        <option code="5" description="50 – 74% " />
-        <option code="6" description="75 – 99% " />
-        <option code="7" description="100% " />
-      </POD>
       <RES>
         <option code="1" description="Learning aim restarted" />
       </RES>

@@ -88,7 +88,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				switch (FamType)
 				{
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
-					case LearningDeliveryFAM.MultiOccurrenceFAMs.HEM:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
@@ -105,7 +104,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				switch (FamType)
 				{
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
-					case LearningDeliveryFAM.MultiOccurrenceFAMs.HEM:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
@@ -122,7 +120,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				switch (FamType)
 				{
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
-					case LearningDeliveryFAM.MultiOccurrenceFAMs.HEM:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
                     case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:

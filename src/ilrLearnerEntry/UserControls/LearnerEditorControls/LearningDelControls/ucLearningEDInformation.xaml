@@ -20,7 +20,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Margin="10,0,-9.6,1.2" >
@@ -478,27 +477,7 @@
 
 
             </Grid>
-            <Grid Grid.Row="3"  Margin="10" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="755"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition  />
-                </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Text="HEM Indicators :" HorizontalAlignment="Left"  Margin="3" FontSize="15" FontWeight="Bold" />
-
-                <CheckBox Grid.Row="1" Grid.Column="1" Content="1 - Student is funded by HEFCE using the old funding regime (only for learning aims starting on or after 1 September 2012)" IsChecked="{Binding Path=HEM1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-                <CheckBox Grid.Row="2" Grid.Column="1" Content="3 - Student has received an award under the National Scholarship programme for this learning aim" IsChecked="{Binding Path=HEM2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-                <CheckBox Grid.Row="3" Grid.Column="1" Content="5 - Student's qualifications and grades prior to enrolment are included in the student number control exemption list according to HEFCE" IsChecked="{Binding Path=HEM3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="17" />
-
-            </Grid>
 
         </Grid>
     </ScrollViewer>
