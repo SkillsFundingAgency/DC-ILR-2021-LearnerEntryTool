@@ -5,6 +5,8 @@
                               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                               xmlns:maskBehavior="clr-namespace:ilrLearnerEntry.MaskBehavior"
                               xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                              xmlns:behaviors="clr-namespace:ilrLearnerEntry.Behaviors"
                               mc:Ignorable="d" 
                               d:DesignHeight="200" d:DesignWidth="350">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -59,13 +61,17 @@
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      MinWidth="100"
-                     maskBehavior:TextBoxMaskBehavior.Mask="Integer" 
+                     maskBehavior:TextBoxMaskBehavior.Mask="PositiveInteger" 
                      maskBehavior:TextBoxMaskBehavior.MaximumLength="3"
                      MaxWidth="150"                       
-                     Margin="3" />
+                     Margin="3" >
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                </i:Interaction.Behaviors>
+            </TextBox>
 
 
-            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Start date :" Style="{DynamicResource StandardTextBlockStyle}"/>
+<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Start date :" Style="{DynamicResource StandardTextBlockStyle}"/>
 
             <DatePicker  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="dtStartDate"  VerticalAlignment="Top" 
                              DisplayDate="{Binding Path=CurrentItem.OutStartDate, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 

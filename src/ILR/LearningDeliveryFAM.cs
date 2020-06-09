@@ -181,9 +181,12 @@ namespace ILR
                                         //case "LSF":
                                         //    if (tmpint != 1) { result = "Invalid Value"; }
                                         //    break;
-                                        //case "ALB":
-                                        //    if (tmpint != 1) { result = "Invalid Value"; }
-                                        //    break;
+                                        case "ALB":
+                                            if ((tmpint < 1) || (tmpint > 3))
+                                            {
+                                                result = "Invalid Value";
+                                            }
+                                            break;
                                         case "ACT":
                                             if ((tmpint < 1) || (tmpint > 2))
                                             {

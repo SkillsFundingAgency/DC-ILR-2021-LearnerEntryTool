@@ -6,6 +6,8 @@
                               xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
                               xmlns:maskBehavior="clr-namespace:ilrLearnerEntry.MaskBehavior"
                               xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                              xmlns:behaviors="clr-namespace:ilrLearnerEntry.Behaviors"
                               mc:Ignorable="d" 
                               d:DesignHeight="70" d:DesignWidth="290" >
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -50,9 +52,12 @@
                      HorizontalContentAlignment="Left" 
                      MinWidth="50"  
                      Margin="3,3,15,3"
-                     maskBehavior:TextBoxMaskBehavior.Mask="Integer" maskBehavior:TextBoxMaskBehavior.MaximumLength="1" 
-                     IsReadOnly="{Binding Path=IsCodeReadOnly, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                />
+                     maskBehavior:TextBoxMaskBehavior.Mask="PositiveInteger" maskBehavior:TextBoxMaskBehavior.MaximumLength="1" maskBehavior:TextBoxMaskBehavior.MinimumValue="1"
+                     IsReadOnly="{Binding Path=IsCodeReadOnly, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <i:Interaction.Behaviors>
+                        <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>
 
                 <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="From  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsFromVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DatePicker  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="3" x:Name="dtFromDate"  VerticalAlignment="Top" MinWidth="120" 

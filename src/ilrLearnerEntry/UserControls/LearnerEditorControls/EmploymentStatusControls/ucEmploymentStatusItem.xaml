@@ -6,6 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:maskBehavior="clr-namespace:ilrLearnerEntry.MaskBehavior"
              xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:ilrLearnerEntry.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -62,17 +64,19 @@
 
                     <TextBlock Grid.Row="2" Grid.Column="2" Text="Employer Identifier :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
                     <TextBox Grid.Row="2" Grid.Column="3" 
-                     Name="txtEmpId" 
-                     Text="{Binding Path=CurrentItem.EmpId, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
-                     Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
-                     HorizontalContentAlignment="Left" 
-                     MinWidth="65"  
-                     Margin="3"
-                     maskBehavior:TextBoxMaskBehavior.Mask="Integer" 
-                     maskBehavior:TextBoxMaskBehavior.MaximumLength="9"/>
-
-
+                         Name="txtEmpId" 
+                         Text="{Binding Path=CurrentItem.EmpId, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                         Style="{DynamicResource TextBoxWithError}"
+                         HorizontalAlignment="Left" 
+                         HorizontalContentAlignment="Left" 
+                         MinWidth="65"  
+                         Margin="3"
+                         maskBehavior:TextBoxMaskBehavior.Mask="PositiveInteger" 
+                         maskBehavior:TextBoxMaskBehavior.MaximumLength="9">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
 
                 </Grid>
                 <Grid Grid.Row="1" 

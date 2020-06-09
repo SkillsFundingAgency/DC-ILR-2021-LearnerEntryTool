@@ -8,6 +8,8 @@
                               xmlns:interactivity="schemas.microsoft.com/expression/2010/interactivity"
                               xmlns:TextBoxMask="clr-namespace:ilrLearnerEntry.MaskBehavior"
                               xmlns:userControls="clr-namespace:ilrLearnerEntry.UserControls"
+                              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                              xmlns:behaviors="clr-namespace:ilrLearnerEntry.Behaviors"
 
                               mc:Ignorable="d" 
                               d:DesignHeight="180" d:DesignWidth="700"
@@ -116,7 +118,11 @@
                      Margin="3"
                      MaxLength="10"
                      TextBoxMask:TextBoxMaskBehavior.MaximumLength="10"
-                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True" />
+                     TextBoxMask:TextBoxMaskBehavior.Mask="PositiveInteger" IsUndoEnabled="True" >
+                    <i:Interaction.Behaviors>
+                        <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>
 
                 <TextBlock Grid.Row="1" Grid.Column="3" Name="lblPrvUKPRN" Text="Previous UKPRN :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="1" Grid.Column="4" 
@@ -130,7 +136,11 @@
                      MaxLength="8"
                      TextBoxMask:TextBoxMaskBehavior.MaximumLength="8"
                      Margin="3" 
-                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True" />
+                     TextBoxMask:TextBoxMaskBehavior.Mask="PositiveInteger" IsUndoEnabled="True" >
+                    <i:Interaction.Behaviors>
+                        <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Name="lblPMUKPRN" Text="Pre-merger UKPRN :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="2" Grid.Column="1" 
@@ -144,7 +154,11 @@
                      MaxLength="8"
                      TextBoxMask:TextBoxMaskBehavior.MaximumLength="8"
                      Margin="3" 
-                     TextBoxMask:TextBoxMaskBehavior.Mask="Integer" IsUndoEnabled="True" />
+                     TextBoxMask:TextBoxMaskBehavior.Mask="PositiveInteger" IsUndoEnabled="True" >
+                    <i:Interaction.Behaviors>
+                        <behaviors:TextBoxUnsignedIntegersOnlyBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>  
 
 
                 <TextBlock Grid.Row="2" Grid.Column="3"  Name="lblCampusId" Text="Campus Identifier :" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />

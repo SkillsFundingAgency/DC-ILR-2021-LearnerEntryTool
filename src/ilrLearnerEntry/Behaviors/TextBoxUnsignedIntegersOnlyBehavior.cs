@@ -20,6 +20,7 @@ namespace ilrLearnerEntry.Behaviors
             if (AssociatedObject != null)
             {
                 AssociatedObject.PreviewTextInput += OnPreviewTextInput;
+                AssociatedObject.PreviewKeyDown += OnPreviewKeyDown;
             }
         }
 
@@ -35,7 +36,7 @@ namespace ilrLearnerEntry.Behaviors
             }
         }
 
-        private static readonly Regex _regex = new Regex("[^0-9]+");
+        private static readonly Regex _regex = new Regex("[^0-9]+", RegexOptions.Compiled);
 
         private bool IsValid(string text)
         {
@@ -44,5 +45,9 @@ namespace ilrLearnerEntry.Behaviors
 
         private void OnPreviewTextInput(object sender, TextCompositionEventArgs e) =>
             e.Handled = IsValid(e.Text);
+
+        private void OnPreviewKeyDown(object sender, KeyEventArgs e) =>
+            e.Handled = e.Key == Key.Space;
+
     }
 }
