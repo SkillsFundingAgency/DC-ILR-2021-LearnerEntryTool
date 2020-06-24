@@ -80,8 +80,11 @@ stages:
         WorkingDirectory: "$(build.sourcesdirectory)/src"
         BuildConfiguration: "${{ parameters.buildConfiguration }}"    
         DesktopApplicationSourceFolder: 'src/ilrLearnerEntry'
-        DesktopApplicationCopyContents: '**\ilrLearnerEntry*.exe'
-        CodeSignFileFilter: 'ilrLearnerEntry*'
+        DesktopApplicationCopyContents: |
+          'ilrLearnerEntry*.exe'
+          'ILR.dll
+          'System.Windows.Interactivity.dll'
+        CodeSignFileFilter: 'ilr*'
 
     - template: Build/Desktop/RunUnitTest.Desktop.yml@templates
       parameters:
