@@ -136,7 +136,7 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Nuget Interface Packages Files - Artifact NugetInterface Directory'
       inputs:
-        SourceFolder: '${{ parameters.WorkingDirectory}}'
+        SourceFolder: '$(build.sourcesdirectory)/src'
         Contents: |
          **\*$(BuildConfiguration)*\*Interface.nupkg
          !**\packages\**
@@ -148,7 +148,7 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy NugetPackages Files - Artifact NugetPackages Directory'
       inputs:
-        SourceFolder: '${{ parameters.WorkingDirectory}}'
+        SourceFolder: '$(build.sourcesdirectory)/src'
         Contents: |
          **\*$(BuildConfiguration)*\*.nupkg
          !**\packages\**
@@ -241,5 +241,5 @@ stages:
       inputs:
         ArtifactName: DesktopApplication
         PathtoPublish: '$(build.artifactstagingdirectory)\DesktopApplication'
-      #condition: and(succeeded(), eq(variables['PublishArtifact_DesktopApplication'], 'True'))        
-
+      #condition: and(succeeded(), eq(variables['PublishArtifact_DesktopApplication'], 'True'))
+      
