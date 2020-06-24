@@ -160,7 +160,7 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Application File to Artifact Folder'
       inputs:
-        SourceFolder: 'src/ilrLearnerEntry\bin\${{ parameters.BuildConfiguration }}'  
+        SourceFolder: '$(build.sourcesdirectory)\src\ilrLearnerEntry\bin\${{ parameters.BuildConfiguration }}'
         Contents: |
           '**\System.Windows.Interactivity.dll'
           '**\ILR*.*'
