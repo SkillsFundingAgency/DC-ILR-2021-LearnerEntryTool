@@ -162,8 +162,9 @@ stages:
       inputs:
         SourceFolder: '$(build.sourcesdirectory)\src\ilrLearnerEntry\bin\${{ parameters.BuildConfiguration }}'
         Contents: |
-          '**\System.Windows.Interactivity.dll'
-          '**\ILR*.*'
+         **\System.Windows.Interactivity.dll
+         **\ILR*.exe
+         **\ILR*.dll
         TargetFolder: '$(build.ArtifactStagingDirectory)\DesktopApplication'
 
     - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
