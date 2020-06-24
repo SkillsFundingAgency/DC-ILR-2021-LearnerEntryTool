@@ -162,6 +162,7 @@ stages:
       inputs:
         SourceFolder: '$(build.sourcesdirectory)\src\ilrLearnerEntry\bin\${{ parameters.BuildConfiguration }}'
         Contents: |
+         !**\ProjectLibs\System.Windows.Interactivity.dll
          **\System.Windows.Interactivity.dll
          **\ILR*.exe
          **\ILR*.dll
