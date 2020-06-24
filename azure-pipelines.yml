@@ -162,12 +162,14 @@ stages:
       inputs:
         SourceFolder: '$(build.sourcesdirectory)\src\ilrLearnerEntry\bin\${{ parameters.BuildConfiguration }}'
         Contents: |
-         !**\ProjectLibs\System.Windows.Interactivity.dll
          **\System.Windows.Interactivity.dll
          **\ILR*.exe
          **\ILR*.dll
+         !**\ProjectLibs\*
         TargetFolder: '$(build.ArtifactStagingDirectory)\DesktopApplication'
-
+        flattenFolders: true
+        cleanTargetFolder: true
+        
     - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
       displayName: 'Tokenization: Transform Application config file'
       enabled: true
