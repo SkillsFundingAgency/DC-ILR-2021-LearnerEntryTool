@@ -3,7 +3,7 @@
 name: ${{ parameters.VersionNumberMajor }}.${{ parameters.VersionNumberMinor }}.${{ parameters.VersionNumberBuild }}.$(Rev:rrrr)
 
 parameters:
-- name: buildConfiguration
+- name: BuildConfiguration
   displayName: Release or Debug
   type: string
   default: Release
@@ -71,24 +71,175 @@ stages:
       - IsBuildServer
 
     steps:    
-    - template: Build/Desktop/IsDeployableBranch.yml@templates
-      parameters:
-        VariableNameToStoreOutputIn: 'IsDeployableBranch'
+    - task: PowerShell@2
+      name: CheckBranch
+      displayName: Which Branh is Build Running from.
+      inputs:
+        targetType: 'inline'
+        script: |
+                  $BranchName = "$(Build.SourceBranchName)"
+                  $IsThisDeployableBranch = if (($BranchName.ToUpper() -eq "MASTER") -or ($BranchName.ToUpper() -eq "DEVELOP")-or ($BranchName.ToUpper() -like "RELEASE*")){ $true } else {$false}
+                  Write-Host "##vso[task.setvariable variable=IsDeployableBranch;isOutput=true]$($IsThisDeployableBranch)";
 
-    - template: Build/Desktop/MsBuild.Desktop.yml@templates
-      parameters:
-        WorkingDirectory: "$(build.sourcesdirectory)/src"
-        BuildConfiguration: "${{ parameters.buildConfiguration }}"    
-        DesktopApplicationSourceFolder: 'src/ilrLearnerEntry'
-        DesktopApplicationCopyContents: |
-          'ilrLearnerEntry*.exe'
-          'ILR.dll
+#********************************************************************************
+# Install required software
+#********************************************************************************   
+    - task: UseGitVersion@5
+      enabled: false
+      displayName: "Check forGitVersion"
+      inputs:
+        versionSpec: '5.x'
+
+    - task: NuGetToolInstaller@1
+      displayName: "Check for NuGet Tools"
+      inputs:
+        checkLatest: true
+#********************************************************************************
+# Workout application Number from GitVersion
+#********************************************************************************   
+#    - task: gittools.gitversion.gitversion-task.GitVersion@4
+#      displayName: GitVersion
+#      inputs:
+#        updateAssemblyInfo: true
+#        preferBundledVersion: false
+
+#********************************************************************************
+# Restore NuGet Packages
+#********************************************************************************   
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        restoreSolution: 'src\**\*.sln'
+        vstsFeed: '$(Nuget.Feed)'
+        noCache: true
+
+#********************************************************************************
+# Build Solution
+#********************************************************************************   
+    - task: MSBuild@1
+      displayName: 'Build Solution'
+      inputs:
+        solution: 'src\**\*.sln'
+        platform: '$(Build.Platform)'
+        configuration: '${{ parameters.BuildConfiguration }}'
+        msbuildArguments: '-p:version=$(Build.BuildNumber) -p:FileVersion=$(Build.BuildNumber)'
+        clean: true
+        maximumCpuCount: true
+        restoreNugetPackages: false
+        logProjectEvents: true
+        createLogFile: true
+
+
+#********************************************************************************
+# Copy Files into Aftifact Folder before test.
+#********************************************************************************
+    - task: CopyFiles@2
+      displayName: 'Copy Nuget Interface Packages Files - Artifact NugetInterface Directory'
+      inputs:
+        SourceFolder: '${{ parameters.WorkingDirectory}}'
+        Contents: |
+         **\*$(BuildConfiguration)*\*Interface.nupkg
+         !**\packages\**
+         !**\bin\x64\**
+        TargetFolder: '$(build.artifactstagingdirectory)\Nuget\Interface'
+        CleanTargetFolder: true
+        flattenFolders: true
+
+    - task: CopyFiles@2
+      displayName: 'Copy NugetPackages Files - Artifact NugetPackages Directory'
+      inputs:
+        SourceFolder: '${{ parameters.WorkingDirectory}}'
+        Contents: |
+         **\*$(BuildConfiguration)*\*.nupkg
+         !**\packages\**
+         !**\bin\x64\**
+        TargetFolder: '$(build.artifactstagingdirectory)\Nuget\Packages'
+        CleanTargetFolder: true
+        flattenFolders: true
+
+    - task: CopyFiles@2
+      displayName: 'Copy Application File to Artifact Folder'
+      inputs:
+        SourceFolder: 'src/ilrLearnerEntry\bin\${{ parameters.BuildConfiguration }}'  
+        Contents: |
           'System.Windows.Interactivity.dll'
-        CodeSignFileFilter: 'ilr*'
+          'ILR*.*'
+        TargetFolder: '$(build.ArtifactStagingDirectory)\DesktopApplication'
 
-    - template: Build/Desktop/RunUnitTest.Desktop.yml@templates
-      parameters:
-        WorkingDirectory: "$(build.sourcesdirectory)/src"
-        BuildConfiguration: "${{ parameters.buildConfiguration }}"    
+    - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
+      displayName: 'Tokenization: Transform Application config file'
+      enabled: true
+      inputs:
+        SourcePath: '$(build.ArtifactStagingDirectory)\DesktopApplication'
+        TargetFileNames: '*.exe.config'
+        RequireVariable: false
 
-    - template: Build/Desktop/CopyAndPublish.Desktop.yml@templates
+#********************************************************************************
+# Count Artifact Files to decide what to Publish
+#********************************************************************************    
+    - task: PowerShell@2
+      displayName: 'Check What to Publish'
+      continueOnError: true  
+      inputs:
+        targetType: 'inline'
+        script: |
+                  Write-Host "##vso[task.setvariable variable=PublishArtifact_DesktopApplication]$(Test-Path '$(build.artifactstagingdirectory)\DesktopApplication' -PathType Any)";
+                  Write-Host "##vso[task.setvariable variable=PublishArtifact_NugetPackages]$(Test-Path '$(build.artifactstagingdirectory)\Nuget' -PathType Any)";
+                  Write-Host "##vso[task.setvariable variable=PublishArtifact_Databases]$(Test-Path '$(build.artifactstagingdirectory)\Databases' -PathType Any)";
+
+#********************************************************************************
+# CodeSign Script body
+# Application Signing execution begins here
+#********************************************************************************
+    - task: PowerShell@2
+      displayName: 'CodeSign DfE DesktopApplications'
+      enabled: true  
+      env:
+        CODESIGNPASSWORD: $(CodeSignPwdDfE)
+        CODESIGNCERT: $(CodeSignCertificatePFX)
+      inputs:
+        filePath: 'DFE_Code_Signing.ps1'
+        arguments: '-StartFolder "$(build.ArtifactStagingDirectory)\DesktopApplication" -FileFilter "ILR*.*"'
+        workingDirectory: '$(build.ArtifactStagingDirectory)'
+
+#********************************************************************************
+# Run Unit Tests
+#********************************************************************************
+    - task: VSTest@2
+      displayName: 'Run Unit Tests'
+      enabled: true
+      inputs:
+        testAssemblyVer2: |
+         **\$(BuildConfiguration)\*test*.dll
+         !**\obj\**
+        configuration: '${{ parameters.BuildConfiguration }}'
+        runInParallel: true
+        codeCoverageEnabled: true
+        diagnosticsEnabled: true
+
+#********************************************************************************
+# Publish Artifacts
+#********************************************************************************    
+    - task: PublishSymbols@2
+      displayName: 'Publish symbols path'
+      enabled: false
+      inputs:
+        SearchPattern: '**\bin\**\*.pdb'
+        PublishSymbols: false
+      continueOnError: true
+    
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: NugetPackages'
+      condition: and(succeeded(), eq(variables['PublishArtifact_NugetPackages'], 'True'))
+      inputs:
+        ArtifactName: NugetPackages
+        PathtoPublish: '$(build.artifactstagingdirectory)\Nuget'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: DesktopApplication'
+      enabled: true
+      inputs:
+        ArtifactName: DesktopApplication
+        PathtoPublish: '$(build.artifactstagingdirectory)\DesktopApplication'
+      #condition: and(succeeded(), eq(variables['PublishArtifact_DesktopApplication'], 'True'))        
+
