@@ -11,7 +11,7 @@ namespace ilrLearnerEntry
     /// </summary>
     public partial class App : Application, IDisposable
     {       
-        private static readonly string appGuid = "SFA-ilrLearnerEntry-A07151B7-8F1A-4423-ABFB-B85387423E98-1920";
+        private static readonly string appGuid = "SFA-ilrLearnerEntry-A07151B7-8F1A-4423-ABFB-B85387423E98-2021";
         private Mutex mutex = new Mutex(false, appGuid);
 
         private static readonly string  appYear         = "2021";
