@@ -203,7 +203,7 @@ stages:
         CODESIGNCERT: $(CodeSignCertificatePFX)
       inputs:
         filePath: 'DFE_Code_Signing.ps1'
-        arguments: '-StartFolder "$(build.ArtifactStagingDirectory)\DesktopApplication" -FileFilter "ILR*.*"'
+        arguments: '-StartFolder "$(build.ArtifactStagingDirectory)\DesktopApplication" -FileFilter "ILR*"'
         workingDirectory: '$(build.ArtifactStagingDirectory)'
 
 #********************************************************************************
