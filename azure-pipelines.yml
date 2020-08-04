@@ -259,7 +259,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: Scripts'
       condition: and(succeeded(), eq(variables['PublishArtifact_Scripts'], 'True'))
-      enabled: false
+      enabled: true
       inputs:
         ArtifactName: Scripts
         PathtoPublish: '$(build.artifactstagingdirectory)\Scripts'
