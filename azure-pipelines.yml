@@ -134,6 +134,14 @@ stages:
 # Copy Files into Aftifact Folder before test.
 #********************************************************************************
     - task: CopyFiles@2
+      displayName: 'Copy Scripts File to Scripts Folder'
+      inputs:
+        Contents: 'GenerateZipFilename.ps1'
+        TargetFolder: '$(build.ArtifactStagingDirectory)\Scripts'
+        flattenFolders: true
+        CleanTargetFolder: true
+
+    - task: CopyFiles@2
       displayName: 'Copy Nuget Interface Packages Files - Artifact NugetInterface Directory'
       inputs:
         SourceFolder: '$(build.sourcesdirectory)/src'
