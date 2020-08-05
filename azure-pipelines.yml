@@ -134,6 +134,14 @@ stages:
 # Copy Files into Aftifact Folder before test.
 #********************************************************************************
     - task: CopyFiles@2
+      displayName: 'Copy Scripts File to Scripts Folder'
+      inputs:
+        Contents: 'GenerateZipFilename.ps1'
+        TargetFolder: '$(build.ArtifactStagingDirectory)\Scripts'
+        flattenFolders: true
+        CleanTargetFolder: true
+
+    - task: CopyFiles@2
       displayName: 'Copy Nuget Interface Packages Files - Artifact NugetInterface Directory'
       inputs:
         SourceFolder: '$(build.sourcesdirectory)/src'
@@ -190,6 +198,8 @@ stages:
                   Write-Host "##vso[task.setvariable variable=PublishArtifact_DesktopApplication]$(Test-Path '$(build.artifactstagingdirectory)\DesktopApplication' -PathType Any)";
                   Write-Host "##vso[task.setvariable variable=PublishArtifact_NugetPackages]$(Test-Path '$(build.artifactstagingdirectory)\Nuget' -PathType Any)";
                   Write-Host "##vso[task.setvariable variable=PublishArtifact_Databases]$(Test-Path '$(build.artifactstagingdirectory)\Databases' -PathType Any)";
+                  Write-Host "##vso[task.setvariable variable=PublishArtifact_Scripts]$(Test-Path '$(build.artifactstagingdirectory)\Scripts' -PathType Any)";
+                  
 
 #********************************************************************************
 # CodeSign Script body
@@ -246,4 +256,11 @@ stages:
         ArtifactName: DesktopApplication
         PathtoPublish: '$(build.artifactstagingdirectory)\DesktopApplication'
       #condition: and(succeeded(), eq(variables['PublishArtifact_DesktopApplication'], 'True'))
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: Scripts'
+      condition: and(succeeded(), eq(variables['PublishArtifact_Scripts'], 'True'))
+      enabled: true
+      inputs:
+        ArtifactName: Scripts
+        PathtoPublish: '$(build.artifactstagingdirectory)\Scripts'
       
