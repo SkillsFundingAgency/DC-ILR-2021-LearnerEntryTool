@@ -103,6 +103,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\AssemblyVersionInfo.cs">
+      <Link>Properties\AssemblyVersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Behaviors\TextBoxUnsignedIntegersOnlyBehavior.cs" />
     <Compile Include="InputValiator.cs" />
     <Compile Include="UserControls\BaseUserControl.cs" />

@@ -13,10 +13,10 @@ if ($BuildNumberParts.Length-ne$BuildPartToUse)
 }
 
 switch ($Environment.ToUpper()) 
-{		"PP"         {$BuildPartToUse = 3; break}
-		"PD"         {$BuildPartToUse = 3; break}	
+{		"PP"         {$BuildPartToUse = 2; break}
+		"PD"         {$BuildPartToUse = 2; break}	
 
-		default      {$BuildPartToUse = 4; break}
+		default      {$BuildPartToUse = 3; break}
 }
 
 $val=0;

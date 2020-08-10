@@ -1,6 +1,6 @@
 
 #name: $(GitVersion_NuGetVersion)
-name: ${{ parameters.VersionNumberMajor }}.${{ parameters.VersionNumberMinor }}.${{ parameters.VersionNumberBuild }}.$(Rev:rrrr)
+name: ${{ parameters.VersionNumberMajor }}.${{ parameters.VersionNumberMinor }}.$(Rev:rrrr)
 
 parameters:
 - name: BuildConfiguration
@@ -10,27 +10,15 @@ parameters:
   values:
   - Release
   - Debug
+
 - name: VersionNumberMajor
   displayName: 'Version Number : Major'
   type: string
-  default: '0'
+  default: '2020'
 - name: VersionNumberMinor
   displayName: 'Version Number : Minor'
   type: string
-  default: '0'
-- name: VersionNumberBuild
-  displayName: 'Version Number : Build'
-  type: string
-  default: '0'
-- name: DotnetCore_Version
-  displayName: .net Coer SDK Version 
-  type: string
-  default: '2.2.x'  
-  values:
-  - '2.1.x'
-  - '2.2.x'
-  - '3.0.x'
-  - '3.1.x'
+  default: '01'
 
 trigger:
   paths:
@@ -114,6 +102,17 @@ stages:
         noCache: true
 
 #********************************************************************************
+# Set Assemblt to Build Number
+#********************************************************************************   
+    - task: VersionAssemblies@2
+      inputs:
+        Path: '$(Build.SourcesDirectory)\src'
+        VersionNumber: '$(Build.BuildNumber)'
+        InjectVersion: true
+        FilenamePattern: 'AssemblyVersionInfo.*'
+        OutputVersion: 'OutputedVersion'
+
+#********************************************************************************
 # Build Solution
 #********************************************************************************   
     - task: MSBuild@1
@@ -128,7 +127,6 @@ stages:
         restoreNugetPackages: false
         logProjectEvents: true
         createLogFile: true
-
 
 #********************************************************************************
 # Copy Files into Aftifact Folder before test.
@@ -200,7 +198,6 @@ stages:
                   Write-Host "##vso[task.setvariable variable=PublishArtifact_Databases]$(Test-Path '$(build.artifactstagingdirectory)\Databases' -PathType Any)";
                   Write-Host "##vso[task.setvariable variable=PublishArtifact_Scripts]$(Test-Path '$(build.artifactstagingdirectory)\Scripts' -PathType Any)";
                   
-
 #********************************************************************************
 # CodeSign Script body
 # Application Signing execution begins here
