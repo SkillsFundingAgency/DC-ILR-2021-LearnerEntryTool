@@ -1,6 +1,6 @@
 
 #name: $(GitVersion_NuGetVersion)
-name: ${{ parameters.VersionNumberMajor }}.${{ parameters.VersionNumberMinor }}.$(Rev:rrrr)
+name: ${{ parameters.VersionNumberMajor }}.${{ parameters.VersionNumberMinor }}.$(Rev:r)
 
 parameters:
 - name: BuildConfiguration
