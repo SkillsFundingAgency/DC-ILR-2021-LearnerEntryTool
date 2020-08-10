@@ -1090,6 +1090,9 @@ namespace ILR
             this.OutGrade = MigrationLearningDelivery.OutGrade;
             this.SWSupAimId = MigrationLearningDelivery.SWSupAimId;
 
+            this.PHours = MigrationLearningDelivery.PHours;
+            this.LSDPostcode = MigrationLearningDelivery.LSDPostcode;
+
             foreach (LearningDeliveryFAM migrationItem in MigrationLearningDelivery.LearningDeliveryFAMList.Where(fmType =>
                 !_learnDeliveryFamTypeListExcludedForMigration.Contains(fmType.LearnDelFAMType)))
             {
