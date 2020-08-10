@@ -80,7 +80,7 @@ namespace ilrLearnerEntry
                     vReturn = "Unable to get Version.";
                 }
 
-                return "v2021.1";
+                return "v2021.2";
             }
         }
         #endregion
