@@ -72,7 +72,7 @@ namespace ilrLearnerEntry
 #if DEBUG
                     vReturn = version.ToString();
 #else
-                                    vReturn = version.Major.ToString() + "." + version.Minor.ToString() + "." + version.Build.ToString();
+                                    vReturn = version.Major.ToString() + "." + version.Minor.ToString(); // + "." + version.Build.ToString();
 #endif
                 }
                 else
@@ -80,7 +80,7 @@ namespace ilrLearnerEntry
                     vReturn = "Unable to get Version.";
                 }
 
-                return "v2021.2";
+                return vReturn;
             }
         }
         #endregion
