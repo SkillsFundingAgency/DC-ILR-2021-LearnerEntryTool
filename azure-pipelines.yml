@@ -18,7 +18,7 @@ parameters:
 - name: VersionNumberMinor
   displayName: 'Version Number : Minor'
   type: string
-  default: '03'
+  default: '3'
 
 trigger:
   paths:
