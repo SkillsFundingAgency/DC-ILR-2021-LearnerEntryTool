@@ -14,11 +14,11 @@ parameters:
 - name: VersionNumberMajor
   displayName: 'Version Number : Major'
   type: string
-  default: '2020'
+  default: '2021'
 - name: VersionNumberMinor
   displayName: 'Version Number : Minor'
   type: string
-  default: '02'
+  default: '03'
 
 trigger:
   paths:
