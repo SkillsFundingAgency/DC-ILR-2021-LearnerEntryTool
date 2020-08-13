@@ -1541,6 +1541,7 @@
         <option code="3" description="Learner is in receipt of another state benefit other than JSA, Universal Credit or ESA (WRAG) " />
         <option code="4" description="Learner is in receipt of Universal Credit" />
         <option code="5" description="Learner is in receipt of Employment and Support Allowance (all categories)" />
+        <option code="6" description="Learner is in receipt of other state benefits" />
       </BSI>
       <EII>
         <option code="2" description="Learner is employed for less than 16 hours per week" />
@@ -1737,6 +1738,7 @@
         <option code="114" description="Tees Valley Combined Authority" />
         <option code="115" description="Cambridgeshire and Peterborough Combined Authority" />
         <option code="116" description="Greater London Authority" />
+        <option code="117" description="North of Tyne Combined Authority" />
         <option code="998" description="Other" />
       </SOF>
       <SPP>
