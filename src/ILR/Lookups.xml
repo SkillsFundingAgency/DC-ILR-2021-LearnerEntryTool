@@ -1622,10 +1622,6 @@
         <option code="17" description="Learner migrated as part of provider merger " />
         <option code="18" description="Learner moved as a result of Minimum Contract Level " />
       </NLM>
-      <PPE>
-        <option code="1" description="Learner is eligible for Service Child premium " />
-        <option code="2" description="Learner is eligible for Adopted from Care premium " />
-      </PPE>
       <SEN>
         <option code="1" description="Special educational needs" />
       </SEN>

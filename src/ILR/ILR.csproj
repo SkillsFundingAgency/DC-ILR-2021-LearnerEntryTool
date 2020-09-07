@@ -82,8 +82,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProviderSpecDeliveryMonitoring.cs" />
     <Compile Include="ProviderSpecLearnerMonitoring.cs" />
-    <Compile Include="Renormalised\LearnerContact.cs" />
-    <Compile Include="Renormalised\LearnerFAM.cs" />
     <Compile Include="Schema.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Utils\CommonValidations.cs" />

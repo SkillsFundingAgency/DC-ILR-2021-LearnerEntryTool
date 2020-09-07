@@ -8,7 +8,7 @@ namespace ILR
     {
         #region Enums
         public enum SingleOccurrenceFAMs { HNS, EHC, DLA, FME, SEN, ECF, MCF }
-        public enum MultiOccurrenceFAMs { LSR, NLM, PPE, EDF }
+        public enum MultiOccurrenceFAMs { LSR, NLM, EDF }
         #endregion
 
         #region ILR Properties
