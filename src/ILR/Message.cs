@@ -276,6 +276,7 @@ namespace ILR
             //Extract the Learner Ref numbers for quicker exist / count checks
             var lrns =  ILRFile.SelectNodes("/ia:Message/ia:Learner/ia:LearnRefNumber", NSMgr);
 
+            LearnerRefNumbers.Clear();
             foreach (XmlNode lrn in lrns)
             {
                 var data = lrn.FirstChild.Value;
