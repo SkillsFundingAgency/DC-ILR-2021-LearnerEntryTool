@@ -12,7 +12,11 @@ namespace ILR
         {
             SOF,
             FFI,
+            EEF,
             RES,
+            ADL,
+            ASL,
+            FLN
         }
 
         public enum MultiOccurrenceFAMs

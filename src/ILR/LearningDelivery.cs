@@ -716,6 +716,57 @@ namespace ILR
             }
         }
 
+        public string EEF
+        {
+            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.EEF); }
+            set
+            {
+                if (value != null)
+                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.EEF, value);
+                else
+                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.EEF);
+                OnPropertyChanged("EEF");
+            }
+        }
+
+        public string ASL
+        {
+            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.ASL); }
+            set
+            {
+                if (value != null)
+                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ASL, value);
+                else
+                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ASL);
+                OnPropertyChanged("ASL");
+            }
+        }
+        public bool ADL
+        {
+            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.ADL) == "1"; }
+            set
+            {
+                if (value)
+                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ADL, "1");
+                else
+                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.ADL);
+                OnPropertyChanged("ADL");
+            }
+        }
+
+        public bool FLN
+        {
+            get { return GetFAMCode(LearningDeliveryFAM.SingleOccurrenceFAMs.FLN) == "1"; }
+            set
+            {
+                if (value)
+                    SetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.FLN, "1");
+                else
+                    RemoveFAM(LearningDeliveryFAM.SingleOccurrenceFAMs.FLN);
+                OnPropertyChanged("FLN");
+            }
+        }
+
         public List<string> DAM
         {
             get
