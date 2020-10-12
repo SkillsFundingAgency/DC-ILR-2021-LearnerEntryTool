@@ -302,9 +302,9 @@
                 </PHours>
               </xsl:if>
               <xsl:if test="dc:OTJActhours != ''">
-                <PHours>
+                <OTJActhours>
                   <xsl:value-of select="dc:OTJActhours"/>
-                </PHours>
+                </OTJActhours>
               </xsl:if>
               <xsl:if test="dc:ProgType != ''">
                 <ProgType>
