@@ -18,7 +18,7 @@ parameters:
 - name: VersionNumberMinor
   displayName: 'Version Number : Minor'
   type: string
-  default: '4'
+  default: '5'
 
 trigger:
   paths:
@@ -61,7 +61,7 @@ stages:
     steps:    
     - task: PowerShell@2
       name: CheckBranch
-      displayName: Which Branh is Build Running from.
+      displayName: Which Branch is Build Running from.
       inputs:
         targetType: 'inline'
         script: |
